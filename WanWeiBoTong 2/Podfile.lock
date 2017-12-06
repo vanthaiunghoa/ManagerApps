@@ -1,0 +1,99 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - Bugly (2.4.8)
+  - DZNEmptyDataSet (1.8.1)
+  - FLEX (2.4.0)
+  - IQKeyboardManager (4.0.13)
+  - JCore (1.1.5)
+  - JPush (3.0.6):
+    - JCore (~> 1.1.1)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.0.0)
+  - MJExtension (3.0.13)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - SAMKeychain (1.5.2)
+  - SDCycleScrollView (1.73):
+    - SDWebImage (~> 4.0.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+  - ZYCornerRadius (1.0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.0)
+  - BlocksKit (~> 2.2.5)
+  - Bugly
+  - DZNEmptyDataSet
+  - FLEX (~> 2.0)
+  - IQKeyboardManager
+  - JPush
+  - Masonry
+  - MBProgressHUD (~> 1.0.0)
+  - MJExtension
+  - ReactiveCocoa (~> 2.0)
+  - SAMKeychain
+  - SDCycleScrollView (~> 1.73)
+  - SDWebImage (~> 4.0.0)
+  - YYKit
+  - ZYCornerRadius (~> 1.0.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  Bugly: da3c02408c14838d498429320545a8e439392978
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FLEX: bd1a39e55b56bb413b6f1b34b3c10a0dc44ef079
+  IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
+  JCore: 9bd9c770c877c583d98b90a68792b8361974c231
+  JPush: c41be50eb1a574a66aeb68d237f00a4ec6ec3a82
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SAMKeychain: 1865333198217411f35327e8da61b43de79b635b
+  SDCycleScrollView: d0fd5fe40a80918371fd8939214eb3be81033d83
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  ZYCornerRadius: f0af817be7805b5c63d793042ca7a03f81e14069
+
+PODFILE CHECKSUM: 9cc57079226a9008a9cd0ccc8811af7901f37603
+
+COCOAPODS: 1.2.0

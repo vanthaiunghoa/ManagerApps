@@ -1,0 +1,226 @@
+//
+//  PrefixHeader.pch
+//  Template
+//
+//  Created by Apple on 2017/10/15.
+//  Copyright © 2017年 李康滨,工作qq:1218773641. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+#define kAuthorName @"lkb"
+
+
+
+//release调试
+#ifdef DEBUG  //都开放出来
+
+#define ReleseLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+
+#else
+
+#define ReleseLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+
+#endif
+
+
+
+
+
+/* debug和release设置 */
+#ifdef DEBUG
+//#define NSLog(...) NSLog(__VA_ARGS__)
+#define debugMethod() NSLog(@"%s", __func__)
+#else
+//#define NSLog(...)
+#define debugMethod()
+#endif
+#ifdef DEBUG
+#define NSLog(format, ...) printf("\n[%s] %s [第%d行] %s\n", __TIME__, __FUNCTION__, __LINE__, [[NSString stringWithFormat:format, ## __VA_ARGS__] UTF8String]);
+#else
+#define NSLog(format, ...)
+#endif
+//获取BundleID,版本号,版本缩写
+#define Application_BundleID [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleIdentifier"]
+#define Application_BuildNumber [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleVersion"]
+#define Application_Version [[NSBundle mainBundle].infoDictionary valueForKey:@"CFBundleShortVersionString"]
+
+
+//屏幕的区域
+#define  kScreen_Bounds [UIScreen mainScreen].bounds
+//屏幕的高度
+#define kScreen_Height    MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+//[UIScreen mainScreen].bounds.size.height
+//屏幕的宽度
+#define kScreen_Width   MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+//[UIScreen mainScreen].bounds.size.width
+
+
+//从16进制获取颜色
+#define kRGBColorFromHex(rgbValue)  [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0f green:((float)((rgbValue & 0xFF00) >> 8))/255.0f blue:((float)(rgbValue & 0xFF))/255.0f alpha:1.0f]
+#define kRGBColorFromHexBackgroundAndAlpha(rgbValue,alpha)     [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0f green:((float)((rgbValue & 0xFF00) >> 8))/255.0f blue:((float)(rgbValue & 0xFF))/255.0f alpha:alpha]
+
+//从16进制背景获取颜色
+#define kRGBColorFromHexBackground(rgbValue)        [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0f green:((float)((rgbValue & 0xFF00) >> 8))/255.0f blue:((float)(rgbValue & 0xFF))/255.0f alpha:0.5f]
+#define kRGBColorFromHexBackground8(rgbValue)        [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0f green:((float)((rgbValue & 0xFF00) >> 8))/255.0f blue:((float)(rgbValue & 0xFF))/255.0f alpha:0.8f]
+
+
+//判读系统版本
+#define kHigher_iOS_6_1 (floor(NSFoundationVersionNumber) > NSFoundationVersionNumber_iOS_6_1)
+#define kHigher_iOS_6_1_DIS(_X_) ([[NSNumber numberWithBool:kHigher_iOS_6_1] intValue] * _X_)
+#define kNotHigher_iOS_6_1_DIS(_X_) (-([[NSNumber numberWithBool:kHigher_iOS_6_1] intValue]-1) * _X_)
+//判断设备
+#define kDevice_Is_iPhone4 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 960), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(750, 1334), [[UIScreen mainScreen] currentMode].size) : NO)
+#define kDevice_Is_iPhone6Plus ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1242, 2208), [[UIScreen mainScreen] currentMode].size) : NO)
+//if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+//    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+//    if (screenSize.height == 812.0f)
+//        NSLog(@"iPhone X");
+//        }
+
+#define kDevice_Is_iPhoneX  ([[UIScreen mainScreen] bounds].size.height == 812.f)
+
+#define kTotalTopHeight  ((kDevice_Is_iPhoneX)?84:64)
+
+
+//px转pt大小
+//基于宽度
+#define k1(px)        px/375.f
+#define kpt(px)       k1(px)*kScreen_Width
+//基于高度
+#define k2(px)        px/667.f
+#define kph(px)       k2(px)*kScreen_Height
+
+//字体
+#define kfont(px)     sqrt(kpt(px)*kph(px))
+
+
+//安卓720*1280
+//基于宽度
+#define k11(px)        px/720.f
+#define apt(px)       k11(px)*kScreen_Width
+//基于高度
+#define k22(px)        px/1280.f
+#define aph(px)       k22(px)*kScreen_Height
+
+//字体
+#define afont(px)     sqrt(apt(px)*aph(px))
+
+
+
+//加载一次图片
+#define kImg(image)    [UIImage imageWithContentsOfFile: [[NSBundle mainBundle]pathForResource:image ofType:nil]]
+
+//#define IMAGE(A) [UIImage imageWithContentsOfFile:［NSBundle mainBundle] pathForResource:A ofType:nil］
+
+//#define kGoBefore   1
+
+#define  kBackButtonFontSize 16
+#define  kNavTitleFontSize 18
+#define  kBadgeTipStr @"badgeTip"
+
+#define kDefaultLastId [NSNumber numberWithInteger:99999999]
+
+
+#define kPlaceholderMonkeyRoundWidth(_width_) [UIImage imageNamed:[NSString stringWithFormat:@"placeholder_monkey_round_%.0f", _width_]]
+#define kPlaceholderMonkeyRoundView(_view_) [UIImage imageNamed:[NSString stringWithFormat:@"placeholder_monkey_round_%.0f", CGRectGetWidth(_view_.frame)]]
+
+#define kPlaceholderCodingSquareWidth(_width_) [UIImage imageNamed:[NSString stringWithFormat:@"placeholder_coding_square_%.0f", _width_]]
+#define kPlaceholderCodingSquareView(_view_) [UIImage imageNamed:[NSString stringWithFormat:@"placeholder_coding_square_%.0f", CGRectGetWidth(_view_.frame)]]
+
+#define kScaleFrom_iPhone5_Desgin(_X_) (_X_ * (kScreen_Width/320))
+
+#define kUnReadKey_messages @"messages"
+#define kUnReadKey_notifications @"notifications"
+#define kUnReadKey_project_update_count @"project_update_count"
+#define kUnReadKey_notification_AT @"notification_at"
+#define kUnReadKey_notification_Comment @"notification_comment"
+#define kUnReadKey_notification_System @"notification_system"
+
+
+/*定义三种主流机型的高度*/
+#define IPHONE6P_H 736
+#define IPHONE6_H 667
+#define IPHONE5S_H 568
+
+//appdelegate的实例对象
+#define kAppdelegate ((AppDelegate *)[UIApplication sharedApplication].delegate)
+
+#define ZRTKeyWindow  [[[UIApplication sharedApplication]delegate]window]
+/** iPhone iPad 的判断 */
+#define IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
+#define IS_RETINA ([[UIScreen mainScreen] scale] >= 2.0)
+/** 屏幕的最大边距 和 最小边距 */
+#define SCREEN_MAX_LENGTH (MAX(kScreenW, kScreenH))
+#define SCREEN_MIN_LENGTH (MIN(kScreenW, kScreenH))
+
+/**
+ *  Masonry
+ * 重新宏定义一下masonry
+ */
+#define equalTo(...)                     mas_equalTo(__VA_ARGS__)
+#define greaterThanOrEqualTo(...)        mas_greaterThanOrEqualTo(__VA_ARGS__)
+#define lessThanOrEqualTo(...)           mas_lessThanOrEqualTo(__VA_ARGS__)
+#define offset(...)                      mas_offset(__VA_ARGS__)
+
+
+// 状态栏(statusbar)
+#define kStatusHeight  [[UIApplication sharedApplication] statusBarFrame].size.height
+//NSLog(@"status width - %f", rectStatus.size.width); // 宽度
+//NSLog(@"status height - %f", rectStatus.size.height);  // 高度
+
+
+// 导航栏（navigationbar）
+#define kRectNavHegiht    self.navigationController.navigationBar.frame.size.height
+//NSLog(@"nav width - %f", rectNav.size.width); // 宽度
+//NSLog(@"nav height - %f", rectNav.size.height);  // 高度
+
+
+#define kSettingDict  [NSDictionary dictionaryWithContentsOfFile:[[NSBundle mainBundle]pathForResource:@"Setting.plist" ofType:nil]]
+
+
+
+//用户信息路径
+#define DDUserInformationPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"user.data"]
+
+//通讯录路径
+#define kUserPhonePath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0] stringByAppendingPathComponent:@"phoneBook.plist"]
+
+#define MEMORY_LEAKS_FINDER_ENABLED 0 //不开启内存检测
+
+
+//导入工具
+#import "API.h"
+#import "APPKey.h"
+#import "NoticeKeyWords.h"
+#import "Enum.h"
+#import "Color.h"
+#import "FontSize.h"
+#import "DDNetworkTool.h"
+#import "UIColor+Util.h"
+#import "UIImage+WLTScaleImage.h"
+#import "UIButton+ActionBlock.h"
+#import "UIView+MJCornerRadius.h"
+#import "UIButton+EnlargeTouchArea.h"
+
+//导入类
+#import <Masonry.h>
+#import <ReactiveCocoa.h>
+#import <MJExtension/MJExtension.h>
+#import <YYKit.h>
+#import "DDInfo.h"
+#import "MBProgressHUD+MJ.h"
+#import "DDGetUserInformationTool.h"
+
+
+
+
+
+
+#endif /* PrefixHeader_pch */

@@ -1,0 +1,79 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'Template' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+
+  # use_frameworks!
+
+  # Pods for Template
+
+
+pod 'IQKeyboardManager'
+
+pod 'AFNetworking', '~> 3.0'
+
+pod 'SDWebImage', '~> 4.0.0'
+
+pod 'MJExtension'
+
+
+pod 'JPush'
+
+
+#,'~> 3.0.2'
+
+#pod 'MWPhotoBrowser'
+
+#pod 'SDWebImage', '~> 4.0'
+
+#    pod 'ACAlertController'
+#pod 'UMengAnalytics-NO-IDFA'
+#//无IDFA版SDK（请根据需要选择其中一个）
+pod 'Bugly'
+
+#pod 'pop', '~> 1.0'
+pod 'YYKit'
+#pod'FMDB'
+#pod 'TYAttributedLabel', '~> 2.6.2'
+
+pod 'ReactiveCocoa', '~> 2.0'
+pod 'BlocksKit', '~> 2.2.5'
+
+#pod 'UITableView+FDTemplateLayoutCell', '~> 1.5.beta'
+
+#pod 'CocoaSecurity'
+
+#pod 'ZFPlayer'
+#pod 'ZFDownload'
+#pod 'ASIHTTPRequest'
+
+pod  ‘Masonry'
+
+
+#pod 'Hyphenate' #导入环信sdk
+#pod 'EaseUI', :git => 'https://github.com/easemob/easeui-ios-hyphenate-cocoapods.git'
+#pod 'RedpacketAliAuthLib'
+
+#pod 'DBCountDownButton'
+
+pod 'FLEX', '~> 2.0', :configurations => ['Debug']
+
+
+pod 'SAMKeychain'
+
+#pod 'MLeaksFinder', :configurations => ['Debug']
+
+#pod 'CocoaLumberjack'
+
+pod 'ZYCornerRadius', '~> 1.0.2'
+
+pod 'MBProgressHUD', '~> 1.0.0'
+
+pod 'SDCycleScrollView','~> 1.73'
+
+pod 'DZNEmptyDataSet'
+
+
+
+end
