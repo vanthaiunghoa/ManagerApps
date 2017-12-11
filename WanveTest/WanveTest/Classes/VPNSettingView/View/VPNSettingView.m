@@ -20,179 +20,195 @@
     self = [super init];
     if (!self) return nil;
     
-    UIButton *backBtn =[ UIButton buttonWithType:UIButtonTypeCustom];
-    [backBtn setImage:[UIImage imageNamed:@"arrow_back_black"] forState:UIControlStateNormal];
-    [backBtn addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:backBtn];
+    UIImageView *bkg_top = [UIImageView new];
+    bkg_top.image = [UIImage imageNamed:@"vpn_top"];
+    [self addSubview:bkg_top];
+    [bkg_top makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self);
+    }];
     
     UILabel *titleLab = [UILabel new];
     titleLab.text = @"智慧政务管理平台";
-    titleLab.textColor = [UIColor colorWithHex:0x2badda];
-    titleLab.font = [UIFont systemFontOfSize:kfont(28)];
+    titleLab.textColor = [UIColor colorWithHexString:@"#FAF90B"];
+    titleLab.font = [UIFont systemFontOfSize:30];
     titleLab.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLab];
+    [titleLab makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.centerX);
+        make.top.equalTo(self).with.offset(106);
+    }];
     
     UILabel *welcomeCNLab = [UILabel new];
-    welcomeCNLab.text = @"欢迎使用 VPN 接入系统";
-    welcomeCNLab.textColor = [UIColor colorWithHex:0x252525];
-    welcomeCNLab.font = [UIFont systemFontOfSize:kfont(16)];
+    welcomeCNLab.text = @"欢迎使用VPN接入系统";
+    welcomeCNLab.textColor = [UIColor whiteColor];
+    welcomeCNLab.font = [UIFont systemFontOfSize:20];
     welcomeCNLab.textAlignment = NSTextAlignmentCenter;
     [self addSubview:welcomeCNLab];
+    [welcomeCNLab makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.centerX);
+        make.top.equalTo(titleLab.bottom).offset(35);
+    }];
 
     UILabel *welcomeENLab = [UILabel new];
     welcomeENLab.text = @"Welcome to the VPN access system";
-    welcomeENLab.textColor = [UIColor colorWithHex:0x5C5C5C];
-    welcomeENLab.font = [UIFont systemFontOfSize:kfont(16)];
+    welcomeENLab.textColor = [UIColor whiteColor];
+    welcomeENLab.font = [UIFont systemFontOfSize:14];
     welcomeENLab.textAlignment = NSTextAlignmentCenter;
     [self addSubview:welcomeENLab];
+    [welcomeENLab makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.centerX);
+        make.top.equalTo(welcomeCNLab.bottom).offset(6);
+    }];
+    
+    UIView *line = [UIView new];
+    line.backgroundColor = [UIColor colorWithHexString:@"#406CBA"];
+    [self addSubview:line];
+    [line makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(bkg_top.bottom).with.offset(0);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@0.5);
+    }];
+    
+    UIView *usernameBkg = [UIView new];
+    usernameBkg.backgroundColor = [UIColor whiteColor];
+    [self addSubview:usernameBkg];
+    [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line.bottom).with.offset(0);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@60);
+    }];
 
-    UIView *accountBkg = [UIView new];
-    accountBkg.backgroundColor = [UIColor colorWithHexString:@"#E4E4E4"];
-    accountBkg.layer.cornerRadius = 5;
-    accountBkg.clipsToBounds = YES;
-    [self addSubview:accountBkg];
-    
     UIImageView *userIcon = [UIImageView new];
-    userIcon.image = [UIImage imageNamed:@"user"];
-    [accountBkg addSubview:userIcon];
-    
+    userIcon.image = [UIImage imageNamed:@"vpn_user"];
+    [usernameBkg addSubview:userIcon];
+    [userIcon makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(usernameBkg.centerY);
+        make.width.equalTo(@18);
+        make.left.equalTo(@22.5);
+    }];
+
     self.accountTextField = [UITextField new];
     self.accountTextField.placeholder = @"请输入vpn账号";
-    self.accountTextField.textColor = [UIColor colorWithHexString:@"#3A3A3A"];
-    self.accountTextField.font = [UIFont systemFontOfSize:kfont(14)];
+    self.accountTextField.textColor = [UIColor blackColor];
+    self.accountTextField.font = [UIFont systemFontOfSize:18];
     self.accountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.accountTextField.clearsOnBeginEditing = NO;
+    self.accountTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.accountTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.accountTextField.returnKeyType =UIReturnKeyNext;
     self.accountTextField.delegate = self;
-    [accountBkg addSubview:self.accountTextField];
+    [usernameBkg addSubview:self.accountTextField];
+    [self.accountTextField makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(userIcon.right).with.offset(10);
+        make.top.bottom.equalTo(usernameBkg);
+        make.right.equalTo(usernameBkg.right).offset(-22.5);
+    }];
+    
+    UIView *line1 = [UIView new];
+    line1.backgroundColor = [UIColor colorWithHexString:@"#999"];
+    [self addSubview:line1];
+    [line1 makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(usernameBkg.bottom).with.offset(0);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@0.5);
+    }];
 
     UIView *passwordBkg = [UIView new];
-    passwordBkg.backgroundColor = [UIColor colorWithHexString:@"#E4E4E4"];
-    passwordBkg.layer.cornerRadius = 5;
-    passwordBkg.clipsToBounds = YES;
+    passwordBkg.backgroundColor = [UIColor whiteColor];
     [self addSubview:passwordBkg];
-    
+    [passwordBkg makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line1.bottom).with.offset(0);
+        make.left.right.width.height.equalTo(usernameBkg);
+    }];
+
     UIImageView *passwordIcon = [UIImageView new];
-    passwordIcon.image = [UIImage imageNamed:@"password"];
+    passwordIcon.image = [UIImage imageNamed:@"vpn_password"];
     [passwordBkg addSubview:passwordIcon];
-    
+    [passwordIcon makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(passwordBkg.mas_centerY);
+        make.left.equalTo(@22.5);
+    }];
+
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"请输入vpn密码";
-    self.passwordTextField.textColor = [UIColor colorWithHexString:@"#3A3A3A"];
-    self.passwordTextField.font = [UIFont systemFontOfSize:kfont(14)];
+    self.passwordTextField.textColor = [UIColor blackColor];
+    self.passwordTextField.font = [UIFont systemFontOfSize:18];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
-//    self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.clearsOnBeginEditing = NO;
-    self.passwordTextField.returnKeyType =UIReturnKeyDone;
+    self.passwordTextField.returnKeyType = UIReturnKeyDone;
+    self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
+    self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwordTextField.delegate = self;
     [passwordBkg addSubview:self.passwordTextField];
+    [self.passwordTextField makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.equalTo(@0);
+        make.left.right.width.height.equalTo(self.accountTextField);
+    }];
+    
+    UIView *line2 = [UIView new];
+    line2.backgroundColor = [UIColor colorWithHexString:@"#999"];
+    [self addSubview:line2];
+    [line2 makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(passwordBkg.bottom).with.offset(0);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@0.5);
+    }];
     
     UILabel *useLab = [UILabel new];
     useLab.text = @"启用";
-    useLab.textColor = [UIColor colorWithHex:0x3A3A3A];
-    useLab.font = [UIFont systemFontOfSize:kfont(14)];
-//    useLab.textAlignment = NSTextAlignmentCenter;
+    useLab.textColor = [UIColor blackColor];
+    useLab.font = [UIFont systemFontOfSize:18];
     [self addSubview:useLab];
-    
+    [useLab makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(@22.5);
+        make.top.equalTo(line2.bottom).with.offset(20);
+    }];
+
     self.useBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.useBtn setTitle:@"是" forState:UIControlStateNormal];
-    [self.useBtn setTitleColor:[UIColor colorWithHex:0x3A3A3A] forState:UIControlStateNormal];
-    [self.useBtn setImage:[UIImage imageNamed:@"remember_unselected"] forState:UIControlStateNormal];
-    [self.useBtn setImage:[UIImage imageNamed:@"remember_selected"] forState:UIControlStateSelected];
-    self.useBtn.titleLabel.font=[UIFont systemFontOfSize:kfont(14)];
-    self.useBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kpw(-10));
+    [self.useBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.useBtn setImage:[UIImage imageNamed:@"unuse"] forState:UIControlStateNormal];
+    [self.useBtn setImage:[UIImage imageNamed:@"use"] forState:UIControlStateSelected];
+    self.useBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+    self.useBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -10);
     [self.useBtn addTarget:self action:@selector(useClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.useBtn];
-    
-    self.unuseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self.unuseBtn setTitle:@"否" forState:UIControlStateNormal];
-    [self.unuseBtn setTitleColor:[UIColor colorWithHex:0x3A3A3A] forState:UIControlStateNormal];
-    [self.unuseBtn setImage:[UIImage imageNamed:@"remember_unselected"] forState:UIControlStateNormal];
-    [self.unuseBtn setImage:[UIImage imageNamed:@"remember_selected"] forState:UIControlStateSelected];
-    self.unuseBtn.titleLabel.font=[UIFont systemFontOfSize:kfont(14)];
-    self.unuseBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, kpw(-10));
-    [self.unuseBtn addTarget:self action:@selector(unuseClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.unuseBtn];
-    
-    
-    [backBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(@(kpw(0)));
-        make.top.equalTo(@(kph(15)));
-        make.width.height.equalTo(@44);
-    }];
-    
-    [titleLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(@(kph(100)));
-        make.width.equalTo(@(kpw(250)));
-        make.height.equalTo(@(kph(30)));
-    }];
-    
-    [welcomeCNLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(titleLab.centerX);
-        make.top.equalTo(titleLab.bottom).with.offset(kph(32));
-        make.left.right.equalTo(@0);;
-        make.height.equalTo(@(kph(18)));
-    }];
-
-    [welcomeENLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(welcomeCNLab.centerX);
-        make.top.equalTo(welcomeCNLab.bottom).with.offset(kph(8));
-        make.width.equalTo(welcomeCNLab.width);
-        make.height.equalTo(@(kph(25)));
-    }];
-
-    [accountBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.width.equalTo(@(kpw(320)));
-        make.height.equalTo(@(kph(44)));
-        make.top.equalTo(welcomeENLab.bottom).with.offset(kph(50));
-    }];
-
-    [userIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(accountBkg.centerY);
-        make.left.equalTo(@(kpw(14)));
-    }];
-
-    [self.accountTextField makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(@0);
-        make.left.equalTo(userIcon.right).with.offset(kpw(10));
-        make.width.equalTo(@(kpw(267.5)));
-    }];
-
-    [passwordBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(accountBkg.left);
-        make.top.equalTo(accountBkg.bottom).with.offset(kph(25));
-        make.width.height.equalTo(accountBkg);
-    }];
-
-    [passwordIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(passwordBkg.mas_centerY);
-        make.left.equalTo(@(kpw(14)));
-    }];
-
-    [self.passwordTextField makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(@0);
-        make.left.equalTo(self.accountTextField.left);
-        make.width.equalTo(self.accountTextField.width);
-    }];
-    
-    [useLab makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(passwordBkg.left);
-        make.top.equalTo(passwordBkg.bottom).with.offset(kph(27));
-//        make.height.equalTo(@(kph(20)));
-    }];
-
     [self.useBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(useLab.right).with.offset(kpw(10));
+        make.left.equalTo(useLab.right).with.offset(17.5);
         make.centerY.equalTo(useLab.centerY);
     }];
 
+    self.unuseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+    [self.unuseBtn setTitle:@"否" forState:UIControlStateNormal];
+    [self.unuseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.unuseBtn setImage:[UIImage imageNamed:@"unuse"] forState:UIControlStateNormal];
+    [self.unuseBtn setImage:[UIImage imageNamed:@"use"] forState:UIControlStateSelected];
+    self.unuseBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+    self.unuseBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -10);
+    [self.unuseBtn addTarget:self action:@selector(unuseClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:self.unuseBtn];
     [self.unuseBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.useBtn.right).with.offset(kpw(90));
+        make.left.equalTo(self.useBtn.right).with.offset(75);
         make.centerY.equalTo(self.useBtn.centerY);
     }];
 
+    UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [loginBtn setTitle:@"返 回" forState:UIControlStateNormal];
+    [loginBtn addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
+    [loginBtn.layer setMasksToBounds:YES];
+    [loginBtn.layer setCornerRadius:20];
+    [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
+    [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3399FE"]] forState:UIControlStateNormal];
+    [self addSubview:loginBtn];
+    [loginBtn makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.centerX);
+        make.top.equalTo(self.unuseBtn.bottom).with.offset(20);
+        make.left.equalTo(self).offset(@22.5);
+        make.right.equalTo(self).offset(@-22.5);
+        make.height.equalTo(@40);
+    }];
+    
     return self;
 }
 

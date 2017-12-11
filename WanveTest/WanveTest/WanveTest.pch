@@ -9,30 +9,25 @@
 #ifndef WanveTest_pch
 #define WanveTest_pch
 
-#define SCREEN_WIDTH   ([UIScreen mainScreen].bounds.size.width)
-#define SCREEN_HEIGHT  ([UIScreen mainScreen].bounds.size.height)
-
-#define kDevice_Is_iPhoneX  ([[UIScreen mainScreen] bounds].size.height == 812.f)
-#define kTotalTopHeight  ((kDevice_Is_iPhoneX)?84:64)
+#define IS_IPHONEX  ([[UIScreen mainScreen] bounds].size.height == 812.f)
+#define TOP_HEIGHT  ((IS_IPHONEX)?84:64)
 //屏幕的区域
-#define  kScreen_Bounds [UIScreen mainScreen].bounds
+#define  SCREEN_BOUNDS [UIScreen mainScreen].bounds
 //屏幕的高度
-#define kScreen_Height    MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
-//[UIScreen mainScreen].bounds.size.height
+#define SCREEN_WIDTH   MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
 //屏幕的宽度
-#define kScreen_Width   MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
-//[UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT  MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
 
 //px转pt大小
 //基于宽度
 #define k1(px)        px/375.f
-#define kpw(px)       k1(px)*kScreen_Width
+#define W(px)       k1(px)*SCREEN_WIDTH
 //基于高度
 #define k2(px)        px/667.f
-#define kph(px)       k2(px)*kScreen_Height
+#define H(px)       k2(px)*SCREEN_HEIGHT
 
 //字体
-#define kfont(px)     sqrt(kpw(px)*kph(px))
+#define FONT_SIZE(px)     sqrt(W(px)*H(px))
 
 #ifdef DEBUG
 #define PLog(...) NSLog(@"%s(第%d行) %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])

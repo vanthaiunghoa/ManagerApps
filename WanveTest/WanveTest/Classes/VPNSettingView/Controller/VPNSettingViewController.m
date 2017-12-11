@@ -2,6 +2,7 @@
 #import "VPNSettingView.h"
 #import "UserModel.h"
 #import "UserManager.h"
+#import "UIColor+color.h"
 
 @interface VPNSettingViewController()<VPNSettingViewDelegate>
 
@@ -21,7 +22,7 @@
     _vpnSettingView = [[VPNSettingView alloc]init];
     _vpnSettingView.delegate = self;
     self.view = _vpnSettingView;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithRGB:227 green:243 blue:254];
 }
 
 - (void)viewWillAppear:(BOOL)animated

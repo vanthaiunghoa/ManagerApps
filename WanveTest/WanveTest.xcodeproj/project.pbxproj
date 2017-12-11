@@ -80,6 +80,7 @@
 		E822C6A01FC7FA4300F5DFAF /* leaseagreement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E822C69E1FC7FA4300F5DFAF /* leaseagreement.pdf */; };
 		E822C6A11FC7FA4300F5DFAF /* nda.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E822C69F1FC7FA4300F5DFAF /* nda.pdf */; };
 		E822C6A31FC7FCDC00F5DFAF /* test.doc in Resources */ = {isa = PBXBuildFile; fileRef = E822C6A21FC7FCDC00F5DFAF /* test.doc */; };
+		E826A39A1FDE702B00356541 /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = E826A3991FDE702B00356541 /* UIFont+runtime.m */; };
 		E8466B211FC2664400EDA068 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B1A1FC2664400EDA068 /* AppDelegate.m */; };
 		E8466B241FC267C100EDA068 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B231FC267C100EDA068 /* BaseNavigationController.m */; };
 		E8466B271FC267CF00EDA068 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B261FC267CF00EDA068 /* LoginView.m */; };
@@ -210,6 +211,8 @@
 		E822C69E1FC7FA4300F5DFAF /* leaseagreement.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = leaseagreement.pdf; sourceTree = "<group>"; };
 		E822C69F1FC7FA4300F5DFAF /* nda.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = nda.pdf; sourceTree = "<group>"; };
 		E822C6A21FC7FCDC00F5DFAF /* test.doc */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.doc; sourceTree = "<group>"; };
+		E826A3981FDE702B00356541 /* UIFont+runtime.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+runtime.h"; sourceTree = "<group>"; };
+		E826A3991FDE702B00356541 /* UIFont+runtime.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+runtime.m"; sourceTree = "<group>"; };
 		E8466B191FC2664400EDA068 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E8466B1A1FC2664400EDA068 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8466B221FC267C100EDA068 /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
@@ -545,6 +548,8 @@
 				E8466B2D1FC26CA400EDA068 /* UIColor+color.h */,
 				E817C62D1FC5063400DEFA44 /* UIImage+image.h */,
 				E817C62E1FC5063400DEFA44 /* UIImage+image.m */,
+				E826A3981FDE702B00356541 /* UIFont+runtime.h */,
+				E826A3991FDE702B00356541 /* UIFont+runtime.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -702,6 +707,7 @@
 				TargetAttributes = {
 					E873BF841FB135B000C122AA = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = AV2Z93XPA2;
 					};
 					E873BFA01FB135B100C122AA = {
 						CreatedOnToolsVersion = 7.0;
@@ -863,6 +869,7 @@
 				E873BF961FB135B000C122AA /* WanveTest.xcdatamodeld in Sources */,
 				E8466B2E1FC26CA400EDA068 /* UIColor+color.m in Sources */,
 				E822C6641FC7C54000F5DFAF /* CGPDFDocument.m in Sources */,
+				E826A39A1FDE702B00356541 /* UIFont+runtime.m in Sources */,
 				E8466B271FC267CF00EDA068 /* LoginView.m in Sources */,
 				E817C6321FC517A700DEFA44 /* UserModel.m in Sources */,
 				E822C6661FC7C54000F5DFAF /* ReaderViewController.m in Sources */,
@@ -1024,8 +1031,9 @@
 			baseConfigurationReference = 1E02C9521BECFAA8A3E6D927 /* Pods-WanveTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: He Zhuliang (D54H5C3EM9)";
+				DEVELOPMENT_TEAM = AV2Z93XPA2;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WanveTest/WanveTest.pch;
@@ -1038,7 +1046,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.WanveTest;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c5685d7c-e105-4300-85f8-228f0698a338";
+				PROVISIONING_PROFILE = "06c28f0a-32df-44db-ba94-c676c05dd843";
+				PROVISIONING_PROFILE_SPECIFIER = WanveTestDev;
 			};
 			name = Debug;
 		};
@@ -1047,7 +1056,7 @@
 			baseConfigurationReference = ED3A171B3E14B3E52B57A372 /* Pods-WanveTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = BrandAsset;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				ENABLE_BITCODE = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = WanveTest/WanveTest.pch;

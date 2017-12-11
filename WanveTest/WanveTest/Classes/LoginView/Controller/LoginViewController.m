@@ -11,6 +11,7 @@
 
 @property (nonatomic, strong) LoginView *loginView;
 @property (nonatomic, assign) BOOL isStartVPN;
+@property (nonatomic, assign) BOOL isYetVPNLoginSuccess;
 @property (nonatomic, assign) BOOL isLoadOnceData;
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
@@ -24,6 +25,7 @@
     [super viewDidLoad];
     self.isStartVPN = NO;
     self.isLoadOnceData = YES;
+    self.isYetVPNLoginSuccess = NO;
 }
 
 - (void)loadView
@@ -45,6 +47,7 @@
         {
             self.isLoadOnceData = NO;
             self.isStartVPN = NO;
+            self.isYetVPNLoginSuccess = NO;
             [_loginView reloadData];
         }
     }
@@ -79,7 +82,7 @@
     self.username = username;
     self.password = password;
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    if(userModel.isVPNLogin)
+    if(userModel.isVPNLogin && !_isYetVPNLoginSuccess)
     {
         [self loginVPN];
     }
@@ -147,15 +150,18 @@
     {
         PLog(@"VPN登录成功");
         [SVProgressHUD showSuccessWithStatus:@"VPN登陆成功"];
+        self.isYetVPNLoginSuccess = YES;
         [self login];
     }
     else if (message.code == VPN_CB_DISCONNECTED)
     {
+        self.view.userInteractionEnabled = YES;
         PLog(@"VPN连接失败");
         [SVProgressHUD showInfoWithStatus:@"MotionProFgo disconnected"];
     }
     else if (message.code == VPN_CB_CONN_FAILED)
     {
+        self.view.userInteractionEnabled = YES;
         NSString *aMessage;
         switch (error)
         {
@@ -205,6 +211,7 @@
     }
     else if (message.code == VPN_CB_DEVID_REG)
     {
+        self.view.userInteractionEnabled = YES;
 //        [[[UIAlertView alloc] initWithTitle:@"WORING"
 //                                    message:@"Your device has not been registered, please register it first"
 //                                   delegate:nil
@@ -214,6 +221,7 @@
     }
     else if (message.code == VPN_CB_LOGIN)
     {
+        self.view.userInteractionEnabled = YES;
 //        if (error == ERR_WRONG_USER_PASS)
 //        {
 //            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
@@ -225,6 +233,10 @@
 //        }
         //when the login account wrong and try count less max count, or register succeful and redirct to login again or the register wrong.
         [SVProgressHUD showInfoWithStatus:@"Login failed, please check vpn username and password"];
+    }
+    else
+    {
+        self.view.userInteractionEnabled = YES;
     }
 }
 

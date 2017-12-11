@@ -18,7 +18,7 @@
 
 - (void)loadWebView
 {
-    _webview = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, kScreen_Width, kScreen_Height)];
+    _webview = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     NSString  *urlStr = @"http://172.21.102.222:8000/dgjxj_touch/Login/Index.aspx";
     //url 编码
     urlStr  =  [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
