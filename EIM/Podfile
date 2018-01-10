@@ -1,0 +1,13 @@
+platform :ios, '8.0'
+target :EIM do
+
+pod 'Masonry'
+pod 'IQKeyboardManager' #iOS8 and later
+pod 'AFNetworking', '~> 3.0'
+pod 'SVProgressHUD'
+pod 'MJExtension'
+pod 'FDFullscreenPopGesture', '1.1'
+pod 'WebViewJavascriptBridge', '~> 6.0'
+
+end
+

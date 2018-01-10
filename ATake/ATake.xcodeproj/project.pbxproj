@@ -1,0 +1,928 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BD2354F0D9055FD2C2FF99A9 /* libPods-ATake.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BFFE4149F08C5C5BD17B64C /* libPods-ATake.a */; };
+		E8053AE6200367B8007ED82F /* HHBluetoothPrinterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8053AE2200367B8007ED82F /* HHBluetoothPrinterManager.m */; };
+		E8053AE7200367B8007ED82F /* HHPrinterFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = E8053AE5200367B8007ED82F /* HHPrinterFormat.m */; };
+		E8053AEC2003694D007ED82F /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8053AEB2003694D007ED82F /* BluetoothViewController.m */; };
+		E8053AF020037A0C007ED82F /* PrintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8053AEF20037A0C007ED82F /* PrintModel.m */; };
+		E85960C01FFB5BBB00224316 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E85960BF1FFB5BBB00224316 /* Assets.xcassets */; };
+		E85960C61FFB5BBB00224316 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E85960C51FFB5BBB00224316 /* main.m */; };
+		E85960D01FFB5BBC00224316 /* ATakeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E85960CF1FFB5BBC00224316 /* ATakeTests.m */; };
+		E85960DB1FFB5BBC00224316 /* ATakeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E85960DA1FFB5BBC00224316 /* ATakeUITests.m */; };
+		E85961241FFB603500224316 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E85960EB1FFB603500224316 /* AppDelegate.m */; };
+		E85961251FFB603500224316 /* login_bkg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85960EE1FFB603500224316 /* login_bkg@3x.png */; };
+		E85961261FFB603500224316 /* login_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E85960EF1FFB603500224316 /* login_bkg@2x.png */; };
+		E85961271FFB603500224316 /* login_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = E85960F01FFB603500224316 /* login_bkg.png */; };
+		E85961291FFB603500224316 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E85960F81FFB603500224316 /* WebViewController.m */; };
+		E859612B1FFB603500224316 /* UIColor+color.m in Sources */ = {isa = PBXBuildFile; fileRef = E85961001FFB603500224316 /* UIColor+color.m */; };
+		E859612C1FFB603500224316 /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = E85961011FFB603500224316 /* UIImage+image.m */; };
+		E859612D1FFB603500224316 /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = E85961021FFB603500224316 /* UIFont+runtime.m */; };
+		E859612F1FFB603500224316 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E859610A1FFB603500224316 /* BaseNavigationController.m */; };
+		E85961301FFB603500224316 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E859610D1FFB603500224316 /* UserManager.m */; };
+		E85961341FFB603500224316 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E859611C1FFB603500224316 /* LoginViewController.m */; };
+		E85961351FFB603500224316 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E859611F1FFB603500224316 /* UserModel.m */; };
+		E85961361FFB603500224316 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E85961231FFB603500224316 /* LoginView.m */; };
+		E8A89B361FFDB93500E2D459 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B341FFDB93500E2D459 /* Helper.m */; };
+		E8A89B3A1FFDB94F00E2D459 /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B381FFDB94F00E2D459 /* TopViewController.m */; };
+		E8A89B421FFDB96800E2D459 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B3D1FFDB96800E2D459 /* QRCodeViewController.m */; };
+		E8A89B431FFDB96800E2D459 /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B401FFDB96800E2D459 /* QRCodeView.m */; };
+		E8A89B461FFDBA4100E2D459 /* UIBarButtonItem+common.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B441FFDBA4100E2D459 /* UIBarButtonItem+common.m */; };
+		E8A89B481FFDBD4500E2D459 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A89B471FFDBD3F00E2D459 /* AssetsLibrary.framework */; };
+		E8A89B4A1FFDBD5800E2D459 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A89B491FFDBD5100E2D459 /* CoreGraphics.framework */; };
+		E8A89B4C1FFDDBEF00E2D459 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A89B4B1FFDDBE800E2D459 /* WebKit.framework */; };
+		E8A89B4E1FFDDBFC00E2D459 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A89B4D1FFDDBF600E2D459 /* UIKit.framework */; };
+		E8D0DCDD1FFCDB0C00669A1E /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D0DCDB1FFCDB0B00669A1E /* WebDetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E85960CC1FFB5BBC00224316 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E85960AB1FFB5BBB00224316 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E85960B21FFB5BBB00224316;
+			remoteInfo = ATake;
+		};
+		E85960D71FFB5BBC00224316 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E85960AB1FFB5BBB00224316 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E85960B21FFB5BBB00224316;
+			remoteInfo = ATake;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F3E65B0E7BF89725AFDAD95 /* Pods-ATake.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATake.release.xcconfig"; path = "Pods/Target Support Files/Pods-ATake/Pods-ATake.release.xcconfig"; sourceTree = "<group>"; };
+		6BFFE4149F08C5C5BD17B64C /* libPods-ATake.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ATake.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D7CE2862C17E588E1132231 /* Pods-ATake.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ATake.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ATake/Pods-ATake.debug.xcconfig"; sourceTree = "<group>"; };
+		E8053AE2200367B8007ED82F /* HHBluetoothPrinterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHBluetoothPrinterManager.m; sourceTree = "<group>"; };
+		E8053AE3200367B8007ED82F /* HHPrinterFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPrinterFormat.h; sourceTree = "<group>"; };
+		E8053AE4200367B8007ED82F /* HHBluetoothPrinterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHBluetoothPrinterManager.h; sourceTree = "<group>"; };
+		E8053AE5200367B8007ED82F /* HHPrinterFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPrinterFormat.m; sourceTree = "<group>"; };
+		E8053AEA2003694D007ED82F /* BluetoothViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BluetoothViewController.h; sourceTree = "<group>"; };
+		E8053AEB2003694D007ED82F /* BluetoothViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
+		E8053AEE20037A0C007ED82F /* PrintModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrintModel.h; sourceTree = "<group>"; };
+		E8053AEF20037A0C007ED82F /* PrintModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrintModel.m; sourceTree = "<group>"; };
+		E85960B31FFB5BBB00224316 /* ATake.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATake.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E85960BF1FFB5BBB00224316 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E85960C41FFB5BBB00224316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E85960C51FFB5BBB00224316 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		E85960CB1FFB5BBC00224316 /* ATakeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATakeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E85960CF1FFB5BBC00224316 /* ATakeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATakeTests.m; sourceTree = "<group>"; };
+		E85960D11FFB5BBC00224316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E85960D61FFB5BBC00224316 /* ATakeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ATakeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E85960DA1FFB5BBC00224316 /* ATakeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ATakeUITests.m; sourceTree = "<group>"; };
+		E85960DC1FFB5BBC00224316 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E85960EA1FFB603500224316 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		E85960EB1FFB603500224316 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		E85960EE1FFB603500224316 /* login_bkg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bkg@3x.png"; sourceTree = "<group>"; };
+		E85960EF1FFB603500224316 /* login_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bkg@2x.png"; sourceTree = "<group>"; };
+		E85960F01FFB603500224316 /* login_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bkg.png; sourceTree = "<group>"; };
+		E85960F81FFB603500224316 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		E85960F91FFB603500224316 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		E85961001FFB603500224316 /* UIColor+color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+color.m"; sourceTree = "<group>"; };
+		E85961011FFB603500224316 /* UIImage+image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
+		E85961021FFB603500224316 /* UIFont+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+runtime.m"; sourceTree = "<group>"; };
+		E85961031FFB603500224316 /* UIColor+color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+color.h"; sourceTree = "<group>"; };
+		E85961041FFB603500224316 /* UIImage+image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
+		E85961051FFB603500224316 /* UIFont+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+runtime.h"; sourceTree = "<group>"; };
+		E859610A1FFB603500224316 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		E859610B1FFB603500224316 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		E859610D1FFB603500224316 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		E859610E1FFB603500224316 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		E859611C1FFB603500224316 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E859611D1FFB603500224316 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E859611F1FFB603500224316 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		E85961201FFB603500224316 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		E85961221FFB603500224316 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		E85961231FFB603500224316 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		E85961371FFB612200224316 /* ATake.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATake.pch; sourceTree = "<group>"; };
+		E85961381FFB65F900224316 /* ATake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATake.entitlements; sourceTree = "<group>"; };
+		E8A89B341FFDB93500E2D459 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		E8A89B351FFDB93500E2D459 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		E8A89B381FFDB94F00E2D459 /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
+		E8A89B391FFDB94F00E2D459 /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
+		E8A89B3D1FFDB96800E2D459 /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		E8A89B3E1FFDB96800E2D459 /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		E8A89B401FFDB96800E2D459 /* QRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
+		E8A89B411FFDB96800E2D459 /* QRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
+		E8A89B441FFDBA4100E2D459 /* UIBarButtonItem+common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+common.m"; sourceTree = "<group>"; };
+		E8A89B451FFDBA4100E2D459 /* UIBarButtonItem+common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+common.h"; sourceTree = "<group>"; };
+		E8A89B471FFDBD3F00E2D459 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		E8A89B491FFDBD5100E2D459 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		E8A89B4B1FFDDBE800E2D459 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		E8A89B4D1FFDDBF600E2D459 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E8D0DCDB1FFCDB0B00669A1E /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
+		E8D0DCDC1FFCDB0C00669A1E /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E85960B01FFB5BBB00224316 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A89B4E1FFDDBFC00E2D459 /* UIKit.framework in Frameworks */,
+				E8A89B4C1FFDDBEF00E2D459 /* WebKit.framework in Frameworks */,
+				E8A89B4A1FFDBD5800E2D459 /* CoreGraphics.framework in Frameworks */,
+				E8A89B481FFDBD4500E2D459 /* AssetsLibrary.framework in Frameworks */,
+				BD2354F0D9055FD2C2FF99A9 /* libPods-ATake.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E85960C81FFB5BBC00224316 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E85960D31FFB5BBC00224316 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1701D50358001392D1C9029D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9D7CE2862C17E588E1132231 /* Pods-ATake.debug.xcconfig */,
+				1F3E65B0E7BF89725AFDAD95 /* Pods-ATake.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A1A6BB6900BFEE08E8738E4E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B4D1FFDDBF600E2D459 /* UIKit.framework */,
+				E8A89B4B1FFDDBE800E2D459 /* WebKit.framework */,
+				E8A89B491FFDBD5100E2D459 /* CoreGraphics.framework */,
+				E8A89B471FFDBD3F00E2D459 /* AssetsLibrary.framework */,
+				6BFFE4149F08C5C5BD17B64C /* libPods-ATake.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8053AE1200367B8007ED82F /* Print */ = {
+			isa = PBXGroup;
+			children = (
+				E8053AE4200367B8007ED82F /* HHBluetoothPrinterManager.h */,
+				E8053AE2200367B8007ED82F /* HHBluetoothPrinterManager.m */,
+				E8053AE3200367B8007ED82F /* HHPrinterFormat.h */,
+				E8053AE5200367B8007ED82F /* HHPrinterFormat.m */,
+			);
+			path = Print;
+			sourceTree = "<group>";
+		};
+		E8053AE9200368DE007ED82F /* BluetoothView */ = {
+			isa = PBXGroup;
+			children = (
+				E8053AEA2003694D007ED82F /* BluetoothViewController.h */,
+				E8053AEB2003694D007ED82F /* BluetoothViewController.m */,
+			);
+			path = BluetoothView;
+			sourceTree = "<group>";
+		};
+		E8053AED200379E0007ED82F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E8053AEE20037A0C007ED82F /* PrintModel.h */,
+				E8053AEF20037A0C007ED82F /* PrintModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E85960AA1FFB5BBB00224316 = {
+			isa = PBXGroup;
+			children = (
+				E85960B51FFB5BBB00224316 /* ATake */,
+				E85960CE1FFB5BBC00224316 /* ATakeTests */,
+				E85960D91FFB5BBC00224316 /* ATakeUITests */,
+				E85960B41FFB5BBB00224316 /* Products */,
+				1701D50358001392D1C9029D /* Pods */,
+				A1A6BB6900BFEE08E8738E4E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		E85960B41FFB5BBB00224316 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E85960B31FFB5BBB00224316 /* ATake.app */,
+				E85960CB1FFB5BBC00224316 /* ATakeTests.xctest */,
+				E85960D61FFB5BBC00224316 /* ATakeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E85960B51FFB5BBB00224316 /* ATake */ = {
+			isa = PBXGroup;
+			children = (
+				E85961381FFB65F900224316 /* ATake.entitlements */,
+				E85961371FFB612200224316 /* ATake.pch */,
+				E85960EA1FFB603500224316 /* AppDelegate.h */,
+				E85960EB1FFB603500224316 /* AppDelegate.m */,
+				E85960F11FFB603500224316 /* Classes */,
+				E85960EC1FFB603500224316 /* Resources */,
+				E85960BF1FFB5BBB00224316 /* Assets.xcassets */,
+				E85960C41FFB5BBB00224316 /* Info.plist */,
+				E85960C51FFB5BBB00224316 /* main.m */,
+			);
+			path = ATake;
+			sourceTree = "<group>";
+		};
+		E85960CE1FFB5BBC00224316 /* ATakeTests */ = {
+			isa = PBXGroup;
+			children = (
+				E85960CF1FFB5BBC00224316 /* ATakeTests.m */,
+				E85960D11FFB5BBC00224316 /* Info.plist */,
+			);
+			path = ATakeTests;
+			sourceTree = "<group>";
+		};
+		E85960D91FFB5BBC00224316 /* ATakeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E85960DA1FFB5BBC00224316 /* ATakeUITests.m */,
+				E85960DC1FFB5BBC00224316 /* Info.plist */,
+			);
+			path = ATakeUITests;
+			sourceTree = "<group>";
+		};
+		E85960EC1FFB603500224316 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E85960ED1FFB603500224316 /* LoginView */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		E85960ED1FFB603500224316 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				E85960EE1FFB603500224316 /* login_bkg@3x.png */,
+				E85960EF1FFB603500224316 /* login_bkg@2x.png */,
+				E85960F01FFB603500224316 /* login_bkg.png */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		E85960F11FFB603500224316 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E8053AE9200368DE007ED82F /* BluetoothView */,
+				E8053AE1200367B8007ED82F /* Print */,
+				E8A89B3B1FFDB96800E2D459 /* QRCodeView */,
+				E85960F61FFB603500224316 /* WebView */,
+				E85960FE1FFB603500224316 /* Others */,
+				E85961091FFB603500224316 /* BaseController */,
+				E859610C1FFB603500224316 /* Utilities */,
+				E859611A1FFB603500224316 /* LoginView */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E85960F61FFB603500224316 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				E8053AED200379E0007ED82F /* Model */,
+				E85960F71FFB603500224316 /* Controller */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		E85960F71FFB603500224316 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E8D0DCDC1FFCDB0C00669A1E /* WebDetailViewController.h */,
+				E8D0DCDB1FFCDB0B00669A1E /* WebDetailViewController.m */,
+				E85960F91FFB603500224316 /* WebViewController.h */,
+				E85960F81FFB603500224316 /* WebViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E85960FE1FFB603500224316 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B371FFDB94F00E2D459 /* Public */,
+				E85960FF1FFB603500224316 /* Category */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		E85960FF1FFB603500224316 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B451FFDBA4100E2D459 /* UIBarButtonItem+common.h */,
+				E8A89B441FFDBA4100E2D459 /* UIBarButtonItem+common.m */,
+				E85961001FFB603500224316 /* UIColor+color.m */,
+				E85961011FFB603500224316 /* UIImage+image.m */,
+				E85961021FFB603500224316 /* UIFont+runtime.m */,
+				E85961031FFB603500224316 /* UIColor+color.h */,
+				E85961041FFB603500224316 /* UIImage+image.h */,
+				E85961051FFB603500224316 /* UIFont+runtime.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		E85961091FFB603500224316 /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				E859610A1FFB603500224316 /* BaseNavigationController.m */,
+				E859610B1FFB603500224316 /* BaseNavigationController.h */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		E859610C1FFB603500224316 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B351FFDB93500E2D459 /* Helper.h */,
+				E8A89B341FFDB93500E2D459 /* Helper.m */,
+				E859610D1FFB603500224316 /* UserManager.m */,
+				E859610E1FFB603500224316 /* UserManager.h */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E859611A1FFB603500224316 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				E859611B1FFB603500224316 /* Controller */,
+				E859611E1FFB603500224316 /* Model */,
+				E85961211FFB603500224316 /* View */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
+		E859611B1FFB603500224316 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E859611C1FFB603500224316 /* LoginViewController.m */,
+				E859611D1FFB603500224316 /* LoginViewController.h */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E859611E1FFB603500224316 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E859611F1FFB603500224316 /* UserModel.m */,
+				E85961201FFB603500224316 /* UserModel.h */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E85961211FFB603500224316 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E85961221FFB603500224316 /* LoginView.h */,
+				E85961231FFB603500224316 /* LoginView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E8A89B371FFDB94F00E2D459 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B381FFDB94F00E2D459 /* TopViewController.m */,
+				E8A89B391FFDB94F00E2D459 /* TopViewController.h */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		E8A89B3B1FFDB96800E2D459 /* QRCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B3C1FFDB96800E2D459 /* Controller */,
+				E8A89B3F1FFDB96800E2D459 /* View */,
+			);
+			path = QRCodeView;
+			sourceTree = "<group>";
+		};
+		E8A89B3C1FFDB96800E2D459 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B3E1FFDB96800E2D459 /* QRCodeViewController.h */,
+				E8A89B3D1FFDB96800E2D459 /* QRCodeViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		E8A89B3F1FFDB96800E2D459 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E8A89B401FFDB96800E2D459 /* QRCodeView.m */,
+				E8A89B411FFDB96800E2D459 /* QRCodeView.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E85960B21FFB5BBB00224316 /* ATake */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E85960DF1FFB5BBC00224316 /* Build configuration list for PBXNativeTarget "ATake" */;
+			buildPhases = (
+				C8B7572529D37B5639B2E204 /* [CP] Check Pods Manifest.lock */,
+				E85960AF1FFB5BBB00224316 /* Sources */,
+				E85960B01FFB5BBB00224316 /* Frameworks */,
+				E85960B11FFB5BBB00224316 /* Resources */,
+				19E3E68ED475FE4268FDF18F /* [CP] Embed Pods Frameworks */,
+				9EF88375BB951BA61F8E94BC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ATake;
+			productName = ATake;
+			productReference = E85960B31FFB5BBB00224316 /* ATake.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E85960CA1FFB5BBC00224316 /* ATakeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E85960E21FFB5BBC00224316 /* Build configuration list for PBXNativeTarget "ATakeTests" */;
+			buildPhases = (
+				E85960C71FFB5BBC00224316 /* Sources */,
+				E85960C81FFB5BBC00224316 /* Frameworks */,
+				E85960C91FFB5BBC00224316 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E85960CD1FFB5BBC00224316 /* PBXTargetDependency */,
+			);
+			name = ATakeTests;
+			productName = ATakeTests;
+			productReference = E85960CB1FFB5BBC00224316 /* ATakeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E85960D51FFB5BBC00224316 /* ATakeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E85960E51FFB5BBC00224316 /* Build configuration list for PBXNativeTarget "ATakeUITests" */;
+			buildPhases = (
+				E85960D21FFB5BBC00224316 /* Sources */,
+				E85960D31FFB5BBC00224316 /* Frameworks */,
+				E85960D41FFB5BBC00224316 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E85960D81FFB5BBC00224316 /* PBXTargetDependency */,
+			);
+			name = ATakeUITests;
+			productName = ATakeUITests;
+			productReference = E85960D61FFB5BBC00224316 /* ATakeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E85960AB1FFB5BBB00224316 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = self;
+				TargetAttributes = {
+					E85960B21FFB5BBB00224316 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+					E85960CA1FFB5BBC00224316 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E85960B21FFB5BBB00224316;
+					};
+					E85960D51FFB5BBC00224316 = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = E85960B21FFB5BBB00224316;
+					};
+				};
+			};
+			buildConfigurationList = E85960AE1FFB5BBB00224316 /* Build configuration list for PBXProject "ATake" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E85960AA1FFB5BBB00224316;
+			productRefGroup = E85960B41FFB5BBB00224316 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E85960B21FFB5BBB00224316 /* ATake */,
+				E85960CA1FFB5BBC00224316 /* ATakeTests */,
+				E85960D51FFB5BBC00224316 /* ATakeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E85960B11FFB5BBB00224316 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E85961271FFB603500224316 /* login_bkg.png in Resources */,
+				E85961261FFB603500224316 /* login_bkg@2x.png in Resources */,
+				E85961251FFB603500224316 /* login_bkg@3x.png in Resources */,
+				E85960C01FFB5BBB00224316 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E85960C91FFB5BBC00224316 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E85960D41FFB5BBC00224316 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19E3E68ED475FE4268FDF18F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ATake/Pods-ATake-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9EF88375BB951BA61F8E94BC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-ATake/Pods-ATake-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ATake/Pods-ATake-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8B7572529D37B5639B2E204 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ATake-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E85960AF1FFB5BBB00224316 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E8A89B431FFDB96800E2D459 /* QRCodeView.m in Sources */,
+				E8053AEC2003694D007ED82F /* BluetoothViewController.m in Sources */,
+				E8053AF020037A0C007ED82F /* PrintModel.m in Sources */,
+				E859612C1FFB603500224316 /* UIImage+image.m in Sources */,
+				E85961241FFB603500224316 /* AppDelegate.m in Sources */,
+				E85960C61FFB5BBB00224316 /* main.m in Sources */,
+				E85961301FFB603500224316 /* UserManager.m in Sources */,
+				E859612F1FFB603500224316 /* BaseNavigationController.m in Sources */,
+				E8A89B421FFDB96800E2D459 /* QRCodeViewController.m in Sources */,
+				E85961351FFB603500224316 /* UserModel.m in Sources */,
+				E85961361FFB603500224316 /* LoginView.m in Sources */,
+				E859612B1FFB603500224316 /* UIColor+color.m in Sources */,
+				E85961291FFB603500224316 /* WebViewController.m in Sources */,
+				E8D0DCDD1FFCDB0C00669A1E /* WebDetailViewController.m in Sources */,
+				E8A89B3A1FFDB94F00E2D459 /* TopViewController.m in Sources */,
+				E8053AE7200367B8007ED82F /* HHPrinterFormat.m in Sources */,
+				E859612D1FFB603500224316 /* UIFont+runtime.m in Sources */,
+				E8A89B461FFDBA4100E2D459 /* UIBarButtonItem+common.m in Sources */,
+				E85961341FFB603500224316 /* LoginViewController.m in Sources */,
+				E8A89B361FFDB93500E2D459 /* Helper.m in Sources */,
+				E8053AE6200367B8007ED82F /* HHBluetoothPrinterManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E85960C71FFB5BBC00224316 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E85960D01FFB5BBC00224316 /* ATakeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E85960D21FFB5BBC00224316 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E85960DB1FFB5BBC00224316 /* ATakeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E85960CD1FFB5BBC00224316 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E85960B21FFB5BBB00224316 /* ATake */;
+			targetProxy = E85960CC1FFB5BBC00224316 /* PBXContainerItemProxy */;
+		};
+		E85960D81FFB5BBC00224316 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E85960B21FFB5BBB00224316 /* ATake */;
+			targetProxy = E85960D71FFB5BBC00224316 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E85960DD1FFB5BBC00224316 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		E85960DE1FFB5BBC00224316 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E85960E01FFB5BBC00224316 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D7CE2862C17E588E1132231 /* Pods-ATake.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ATake/ATake.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = AV2Z93XPA2;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ATake/ATake.pch;
+				INFOPLIST_FILE = ATake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.self.ATake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "0f256247-0a09-41f8-91cf-128730a64c80";
+				PROVISIONING_PROFILE_SPECIFIER = ATakeDev;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		E85960E11FFB5BBC00224316 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F3E65B0E7BF89725AFDAD95 /* Pods-ATake.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ATake/ATake.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ATake/ATake.pch;
+				INFOPLIST_FILE = ATake/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.self.ATake;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		E85960E31FFB5BBC00224316 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ATakeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.self.ATakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATake.app/ATake";
+			};
+			name = Debug;
+		};
+		E85960E41FFB5BBC00224316 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ATakeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.self.ATakeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ATake.app/ATake";
+			};
+			name = Release;
+		};
+		E85960E61FFB5BBC00224316 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ATakeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.self.ATakeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ATake;
+			};
+			name = Debug;
+		};
+		E85960E71FFB5BBC00224316 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ATakeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.self.ATakeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ATake;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E85960AE1FFB5BBB00224316 /* Build configuration list for PBXProject "ATake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E85960DD1FFB5BBC00224316 /* Debug */,
+				E85960DE1FFB5BBC00224316 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E85960DF1FFB5BBC00224316 /* Build configuration list for PBXNativeTarget "ATake" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E85960E01FFB5BBC00224316 /* Debug */,
+				E85960E11FFB5BBC00224316 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E85960E21FFB5BBC00224316 /* Build configuration list for PBXNativeTarget "ATakeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E85960E31FFB5BBC00224316 /* Debug */,
+				E85960E41FFB5BBC00224316 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E85960E51FFB5BBC00224316 /* Build configuration list for PBXNativeTarget "ATakeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E85960E61FFB5BBC00224316 /* Debug */,
+				E85960E71FFB5BBC00224316 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E85960AB1FFB5BBB00224316 /* Project object */;
+}

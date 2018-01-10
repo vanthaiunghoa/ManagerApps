@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "LoginController.h"
+#import "LoginViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,7 +20,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    LoginController *vc = [[LoginController alloc]init];
+    LoginViewController *vc = [[LoginViewController alloc]init];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
 

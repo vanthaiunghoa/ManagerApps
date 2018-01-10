@@ -14,9 +14,9 @@
 //屏幕的区域
 #define  SCREEN_BOUNDS [UIScreen mainScreen].bounds
 //屏幕的高度
-#define SCREEN_WIDTH   MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+#define SCREEN_HEIGHT   MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
 //屏幕的宽度
-#define SCREEN_HEIGHT  MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+#define SCREEN_WIDTH    MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
 
 //px转pt大小
 //基于宽度

@@ -3,6 +3,7 @@
 #import "UserModel.h"
 #import "UserManager.h"
 #import "UIColor+color.h"
+#import <UINavigationController+FDFullscreenPopGesture.h>
 
 @interface VPNSettingViewController()<VPNSettingViewDelegate>
 
@@ -15,6 +16,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.fd_prefersNavigationBarHidden = YES;
 }
 
 - (void)loadView
@@ -23,13 +25,6 @@
     _vpnSettingView.delegate = self;
     self.view = _vpnSettingView;
     self.view.backgroundColor = [UIColor colorWithRGB:227 green:243 blue:254];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    [_vpnSettingView reloadData];
 }
 
 #pragma mark - VPNSettingViewDelegate

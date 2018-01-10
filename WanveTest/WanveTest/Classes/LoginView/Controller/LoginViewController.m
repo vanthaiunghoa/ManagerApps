@@ -6,6 +6,7 @@
 #import "MJTableViewController.h"
 #import "VPNSettingViewController.h"
 #import "VPNManager.h"
+#import <UINavigationController+FDFullscreenPopGesture.h>
 
 @interface LoginViewController ()<LoginViewDelegate>
 
@@ -23,6 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.fd_prefersNavigationBarHidden = YES;
     self.isStartVPN = NO;
     self.isLoadOnceData = YES;
     self.isYetVPNLoginSuccess = NO;
@@ -52,7 +54,6 @@
         }
     }
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMessage:) name:kVPNMessageNotification object:nil];
 }
 

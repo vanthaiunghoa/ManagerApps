@@ -20,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    PLog(@"screen_size == %@", NSStringFromCGSize([UIScreen mainScreen].bounds.size));
+    
     [self keyboardInit];
     [self progressHUDInit];
     [self userModelInit];

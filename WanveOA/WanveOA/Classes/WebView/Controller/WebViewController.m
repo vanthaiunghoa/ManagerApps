@@ -1,5 +1,5 @@
 #import "WebViewController.h"
-#import "LoginController.h"
+#import "LoginViewController.h"
 #import "AddressController.h"
 #import "AddressController.h"
 #import "CoverView.h"
@@ -116,7 +116,7 @@
 
 - (void)back
 {
-    LoginController *vc = [[LoginController alloc]init];
+    LoginViewController *vc = [[LoginViewController alloc]init];
     [UIApplication sharedApplication].keyWindow.rootViewController = vc;
 }
 
