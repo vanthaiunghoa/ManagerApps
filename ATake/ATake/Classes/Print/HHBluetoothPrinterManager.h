@@ -15,7 +15,7 @@
  *  HHBluetoothPrinterManagerDelegate
  */
 @protocol HHBluetoothPrinterManagerDelegate <NSObject>
-@required
+@optional
 /**
  *  蓝牙中心管理状态变化
  *
@@ -44,6 +44,12 @@
  *  @param error      错误
  */
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(NSError *)error;
+
+
+- (void)didDiscoverPeripheral:(CBPeripheral *)peripheral RSSI:(NSNumber *)RSSI;
+- (void)didConnectPeripheral;
+- (void)didDisconnectPeripheral;
+- (void)didFailToConnectPeripheral;
 
 @end
 

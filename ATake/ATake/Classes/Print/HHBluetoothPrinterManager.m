@@ -29,7 +29,6 @@
 @property (nonatomic, strong) CBCharacteristic *connectedCharacteristic;
 
 @property (nonatomic, assign, readwrite) CBCentralManagerState centralState;
-@property (nonatomic, assign) BOOL isSuccess;
 
 @end
 
@@ -84,9 +83,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    if ([self.delegate respondsToSelector:@selector(centralManager:didDiscoverPeripheral:)]) {
-        [self.delegate centralManager:central didDiscoverPeripheral:peripheral];
-    }
+    [self.delegate didDiscoverPeripheral:peripheral RSSI:RSSI];
 }
 /**
  *  连接到新的蓝牙设备
@@ -96,8 +93,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    PLog(@"ok");//链接成功
-    _isSuccess = YES;
+    PLog(@"连接成功======");
     peripheral.delegate = self;
     [peripheral discoverServices:nil];
 }
@@ -111,13 +107,24 @@
  */
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error
 {
-    _isSuccess = NO;
+    PLog(@"连接失败======");
     if ([self.delegate respondsToSelector:@selector(centralManager:didFailToConnectPeripheral:error:)]) {
         [self.delegate centralManager:central didFailToConnectPeripheral:peripheral error:error];
     };
     
-    [self clearConnectData];
+    [self.delegate didFailToConnectPeripheral];
 }
+
+- (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error
+{
+    if(self.connectedPeripheral)
+    {
+        [self duankai:self.connectedPeripheral];
+    }
+    [self clearConnectData];
+    [self.delegate didDisconnectPeripheral];
+}
+
 
 #pragma mark - CBPeripheralDelegate
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
@@ -150,12 +157,21 @@
     
     for (CBCharacteristic * characteristic in service.characteristics)
     {
-        if (characteristic.properties & CBCharacteristicPropertyWrite ) {
+        if (characteristic.properties & CBCharacteristicPropertyWrite )
+        {
+            PLog(@"didDiscoverCharacteristicsForService");
+            
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
             self.connectedPeripheral = peripheral;
             self.connectedService = service;
             self.connectedCharacteristic = characteristic;
             [self.centralManager stopScan];
+            
+            if([self.delegate respondsToSelector:@selector(didConnectPeripheral)])
+            {
+                PLog(@"连接成功并扫描出特征调用代理打印======");
+                [self.delegate didConnectPeripheral];
+            }
         }
     }
 }
@@ -172,8 +188,6 @@
     }
     
     PLog(@"Updated notification state for characteristic %@ (newState:%@)", characteristic.UUID, [characteristic isNotifying] ? @"Notifying" : @"Not Notifying");
-    
-    
 }
 
 #pragma mark - 接口方法
@@ -199,7 +213,10 @@
 
 - (BOOL)isConnectSuccess
 {
-    return _isSuccess;
+    if(self.connectedPeripheral)
+        return YES;
+    else
+        return NO;
 }
 
 - (void)printData:(NSData *)writeData

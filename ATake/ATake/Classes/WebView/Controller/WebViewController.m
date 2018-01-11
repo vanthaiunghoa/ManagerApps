@@ -6,12 +6,14 @@
 #import "BluetoothViewController.h"
 #import "PrintModel.h"
 
-@interface WebViewController()
+@interface WebViewController()<HHBluetoothPrinterManagerDelegate>
 
 @property WebViewJavascriptBridge *bridge;
 @property (nonatomic, strong) UIImageView *testView;
 @property (nonatomic, strong) NSMutableArray *printDatas;
 @property (nonatomic, strong) PrintModel *printModel;
+@property (nonatomic, strong) CBPeripheral *peripheral;
+@property (nonatomic, strong) HHBluetoothPrinterManager *manager;
 
 @end
 
@@ -21,6 +23,8 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.manager = [HHBluetoothPrinterManager sharedManager];
 }
 
 - (NSMutableArray *)printDatas
@@ -35,6 +39,8 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    self.manager.delegate = self;
+    [self.manager cancelScan];
     
     if (_bridge) { return; }
     
@@ -127,11 +133,16 @@
         PLog(@"printFeeList == %@", data);
         if(data)
         {
-            if([[HHBluetoothPrinterManager sharedManager] isConnectSuccess])
+            _printModel = [PrintModel mj_objectWithKeyValues:data];
+            
+            if([self.manager isConnectSuccess])
             {
-                _printModel = [PrintModel mj_objectWithKeyValues:data];
+                self.view.userInteractionEnabled = NO;
+                [SVProgressHUD showWithStatus:@"打印中..."];
                 [self printInit:FeeList];
-                //            [self print];
+                [self print];
+                self.view.userInteractionEnabled = YES;
+                [SVProgressHUD showSuccessWithStatus:@"打印成功"];
             }
             else
             {
@@ -141,16 +152,39 @@
                     PLog(@"peripheral == %@", peripheral.name);
                     [vc.navigationController popViewControllerAnimated:NO];
                     
-                    [[HHBluetoothPrinterManager sharedManager] connectPeripheral:peripheral];
+                    self.view.userInteractionEnabled = NO;
                     
-                    _printModel = [PrintModel mj_objectWithKeyValues:data];
-                    [self printInit:FeeList];
-                    //            [self print];
+                    [SVProgressHUD showWithStatus:@"连接设备中..."];
+                    [self.manager connectPeripheral:peripheral];
                 };
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }
     }];
+}
+
+#pragma mark - HHBluetoothPrinterManagerDelegate
+
+- (void)didDisconnectPeripheral
+{
+    self.view.userInteractionEnabled = YES;
+    [SVProgressHUD showInfoWithStatus:@"设备已经断开"];
+}
+
+- (void)didConnectPeripheral
+{
+    [SVProgressHUD showInfoWithStatus:@"连接成功，开始打印"];
+    PLog(@"开始打印=====");
+    [self printInit:FeeList];
+    [self print];
+    PLog(@"打印结束=====");
+    self.view.userInteractionEnabled = YES;
+}
+
+- (void)didFailToConnectPeripheral
+{
+    self.view.userInteractionEnabled = YES;
+    [SVProgressHUD showInfoWithStatus:@"连接设备失败"];
 }
 
 - (void)printQrcode
@@ -608,10 +642,18 @@
 
 - (void)print
 {
-    if([_printDatas count] > 0)
+//    if([_printDatas count] > 0)
+//    {
+//        NSData* cmdData;
+//
+//        cmdData = [_printDatas objectAtIndex:0];
+//        [[HHBluetoothPrinterManager sharedManager] startPrint:cmdData];
+//        [_printDatas removeObjectAtIndex:0];
+//    }
+    while([_printDatas count] != 0)
     {
         NSData* cmdData;
-        
+
         cmdData = [_printDatas objectAtIndex:0];
         [[HHBluetoothPrinterManager sharedManager] startPrint:cmdData];
         [_printDatas removeObjectAtIndex:0];

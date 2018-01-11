@@ -12,8 +12,6 @@
 @interface BluetoothViewController ()<HHBluetoothPrinterManagerDelegate>
 {
     HHBluetoothPrinterManager *manager;
-    //选中的设备
-//    CBPeripheral *selectedPeripheral;
     NSMutableArray *peripherals;
 }
 @end
@@ -34,30 +32,46 @@
     });
 }
 
-// 停止扫描
-- (void)scanStop
-{
-    [manager cancelScan];
-}
-
-// 断开打印机
-- (void)duankaiStart
-{
-    [manager cancelScan];
-//    [manager duankai:selectedPeripheral];
-}
-
 #pragma mark - HHBluetoothPrinterManagerDelegate
 
 // 扫描到的设备
-- (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral
+- (void)didDiscoverPeripheral:(CBPeripheral *)peripheral RSSI:(NSNumber *)RSSI
 {
     PLog(@"scan peripheral == %@", peripheral.name);
-    if(peripheral.name)
+    
+    if (peripheral.name.length <= 0)
     {
-        [peripherals addObject:peripheral];
-        [self.tableView reloadData];
+        return ;
     }
+    
+    if (peripherals.count == 0)
+    {
+        NSDictionary *dict = @{@"peripheral":peripheral, @"RSSI":RSSI};
+        [peripherals addObject:dict];
+    }
+    else
+    {
+        BOOL isExist = NO;
+        for (int i = 0; i < peripherals.count; i++)
+        {
+            NSDictionary *dict = [peripherals objectAtIndex:i];
+            CBPeripheral *per = dict[@"peripheral"];
+            if ([per.identifier.UUIDString isEqualToString:peripheral.identifier.UUIDString])
+            {
+                isExist = YES;
+                NSDictionary *dict = @{@"peripheral":peripheral, @"RSSI":RSSI};
+                [peripherals replaceObjectAtIndex:i withObject:dict];
+            }
+        }
+        
+        if (!isExist)
+        {
+            NSDictionary *dict = @{@"peripheral":peripheral, @"RSSI":RSSI};
+            [peripherals addObject:dict];
+        }
+    }
+    
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -78,12 +92,13 @@
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    selectedPeripheral = [peripherals objectAtIndex:indexPath.row];
-//    [manager connectPeripheral:[peripherals objectAtIndex:indexPath.row]];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSDictionary *dict = [peripherals objectAtIndex:indexPath.row];
+    CBPeripheral *peripheral = dict[@"peripheral"];
     if(_printerBlock)
     {
-        _printerBlock(self, [peripherals objectAtIndex:indexPath.row]);
+        _printerBlock(self, peripheral);
     }
 }
 
