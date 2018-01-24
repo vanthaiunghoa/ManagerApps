@@ -16,6 +16,12 @@
 		E801C24A1FC67D5700CA046C /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E801C2491FC67D5100CA046C /* SystemConfiguration.framework */; };
 		E801C24C1FC67D6600CA046C /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E801C24B1FC67D6000CA046C /* MobileCoreServices.framework */; };
 		E801C24E1FC67D7B00CA046C /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E801C24D1FC67D7500CA046C /* Security.framework */; };
+		E809F0CA2016DC8000016366 /* UrlManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0C92016DC7F00016366 /* UrlManager.m */; };
+		E809F0D02016ED6400016366 /* AddressDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0CF2016ED6400016366 /* AddressDepartmentViewController.m */; };
+		E809F0D5201710DF00016366 /* AddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0D3201710DF00016366 /* AddressModel.m */; };
+		E809F0D6201710DF00016366 /* AddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0D4201710DF00016366 /* AddressViewController.m */; };
+		E809F0DB201716CB00016366 /* AddressDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0D8201716CA00016366 /* AddressDetailViewController.m */; };
+		E809F0DC201716CB00016366 /* DetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0DA201716CB00016366 /* DetailCell.m */; };
 		E817C62F1FC5063400DEFA44 /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C62E1FC5063400DEFA44 /* UIImage+image.m */; };
 		E817C6321FC517A700DEFA44 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C6301FC517A700DEFA44 /* UserModel.m */; };
 		E817C6351FC517B600DEFA44 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C6341FC517B600DEFA44 /* UserManager.m */; };
@@ -202,6 +208,18 @@
 		E801C2491FC67D5100CA046C /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E801C24B1FC67D6000CA046C /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		E801C24D1FC67D7500CA046C /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		E809F0C82016DC7F00016366 /* UrlManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UrlManager.h; sourceTree = "<group>"; };
+		E809F0C92016DC7F00016366 /* UrlManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UrlManager.m; sourceTree = "<group>"; };
+		E809F0CE2016ED6400016366 /* AddressDepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressDepartmentViewController.h; sourceTree = "<group>"; };
+		E809F0CF2016ED6400016366 /* AddressDepartmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressDepartmentViewController.m; sourceTree = "<group>"; };
+		E809F0D1201710DF00016366 /* AddressModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressModel.h; sourceTree = "<group>"; };
+		E809F0D2201710DF00016366 /* AddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressViewController.h; sourceTree = "<group>"; };
+		E809F0D3201710DF00016366 /* AddressModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressModel.m; sourceTree = "<group>"; };
+		E809F0D4201710DF00016366 /* AddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressViewController.m; sourceTree = "<group>"; };
+		E809F0D7201716CA00016366 /* AddressDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressDetailViewController.h; sourceTree = "<group>"; };
+		E809F0D8201716CA00016366 /* AddressDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressDetailViewController.m; sourceTree = "<group>"; };
+		E809F0D9201716CA00016366 /* DetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailCell.h; sourceTree = "<group>"; };
+		E809F0DA201716CB00016366 /* DetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCell.m; sourceTree = "<group>"; };
 		E817C62D1FC5063400DEFA44 /* UIImage+image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
 		E817C62E1FC5063400DEFA44 /* UIImage+image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
 		E817C6301FC517A700DEFA44 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
@@ -487,6 +505,23 @@
 			path = VPN;
 			sourceTree = "<group>";
 		};
+		E809F0C42016D18400016366 /* AddressView */ = {
+			isa = PBXGroup;
+			children = (
+				E809F0D7201716CA00016366 /* AddressDetailViewController.h */,
+				E809F0D8201716CA00016366 /* AddressDetailViewController.m */,
+				E809F0D9201716CA00016366 /* DetailCell.h */,
+				E809F0DA201716CB00016366 /* DetailCell.m */,
+				E809F0D1201710DF00016366 /* AddressModel.h */,
+				E809F0D3201710DF00016366 /* AddressModel.m */,
+				E809F0D2201710DF00016366 /* AddressViewController.h */,
+				E809F0D4201710DF00016366 /* AddressViewController.m */,
+				E809F0CE2016ED6400016366 /* AddressDepartmentViewController.h */,
+				E809F0CF2016ED6400016366 /* AddressDepartmentViewController.m */,
+			);
+			path = AddressView;
+			sourceTree = "<group>";
+		};
 		E817C6361FC5779A00DEFA44 /* VPNSettingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -760,6 +795,7 @@
 		E8466B171FC2664400EDA068 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				E809F0C42016D18400016366 /* AddressView */,
 				E8D989771FCBAF1300272025 /* WebView */,
 				E801C23A1FC67C6A00CA046C /* ThirdPartyLibs */,
 				E817C6361FC5779A00DEFA44 /* VPNSettingView */,
@@ -794,6 +830,8 @@
 		E8466B1C1FC2664400EDA068 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E809F0C82016DC7F00016366 /* UrlManager.h */,
+				E809F0C92016DC7F00016366 /* UrlManager.m */,
 				E817C6331FC517B600DEFA44 /* UserManager.h */,
 				E817C6341FC517B600DEFA44 /* UserManager.m */,
 			);
@@ -1233,6 +1271,8 @@
 			files = (
 				E822C66C1FC7C54000F5DFAF /* ReaderThumbCache.m in Sources */,
 				E817C63F1FC5779B00DEFA44 /* VPNSettingView.m in Sources */,
+				E809F0D5201710DF00016366 /* AddressModel.m in Sources */,
+				E809F0D6201710DF00016366 /* AddressViewController.m in Sources */,
 				E822C6691FC7C54000F5DFAF /* ReaderMainToolbar.m in Sources */,
 				E8466B361FC2C7D100EDA068 /* MJTableViewController.m in Sources */,
 				E822C6601FC7C54000F5DFAF /* UIXToolbarView.m in Sources */,
@@ -1243,6 +1283,7 @@
 				E8D9897B1FCBAF5A00272025 /* WebViewController.m in Sources */,
 				E8466B241FC267C100EDA068 /* BaseNavigationController.m in Sources */,
 				E822C66A1FC7C54000F5DFAF /* ReaderDocument.m in Sources */,
+				E809F0CA2016DC8000016366 /* UrlManager.m in Sources */,
 				E822C66B1FC7C54000F5DFAF /* ReaderDocumentOutline.m in Sources */,
 				E873BF8A1FB135B000C122AA /* main.m in Sources */,
 				E822C6611FC7C54000F5DFAF /* ReaderThumbQueue.m in Sources */,
@@ -1252,6 +1293,8 @@
 				E826A39A1FDE702B00356541 /* UIFont+runtime.m in Sources */,
 				E8466B271FC267CF00EDA068 /* LoginView.m in Sources */,
 				E817C6321FC517A700DEFA44 /* UserModel.m in Sources */,
+				E809F0DC201716CB00016366 /* DetailCell.m in Sources */,
+				E809F0DB201716CB00016366 /* AddressDetailViewController.m in Sources */,
 				E822C6661FC7C54000F5DFAF /* ReaderViewController.m in Sources */,
 				E822C65F1FC7C54000F5DFAF /* ReaderContentTile.m in Sources */,
 				E8466B211FC2664400EDA068 /* AppDelegate.m in Sources */,
@@ -1261,6 +1304,7 @@
 				E822C6631FC7C54000F5DFAF /* ReaderThumbRender.m in Sources */,
 				E822C6711FC7C54000F5DFAF /* ThumbsMainToolbar.m in Sources */,
 				E822C66D1FC7C54000F5DFAF /* ReaderThumbsView.m in Sources */,
+				E809F0D02016ED6400016366 /* AddressDepartmentViewController.m in Sources */,
 				E817C6351FC517B600DEFA44 /* UserManager.m in Sources */,
 				E8466B2A1FC267D800EDA068 /* LoginViewController.m in Sources */,
 				E817C63E1FC5779B00DEFA44 /* VPNSettingViewController.m in Sources */,

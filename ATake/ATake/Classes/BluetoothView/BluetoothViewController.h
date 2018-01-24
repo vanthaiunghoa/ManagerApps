@@ -11,6 +11,6 @@
 
 @interface BluetoothViewController : UITableViewController
 
-@property (copy, nonatomic) void(^printerBlock)(BluetoothViewController *vc, CBPeripheral *peripheral);
+@property (copy, nonatomic) void(^printerBlock)(BluetoothViewController *vc);
 
 @end

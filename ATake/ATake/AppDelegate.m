@@ -41,6 +41,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"NO" forKey:@"isOpenWebView"];
+    
     PLog(@"screen_size == %@", NSStringFromCGSize([UIScreen mainScreen].bounds.size));
     //    全局缓存区设置
     NSURLCache *urlCache = [[NSURLCache alloc] initWithMemoryCapacity:4 * 1024 * 1024 diskCapacity:20 * 1024 * 1024 diskPath:nil];
@@ -332,18 +335,36 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
     // 方法synchronise是为了强制存储，其实并非必要，因为这个方法会在系统中默认调用，但是你确认需要马上就存储，这样做是可行的
     [defaults synchronize];
     
-    if([[TopViewController sharedTopViewController].top isKindOfClass:[WebDetailViewController class]])
+    if([TopViewController sharedTopViewController].top)
     {
-        [[NSNotificationCenter defaultCenter] postNotificationName:LoadWebViewAgain
-                                                            object:self];
+        // 方法synchronise是为了强制存储，其实并非必要，因为这个方法会在系统中默认调用，但是你确认需要马上就存储，这样做是可行的
+        [defaults synchronize];
+        
+        if([[TopViewController sharedTopViewController].top isKindOfClass:[WebDetailViewController class]])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:LoadWebViewAgain
+                                                                object:self];
+        }
+        else
+        {
+            UIViewController *vc = [NSClassFromString(@"WebDetailViewController") new];
+        //    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];//这里加导航栏是因为我跳转的页面带导航栏，如果跳转的页面不带导航，那这句话请省去。
+        //    [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
+        //    [[[TopViewController sharedTopViewController] top].navigationController pushViewController:vc animated:YES];
+            [[TopViewController sharedTopViewController].top.navigationController pushViewController:vc animated:YES];
+        }
     }
     else
     {
-        UIViewController *vc = [NSClassFromString(@"WebDetailViewController") new];
-    //    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];//这里加导航栏是因为我跳转的页面带导航栏，如果跳转的页面不带导航，那这句话请省去。
-    //    [self.window.rootViewController presentViewController:nav animated:YES completion:nil];
-    //    [[[TopViewController sharedTopViewController] top].navigationController pushViewController:vc animated:YES];
-        [[TopViewController sharedTopViewController].top.navigationController pushViewController:vc animated:YES];
+//        UIViewController *vc = [NSClassFromString(@"WebDetailViewController") new];
+////        BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];//这里加导航栏是因为我跳转的页面带导航栏，如果跳转的页面不带导航，那这句话请省去。
+//        [self.window.rootViewController presentViewController:vc animated:YES completion:nil];
+        //将字段存入本地，因为要在你要跳转的页面用它来判断,这里我只介绍跳转一个页面，
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"YES" forKey:@"isOpenWebView"];
+        
+        // 方法synchronise是为了强制存储，其实并非必要，因为这个方法会在系统中默认调用，但是你确认需要马上就存储，这样做是可行的
+        [defaults synchronize];
     }
 }
 

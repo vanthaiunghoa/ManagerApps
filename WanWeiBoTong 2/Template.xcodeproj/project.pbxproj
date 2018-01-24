@@ -1195,7 +1195,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Template/Template.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = AV2Z93XPA2;
 				ENABLE_BITCODE = NO;
@@ -1213,8 +1213,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.wanVboTong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c86448d9-c809-4216-914c-5020f03a86d3";
-				PROVISIONING_PROFILE_SPECIFIER = wanVboTongDis;
+				PROVISIONING_PROFILE = "823d6290-de61-4e21-85c8-8de5234a2ac6";
+				PROVISIONING_PROFILE_SPECIFIER = wanweibotongDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1243,8 +1243,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.wanVboTong;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c86448d9-c809-4216-914c-5020f03a86d3";
-				PROVISIONING_PROFILE_SPECIFIER = wanVboTongDis;
+				PROVISIONING_PROFILE = "744469b0-e9eb-48cd-8c71-ee67ca9c60a6";
+				PROVISIONING_PROFILE_SPECIFIER = wanweibotongDis;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

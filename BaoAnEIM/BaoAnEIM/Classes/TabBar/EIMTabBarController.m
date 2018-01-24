@@ -1,6 +1,9 @@
 #import "EIMTabBarController.h"
 #import "BaseNavigationController.h"
 #import "UIColor+color.h"
+#import "UserModel.h"
+#import "UserManager.h"
+#import "HomeViewController.h"
 
 #define EIMClassKey   @"rootVCClassString"
 #define EIMTitleKey   @"title"
@@ -15,27 +18,46 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.delegate = self;
     
-    NSArray *childItemsArray = @[
-                                 @{EIMClassKey  : @"HomeViewController",
-                                   EIMTitleKey  : @"首页",
-                                   EIMImgKey    : @"index-off",
-                                   EIMSelImgKey : @"index-on"},
-  
-                                 @{EIMClassKey  : @"MapViewController",
-                                   EIMTitleKey  : @"项目地图",
-                                   EIMImgKey    : @"map-off",
-                                   EIMSelImgKey : @"map-on"},
-  
-                                 @{EIMClassKey  : @"StatisticsViewController",
-                                   EIMTitleKey  : @"汇总统计",
-                                   EIMImgKey    : @"statistics-off",
-                                   EIMSelImgKey : @"statistics-on"},
-  
-                                 @{EIMClassKey  : @"CenterViewController",
-                                   EIMTitleKey  : @"知识中心",
-                                   EIMImgKey    : @"center-off",
-                                   EIMSelImgKey : @"center-on"} ];
+    UserModel *model = [[UserManager sharedUserManager] getUserModel];
+    NSArray *childItemsArray = [NSArray array];
+    if([model.status isEqualToString:@"OK"])
+    {
+        childItemsArray = @[
+                             @{EIMClassKey  : @"HomeViewController",
+                               EIMTitleKey  : @"首页",
+                               EIMImgKey    : @"index-off",
+                               EIMSelImgKey : @"index-on"},
+
+                             @{EIMClassKey  : @"MapViewController",
+                               EIMTitleKey  : @"项目地图",
+                               EIMImgKey    : @"map-off",
+                               EIMSelImgKey : @"map-on"},
+
+                             @{EIMClassKey  : @"StatisticsViewController",
+                               EIMTitleKey  : @"汇总统计",
+                               EIMImgKey    : @"statistics-off",
+                               EIMSelImgKey : @"statistics-on"},
+
+                             @{EIMClassKey  : @"CenterViewController",
+                               EIMTitleKey  : @"知识中心",
+                               EIMImgKey    : @"center-off",
+                               EIMSelImgKey : @"center-on"} ];
+    }
+    else
+    {
+        childItemsArray = @[
+                             @{EIMClassKey  : @"HomeViewController",
+                               EIMTitleKey  : @"首页",
+                               EIMImgKey    : @"index-off",
+                               EIMSelImgKey : @"index-on"},
+                             
+                             @{EIMClassKey  : @"CenterViewController",
+                               EIMTitleKey  : @"知识中心",
+                               EIMImgKey    : @"center-off",
+                               EIMSelImgKey : @"center-on"} ];
+    }
     
     [childItemsArray enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
         UIViewController *vc = [NSClassFromString(dict[EIMClassKey]) new];
@@ -49,6 +71,21 @@
         [item setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#2CA5CF"]} forState:UIControlStateSelected];
         [self addChildViewController:nav];
     }];
+}
+
+#pragma mark - UITabBarControllerDelegate
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+{
+    BaseNavigationController *nav =(BaseNavigationController *)viewController;
+    HomeViewController *home = nav.viewControllers.firstObject;
+    
+    if(home)
+    {
+        if([home isKindOfClass:[HomeViewController class]])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadHomeViewAgain" object:nil];
+        }
+    }
 }
 
 @end

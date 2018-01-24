@@ -39,6 +39,16 @@
 //    {
 //        [self didLoginWithUserName:userModel.username AndPassWord:userModel.password];
 //    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSString *isOpenWebView = [defaults objectForKey:@"isOpenWebView"];
+    if([isOpenWebView isEqualToString:@"YES"])
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:@"NO" forKey:@"isOpenWebView"];
+        
+        UIViewController *vc = [NSClassFromString(@"WebDetailViewController") new];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 #pragma mark - LoginViewDelegate
@@ -92,6 +102,7 @@
                  switch (iResCode) {
                      case 0:
                          PLog(@"设置别名成功");
+                         [SVProgressHUD showInfoWithStatus:@"设置别名成功"];
                          break;
                      case 6003:
                          PLog(@"alias 字符串不合法  有效的别名、标签组成：字母（区分大小写）、数字、下划线、汉字");
@@ -103,6 +114,7 @@
                          break;
                      default:
                          PLog(@"设置别名失败");
+                         [SVProgressHUD showInfoWithStatus:@"设置别名失败"];
                          break;
                  }
             } seq:[self getRandomNumber:0 to:RAND_MAX]];

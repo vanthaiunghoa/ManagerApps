@@ -33,7 +33,7 @@
 @property (nonatomic, strong) NSNumber *offsetAmount;    // 优惠券抵扣金额
 @property (nonatomic, strong) NSNumber *totalAmount;     // 总价
 @property (nonatomic, strong) NSNumber *payAmount;       // 支付金额
-@property (nonatomic, strong) NSArray *fees;
+@property (nonatomic, strong) NSMutableArray *fees;
 @property (nonatomic, strong) NSArray *orderClothess;
 
 @end

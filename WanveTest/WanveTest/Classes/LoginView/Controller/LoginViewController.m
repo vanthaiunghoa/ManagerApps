@@ -7,6 +7,7 @@
 #import "VPNSettingViewController.h"
 #import "VPNManager.h"
 #import <UINavigationController+FDFullscreenPopGesture.h>
+#import "UrlManager.h"
 
 @interface LoginViewController ()<LoginViewDelegate>
 
@@ -263,7 +264,7 @@
     //                           @"UserID":@"cwq",
     //                           @"UserPsw":@"123456"
     //                           };
-    NSString *str = [NSString stringWithFormat:@"%@%@%@%@%@", @"http://121.15.203.82:9210/DMS_Phone/Login/LoginHandler.ashx?Action=Login&cmd={UserID:'", self.username, @"',UserPsw:'", self.password, @"'}"];
+    NSString *str = [NSString stringWithFormat:@"%@%@%@%@%@%@", [[UrlManager sharedUrlManager] getBaseUrl], @"/Login/LoginHandler.ashx?Action=Login&cmd={UserID:'", self.username, @"',UserPsw:'", self.password, @"'}"];
     NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     
@@ -288,7 +289,9 @@
             backItem.title = @"返回";
             self.navigationItem.backBarButtonItem = backItem;
 
-            MJTableViewController *vc = [[MJTableViewController alloc]init];
+//            MJTableViewController *vc = [[MJTableViewController alloc]init];
+//            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
+            UIViewController *vc = [NSClassFromString(@"AddressViewController") new];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else

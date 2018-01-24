@@ -27,16 +27,44 @@
     manager.delegate = self;
     
     peripherals = [[NSMutableArray alloc]init];
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [manager scanPeripherals];
-    });
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        [manager scanPeripherals];
+//    });
+    [self refresh];
+}
+
+#pragma mark UITableView + 下拉刷新 默认
+- (void)refresh
+{
+    __weak __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [weakSelf loadNewData];
+    }];
+    
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
+}
+
+#pragma mark - 数据处理相关
+#pragma mark 下拉刷新数据
+- (void)loadNewData
+{
+    [manager scanPeripherals];
 }
 
 #pragma mark - HHBluetoothPrinterManagerDelegate
 
+- (void)openBluetooth
+{
+    [SVProgressHUD showInfoWithStatus:@"请打开蓝牙，下拉扫描设备"];
+}
+
 // 扫描到的设备
 - (void)didDiscoverPeripheral:(CBPeripheral *)peripheral RSSI:(NSNumber *)RSSI
 {
+    self.tableView.mj_header.endRefreshing;
     PLog(@"scan peripheral == %@", peripheral.name);
     
     if (peripheral.name.length <= 0)
@@ -74,6 +102,26 @@
     [self.tableView reloadData];
 }
 
+- (void)didDisconnectPeripheral
+{
+    self.view.userInteractionEnabled = YES;
+    [SVProgressHUD showInfoWithStatus:@"设备已经断开"];
+}
+
+- (void)didConnectPeripheral
+{
+    if(_printerBlock)
+    {
+        _printerBlock(self);
+    }
+}
+
+- (void)didFailToConnectPeripheral
+{
+    self.view.userInteractionEnabled = YES;
+    [SVProgressHUD showInfoWithStatus:@"连接设备失败"];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -86,7 +134,8 @@
     if (nil == cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
-    CBPeripheral *peripheral = [peripherals objectAtIndex:indexPath.row];
+    NSDictionary *dict = [peripherals objectAtIndex:indexPath.row];
+    CBPeripheral *peripheral = dict[@"peripheral"];
     cell.textLabel.text = peripheral.name;
     
     return cell;
@@ -96,10 +145,9 @@
 {
     NSDictionary *dict = [peripherals objectAtIndex:indexPath.row];
     CBPeripheral *peripheral = dict[@"peripheral"];
-    if(_printerBlock)
-    {
-        _printerBlock(self, peripheral);
-    }
+    self.view.userInteractionEnabled = NO;
+    [SVProgressHUD showWithStatus:@"连接设备中..."];
+    [manager connectPeripheral:peripheral];
 }
 
 @end

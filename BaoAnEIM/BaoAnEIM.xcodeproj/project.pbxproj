@@ -392,8 +392,8 @@
 		E877B86C1FFF5A730091587B /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E877B86D1FFF5A730091587B /* UserModel.m */,
 				E877B86E1FFF5A730091587B /* UserModel.h */,
+				E877B86D1FFF5A730091587B /* UserModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

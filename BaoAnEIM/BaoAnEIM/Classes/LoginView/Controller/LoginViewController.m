@@ -191,11 +191,12 @@
     
     if ([elementName isEqualToString:@"CheckUserLoginResult"])
     {
-        if([self.value isEqualToString:@"ok"])
+        if([self.value isEqualToString:@"OK"] || [self.value isEqualToString:@"ok"])
         {
             UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
             userModel.username = self.username;
             userModel.password = self.password;
+            userModel.status = self.value;
             userModel.isLogout = NO;
             [[UserManager sharedUserManager] saveUserModel:userModel];
             [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"EIMTabBarController") new];

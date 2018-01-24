@@ -68,6 +68,7 @@
         userModel = UserModel.new;
         userModel.username = @"";
         userModel.password = @"";
+        userModel.status = @"";
         userModel.isRememberUsername = NO;
         userModel.isAutoLogin = NO;
         userModel.isLogout = NO;

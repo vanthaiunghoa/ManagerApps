@@ -4,6 +4,8 @@
 #import "UrlManager.h"
 #import "UIImage+image.h"
 #import "UserManager.h"
+#import "UserModel.h"
+#import "KxMenu.h"
 
 @interface HomeViewController ()<NSXMLParserDelegate>
 
@@ -12,6 +14,7 @@
 @property (nonatomic, strong) NSString *sessionId;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *openType;
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 
@@ -25,6 +28,17 @@
     [self setupNavBtn];
     
     [self loginWebService];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadHomeViewAgain" object:nil];
+}
+
+- (void)handleNotification
+{
+    [self loginWebService];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LoadHomeViewAgain" object:nil];
 }
 
 #pragma mark - nav item
@@ -37,7 +51,55 @@
 
 - (void)logoutClicked:(UIButton *)sender
 {
+    NSArray *menuItems =
+    @[
+      
+      [KxMenuItem menuItem:@"切换账号"
+                     image:nil
+                    target:self
+                    action:@selector(switchClicked:)],
+      
+      [KxMenuItem menuItem:@"退出"
+                     image:nil
+                    target:self
+                    action:@selector(exitClicked:)],
+      ];
+    
+    for(KxMenuItem *item in menuItems)
+    {
+        item.alignment = NSTextAlignmentCenter;
+    }
+    
+    CGRect frame = CGRectMake(6, 20, 44, 44);
+    
+    [KxMenu showMenuInView:self.view
+                  fromRect:frame
+                 menuItems:menuItems];
+}
+
+- (void)switchClicked:(id)sender
+{
     [[UserManager sharedUserManager] logout];
+}
+
+- (void)exitClicked:(id)sender
+{
+    [UIView beginAnimations:@"exitApplication" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationTransition:UIViewAnimationCurveEaseOut forView:self.view.window cache:NO];
+    [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
+    self.view.window.bounds = CGRectMake(0, 0, 0, 0);
+    [UIView commitAnimations];
+}
+
+- (void)animationFinished:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+{
+    if ([animationID compare:@"exitApplication"] == 0)
+    {
+        //退出
+        exit(0);
+    }
 }
 
 - (void)loginWebService
@@ -45,16 +107,16 @@
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"验证中，请稍等..."];
     
-    NSString *sp_id = @"vJo06/qsLDOK5p2FvLqujo8G9eCsjrLJGcg8TGN0QZexSchZjBfneZ1vL4h3BN/EEId5hEBxZWM=";
+//    NSString *sp_id = @"vJo06/qsLDOK5p2FvLqujo8G9eCsjrLJGcg8TGN0QZexSchZjBfneZ1vL4h3BN/EEId5hEBxZWM=";
     // 保安工务局
-//    NSString *sp_id = @"tKB1F69J4TgRTM7QRN1+NxDaURCluPAAYFaWJfMEdhryuqvuoRIA7sF7CzKsSngLPPpy5gmaOu4=";
-//    sp_id = [sp_id stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSString *sp_id = @"tKB1F69J4TgRTM7QRN1+NxDaURCluPAAYFaWJfMEdhryuqvuoRIA7sF7CzKsSngLPPpy5gmaOu4=";
+    sp_id = [sp_id stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     sp_id = [NSString urlEncode:sp_id];
     PLog(@"sp_id == %@", sp_id);
     
-    NSString *USER = @"yzdw-gly";
-    NSString *SP_ID = @"ToWanPic";
-//    NSString *SP_ID = @"ToEIM_PIC";
+    UserModel *model = [[UserManager sharedUserManager] getUserModel];
+//    NSString *SP_ID = @"ToWanPic";
+    NSString *SP_ID = @"ToEIM_PIC";
     
     NSString *soapMsg = [NSString stringWithFormat:
                          @"<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
@@ -62,7 +124,7 @@
                              "<USER>%@</USER>"
                              "<PASSWORD>%@</PASSWORD>"
                              "<SP_ID>%@</SP_ID>"
-                           "</REQUEST>", USER, sp_id, SP_ID];
+                           "</REQUEST>", model.username, sp_id, SP_ID];
     PLog(@"soapMsg == %@", soapMsg);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -180,25 +242,29 @@
 {
 //    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    if (_bridge) { return; }
+    if(self.webView == nil)
+    {
+        self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+        [self.view addSubview:self.webView];
+    }
     
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:webView];
-    
-    [WebViewJavascriptBridge enableLogging];
-    
-    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
-    [_bridge setWebViewDelegate:self];
-    
-    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"testObjcCallback called: %@", data);
-        responseCallback(@"Response from testObjcCallback");
-    }];
-    
-    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
+    if(_bridge == nil)
+    {
+        [WebViewJavascriptBridge enableLogging];
+        
+        _bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
+        [_bridge setWebViewDelegate:self];
+        
+        [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
+            NSLog(@"testObjcCallback called: %@", data);
+            responseCallback(@"Response from testObjcCallback");
+        }];
+        
+        [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
+    }
     
 //    [self renderButtons:webView];
-    [self loadWebView:webView];
+    [self loadWebView:self.webView];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {

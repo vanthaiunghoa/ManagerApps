@@ -7,7 +7,25 @@
 		<key>ATake.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>10</integer>
+			<integer>11</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>E85960B21FFB5BBB00224316</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E85960CA1FFB5BBC00224316</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E85960D51FFB5BBC00224316</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

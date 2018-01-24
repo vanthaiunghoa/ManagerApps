@@ -1,9 +1,12 @@
 #import "WebViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "UserManager.h"
+#import "UserModel.h"
+#import <UINavigationController+FDFullscreenPopGesture.h>
 
 @interface WebViewController()
 
-@property (nonatomic , strong ) UIWebView * webview ;
+@property (nonatomic , strong ) UIWebView *webview ;
 
 @end
 
@@ -13,13 +16,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.fd_prefersNavigationBarHidden = YES;
     [self loadWebView];
 }
 
 - (void)loadWebView
 {
     _webview = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-    NSString  *urlStr = @"http://172.21.102.222:8000/dgjxj_touch/Login/Index.aspx";
+//    NSString  *urlStr = @"http://172.21.102.222:8000/dgjxj_touch/Login/Index.aspx";
+    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"http://121.15.203.82:9210/DMS_Phone/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\"}", userModel.username, userModel.password];
+    
     //url 编码
     urlStr  =  [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL*url = [NSURL URLWithString:urlStr];

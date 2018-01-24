@@ -52,5 +52,6 @@
 #import "MJExtension.h"
 #import "IQKeyboardManager.h"
 #import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MJRefresh.h"
 
 #endif /* ATake_pch */

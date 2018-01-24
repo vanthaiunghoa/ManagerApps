@@ -39,6 +39,7 @@
 		E8A89B4C1FFDDBEF00E2D459 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A89B4B1FFDDBE800E2D459 /* WebKit.framework */; };
 		E8A89B4E1FFDDBFC00E2D459 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8A89B4D1FFDDBF600E2D459 /* UIKit.framework */; };
 		E8D0DCDD1FFCDB0C00669A1E /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D0DCDB1FFCDB0B00669A1E /* WebDetailViewController.m */; };
+		E8EEEBE52008450000B2805F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8EEEBE4200844FA00B2805F /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -121,6 +122,7 @@
 		E8A89B4D1FFDDBF600E2D459 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		E8D0DCDB1FFCDB0B00669A1E /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
 		E8D0DCDC1FFCDB0C00669A1E /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
+		E8EEEBE4200844FA00B2805F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8EEEBE52008450000B2805F /* QuartzCore.framework in Frameworks */,
 				E8A89B4E1FFDDBFC00E2D459 /* UIKit.framework in Frameworks */,
 				E8A89B4C1FFDDBEF00E2D459 /* WebKit.framework in Frameworks */,
 				E8A89B4A1FFDBD5800E2D459 /* CoreGraphics.framework in Frameworks */,
@@ -165,6 +168,7 @@
 		A1A6BB6900BFEE08E8738E4E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E8EEEBE4200844FA00B2805F /* QuartzCore.framework */,
 				E8A89B4D1FFDDBF600E2D459 /* UIKit.framework */,
 				E8A89B4B1FFDDBE800E2D459 /* WebKit.framework */,
 				E8A89B491FFDBD5100E2D459 /* CoreGraphics.framework */,
@@ -590,6 +594,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ATake/Pods-ATake-resources.sh",
 				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -793,6 +798,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ATake/ATake.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = AV2Z93XPA2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -815,8 +821,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = ATake/ATake.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = AV2Z93XPA2;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = ATake/ATake.pch;
 				INFOPLIST_FILE = ATake/Info.plist;
@@ -824,7 +831,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.self.ATake;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "c4daf7e2-a479-4836-857f-e7333caea9be";
+				PROVISIONING_PROFILE_SPECIFIER = ATakeDis;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

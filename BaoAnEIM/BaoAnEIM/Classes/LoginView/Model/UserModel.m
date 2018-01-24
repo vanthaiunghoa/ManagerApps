@@ -7,6 +7,7 @@
 {
     [aCoder encodeObject:_username forKey:@"username"];
     [aCoder encodeObject:_password forKey:@"password"];
+    [aCoder encodeObject:_status forKey:@"status"];
     
     [aCoder encodeBool:_isLogout forKey:@"isLogout"];
     [aCoder encodeBool:_isRememberUsername forKey:@"isRememberUsername"];
@@ -20,6 +21,7 @@
     {
         _username = [aDecoder decodeObjectForKey:@"username"];
         _password = [aDecoder decodeObjectForKey:@"password"];
+        _status = [aDecoder decodeObjectForKey:@"status"];
         
         _isLogout = [aDecoder decodeBoolForKey:@"isLogout"];
         _isRememberUsername = [aDecoder decodeBoolForKey:@"isRememberUsername"];

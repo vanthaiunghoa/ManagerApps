@@ -6,14 +6,15 @@
 #import "BluetoothViewController.h"
 #import "PrintModel.h"
 
-@interface WebViewController()<HHBluetoothPrinterManagerDelegate>
+@interface WebViewController()
 
 @property WebViewJavascriptBridge *bridge;
 @property (nonatomic, strong) UIImageView *testView;
 @property (nonatomic, strong) NSMutableArray *printDatas;
 @property (nonatomic, strong) PrintModel *printModel;
 @property (nonatomic, strong) CBPeripheral *peripheral;
-@property (nonatomic, strong) HHBluetoothPrinterManager *manager;
+@property (nonatomic, strong) NSString *orderNo;
+@property (nonatomic, strong) NSString *staffNo;
 
 @end
 
@@ -24,23 +25,16 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.manager = [HHBluetoothPrinterManager sharedManager];
-}
-
-- (NSMutableArray *)printDatas
-{
-    if (!_printDatas) {
-        _printDatas = [NSMutableArray array];
-    }
-    return _printDatas;
+    _printDatas = [NSMutableArray array];
+    [NSTimer scheduledTimerWithTimeInterval:(float)0.02 target:self selector:@selector(sendDataTimer:) userInfo:nil repeats:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
-    self.manager.delegate = self;
-    [self.manager cancelScan];
+//    self.manager.delegate = self;
+//    [self.manager cancelScan];
     
     if (_bridge) { return; }
     
@@ -53,7 +47,7 @@
     
     [self openScan];
     [self printFeeList];
-    [self printQrcode];
+//    [self printQrcode];
     [self logout];
 //    [self renderButtons:webView];
     [self loadWebView:webView];
@@ -135,56 +129,32 @@
         {
             _printModel = [PrintModel mj_objectWithKeyValues:data];
             
-            if([self.manager isConnectSuccess])
+            if([[HHBluetoothPrinterManager sharedManager] isConnectSuccess])
             {
-                self.view.userInteractionEnabled = NO;
-                [SVProgressHUD showWithStatus:@"打印中..."];
+//                self.view.userInteractionEnabled = NO;
+//                [SVProgressHUD showWithStatus:@"打印中..."];
                 [self printInit:FeeList];
-                [self print];
-                self.view.userInteractionEnabled = YES;
-                [SVProgressHUD showSuccessWithStatus:@"打印成功"];
+//                [self print];
+//                self.view.userInteractionEnabled = YES;
+//                [SVProgressHUD showSuccessWithStatus:@"打印成功"];
             }
             else
             {
                 BluetoothViewController *vc = [[BluetoothViewController alloc]init];
-                vc.printerBlock = ^(BluetoothViewController *vc, CBPeripheral *peripheral)
+                vc.printerBlock = ^(BluetoothViewController *vc)
                 {
-                    PLog(@"peripheral == %@", peripheral.name);
                     [vc.navigationController popViewControllerAnimated:NO];
-                    
-                    self.view.userInteractionEnabled = NO;
-                    
-                    [SVProgressHUD showWithStatus:@"连接设备中..."];
-                    [self.manager connectPeripheral:peripheral];
+//                    self.view.userInteractionEnabled = NO;
+                    [SVProgressHUD showInfoWithStatus:@"连接成功，开始打印"];
+                    PLog(@"开始打印=====");
+                    [self printInit:FeeList];
+                    PLog(@"打印结束=====");
+//                    self.view.userInteractionEnabled = YES;
                 };
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }
     }];
-}
-
-#pragma mark - HHBluetoothPrinterManagerDelegate
-
-- (void)didDisconnectPeripheral
-{
-    self.view.userInteractionEnabled = YES;
-    [SVProgressHUD showInfoWithStatus:@"设备已经断开"];
-}
-
-- (void)didConnectPeripheral
-{
-    [SVProgressHUD showInfoWithStatus:@"连接成功，开始打印"];
-    PLog(@"开始打印=====");
-    [self printInit:FeeList];
-    [self print];
-    PLog(@"打印结束=====");
-    self.view.userInteractionEnabled = YES;
-}
-
-- (void)didFailToConnectPeripheral
-{
-    self.view.userInteractionEnabled = YES;
-    [SVProgressHUD showInfoWithStatus:@"连接设备失败"];
 }
 
 - (void)printQrcode
@@ -193,30 +163,45 @@
         PLog(@"printQrcode == %@", data);
         if(data)
         {
+            self.orderNo = data[@"orderNo"];
+            self.staffNo = data[@"staffNo"];
             if([[HHBluetoothPrinterManager sharedManager] isConnectSuccess])
             {
                 _printModel = [PrintModel mj_objectWithKeyValues:data];
                 [self printInit:QRCode];
-                //            [self print];
             }
             else
             {
                 BluetoothViewController *vc = [[BluetoothViewController alloc]init];
-                vc.printerBlock = ^(BluetoothViewController *vc, CBPeripheral *peripheral)
+                vc.printerBlock = ^(BluetoothViewController *vc)
                 {
-                    PLog(@"peripheral == %@", peripheral.name);
                     [vc.navigationController popViewControllerAnimated:NO];
-                    
-                    [[HHBluetoothPrinterManager sharedManager] connectPeripheral:peripheral];
-                    
-                    _printModel = [PrintModel mj_objectWithKeyValues:data];
+                    [SVProgressHUD showInfoWithStatus:@"连接成功，开始打印"];
+//                    [self printQR];
                     [self printInit:QRCode];
-                    //            [self print];
+                    [[HHBluetoothPrinterManager sharedManager] printTest:_printDatas];
                 };
                 [self.navigationController pushViewController:vc animated:YES];
             }
         }
     }];
+}
+
+- (void)sendDataTimer:(NSTimer *)timer
+{
+    //发送打印数据
+    //NSLog(@"send data timer");
+    
+    if ([_printDatas count] > 0)
+    {
+        NSData* cmdData;
+        
+        cmdData = [_printDatas objectAtIndex:0];
+        [[HHBluetoothPrinterManager sharedManager] startPrint:cmdData];
+        
+        [_printDatas removeObjectAtIndex:0];
+        PLog(@"print length == %ld", _printDatas.count);
+    }
 }
 
 - (void)logout
@@ -321,87 +306,74 @@
 
 - (void)printFeeListFormat
 {
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"交易编号"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.orderNo]];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"联系人"];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"交易编号：%@\n", _printModel.orderNo]];
     
     for(OrderClothessModel *orderClothess in _printModel.orderClothess)
     {
-        [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", orderClothess.recvName]];
+        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"联系人：%@\n", orderClothess.recvName]];
         [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"收件地址：%@%@%@%@\n", orderClothess.recvCity, orderClothess.recvArea, orderClothess.recvSecArea, orderClothess.recvAddress]];
-        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"是否加急"];
-        [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", orderClothess.isUrgent?@"是":@"否"]];
+        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"是否加急：%@\n", orderClothess.isUrgent?@"是":@"否"]];
         [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
     }
     
-    //    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"名称               数量       金额\n"];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"名称"];
-    [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:@"数量"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:@"金额\n"];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"名称           数量        金额\n"];
     [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
+    
+//    FeesModel *f = [[FeesModel alloc]init];
+//    f.clothesName = @"三个字";
+//    f.quantity = @430;
+//    f.amount = @300;
+//    [_printModel.fees addObject:f];
+//
+//    FeesModel *f2 = [[FeesModel alloc]init];
+//    f2.quantity = @43;
+//    f2.amount = @300;
+//    f2.clothesName = @"五个字个字";
+//    [_printModel.fees addObject:f2];
     
     for(FeesModel *fee in _printModel.fees)
     {
-        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:fee.clothesName];
-        [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@", fee.quantity]];
-        [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", fee.amount]];
-        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
+        if(fee.clothesName.length == 2)
+        {
+            [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@            %@           %@\n", fee.clothesName, fee.quantity, fee.amount]];
+        }
+        else if(fee.clothesName.length == 3)
+        {
+            [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@         %@          %@\n", fee.clothesName, fee.quantity, fee.amount]];
+        }
+        else if(fee.clothesName.length == 4)
+        {
+            [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@        %@           %@\n", fee.clothesName, fee.quantity, fee.amount]];
+        }
+        else
+        {
+            [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@      %@          %@\n", fee.clothesName, fee.quantity, fee.amount]];
+        }
     }
-    
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"合计"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.totalAmount]];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"折扣"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.offsetAmount]];
     [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
     
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"应收"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.payAmount]];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"合计                        %@\n", _printModel.totalAmount]];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"折扣                        %@\n", _printModel.offsetAmount]];
     [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
     
-    [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:@"委托人签名：\n\n"];
-    [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:@"收件人签名：\n\n"];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"应收                        %@\n", _printModel.payAmount]];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
+    
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"委托人签名：\n\n"];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"收件人签名：\n\n\n\n\n\n"];
 }
 
 - (void)printQRCodeFormat
 {
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"交易编号"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.orderNo]];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"联系人"];
-    
-    for(OrderClothessModel *orderClothess in _printModel.orderClothess)
-    {
-        [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", orderClothess.recvName]];
-        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"收件地址：%@%@%@%@\n", orderClothess.recvCity, orderClothess.recvArea, orderClothess.recvSecArea, orderClothess.recvAddress]];
-        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"是否加急"];
-        [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", orderClothess.isUrgent?@"是":@"否"]];
-    }
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
-    //    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"名称               数量       金额\n"];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"名称"];
-    [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:@"数量"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:@"金额\n"];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
-    
-    for(FeesModel *fee in _printModel.fees)
-    {
-        [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:fee.clothesName];
-        [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@", fee.quantity]];
-        [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", fee.amount]];
-    }
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
-    
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"合计"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.totalAmount]];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"折扣"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.offsetAmount]];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
-    
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"应收"];
-    [self printerWithFormat:Align_Right CharZoom:Char_Normal Content:[NSString stringWithFormat:@"%@\n", _printModel.payAmount]];
-    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"--------------------------------\n"];
-    
-    [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:@"委托人签名：\n\n"];
-    [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:@"收件人签名：\n\n"];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:@"广西兆泳\n"];
+    [self printerWithFormat:Align_Left CharZoom:Char_Normal Content:[NSString stringWithFormat:@"收件员工号：%@\n\n\n", self.staffNo]];
+//    UIImage * printimage = [self createQRForString:[NSString stringWithFormat:@"http://www.eyixi.com:8088/atake/app/order/goNextOrderStep.do?orderNo=%@\n\n", self.orderNo]];
+    UIImage * printimage = [self createQRForString:@"https://www.baidu.com"];
+//    [self appendImage:printimage maxWidth:250];
+    [self png2GrayscaleImage:printimage];
+//    [self appendQRCodeWithInfo:@"https://www.baidu.com"];
+//    [self appendImage:[UIImage imageNamed:@"ico180"] maxWidth:300];
+    [self printerWithFormat:Align_Center CharZoom:Char_Normal Content:self.orderNo];
 }
 
 - (UIImage *)png2GrayscaleImage:(UIImage *) oriImage
@@ -508,6 +480,7 @@
     
     
     strLength = [dataPrinted length];
+    PLog(@"strlength == %ld", strLength);
     cellCount = (strLength%MAX_CHARACTERISTIC_VALUE_SIZE)?(strLength/MAX_CHARACTERISTIC_VALUE_SIZE + 1):(strLength/MAX_CHARACTERISTIC_VALUE_SIZE);
     
     for (i=0; i<cellCount; i++) {
@@ -638,26 +611,6 @@
     PLog(@"format:%@", printFormat);
     
     [_printDatas addObject:printFormat];
-}
-
-- (void)print
-{
-//    if([_printDatas count] > 0)
-//    {
-//        NSData* cmdData;
-//
-//        cmdData = [_printDatas objectAtIndex:0];
-//        [[HHBluetoothPrinterManager sharedManager] startPrint:cmdData];
-//        [_printDatas removeObjectAtIndex:0];
-//    }
-    while([_printDatas count] != 0)
-    {
-        NSData* cmdData;
-
-        cmdData = [_printDatas objectAtIndex:0];
-        [[HHBluetoothPrinterManager sharedManager] startPrint:cmdData];
-        [_printDatas removeObjectAtIndex:0];
-    }
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {

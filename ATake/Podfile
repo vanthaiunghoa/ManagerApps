@@ -11,6 +11,7 @@ pod 'WebViewJavascriptBridge', '~> 6.0'
 pod 'JPush'
 pod 'ReactiveCocoa', '~> 2.5'
 pod 'BlocksKit', '~> 2.2.5'
+pod 'MJRefresh'
 
 end
 

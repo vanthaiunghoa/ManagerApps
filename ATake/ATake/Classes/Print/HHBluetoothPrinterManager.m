@@ -30,6 +30,8 @@
 
 @property (nonatomic, assign, readwrite) CBCentralManagerState centralState;
 
+@property (nonatomic, strong) NSMutableArray *printDatas;
+
 @end
 
 @implementation HHBluetoothPrinterManager
@@ -54,23 +56,34 @@
 - (instancetype)init {
     if (self = [super init]) {
         self.centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:dispatch_get_main_queue()];
+        
+        _printDatas = [NSMutableArray array];
     }
     return self;
 }
 
 #pragma makr - CBCentralManagerDelegate
-- (void)centralManagerDidUpdateState:(CBCentralManager *)central {
-    self.centralState = central.state;
-    if ([self.delegate respondsToSelector:@selector(centralManagerDidUpdateState:)]) {
-        [self.delegate centralManagerDidUpdateState:central];
+- (void)centralManagerDidUpdateState:(CBCentralManager *)central
+{
+    switch (central.state)
+    {
+        case CBCentralManagerStatePoweredOn:
+        {
+            PLog(@"蓝牙设备开着");
+            [self scanPeripherals];
+        }
+            break;
+        case CBCentralManagerStatePoweredOff:
+            PLog(@"蓝牙设备关着");
+            [self.delegate openBluetooth];
+            break;
+        default:
+            break;
     }
 }
 
 - (void)centralManager:(CBCentralManager *)central willRestoreState:(NSDictionary<NSString *,id> *)dict {
-    self.centralState = central.state;
-    if ([self.delegate respondsToSelector:@selector(centralManagerDidUpdateState:)]) {
-        [self.delegate centralManagerDidUpdateState:central];
-    }
+    
 }
 
 /**
@@ -83,7 +96,9 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)peripheral advertisementData:(NSDictionary<NSString *,id> *)advertisementData RSSI:(NSNumber *)RSSI
 {
-    [self.delegate didDiscoverPeripheral:peripheral RSSI:RSSI];
+    if ([self.delegate respondsToSelector:@selector(didDiscoverPeripheral:RSSI:)]) {
+        [self.delegate didDiscoverPeripheral:peripheral RSSI:RSSI];
+    }
 }
 /**
  *  连接到新的蓝牙设备
@@ -93,7 +108,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)peripheral
 {
-    PLog(@"连接成功======");
+    NSLog(@"ok");//链接成功
     peripheral.delegate = self;
     [peripheral discoverServices:nil];
 }
@@ -107,11 +122,9 @@
  */
 - (void)centralManager:(CBCentralManager *)central didFailToConnectPeripheral:(CBPeripheral *)peripheral error:(nullable NSError *)error
 {
-    PLog(@"连接失败======");
-    if ([self.delegate respondsToSelector:@selector(centralManager:didFailToConnectPeripheral:error:)]) {
-        [self.delegate centralManager:central didFailToConnectPeripheral:peripheral error:error];
-    };
+    NSLog(@"连接失败");
     
+    [self clearConnectData];
     [self.delegate didFailToConnectPeripheral];
 }
 
@@ -125,18 +138,17 @@
     [self.delegate didDisconnectPeripheral];
 }
 
-
 #pragma mark - CBPeripheralDelegate
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
-    PLog(@"didDicoverService");
+    NSLog(@"didDicoverService");
     if (error) {
-        PLog(@"连接服务:%@ 发生错误:%@",peripheral.name,[error localizedDescription]);
+        NSLog(@"连接服务:%@ 发生错误:%@",peripheral.name,[error localizedDescription]);
         return;
     }
     
     for (CBService* service in  peripheral.services) {
-        PLog(@"扫描到的serviceUUID:%@",service.UUID);
+        NSLog(@"扫描到的serviceUUID:%@",service.UUID);
         //这里其实三个服务都可以做打印，但是我只选择了其中一个
         if ([service.UUID isEqual:[CBUUID UUIDWithString:Printer200ServiceUUID]]) {
             //扫描特征
@@ -151,16 +163,14 @@
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverCharacteristicsForService:(CBService *)service error:(NSError *)error
 {
     if (error) {
-        PLog(@"扫描特征:%@错误描述:%@",service.UUID,[error localizedDescription]);
+        NSLog(@"扫描特征:%@错误描述:%@",service.UUID,[error localizedDescription]);
         return;
     }
     
     for (CBCharacteristic * characteristic in service.characteristics)
     {
-        if (characteristic.properties & CBCharacteristicPropertyWrite )
-        {
-            PLog(@"didDiscoverCharacteristicsForService");
-            
+        if (characteristic.properties & CBCharacteristicPropertyWrite ) {
+            NSLog(@"扫描出特征");
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
             self.connectedPeripheral = peripheral;
             self.connectedService = service;
@@ -183,11 +193,13 @@
 {
     if (error)
     {
-        PLog(@"Error updating notification state for characteristic %@ error: %@", characteristic.UUID, [error localizedDescription]);
+        NSLog(@"Error updating notification state for characteristic %@ error: %@", characteristic.UUID, [error localizedDescription]);
         return;
     }
     
-    PLog(@"Updated notification state for characteristic %@ (newState:%@)", characteristic.UUID, [characteristic isNotifying] ? @"Notifying" : @"Not Notifying");
+    NSLog(@"Updated notification state for characteristic %@ (newState:%@)", characteristic.UUID, [characteristic isNotifying] ? @"Notifying" : @"Not Notifying");
+    
+    
 }
 
 #pragma mark - 接口方法
@@ -214,16 +226,12 @@
 - (BOOL)isConnectSuccess
 {
     if(self.connectedPeripheral)
+    {
         return YES;
+    }
     else
+    {
         return NO;
-}
-
-- (void)printData:(NSData *)writeData
-{
-    if (self.connectedPeripheral && self.connectedCharacteristic) {
-        [self startPrint:self.connectedPeripheral writeValue:writeData forCharacteristic:self.connectedCharacteristic type:CBCharacteristicWriteWithResponse];
-        return;
     }
 }
 
@@ -389,6 +397,40 @@
     if (self.connectedPeripheral && self.connectedCharacteristic) {
         [self startPrint:self.connectedPeripheral writeValue:writeData forCharacteristic:self.connectedCharacteristic type:CBCharacteristicWriteWithResponse];
         return;
+    }
+}
+
+- (void)printTest:(NSMutableArray *)datas
+{
+    _printDatas = datas;
+    [self sendData];
+}
+
+#pragma mark ---------------- 写入数据的回调 --------------------
+- (void)peripheral:(CBPeripheral *)peripheral didWriteValueForCharacteristic:(CBCharacteristic *)characteristic error:(nullable NSError *)error
+{
+    if (error) {
+        PLog(@"发送失败。。。。。");
+    } else {
+        PLog(@"发送成功。。。。。");
+        [self sendData];
+    }
+}
+
+- (void)sendData
+{
+    //发送打印数据
+    //NSLog(@"send data timer");
+
+    if ([_printDatas count] > 0)
+    {
+        NSData* cmdData;
+
+        cmdData = [_printDatas objectAtIndex:0];
+        [self startPrint:cmdData];
+
+        [_printDatas removeObjectAtIndex:0];
+        PLog(@"print length == %ld", _printDatas.count);
     }
 }
 
