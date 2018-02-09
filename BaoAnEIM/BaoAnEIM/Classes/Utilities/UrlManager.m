@@ -34,8 +34,8 @@ static id _instance;
 
 - (NSString *)getLoginUrl
 {
-//    return @"http://121.15.203.82:9210/EIM_PIC/WebService/WebService.asmx";
-    return @"http://gcjg.baoan.gov.cn:9250/wan_mpda_pic//WebService/WebService.asmx";
+    return @"http://121.15.203.82:9210/EIM_PIC/WebService/WebService.asmx";
+//    return @"http://gcjg.baoan.gov.cn:9250/wan_mpda_pic//WebService/WebService.asmx";
 }
 
 - (NSString *)getSingleUrl

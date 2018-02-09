@@ -117,7 +117,7 @@
         item.alignment = NSTextAlignmentCenter;
     }
     
-    CGRect frame = CGRectMake(6, 20, 44, 44);
+    CGRect frame = CGRectMake(6, TOP_HEIGHT - 44, 44, 44);
     
     [KxMenu showMenuInView:self.view
                   fromRect:frame
@@ -187,7 +187,7 @@
         item.alignment = NSTextAlignmentCenter;
     }
     
-    CGRect frame = CGRectMake(SCREEN_WIDTH - 50, 20, 44, 44);
+    CGRect frame = CGRectMake(SCREEN_WIDTH - 50, TOP_HEIGHT - 44, 44, 44);
     
     [KxMenu showMenuInView:self.view
                   fromRect:frame
@@ -334,7 +334,6 @@
     
     [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
     
-    //    [self renderButtons:webView];
     [self loadWebView:webView];
 }
 
@@ -346,35 +345,6 @@
     NSLog(@"webViewDidFinishLoad");
 }
 
-- (void)renderButtons:(UIWebView*)webView {
-    UIFont* font = [UIFont fontWithName:@"HelveticaNeue" size:11.0];
-    
-    UIButton *callbackButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [callbackButton setTitle:@"Call handler" forState:UIControlStateNormal];
-    [callbackButton addTarget:self action:@selector(callHandler:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview:callbackButton aboveSubview:webView];
-    callbackButton.frame = CGRectMake(0, 400, 100, 35);
-    callbackButton.titleLabel.font = font;
-    
-    UIButton* reloadButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [reloadButton setTitle:@"Reload webview" forState:UIControlStateNormal];
-    [reloadButton addTarget:webView action:@selector(reload) forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview:reloadButton aboveSubview:webView];
-    reloadButton.frame = CGRectMake(90, 400, 100, 35);
-    reloadButton.titleLabel.font = font;
-    
-    UIButton* safetyTimeoutButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [safetyTimeoutButton setTitle:@"Disable safety timeout" forState:UIControlStateNormal];
-    [safetyTimeoutButton addTarget:self action:@selector(disableSafetyTimeout) forControlEvents:UIControlEventTouchUpInside];
-    [self.view insertSubview:safetyTimeoutButton aboveSubview:webView];
-    safetyTimeoutButton.frame = CGRectMake(190, 400, 120, 35);
-    safetyTimeoutButton.titleLabel.font = font;
-}
-
-- (void)disableSafetyTimeout {
-    [self.bridge disableJavscriptAlertBoxSafetyTimeout];
-}
-
 - (void)callHandler:(id)sender {
     id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
     [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
@@ -384,8 +354,8 @@
 
 - (void)loadWebView:(UIWebView*)webView
 {
-    NSURL *url = [NSURL URLWithString:self.url];
-//    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
+//    NSURL *url = [NSURL URLWithString:self.url];
+    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [webView loadRequest:request];
 }

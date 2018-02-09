@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class AddressModel;
-@interface AddressDepartmentViewController : UITableViewController
+@interface AddressDepartmentViewController : UIViewController
 
 @property (nonatomic, strong) AddressModel *departmentModel;
 

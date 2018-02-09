@@ -181,6 +181,8 @@
 		E873BF981FB135B000C122AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E873BF971FB135B000C122AA /* Assets.xcassets */; };
 		E873BF9B1FB135B000C122AA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E873BF991FB135B000C122AA /* LaunchScreen.storyboard */; };
 		E873BFA61FB135B100C122AA /* WanveTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E873BFA51FB135B100C122AA /* WanveTestUITests.m */; };
+		E898CDF720186272005D27E2 /* DepartmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E898CDF420186271005D27E2 /* DepartmentCell.m */; };
+		E898CDF820186272005D27E2 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E898CDF520186272005D27E2 /* AddressCell.m */; };
 		E8D9897B1FCBAF5A00272025 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D9897A1FCBAF5A00272025 /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -419,6 +421,10 @@
 		E873BFA11FB135B100C122AA /* WanveTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanveTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E873BFA51FB135B100C122AA /* WanveTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WanveTestUITests.m; sourceTree = "<group>"; };
 		E873BFA71FB135B100C122AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E898CDF320186271005D27E2 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
+		E898CDF420186271005D27E2 /* DepartmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentCell.m; sourceTree = "<group>"; };
+		E898CDF520186272005D27E2 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
+		E898CDF620186272005D27E2 /* DepartmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentCell.h; sourceTree = "<group>"; };
 		E8D989791FCBAF5A00272025 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		E8D9897A1FCBAF5A00272025 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		ED3A171B3E14B3E52B57A372 /* Pods-WanveTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanveTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WanveTest/Pods-WanveTest.release.xcconfig"; sourceTree = "<group>"; };
@@ -508,6 +514,10 @@
 		E809F0C42016D18400016366 /* AddressView */ = {
 			isa = PBXGroup;
 			children = (
+				E898CDF320186271005D27E2 /* AddressCell.h */,
+				E898CDF520186272005D27E2 /* AddressCell.m */,
+				E898CDF620186272005D27E2 /* DepartmentCell.h */,
+				E898CDF420186271005D27E2 /* DepartmentCell.m */,
 				E809F0D7201716CA00016366 /* AddressDetailViewController.h */,
 				E809F0D8201716CA00016366 /* AddressDetailViewController.m */,
 				E809F0D9201716CA00016366 /* DetailCell.h */,
@@ -1280,7 +1290,9 @@
 				E822C6651FC7C54000F5DFAF /* ReaderContentView.m in Sources */,
 				E822C66E1FC7C54000F5DFAF /* ThumbsViewController.m in Sources */,
 				E822C6681FC7C54000F5DFAF /* ReaderThumbView.m in Sources */,
+				E898CDF720186272005D27E2 /* DepartmentCell.m in Sources */,
 				E8D9897B1FCBAF5A00272025 /* WebViewController.m in Sources */,
+				E898CDF820186272005D27E2 /* AddressCell.m in Sources */,
 				E8466B241FC267C100EDA068 /* BaseNavigationController.m in Sources */,
 				E822C66A1FC7C54000F5DFAF /* ReaderDocument.m in Sources */,
 				E809F0CA2016DC8000016366 /* UrlManager.m in Sources */,

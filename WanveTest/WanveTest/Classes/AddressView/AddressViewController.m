@@ -12,11 +12,14 @@
 #import "UrlManager.h"
 #import "AddressModel.h"
 #import "AddressDepartmentViewController.h"
+#import "AddressCell.h"
 
-@interface AddressViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface AddressViewController ()<UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *address;
+@property (nonatomic, strong) NSMutableArray *searchDatas;
+@property (nonatomic, assign) BOOL isSearch;
 
 @end
 
@@ -25,16 +28,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    _isSearch = NO;
     self.navigationItem.title = @"通讯录";
+    self.view.backgroundColor = [UIColor whiteColor];
+    _searchDatas = [[NSMutableArray alloc]init];
     
-    self.tableView = [[UITableView alloc] initWithFrame:SCREEN_BOUNDS style:UITableViewStylePlain];
+    [self initView];
+    [self loadDatas];
+}
+
+- (void)initView
+{
+    float y = TOP_HEIGHT;
+    
+    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, y, SCREEN_WIDTH, 44)];
+    searchBar.placeholder = @"请输入部门名字进行筛选...";
+    searchBar.delegate = self;
+    searchBar.barStyle =  UIBarStyleDefault;
+    searchBar.searchBarStyle = UISearchBarStyleDefault;
+    [self.view addSubview:searchBar];
+    
+    y += searchBar.frame.size.height;
+    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, y, SCREEN_WIDTH, SCREEN_HEIGHT - y) style:UITableViewStylePlain];
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-//    [self.tableView registerClass:[ProjectActivityListCell class] forCellReuseIdentifier:kCellIdentifier_ProjectActivityList];
+    [self.tableView registerClass:[AddressCell class] forCellReuseIdentifier:NSStringFromClass([AddressCell class])];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    
-    [self loadDatas];
+    [self.view addSubview:self.tableView];
 }
 
 -(NSArray *)address
@@ -80,34 +102,75 @@
 
 #pragma mark - tableView delegate
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _address.count;
+    if(_isSearch)
+    {
+        return _searchDatas.count;
+    }
+    else
+    {
+        return _address.count;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil)
+    AddressCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AddressCell class])];
+    if(_isSearch)
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        cell.model = _searchDatas[indexPath.row];
     }
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    
-    AddressModel *model = _address[indexPath.row];
-    cell.textLabel.text = model.KSName;
+    else
+    {
+        cell.model = _address[indexPath.row];
+    }
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
     AddressDepartmentViewController *vc = [AddressDepartmentViewController new];
-    vc.departmentModel = _address[indexPath.row];
+    if(_isSearch)
+    {
+        vc.departmentModel = _searchDatas[indexPath.row];
+    }
+    else
+    {
+        vc.departmentModel = _address[indexPath.row];
+    }
     [self.navigationController pushViewController:vc animated:YES];
 }
 
+#pragma mark - UISearchBarDelegate
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+{
+    if(searchText.length == 0)
+    {
+        _isSearch = NO;
+    }
+    else
+    {
+        _isSearch = YES;
+        [_searchDatas removeAllObjects];
+        for(AddressModel *model in _address)
+        {
+            if([model.KSName containsString:searchText])
+            {
+                [_searchDatas addObject:model];
+            }
+        }
+    }
+    
+    [self.tableView reloadData];
+}
 
 @end

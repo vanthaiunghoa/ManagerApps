@@ -7,11 +7,12 @@
 //
 
 #import "AddressDetailViewController.h"
+#import <MessageUI/MFMessageComposeViewController.h>
 #import "AddressModel.h"
 #import "DetailCell.h"
 #import "UIColor+color.h"
 
-@interface AddressDetailViewController ()<DetailCellDelegate>
+@interface AddressDetailViewController ()<DetailCellDelegate, MFMessageComposeViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *phones;
 
@@ -41,24 +42,24 @@
     [head addSubview:name];
     name.text = _userListModel.UserName;
     name.textColor = [UIColor whiteColor];
-//    name.font = [UIFont systemFontOfSize:15];
+    name.font = [UIFont systemFontOfSize:15];
     
     [name makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(head.left).offset(30);
-        make.top.equalTo(head.top).offset(75);
-        make.height.equalTo(@20);
+        make.top.equalTo(head.top).offset(77);
+        make.height.equalTo(@18);
     }];
     
     UILabel *departmant = [UILabel new];
     [head addSubview:departmant];
     departmant.text = _userListModel.kSName;
     departmant.textColor = [UIColor whiteColor];
-//    departmant.font = [UIFont systemFontOfSize:15];
+    departmant.font = [UIFont systemFontOfSize:15];
     
     [departmant makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(head.left).offset(30);
-        make.bottom.equalTo(head.bottom).offset(-75);
-        make.height.equalTo(@20);
+        make.bottom.equalTo(head.bottom).offset(-77);
+        make.height.equalTo(@18);
     }];
 }
 
@@ -107,7 +108,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 44;
+    return 54;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -132,12 +133,46 @@
 
 - (void)call:(AddressDetailModel *)model
 {
-    PLog(@"yo");
+    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"tel:%@", model.number];
+    UIWebView *callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [self.view addSubview:callWebview];
 }
 
 - (void)sendMessage:(AddressDetailModel *)model
 {
-    PLog(@"yo");
+    if([MFMessageComposeViewController canSendText])
+    {
+        MFMessageComposeViewController *vc = [[MFMessageComposeViewController alloc] init];
+        // 设置短信内容
+        vc.body = @"";
+        // 设置收件人列表
+        vc.recipients = @[model.number];  // 号码数组
+        // 设置代理
+        vc.messageComposeDelegate = self;
+        // 显示控制器
+        [self presentViewController:vc animated:YES completion:nil];
+    }
+}
+
+#pragma mark - MFMessageComposeViewControllerDelegate
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    [self dismissModalViewControllerAnimated:YES];
+    
+    if (result == MessageComposeResultCancelled)
+    {
+        PLog(@"Message cancelled");
+    }
+    else if (result == MessageComposeResultSent)
+    {
+        PLog(@"Message sent");
+    }
+    else
+    {
+        PLog(@"Message failed");
+    }
 }
 
 

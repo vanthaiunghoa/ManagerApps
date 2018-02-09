@@ -33,17 +33,18 @@
     
     [call makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.left).offset(10);
+        make.centerY.equalTo(self.centerY);
         make.width.height.equalTo(@44);
     }];
     
     _number = [UILabel new];
     [self.contentView addSubview:_number];
-    _number.font = [UIFont systemFontOfSize:15];
+    _number.font = [UIFont systemFontOfSize:17];
 
     [_number makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(call.right).offset(10);
         make.top.equalTo(self).offset(0);
-        make.height.equalTo(@27);
+        make.height.equalTo(@32);
     }];
     
     _type = [UILabel new];
@@ -52,9 +53,9 @@
     _type.font = [UIFont systemFontOfSize:10];
     
     [_type makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(call.right).offset(10);
+        make.left.equalTo(call.right).offset(15);
         make.top.equalTo(_number.bottom).offset(0);
-        make.height.equalTo(@17);
+        make.height.equalTo(@20);
     }];
     
     _message = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -64,6 +65,7 @@
     
     [_message makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.right).offset(-10);
+        make.centerY.equalTo(self.centerY);
         make.width.height.equalTo(@44);
     }];
 
