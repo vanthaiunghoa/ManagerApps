@@ -10,7 +10,7 @@
 #define EIM_pch
 
 #define IS_IPHONEX  ([[UIScreen mainScreen] bounds].size.height == 812.f)
-#define TOP_HEIGHT  ((IS_IPHONEX)?84:64)
+#define TOP_HEIGHT  ((IS_IPHONEX)?88:64)
 //屏幕的区域
 #define  SCREEN_BOUNDS [UIScreen mainScreen].bounds
 //屏幕的高度

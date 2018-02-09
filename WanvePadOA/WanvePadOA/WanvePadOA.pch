@@ -13,7 +13,7 @@
 #define SCREEN_HEIGHT  ([UIScreen mainScreen].bounds.size.height)
 
 #define IS_IPHONE_X  ([[UIScreen mainScreen] bounds].size.height == 812.f)
-#define TOP_HEIGHT  ((IS_IPHONE_X)?84:64)
+#define TOP_HEIGHT  ((IS_IPHONE_X)?88:64)
 //屏幕的区域
 #define  SCREEN_BOUNDS ([UIScreen mainScreen].bounds)
 
