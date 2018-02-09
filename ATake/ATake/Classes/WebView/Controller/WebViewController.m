@@ -48,6 +48,7 @@
     [self openScan];
     [self printFeeList];
 //    [self printQrcode];
+    [self bindQrcodeOrder];
     [self logout];
 //    [self renderButtons:webView];
     [self loadWebView:webView];
@@ -114,6 +115,41 @@
 
 //                UIImage * printimage = [self createQRForString:resultStr];
 //                self.testView.image = printimage;
+                //            [self png2GrayscaleImage:printimage];
+            };
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }];
+}
+
+- (void)bindQrcodeOrder
+{
+    [_bridge registerHandler:@"bindQrcodeOrder" handler:^(id data, WVJBResponseCallback responseCallback) {
+        PLog(@"openScan == %@", data);
+        //        responseCallback(@{ @"status":@"1" });
+        if(data)
+        {
+            PLog(@"data == %@", data);
+            NSString *orderNo = data[@"orderNo"];
+            
+            QRCodeViewController *vc = [[QRCodeViewController alloc]init];
+            vc.scanResultBlock = ^(QRCodeViewController *vc, NSString *resultStr)
+            {
+                PLog(@"scan result == %@", resultStr);
+                [vc.navigationController popViewControllerAnimated:NO];
+                NSString *url = [NSString stringWithFormat:@"%@&orderNo=%@", resultStr, orderNo];
+                PLog(@"url == %@", url);
+                
+                NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+                [defaults setObject:url forKey:@"url"];
+                
+                // 方法synchronise是为了强制存储，其实并非必要，因为这个方法会在系统中默认调用，但是你确认需要马上就存储，这样做是可行的
+                [defaults synchronize];
+                UIViewController *detailVc = [NSClassFromString(@"WebDetailViewController") new];
+                [self.navigationController pushViewController:detailVc animated:YES];
+                
+                //                UIImage * printimage = [self createQRForString:resultStr];
+                //                self.testView.image = printimage;
                 //            [self png2GrayscaleImage:printimage];
             };
             [self.navigationController pushViewController:vc animated:YES];

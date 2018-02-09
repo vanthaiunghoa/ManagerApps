@@ -102,19 +102,19 @@
                  switch (iResCode) {
                      case 0:
                          PLog(@"设置别名成功");
-                         [SVProgressHUD showInfoWithStatus:@"设置别名成功"];
+//                         [SVProgressHUD showInfoWithStatus:@"设置别名成功"];
                          break;
                      case 6003:
                          PLog(@"alias 字符串不合法  有效的别名、标签组成：字母（区分大小写）、数字、下划线、汉字");
-                         [SVProgressHUD showInfoWithStatus:@"alias字符串不合法，有效的别名、标签组成：字母（区分大小写）、数字、下划线、汉字"];
+//                         [SVProgressHUD showInfoWithStatus:@"alias字符串不合法，有效的别名、标签组成：字母（区分大小写）、数字、下划线、汉字"];
                          break;
                      case 6004:
                          PLog(@"alias超长。最多 40个字节  中文 UTF-8 是 3 个字节");
-                         [SVProgressHUD showInfoWithStatus:@"alias超长。最多40个字节，中文UTF-8是3个字节"];
+//                         [SVProgressHUD showInfoWithStatus:@"alias超长。最多40个字节，中文UTF-8是3个字节"];
                          break;
                      default:
                          PLog(@"设置别名失败");
-                         [SVProgressHUD showInfoWithStatus:@"设置别名失败"];
+//                         [SVProgressHUD showInfoWithStatus:@"设置别名失败"];
                          break;
                  }
             } seq:[self getRandomNumber:0 to:RAND_MAX]];

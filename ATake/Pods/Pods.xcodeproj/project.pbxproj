@@ -680,6 +680,7 @@
 		49AEBF70DC4E9FF080CCDF494AFC4252 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
 		49E9E834780AD920A930EBA0BDCE7E99 /* NSTimer+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+BlocksKit.m"; path = "BlocksKit/Core/NSTimer+BlocksKit.m"; sourceTree = "<group>"; };
 		4B5E62F962B0B6E9F906C49456193512 /* WebViewJavascriptBridge-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "WebViewJavascriptBridge-prefix.pch"; sourceTree = "<group>"; };
+		4BD0B35AFB0A067723F35355A7BC5214 /* libjcore-ios-1.1.7.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.7.a"; sourceTree = "<group>"; };
 		4CBED2F5D9484BD5A4D7F447CCD18F0D /* UIView+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIView+BlocksKit.m"; path = "BlocksKit/UIKit/UIView+BlocksKit.m"; sourceTree = "<group>"; };
 		4DB14EFDFC7EB0D90663CAA2CD6C379D /* A2BlockInvocation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = A2BlockInvocation.h; path = BlocksKit/DynamicDelegate/A2BlockInvocation.h; sourceTree = "<group>"; };
 		4E1254BFAF5CE946C1FEB35F9F2E464E /* NSURLConnection+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSURLConnection+BlocksKit.h"; path = "BlocksKit/DynamicDelegate/Foundation/NSURLConnection+BlocksKit.h"; sourceTree = "<group>"; };
@@ -748,7 +749,6 @@
 		6C3B662A5671F6B70FC89EA7343EC751 /* RACSubscriptingAssignmentTrampoline.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSubscriptingAssignmentTrampoline.m; path = ReactiveCocoa/RACSubscriptingAssignmentTrampoline.m; sourceTree = "<group>"; };
 		6C5AB1C1BBB626916AAE347C3A3CD47B /* UIGestureRecognizer+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+BlocksKit.m"; path = "BlocksKit/UIKit/UIGestureRecognizer+BlocksKit.m"; sourceTree = "<group>"; };
 		6F6071189E1E29A670DFE6442CFF3624 /* RACSignalSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACSignalSequence.m; path = ReactiveCocoa/RACSignalSequence.m; sourceTree = "<group>"; };
-		6FA59969FA00725F979D054C86DAFC95 /* libjpush-ios-3.0.7.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.7.a"; sourceTree = "<group>"; };
 		70CADF1A4351103BF0349DBE70E38255 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		713790AF3BDB833D8DDDC7C0DBF62903 /* BKMacros.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BKMacros.h; path = BlocksKit/Core/BKMacros.h; sourceTree = "<group>"; };
 		7168B5090677A53436AE1BD9C1CC008B /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLRequestSerialization.h; path = AFNetworking/AFURLRequestSerialization.h; sourceTree = "<group>"; };
@@ -919,6 +919,7 @@
 		BEEC9AF154709ECA6C90B05248D339BE /* UIGestureRecognizer+RACSignalSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIGestureRecognizer+RACSignalSupport.m"; path = "ReactiveCocoa/UIGestureRecognizer+RACSignalSupport.m"; sourceTree = "<group>"; };
 		BF514002BC3A74B2CCE114CC6F61E2FE /* MJRefreshConst.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MJRefreshConst.h; path = MJRefresh/MJRefreshConst.h; sourceTree = "<group>"; };
 		BF784F60F06B107B8AD38E363AF714BB /* UIAlertView+BlocksKit.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIAlertView+BlocksKit.m"; path = "BlocksKit/UIKit/UIAlertView+BlocksKit.m"; sourceTree = "<group>"; };
+		BFA893017457EE2F7FE5188EB27048E5 /* libjpush-ios-3.0.8.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.8.a"; sourceTree = "<group>"; };
 		C0249907482FCED369E1B901670484C6 /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
 		C0F0ED0870A759A2D6DD9A2672B262BA /* RACMulticastConnection+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACMulticastConnection+Private.h"; path = "ReactiveCocoa/RACMulticastConnection+Private.h"; sourceTree = "<group>"; };
 		C18FD4F68B02B0E3EB9AC8EAE0E983C1 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = WebViewJavascriptBridge.m; path = WebViewJavascriptBridge/WebViewJavascriptBridge.m; sourceTree = "<group>"; };
@@ -927,7 +928,6 @@
 		C2F3753C51A9390D4F3EB6082BB7DCAF /* RACUnit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACUnit.h; path = ReactiveCocoa/RACUnit.h; sourceTree = "<group>"; };
 		C37C55B965D564C8050C718914FA0BE8 /* A2DynamicDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = A2DynamicDelegate.h; path = BlocksKit/DynamicDelegate/A2DynamicDelegate.h; sourceTree = "<group>"; };
 		C401FF3A5D97127F5E7797664BD3BE7C /* RACScheduler+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "RACScheduler+Private.h"; path = "ReactiveCocoa/RACScheduler+Private.h"; sourceTree = "<group>"; };
-		C4394B483282E68349051D961ADBCFD2 /* libjcore-ios-1.1.6.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.6.a"; sourceTree = "<group>"; };
 		C4747C1E0FB889DF5B1314DB5CEBF6ED /* NSObject+RACLifting.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+RACLifting.m"; path = "ReactiveCocoa/NSObject+RACLifting.m"; sourceTree = "<group>"; };
 		C4A91A66E064F200DFDE2AF3F258000B /* SVProgressHUD.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SVProgressHUD.m; path = SVProgressHUD/SVProgressHUD.m; sourceTree = "<group>"; };
 		C4E264795BBE39C438DDB25403530E0B /* BlocksKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BlocksKit.xcconfig; sourceTree = "<group>"; };
@@ -1220,14 +1220,6 @@
 			name = MessageUI;
 			sourceTree = "<group>";
 		};
-		14DB2E82BF1AB5863603CBB25FE96A4B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C4394B483282E68349051D961ADBCFD2 /* libjcore-ios-1.1.6.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		1BF397BA1D6D280ECE021FD31038D6E1 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1352,7 +1344,7 @@
 		3A79FC3F360071C35C77CA8D5258287C /* JCore */ = {
 			isa = PBXGroup;
 			children = (
-				14DB2E82BF1AB5863603CBB25FE96A4B /* Frameworks */,
+				912AD42EBD713AD1CF081193FCDE887C /* Frameworks */,
 			);
 			name = JCore;
 			path = JCore;
@@ -1419,7 +1411,7 @@
 			isa = PBXGroup;
 			children = (
 				175B67EC07D9BC7D8BFF8B8A3F67392E /* JPUSHService.h */,
-				79C8FAD67E48659ABC23438E8FBD358D /* Frameworks */,
+				998F19370ED2CA7C270390D0BF69F347 /* Frameworks */,
 			);
 			name = JPush;
 			path = JPush;
@@ -1511,14 +1503,6 @@
 			name = UIKit;
 			sourceTree = "<group>";
 		};
-		79C8FAD67E48659ABC23438E8FBD358D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6FA59969FA00725F979D054C86DAFC95 /* libjpush-ios-3.0.7.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
@@ -1541,6 +1525,14 @@
 			path = "../Target Support Files/ReactiveCocoa";
 			sourceTree = "<group>";
 		};
+		912AD42EBD713AD1CF081193FCDE887C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4BD0B35AFB0A067723F35355A7BC5214 /* libjcore-ios-1.1.7.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		93D9C83D3A7FB88E8A1A89FDB863023B /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
@@ -1548,6 +1540,14 @@
 				B0AC464A865E585C6A3EF2B099645488 /* AFNetworkReachabilityManager.m */,
 			);
 			name = Reachability;
+			sourceTree = "<group>";
+		};
+		998F19370ED2CA7C270390D0BF69F347 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BFA893017457EE2F7FE5188EB27048E5 /* libjpush-ios-3.0.8.a */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A62E75025834C571DA3B668AF95FB1A0 /* Security */ = {

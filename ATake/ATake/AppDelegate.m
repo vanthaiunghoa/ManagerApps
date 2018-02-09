@@ -17,7 +17,7 @@
 #import "WebDetailViewController.h"
 
 //极光
-#define JPUSHAPPKEY             @"e9cf33e850844cbeaffdf236"
+#define JPUSHAPPKEY             @"5006ea7788b6c35e6481635f"
 #define JPUSHCHANNEL            @"App Store"
 //#define JPUSHCHANNEL            @"Publish channel"
 
