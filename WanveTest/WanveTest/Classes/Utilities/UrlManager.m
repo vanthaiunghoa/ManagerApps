@@ -29,7 +29,17 @@ static id _instance;
 
 - (NSString *)getBaseUrl
 {
-    return @"http://121.15.203.82:9210/DMS_Phone";
+    //  水务局
+//    return @"http://19.104.120.8:80/DMS_Phone";
+    
+    // 科技局
+    return @"http://kjjoa.dg/DMS_Phone";
+    // 农业局
+//    return @"http://nyj.dg/DMS_Phone";
+//    return @"http://19.104.9.233:80/DMS_Phone";
+    
+    // 智慧政务
+//    return @"http://121.15.203.82:9210/DMS_Phone";
 }
 
 - (NSString *)getLoginUrl
@@ -38,16 +48,9 @@ static id _instance;
 //    return @"http://gcjg.baoan.gov.cn:9250/wan_mpda_pic//WebService/WebService.asmx";
 }
 
-- (NSString *)getSingleUrl
+- (NSString *)getHomePageUrl
 {
-    return @"http://121.15.203.82:9210/EIM_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
-//    return @"http://gcjg.baoan.gov.cn:9250/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
-}
-
-- (NSString *)getWebUrl
-{
-    return @"http://121.15.203.82:9210//WAN_MPDA_Pic/Handlers/SingleSignOnHandler.ashx?Action=Redirect";
-//    return @"http://gcjg.baoan.gov.cn:9250/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=Redirect";
+    return [NSString stringWithFormat:@"%@/Main/JumpToHome.aspx", [self getBaseUrl]];
 }
 
 @end

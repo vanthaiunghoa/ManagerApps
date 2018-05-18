@@ -16,7 +16,8 @@ static  NSString*const hello_world  = @"hello_world";//你好,这个世界
 #define domin @"http://l.agewnet.cc/Api"
 
 #ifdef DEBUG
-#define BaseUrl @"http://121.15.203.82:9210/DMS_Phone"
+//#define BaseUrl @"http://121.15.203.82:9210/DMS_Phone"
+#define BaseUrl @"http://sljoa.dg/DMS_Phone"
 
 #else
 #define BaseUrl @"http://121.15.203.82:9210/DMS_Phone"

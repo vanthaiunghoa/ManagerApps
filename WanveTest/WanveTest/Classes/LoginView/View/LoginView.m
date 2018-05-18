@@ -30,37 +30,46 @@
         make.top.left.bottom.right.equalTo(self);
     }];
     
-    UIImageView *logoIcon = [UIImageView new];
-    logoIcon.image = [UIImage imageNamed:@"logo_company"];
-    [self addSubview:logoIcon];
-    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(@(H(85)));
-        make.width.equalTo(@(W(129)));
-        make.height.equalTo(@(H(44)));
-    }];
-    
+//    UIImageView *logoIcon = [UIImageView new];
+//    // 勤智资本
+////    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
+//    logoIcon.image = [UIImage imageNamed:@"logo_company"];
+//    [self addSubview:logoIcon];
+//    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.centerX);
+//        make.top.equalTo(@(H(85)));
+//        make.width.equalTo(@(W(129)));
+//        make.height.equalTo(@(H(44)));
+//    }];
+//
     UILabel *company = [UILabel new];
-    company.text = @"万维博通";
+    company.text = @"东莞市科学技术局";
+//    company.text = @"东莞市水务局";
+//    company.text = @"流转系统";
     company.textColor = [UIColor whiteColor];
     company.font = [UIFont systemFontOfSize:32];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
     [company makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@(H(130)));
         make.centerX.equalTo(self.centerX);
-        make.top.equalTo(logoIcon.bottom).offset(H(10));
+//        make.top.equalTo(logoIcon.bottom).offset(H(10));
         make.left.right.equalTo(self);
     }];
     
     UILabel *titleLab = [UILabel new];
-    titleLab.text = @"智慧政务管理平台";
+    titleLab.text = @"智慧办公系统";
+//    titleLab.text = @"智慧政务管理平台";
+//    titleLab.text = @"投资数据管理平台";
     titleLab.textColor = [UIColor whiteColor];
-    titleLab.font = [UIFont systemFontOfSize:28];
+    titleLab.font = [UIFont systemFontOfSize:25];
     titleLab.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLab];
     [titleLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(logoIcon.centerX);
+//        make.centerX.equalTo(logoIcon.centerX);
+        make.centerX.equalTo(company.centerX);
         make.top.equalTo(company.bottom).with.offset(H(15));
+//        make.top.equalTo(logoIcon.bottom).with.offset(H(15));
         make.left.right.equalTo(self);
     }];
     
@@ -72,6 +81,7 @@
     [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
         make.top.equalTo(titleLab.bottom).with.offset(H(40));
+//        make.top.equalTo(company.bottom).with.offset(H(40));
         make.left.equalTo(self).offset(H(30));
         make.right.equalTo(self).offset(H(-30));
         make.height.equalTo(@(H(40)));
@@ -354,6 +364,7 @@
     }
 
     if (self.passwordTextField == textField) {
+        [self.passwordTextField resignFirstResponder];
         [self loginClick:nil];
     }
 

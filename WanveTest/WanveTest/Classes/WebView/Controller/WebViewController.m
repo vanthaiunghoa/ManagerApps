@@ -1,12 +1,14 @@
 #import "WebViewController.h"
-#import <JavaScriptCore/JavaScriptCore.h>
 #import "UserManager.h"
 #import "UserModel.h"
-#import <UINavigationController+FDFullscreenPopGesture.h>
+#import "UrlManager.h"
+//#import <UINavigationController+FDFullscreenPopGesture.h>
+#import "WebViewJavascriptBridge.h"
 
 @interface WebViewController()
 
-@property (nonatomic , strong ) UIWebView *webview ;
+@property WebViewJavascriptBridge *bridge;
+@property (nonatomic , strong) UIWebView *webview ;
 
 @end
 
@@ -16,54 +18,76 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.fd_prefersNavigationBarHidden = YES;
-    [self loadWebView];
+    self.view.backgroundColor = [UIColor whiteColor];
+//    self.fd_prefersNavigationBarHidden = YES;
+//    self.fd_interactivePopDisabled = YES;
+    
+    UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:webView];
+    
+    UIPanGestureRecognizer *swip = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(goBack)];
+    [webView addGestureRecognizer:swip];
+    self.webview = webView;
+    
+    [WebViewJavascriptBridge enableLogging];
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
+    [_bridge setWebViewDelegate:self];
+    
+    [self loadWebView:webView];
 }
 
-- (void)loadWebView
+- (void)goBack
 {
-    _webview = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
-//    NSString  *urlStr = @"http://172.21.102.222:8000/dgjxj_touch/Login/Index.aspx";
+    [self.webview goBack];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    PLog(@"webViewDidStartLoad");
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    PLog(@"webViewDidFinishLoad");
+}
+
+- (void)loadWebView:(UIWebView*)webView
+{
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    
-    NSString *urlStr = [NSString stringWithFormat:@"http://121.15.203.82:9210/DMS_Phone/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\"}", userModel.username, userModel.password];
-    
+
+//    NSString *urlStr = [NSString stringWithFormat:@"http://121.15.203.82:9210/DMS_Phone/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\"}", userModel.username, userModel.password];
+
+    NSString *urlStr = [NSString stringWithFormat:@"%@/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\"}",[[UrlManager sharedUrlManager] getBaseUrl], userModel.username, userModel.password];
+
     //url 编码
     urlStr  =  [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     NSURL*url = [NSURL URLWithString:urlStr];
+//    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSURLRequest*request = [NSURLRequest requestWithURL:url];
-    [_webview loadRequest:request];
-    [self.view addSubview:_webview];
-    
-    //注册上下文.
-    [self regiseterResponser];
+    [webView loadRequest:request];
 }
 
-#pragma mark - 第二种方式JSEport协议方式
-- (void)regiseterResponser
+#pragma mark - handler JSCall
+
+- (void)jsCall
 {
-    JSContext *context = [self.webview valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
-    [context setObject:self forKeyedSubscript:@"iOSJsCore"];
-    
-//  网页js这样写    iOSJsCore.ClickiOS(message);
-//     [context setObject:self forKeyedSubscript:@"EyeUtil"];
+    //    __weak typeof(self) weakSelf = self;
+    [_bridge registerHandler:@"ClickiOS" handler:^(id data, WVJBResponseCallback responseCallback) {
+        PLog(@"data == %@", data);
+        //        responseCallback(@{ @"status":@"1" });
+    }];
 }
 
-//点击了iOS,出现菜单
-- (void)ClickiOS:(NSString*)parma
-{
-    NSLog(@"js调用了OC方法");
-//    NSDictionary*dict =  [NSJSONSerialization JSONObjectWithData:parma.mj_JSONData options:NSJSONReadingMutableLeaves error:nil];
-//
-//    if (dict != nil && [dict.allKeys containsObject:@"type"]) {
-///        if ([dict[@"type"]  isEqualToString:@"phonebook"]) {//通讯录
-////        }else if ([dict[@"type"]  isEqualToString:@"logout"]){//注销
-////        }else if ([dict[@"type"]  isEqualToString:@"quit"]){//退出
-//
-//        }else{//显示菜单
-//        }
-//    }
-}
 
 @end
 

@@ -34,20 +34,20 @@ static id _instance;
 
 - (NSString *)getLoginUrl
 {
-//    return @"http://121.15.203.82:9210/EIM_PIC/WebService/WebService.asmx";
-    return @"http://gcjg.baoan.gov.cn:9250/wan_mpda_pic//WebService/WebService.asmx";
+    return @"http://121.15.203.82:9210/EIM_PIC/WebService/WebService.asmx";
+//    return @"http://gcjg.baoan.gov.cn:9250/wan_mpda_pic//WebService/WebService.asmx";
 }
 
 - (NSString *)getSingleUrl
 {
-//    return @"http://121.15.203.82:9210/EIM_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
-    return @"http://gcjg.baoan.gov.cn:9250/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
+    return @"http://121.15.203.82:9210/EIM_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
+//    return @"http://gcjg.baoan.gov.cn:9250/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
 }
 
 - (NSString *)getWebUrl
 {
-//    return @"http://121.15.203.82:9210//WAN_MPDA_Pic/Handlers/SingleSignOnHandler.ashx?Action=Redirect";
-    return @"http://gcjg.baoan.gov.cn:9250/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=Redirect";
+    return @"http://121.15.203.82:9210//WAN_MPDA_Pic/Handlers/SingleSignOnHandler.ashx?Action=Redirect";
+//    return @"http://gcjg.baoan.gov.cn:9250/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=Redirect";
 }
 
 @end

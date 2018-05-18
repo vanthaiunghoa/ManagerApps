@@ -30,6 +30,17 @@
     [_loginView reloadData];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+    if(userModel.isLogout)
+    {
+        [_loginView reloadData];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
@@ -69,44 +80,46 @@
 //    NSString *sp_id = @"vJo06/qsLDOK5p2FvLqujo8G9eCsjrLJGcg8TGN0QZexSchZjBfneZ1vL4h3BN/EEId5hEBxZWM=";
     
     // 保安工务局
-    NSString *sp_id = @"tKB1F69J4TgRTM7QRN1+NxDaURCluPAAYFaWJfMEdhryuqvuoRIA7sF7CzKsSngLPPpy5gmaOu4=";
+//    NSString *sp_id = @"tKB1F69J4TgRTM7QRN1+NxDaURCluPAAYFaWJfMEdhryuqvuoRIA7sF7CzKsSngLPPpy5gmaOu4=";
+    // 勤智资本
+    NSString *sp_id = @"ysmi8nF7R3L/64UB2oGK4d7kx3kgvJ4PF2Uwk7k3jLeN1U1O+clGj7Jm0EFZLzYPaJ512P+SE3I=";
     sp_id = [sp_id stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     //2.发送请求
     NSDictionary *dict = @{
                            @"USER":@"yzdw-gly",
                            @"PASSWORD":sp_id,
-                           @"SP_ID":@"ToWanPic"
+                           @"SP_ID":@"ToEIM_PIC"
                            };
     NSString *url = @"http://121.15.203.82:9210/WAN_MPDA_Pic/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD dismiss];
         PLog(@"请求成功--responseObject == %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);
-//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-//
-//        NSNumber *result = dict[@"Result"];
-//        NSNumber *num = [NSNumber numberWithInt:1];
-//        if([result isEqualToNumber:num])
-//        {
-//            UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-//            userModel.username = self.username;
-//            userModel.password = self.password;
-//            userModel.isLogout = NO;
-//            [[UserManager sharedUserManager] saveUserModel:userModel];
-//            
-//            UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-//            backItem.title = @"返回";
-//            self.navigationItem.backBarButtonItem = backItem;
-//
-////            MJTableViewController *vc = [[MJTableViewController alloc]init];
-////            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//        else
-//        {
-//            NSString *mes = dict[@"Message"];
-//            [SVProgressHUD showErrorWithStatus:mes];
-//        }
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+
+        NSNumber *result = dict[@"Result"];
+        NSNumber *num = [NSNumber numberWithInt:1];
+        if([result isEqualToNumber:num])
+        {
+            UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+            userModel.username = self.username;
+            userModel.password = self.password;
+            userModel.isLogout = NO;
+            [[UserManager sharedUserManager] saveUserModel:userModel];
+            
+            UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+            backItem.title = @"返回";
+            self.navigationItem.backBarButtonItem = backItem;
+
+//            MJTableViewController *vc = [[MJTableViewController alloc]init];
+//            [self.navigationController pushViewController:vc animated:YES];
+        }
+        else
+        {
+            NSString *mes = dict[@"Message"];
+            [SVProgressHUD showErrorWithStatus:mes];
+        }
     } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
         self.view.userInteractionEnabled = YES;
         PLog(@"请求失败--%@",error.userInfo);
@@ -158,7 +171,7 @@
         [parser setDelegate:self];
         [parser parse];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        PLog(@"error == @%", error.userInfo);
+        PLog(@"error == %@", error);
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD showInfoWithStatus:@"网络异常"];
     }];
@@ -200,6 +213,10 @@
             userModel.isLogout = NO;
             [[UserManager sharedUserManager] saveUserModel:userModel];
             [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"EIMTabBarController") new];
+            
+            // 勤智资本
+            
+//            [self.navigationController pushViewController:[NSClassFromString(@"MapViewController") new] animated:YES];
         }
         else if([self.value isEqualToString:@"fail"])
         {

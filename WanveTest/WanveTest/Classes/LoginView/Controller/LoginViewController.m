@@ -6,8 +6,11 @@
 #import "MJTableViewController.h"
 #import "VPNSettingViewController.h"
 #import "VPNManager.h"
-#import <UINavigationController+FDFullscreenPopGesture.h>
+//#import <UINavigationController+FDFullscreenPopGesture.h>
 #import "UrlManager.h"
+//#import "AXWebViewController.h"
+//#import "RxWebViewController.h"
+#import "SVWebViewController.h"
 
 @interface LoginViewController ()<LoginViewDelegate>
 
@@ -25,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.fd_prefersNavigationBarHidden = YES;
+//    self.fd_prefersNavigationBarHidden = YES;
     self.isStartVPN = NO;
     self.isLoadOnceData = YES;
     self.isYetVPNLoginSuccess = NO;
@@ -43,14 +46,16 @@
 {
     [super viewWillAppear:animated];
     
+    [self.navigationController setNavigationBarHidden:YES];
+    
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
     if(userModel.isLogout)
     {
         if(self.isLoadOnceData)
         {
             self.isLoadOnceData = NO;
-            self.isStartVPN = NO;
-            self.isYetVPNLoginSuccess = NO;
+//            self.isStartVPN = NO;
+//            self.isYetVPNLoginSuccess = NO;
             [_loginView reloadData];
         }
     }
@@ -72,6 +77,7 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
+//    [self.navigationController setNavigationBarHidden:NO];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:kVPNMessageNotification object:nil];
 }
 
@@ -90,7 +96,9 @@
     }
     else
     {
-        [self login];
+//        [self login];
+        // vpn登录使用
+        [self loginOrigin];
     }
 }
 
@@ -153,7 +161,9 @@
         PLog(@"VPN登录成功");
         [SVProgressHUD showSuccessWithStatus:@"VPN登陆成功"];
         self.isYetVPNLoginSuccess = YES;
-        [self login];
+//        [self login];
+        // vpn登录使用
+        [self loginOrigin];
     }
     else if (message.code == VPN_CB_DISCONNECTED)
     {
@@ -255,24 +265,22 @@
     //1.创建一个请求管理者
     //AFHTTPRequestOperationManager内部封装了URLSession
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",nil];
+
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/plain", @"text/html",nil];
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
+
     //2.发送请求
-    //    NSDictionary *dict = @{
-    //                           @"UserID":@"cwq",
-    //                           @"UserPsw":@"123456"
-    //                           };
-    NSString *str = [NSString stringWithFormat:@"%@%@%@%@%@%@", [[UrlManager sharedUrlManager] getBaseUrl], @"/Login/LoginHandler.ashx?Action=Login&cmd={UserID:'", self.username, @"',UserPsw:'", self.password, @"'}"];
-    NSString *urlStr = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    
-    
-    [manager GET:urlStr parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"Action"] = @"Login";
+    param[@"cmd"] = [NSString stringWithFormat:@"{UserID:\'%@\',UserPsw:\'%@\'}",self.username, self.password];
+//    param[@"appName"] = @"iOS";
+    NSString *url = [NSString stringWithFormat:@"%@/Login/LoginHandler.ashx", [[UrlManager sharedUrlManager] getBaseUrl]];
+
+    [manager GET:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
         PLog(@"请求成功--%@",responseObject);
         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        
+
         NSNumber *result = dict[@"Result"];
         NSNumber *num = [NSNumber numberWithInt:1];
         if([result isEqualToNumber:num])
@@ -284,14 +292,14 @@
             userModel.isLogout = NO;
             [[UserManager sharedUserManager] saveUserModel:userModel];
             [SVProgressHUD dismiss];
-            
-            UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
-            backItem.title = @"返回";
-            self.navigationItem.backBarButtonItem = backItem;
+
+//            UIBarButtonItem *backItem = [[UIBarButtonItem alloc] init];
+//            backItem.title = @"返回";
+//            self.navigationItem.backBarButtonItem = backItem;
 
 //            MJTableViewController *vc = [[MJTableViewController alloc]init];
-//            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
-            UIViewController *vc = [NSClassFromString(@"AddressViewController") new];
+            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
+//            UIViewController *vc = [NSClassFromString(@"AddressViewController") new];
             [self.navigationController pushViewController:vc animated:YES];
         }
         else
@@ -306,5 +314,67 @@
     }];
 }
 
+- (void)loginOrigin
+{
+    [SVProgressHUD showWithStatus:@"登录中，请稍等..."];
+    
+    NSString *urlStr = [NSString stringWithFormat:@"%@/Login/LoginHandler.ashx?Action=Login&cmd={UserID:\'%@\',UserPsw:\'%@\'}", [[UrlManager sharedUrlManager] getBaseUrl], self.username, self.password];
+    NSString *newUrl = [urlStr stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSURL *url = [NSURL URLWithString:newUrl];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:30];
+
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
+        if(connectionError)
+        {
+            self.view.userInteractionEnabled = YES;
+            PLog(@"请求失败--%@", connectionError);
+            [SVProgressHUD showInfoWithStatus:@"网络异常"];
+        }
+        else
+        {
+            self.view.userInteractionEnabled = YES;
+            
+            NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            NSNumber *result = dict[@"Result"];
+            PLog(@"loginResult == %@", dict);
+            NSNumber *num = [NSNumber numberWithInt:1];
+            if([result isEqualToNumber:num])
+            {
+                self.isLoadOnceData = YES;
+                UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+                userModel.username = self.username;
+                userModel.password = self.password;
+                userModel.isLogout = NO;
+                [[UserManager sharedUserManager] saveUserModel:userModel];
+                [SVProgressHUD dismiss];
+
+                //    MJTableViewController *vc = [[MJTableViewController alloc]init];
+//                UIViewController *vc = [NSClassFromString(@"WebViewController") new];
+                //            UIViewController *vc = [NSClassFromString(@"AddressViewController") new];
+//                [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
+                
+                NSString *urlStr = [NSString stringWithFormat:@"%@/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\",From:\"%@\"}",[[UrlManager sharedUrlManager] getBaseUrl], self.username, self.password, @"APP"];
+
+                //url 编码
+                urlStr  =  [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+//                AXWebViewController *webVC = [[AXWebViewController alloc] initWithAddress:urlStr];
+//                webVC.showsToolBar = NO;
+//                webVC.navigationController.navigationBar.translucent = NO;
+//                self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.100f green:0.100f blue:0.100f alpha:0.800f];
+//                self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.996f green:0.867f blue:0.522f alpha:1.00f];
+//                [self.navigationController pushViewController:webVC animated:YES];
+                
+//                RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:urlStr]];
+                SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:urlStr]];
+                [self.navigationController pushViewController:webViewController animated:YES];
+            }
+            else
+            {
+                NSString *mes = dict[@"Message"];
+                [SVProgressHUD showInfoWithStatus:mes];
+            }
+        }
+    }];
+}
 
 @end

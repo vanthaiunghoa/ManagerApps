@@ -4,12 +4,15 @@
 #import "UserModel.h"
 #import "UserManager.h"
 
+#define TIMECOUNT 60
+
 @interface VPNSettingView ()<UITextFieldDelegate>
 
 @property (nonatomic, strong) UITextField  *accountTextField;
 @property (nonatomic, strong) UITextField  *passwordTextField;
 @property (nonatomic, strong) UIButton *useBtn;
 @property (nonatomic, strong) UIButton *unuseBtn;
+@property (nonatomic, strong) UIButton *getPassword;
 
 @end
 
@@ -28,7 +31,9 @@
     }];
     
     UILabel *titleLab = [UILabel new];
-    titleLab.text = @"智慧政务管理平台";
+//    titleLab.text = @"智慧政务管理平台";
+//    titleLab.text = @"移动办公系统";
+    titleLab.text = @"智慧办公系统";
     titleLab.textColor = [UIColor colorWithHexString:@"#FAF90B"];
     titleLab.font = [UIFont systemFontOfSize:34];
     titleLab.textAlignment = NSTextAlignmentCenter;
@@ -69,11 +74,28 @@
         make.height.equalTo(@(H(0.5)));
     }];
     
+    self.getPassword = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.getPassword setTitle:@"获取动态密码" forState:UIControlStateNormal];
+    [self.getPassword addTarget:self action:@selector(getPasswordClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.getPassword.layer setMasksToBounds:YES];
+    [self.getPassword.layer setCornerRadius:W(20)];
+    [self.getPassword setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.getPassword.titleLabel.font = [UIFont systemFontOfSize:18];
+    [self.getPassword setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3399FE"]] forState:UIControlStateNormal];
+    [self addSubview:self.getPassword];
+    [self.getPassword makeConstraints:^(MASConstraintMaker *make) {
+        //        make.centerX.equalTo(self.centerX);
+        make.top.equalTo(line.bottom).with.offset(H(20));
+        make.left.equalTo(self).offset(@(W(22.5)));
+        make.right.equalTo(self).offset(@(W(-22.5)));
+        make.height.equalTo(@(H(40)));
+    }];
+    
     UIView *usernameBkg = [UIView new];
     usernameBkg.backgroundColor = [UIColor whiteColor];
     [self addSubview:usernameBkg];
     [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(line.bottom).with.offset(0);
+        make.top.equalTo(self.getPassword.bottom).with.offset(H(20));
         make.left.right.equalTo(self);
         make.height.equalTo(@(H(60)));
     }];
@@ -136,6 +158,7 @@
     self.passwordTextField.font = [UIFont systemFontOfSize:18];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTextField.clearsOnBeginEditing = NO;
+    self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.returnKeyType = UIReturnKeyDone;
     self.passwordTextField.autocorrectionType = UITextAutocorrectionTypeNo;
     self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -203,7 +226,7 @@
     [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3399FE"]] forState:UIControlStateNormal];
     [self addSubview:loginBtn];
     [loginBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+//        make.centerX.equalTo(self.centerX);
         make.top.equalTo(self.unuseBtn.bottom).with.offset(H(20));
         make.left.equalTo(self).offset(@(W(22.5)));
         make.right.equalTo(self).offset(@(W(-22.5)));
@@ -220,6 +243,40 @@
     userModel.vpnPassword = self.passwordTextField.text;
     [[UserManager sharedUserManager] saveUserModel:userModel];
     [_delegate didClickBackBtn];
+}
+
+- (void)getPasswordClick:(UIButton *)sender
+{
+    [_delegate didClickGetPassword];
+}
+
+- (void)countDown
+{
+    __block NSInteger second = TIMECOUNT;
+    //(1)
+    dispatch_queue_t quene = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //(2)
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, quene);
+    //(3)
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    //(4)
+    dispatch_source_set_event_handler(timer, ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (second == 0) {
+                self.getPassword.enabled = YES;
+                [self.getPassword setTitle:[NSString stringWithFormat:@"获取动态密码"] forState:UIControlStateNormal];
+                second = TIMECOUNT;
+                //(6)
+                dispatch_cancel(timer);
+            } else {
+                self.getPassword.enabled = NO;
+                [self.getPassword setTitle:[NSString stringWithFormat:@"(%ld)秒后可重新获取",second] forState:UIControlStateNormal];
+                second--;
+            }
+        });
+    });
+    //(5)
+    dispatch_resume(timer);
 }
 
 - (void)useClick:(UIButton *)sender

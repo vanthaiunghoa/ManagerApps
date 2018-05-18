@@ -30,19 +30,59 @@
     }];
     
     UIImageView *logoIcon = [UIImageView new];
-    logoIcon.image = [UIImage imageNamed:@"logo_company"];
+//    logoIcon.image = [UIImage imageNamed:@"logo_company"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-yt"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-ns"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-ft"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-lhgwj"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-szswjt"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-bjfdzy"];
+    logoIcon.image = [UIImage imageNamed:@"logo-bjtyfdc"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
         make.top.equalTo(@(H(68)));
-        make.width.equalTo(@(W(71)));
-        make.height.equalTo(@(H(49)));
+        // 勤智资本
+//        make.width.equalTo(@(W(171)));
+//        make.height.equalTo(@(H(54)));
+        // 盐田
+//        make.width.equalTo(@(W(94)));
+//        make.height.equalTo(@(H(63)));
+        // 南山
+//        make.width.equalTo(@(W(54)));
+//        make.height.equalTo(@(H(52.5)));
+        // 福田
+//        make.width.equalTo(@(W(60)));
+//        make.height.equalTo(@(H(60)));
+        // 龙华
+//        make.width.equalTo(@(W(54)));
+//        make.height.equalTo(@(H(60)));
+        // 深圳水务集团
+//        make.width.equalTo(@(W(87.7)));
+//        make.height.equalTo(@(H(60)));
+        // 北京房地置业
+//        make.width.equalTo(@(W(56.2)));
+//        make.height.equalTo(@(H(60)));
+        // 北京天运房地产
+        make.width.equalTo(@(W(60)));
+        make.height.equalTo(@(H(60)));
+
     }];
     
     UILabel *company = [UILabel new];
-    company.text = @"深圳市宝安区建筑工务局";
+//    company.text = @"深圳市宝安区建筑工务局";
+//    company.text = @"投资数据管理平台";
+//    company.text = @"盐田环水局工程数据管理平台";
+//    company.text = @"南山工务局";
+//    company.text = @"福田环水局工程数据管理平台";
+//    company.text = @"龙华工务局工程数据管理平台";
+//    company.text = @"深圳水务集团工程数据管理平台";
+//    company.text = @"北京房地置业";
+    company.text = @"北京天运房地产";
     company.textColor = [UIColor whiteColor];
-    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
+//    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
+    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:26];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
     [company makeConstraints:^(MASConstraintMaker *make) {
@@ -52,9 +92,9 @@
     }];
     
     UILabel *titleLab = [UILabel new];
-    titleLab.text = @"工程档案数据管理平台";
+    titleLab.text = @"工程数据管理平台";
     titleLab.textColor = [UIColor whiteColor];
-    titleLab.font = [UIFont systemFontOfSize:20];
+    titleLab.font = [UIFont systemFontOfSize:22];
     titleLab.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLab];
     [titleLab makeConstraints:^(MASConstraintMaker *make) {
@@ -62,18 +102,18 @@
         make.top.equalTo(company.bottom).with.offset(H(12.5));
         make.left.right.equalTo(self);
     }];
-    
-    UILabel *titleLabEN = [UILabel new];
-    titleLabEN.text = @"（ EIM ）";
-    titleLabEN.textColor = [UIColor whiteColor];
-    titleLabEN.font = [UIFont systemFontOfSize:24];
-    titleLabEN.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:titleLabEN];
-    [titleLabEN makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(titleLab.bottom).with.offset(H(7.5));
-        make.left.right.equalTo(self);
-    }];
+
+//    UILabel *titleLabEN = [UILabel new];
+//    titleLabEN.text = @"（ EIM ）";
+//    titleLabEN.textColor = [UIColor whiteColor];
+//    titleLabEN.font = [UIFont systemFontOfSize:24];
+//    titleLabEN.textAlignment = NSTextAlignmentCenter;
+//    [self addSubview:titleLabEN];
+//    [titleLabEN makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.centerX);
+//        make.top.equalTo(titleLab.bottom).with.offset(H(7.5));
+//        make.left.right.equalTo(self);
+//    }];
     
     UIView *usernameBkg = [UIView new];
     usernameBkg.backgroundColor = [UIColor whiteColor];
@@ -82,7 +122,8 @@
     [self addSubview:usernameBkg];
     [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
-        make.top.equalTo(titleLabEN.bottom).with.offset(H(31));
+//        make.top.equalTo(titleLabEN.bottom).with.offset(H(31));
+        make.top.equalTo(titleLab.bottom).with.offset(H(31));
         make.left.equalTo(self).offset(H(30));
         make.right.equalTo(self).offset(H(-30));
         make.height.equalTo(@(H(40)));
@@ -285,7 +326,13 @@
     self.accountBtn.selected = userModel.isRememberUsername;
     self.autoLoginBtn.selected = userModel.isAutoLogin;
     
-    if(!userModel.isLogout)
+    if(userModel.isLogout)
+    {
+        self.usernameTextField.text = @"";
+        self.passwordTextField.text = @"";
+        [self.usernameTextField becomeFirstResponder];
+    }
+    else
     {
         if(self.autoLoginBtn.isSelected)
         {

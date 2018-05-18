@@ -23,10 +23,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = @"深圳市宝安区建筑工务局";
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.navigationItem.title = TITLE;
     
     [self setupNavBtn];
     self.openType = @"baidumap";
+    // 勤智资本
+//    self.openType = @"capital_index";
     [self loginWebService];
 }
 
@@ -35,16 +38,12 @@
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"验证中，请稍等..."];
     
-//    NSString *sp_id = @"vJo06/qsLDOK5p2FvLqujo8G9eCsjrLJGcg8TGN0QZexSchZjBfneZ1vL4h3BN/EEId5hEBxZWM=";
-    // 保安工务局
-    NSString *sp_id = @"tKB1F69J4TgRTM7QRN1+NxDaURCluPAAYFaWJfMEdhryuqvuoRIA7sF7CzKsSngLPPpy5gmaOu4=";
-    sp_id = [sp_id stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    sp_id = [NSString urlEncode:sp_id];
-    PLog(@"sp_id == %@", sp_id);
+    NSString *password = [[UrlManager sharedUrlManager] getPassword];
+    password = [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    password = [NSString urlEncode:password];
+    PLog(@"password == %@", password);
     
     UserModel *model = [[UserManager sharedUserManager] getUserModel];
-//    NSString *SP_ID = @"ToWanPic";
-        NSString *SP_ID = @"ToEIM_PIC";
     
     NSString *soapMsg = [NSString stringWithFormat:
                          @"<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
@@ -52,9 +51,9 @@
                          "<USER>%@</USER>"
                          "<PASSWORD>%@</PASSWORD>"
                          "<SP_ID>%@</SP_ID>"
-                         "</REQUEST>", model.username, sp_id, SP_ID];
+                         "</REQUEST>", model.username, password, [[UrlManager sharedUrlManager] getSPID]];
     PLog(@"soapMsg == %@", soapMsg);
-    
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
     // 设置请求超时时间
@@ -91,7 +90,9 @@
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"logout"] style:UIBarButtonItemStylePlain target:self action:@selector(logoutClicked:)];
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
+    // 勤智资本
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"home-page"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
 }
 
 #pragma mark - clicked
@@ -127,6 +128,14 @@
 - (void)switchClicked:(id)sender
 {
     [[UserManager sharedUserManager] logout];
+    // 勤智资本
+//    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+//    userModel.isLogout = YES;
+//    userModel.isAutoLogin = NO;
+//    userModel.isRememberUsername = NO;
+//    [[UserManager sharedUserManager] saveUserModel:userModel];
+//
+//    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)exitClicked:(id)sender
@@ -151,40 +160,43 @@
 
 - (void)moreClicked:(UIButton *)sender
 {
+    // 勤智资本
+//    [self loginWebService];
+    
     NSArray *menuItems =
     @[
-      
+
       [KxMenuItem menuItem:@"项目信息"
                      image:nil
                     target:self
                     action:@selector(infoClicked:)],
-      
+
       [KxMenuItem menuItem:@"项目文件"
                      image:nil
                     target:self
                     action:@selector(documentClicked:)],
-      
+
       [KxMenuItem menuItem:@"项目照片"
                      image:nil
                     target:self
                     action:@selector(pictureClicked:)],
-      
+
       [KxMenuItem menuItem:@"通讯录"
                      image:nil
                     target:self
                     action:@selector(addressClicked:)],
-      
+
       ];
-    
+
     //    KxMenuItem *first = menuItems[0];
     //    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
     for(KxMenuItem *item in menuItems)
     {
         item.alignment = NSTextAlignmentCenter;
     }
-    
+
     CGRect frame = CGRectMake(SCREEN_WIDTH - 50, TOP_HEIGHT - 44, 44, 44);
-    
+
     [KxMenu showMenuInView:self.view
                   fromRect:frame
                  menuItems:menuItems];
@@ -345,6 +357,7 @@
 - (void)loadWebView:(UIWebView*)webView
 {
     NSURL *url = [NSURL URLWithString:self.url];
+//    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [webView loadRequest:request];
 }

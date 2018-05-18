@@ -1,0 +1,4 @@
+
+@interface ReceiveHandlerViewController : WMPageController
+
+@end

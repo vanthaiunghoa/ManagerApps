@@ -5,6 +5,7 @@
 @optional
 
 - (void)didClickBackBtn;
+- (void)didClickGetPassword;
 
 @end
 
@@ -13,6 +14,7 @@
 @property (nonatomic, weak) id<VPNSettingViewDelegate> delegate;
 
 - (void)reloadData;
+- (void)countDown;
 
 @end
 

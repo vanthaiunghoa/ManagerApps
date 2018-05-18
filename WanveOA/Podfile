@@ -1,0 +1,16 @@
+platform :ios, '8.0'
+target :WanveOA do
+
+pod 'Masonry'
+pod 'IQKeyboardManager' #iOS8 and later
+pod 'AFNetworking', '~> 3.0'
+pod 'SVProgressHUD'
+pod 'MJExtension'
+pod 'MJRefresh'
+pod 'WMPageController', '~> 2.4.0'
+pod 'SDAutoLayout', '~> 2.1.3'
+pod 'FDFullscreenPopGesture', '~> 1.1'
+pod 'SWTableViewCell', '~> 0.3.7'
+
+end
+

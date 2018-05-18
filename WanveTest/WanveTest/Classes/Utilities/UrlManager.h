@@ -5,7 +5,6 @@
 + (instancetype)sharedUrlManager;
 - (NSString *)getBaseUrl;
 - (NSString *)getLoginUrl;
-- (NSString *)getSingleUrl;
-- (NSString *)getWebUrl;
+- (NSString *)getHomePageUrl;
 
 @end

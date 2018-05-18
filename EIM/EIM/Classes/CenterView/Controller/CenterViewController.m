@@ -210,6 +210,14 @@
         else if([self.content isEqualToString:@"1001"])
         {
             [SVProgressHUD showErrorWithStatus:@"非法交易类型"];
+            if (_bridge)
+            {
+                [self loadWebView:self.webView];
+            }
+            else
+            {
+                [self initWebView];
+            }
         }
         else if([self.content isEqualToString:@"1002"])
         {
@@ -328,6 +336,7 @@
 {
 //    NSURL *url = [NSURL URLWithString:self.url];
     NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
+//    NSURL *url = [NSURL URLWithString:@"https://www.zhibo8.cc"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [webView loadRequest:request];
 }
