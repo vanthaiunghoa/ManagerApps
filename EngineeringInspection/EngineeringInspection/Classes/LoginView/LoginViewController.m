@@ -4,6 +4,9 @@
 #import "UserManager.h"
 #import <UINavigationController+FDFullscreenPopGesture.h>
 #import "UrlManager.h"
+#import "REFrostedViewController.h"
+#import "FilterViewController.h"
+
 
 @interface LoginViewController ()<LoginViewDelegate, NSXMLParserDelegate>
 
@@ -61,8 +64,14 @@
 //    [self login];
 //    [self loginWebService];
     
-//    [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
-    [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"TabBarController") new];
+    FilterViewController *menuController = [[FilterViewController alloc] init];
+    REFrostedViewController *frostedViewController = [[REFrostedViewController alloc] initWithContentViewController:[NSClassFromString(@"TabBarController") new] menuViewController:menuController];
+    frostedViewController.direction = REFrostedViewControllerDirectionRight;
+    frostedViewController.liveBlurBackgroundStyle = REFrostedViewControllerLiveBackgroundStyleLight;
+    frostedViewController.limitMenuViewSize = true;
+    frostedViewController.menuViewSize = CGSizeMake(SCREEN_WIDTH - 50, SCREEN_HEIGHT);
+
+    [UIApplication sharedApplication].keyWindow.rootViewController = frostedViewController;
 }
 
 -(void)login

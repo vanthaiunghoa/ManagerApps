@@ -1,20 +1,19 @@
 #import "TaskViewController.h"
-#import "WebViewJavascriptBridge.h"
 #import "NSString+extension.h"
 #import "UrlManager.h"
-#import "UIImage+image.h"
 #import "UserManager.h"
 #import "UserModel.h"
-#import "KxMenu.h"
+#import "ZLImageTextButton.h"
+#import <FTPopOverMenu.h>
+#import "TaskCell.h"
+#import "TaskModel.h"
+#import "DetailTaskViewController.h"
+#import "UIColor+color.h"
 
-@interface TaskViewController ()<NSXMLParserDelegate>
+@interface TaskViewController ()<UITableViewDataSource,UITableViewDelegate>
 
-@property WebViewJavascriptBridge* bridge;
-@property (nonatomic, strong) NSString *content;
-@property (nonatomic, strong) NSString *sessionId;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) NSString *openType;
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) ZLImageTextButton *btnProject;
+@property (nonatomic, strong) UITableView *tableView;
 
 @end
 
@@ -23,97 +22,138 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = TITLE;
-    // 盐田
-    self.openType = @"pro_oicinfo";
-    [self setupNavBtn];
+
+    self.navigationItem.title = @"";
+    [self setupLeftNavBtn:@"万维博通大厦"];
+    [self setupRightNavBtn:@"全部同步"];
     
-    [self loginWebService];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadHomeViewAgain" object:nil];
+    [self initTableView];
+//    [self loginWebService];
 }
 
-- (void)handleNotification
+- (void)initTableView
 {
-    [self loginWebService];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LoadHomeViewAgain" object:nil];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    _tableView.backgroundColor = [UIColor colorWithRGB:239 green:246 blue:252];
+    [self.view addSubview:_tableView];
+    [_tableView setDelegate:self];
+    [_tableView setDataSource:self];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
+    }];
+    
+    [_tableView registerClass:[TaskCell class] forCellReuseIdentifier:NSStringFromClass([TaskCell class])];
 }
 
 #pragma mark - nav item
-- (void)setupNavBtn
+- (void)setupLeftNavBtn:(NSString *)projectName
 {
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"logout"] style:UIBarButtonItemStylePlain target:self action:@selector(logoutClicked:)];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"logout"] style:UIBarButtonItemStylePlain target:self action:@selector(logoutClicked:)];
     
-    UIButton * cancelBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [cancelBtn setImage:[UIImage imageNamed:@"cancel"] forState:UIControlStateNormal];
-    [cancelBtn setTitle:@"取消按钮图片在右边" forState:UIControlStateNormal];
-    cancelBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-    [cancelBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [cancelBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-    cancelBtn.titleRect = CGRectMake(10, 10, 120, 20);
-    cancelBtn.imageRect = CGRectMake(135, 10, 20, 20);
-    [self.view addSubview:cancelBtn];
-    cancelBtn.frame = CGRectMake(SCREEN_WIDTH * 0.5 - 80, 350, 160, 40);
-    cancelBtn.backgroundColor = [UIColor colorWithRed:255/255.0 green:242/255.0 blue:210/255.0 alpha:1];
+    CGFloat width = [NSString calculateRowWidth:44 string:projectName fontSize:ZLFontSize] + ImageWidth + ImageTextDistance;
+    
+    _btnProject = [ZLImageTextButton buttonWithType:UIButtonTypeCustom];
+    _btnProject.zlButtonType = ZLImageRightTextLeft;
+    [_btnProject setImage:[UIImage imageNamed:@"white-arrow-down"] forState:UIControlStateNormal];
+    [_btnProject setTitle:projectName forState:UIControlStateNormal];
+    [_btnProject setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    _btnProject.frame = CGRectMake(0, 0, width, 44);
+//    [self.view addSubview:_btnProject];
+    
+    [_btnProject addTarget:self action:@selector(projectClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_btnProject];
+}
+
+- (void)setupRightNavBtn:(NSString *)name
+{
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:name style:UIBarButtonItemStylePlain target:self action:@selector(allSynchronizationClicked:)];
+   
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor]];
 }
 
 #pragma mark - clicked
 
-- (void)logoutClicked:(UIButton *)sender
+- (void)allSynchronizationClicked:(UIButton *)sender
 {
-    NSArray *menuItems =
-    @[
-      
-      [KxMenuItem menuItem:@"切换账号"
-                     image:nil
-                    target:self
-                    action:@selector(switchClicked:)],
-      
-      [KxMenuItem menuItem:@"退出"
-                     image:nil
-                    target:self
-                    action:@selector(exitClicked:)],
-      ];
-    
-    for(KxMenuItem *item in menuItems)
-    {
-        item.alignment = NSTextAlignmentCenter;
-    }
-    
-    CGRect frame = CGRectMake(6, TOP_HEIGHT - 44, 44, 44);
-    
-    [KxMenu showMenuInView:self.view
-                  fromRect:frame
-                 menuItems:menuItems];
+    PLog(@"right clicked");
 }
 
-- (void)switchClicked:(id)sender
+- (void)projectClicked:(UIButton *)sender
 {
-    [[UserManager sharedUserManager] logout];
+    FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
+//    configuration.menuRowHeight = ...
+    configuration.menuWidth = SCREEN_WIDTH - 8.0;
+//    configuration.textColor = ...
+//    configuration.textFont = ...
+//    configuration.tintColor = ...
+//    configuration.borderColor = ...
+//    configuration.borderWidth = ...
+//    configuration.textAlignment = ...
+//    configuration.ignoreImageOriginalColor = ...;// set 'ignoreImageOriginalColor' to YES, images color will be same as textColor
+//    configuration.allowRoundedArrow = YES; // Default is 'NO', if sets to 'YES', the arrow will be drawn with round corner.
+
+    NSMutableArray *projects = [NSMutableArray array];
+    [projects addObject:@"万维博通大厦"];
+    [projects addObject:@"万维博通大厦一二"];
+    [projects addObject:@"万维博通大厦三四五"];
+    [projects addObject:@"万维博通大"];
+    [projects addObject:@"万维博通大厦六"];
+    [projects addObject:@"万维博通大厦八九十十一"];
+    
+    [FTPopOverMenu showForSender:sender
+                   withMenuArray:projects
+                       doneBlock:^(NSInteger selectedIndex)
+                       {
+                           NSString *text = projects[selectedIndex];
+                           if(text.length != _btnProject.titleLabel.text.length)
+                           {
+                               [_btnProject removeFromSuperview];
+                               [self setupLeftNavBtn:text];
+                           }
+                           else
+                           {
+                               [_btnProject setTitle:text forState:UIControlStateNormal];
+                           }
+                       }
+                    dismissBlock:^{
+                           NSLog(@"user canceled. do nothing.");
+                       }];
 }
 
-- (void)exitClicked:(id)sender
+#pragma mark - tableView delegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    [UIView beginAnimations:@"exitApplication" context:nil];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationTransition:UIViewAnimationCurveEaseOut forView:self.view.window cache:NO];
-    [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
-    self.view.window.bounds = CGRectMake(0, 0, 0, 0);
-    [UIView commitAnimations];
+    return 10;
 }
 
-- (void)animationFinished:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([animationID compare:@"exitApplication"] == 0)
-    {
-        //退出
-        exit(0);
-    }
+    return 100;
 }
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    TaskCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([TaskCell class])];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    DetailTaskViewController *vc = [[DetailTaskViewController alloc] init];
+    vc.selectIndex = 1;
+//    vc.title = key;
+    vc.menuViewStyle = WMMenuViewStyleLine;
+    vc.automaticallyCalculatesItemWidths = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - datas
 
 - (void)loginWebService
 {
@@ -167,134 +207,5 @@
     }];
 }
 
-#pragma mark - NSXMLParserDelegate
-// 1.开始解析XML文件
--(void)parserDidStartDocument:(NSXMLParser *)parser{
-    PLog(@"开始解析XML文件");
-}
-
-// 2.解析XML文件中所有的元素
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict{
-    //    PLog(@"解析XML文件中所有的元素:elementName:%@,attributeDict:%@",elementName,attributeDict);
-    //    if ([elementName isEqualToString:@"CheckUserLoginResult"]) {
-    //        // MJExtension 解析数据
-    //        Model *model = [Model mj_objectWithKeyValues:attributeDict];
-    //        [self.dataArrM addObject:model];
-    //    }
-}
-
-// 3.XML文件中每一个元素解析完成
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName
-{
-    //    PLog(@"XML文件中每一个元素解析完成:elementName:%@, qName:%@",elementName, qName);
-    
-    if ([elementName isEqualToString:@"RESP_CODE"])
-    {
-        if([self.content isEqualToString:@"0000"])
-        {
-            NSString *tmpUrl = [[UrlManager sharedUrlManager] getWebUrl];
-            tmpUrl = [tmpUrl stringByAppendingString:@"&SessionId="];
-            tmpUrl = [tmpUrl stringByAppendingString:self.sessionId];
-            tmpUrl = [tmpUrl stringByAppendingString:@"&OpenType="];
-            self.url = [tmpUrl stringByAppendingString:self.openType];
-            PLog(@"url == %@", self.url);
-            [self initWebView];
-        }
-        else if([self.content isEqualToString:@"1001"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"非法交易类型"];
-        }
-        else if([self.content isEqualToString:@"1002"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"非法接入账号"];
-        }
-        else if([self.content isEqualToString:@"1003"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"接入密码错误"];
-        }
-        else if([self.content isEqualToString:@"1004"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"登录用户无效"];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:@"系统内部错误"];
-        }
-    }
-    
-    if([elementName isEqualToString:@"WEBSESSION"])
-    {
-        self.sessionId = self.content;
-    }
-}
-
-// 读取标签之间的文本
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    self.content = string;
-}
-
-
-// 4.XML所有元素解析完毕
--(void)parserDidEndDocument:(NSXMLParser *)parser
-{
-    PLog(@"解析完毕");
-}
-
-// 解析出现错误时调用
-- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
-{
-    PLog(@"error == %@", validationError.userInfo);
-}
-
-- (void)initWebView
-{
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    if(self.webView == nil)
-    {
-        self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:self.webView];
-    }
-    
-    if(_bridge == nil)
-    {
-        [WebViewJavascriptBridge enableLogging];
-        
-        _bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
-        [_bridge setWebViewDelegate:self];
-        
-        [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-            NSLog(@"testObjcCallback called: %@", data);
-            responseCallback(@"Response from testObjcCallback");
-        }];
-        
-        [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
-    }
-    
-    [self loadWebView:self.webView];
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidStartLoad");
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidFinishLoad");
-}
-
-- (void)callHandler:(id)sender {
-    id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
-    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
-        NSLog(@"testJavascriptHandler responded: %@", response);
-    }];
-}
-
-- (void)loadWebView:(UIWebView*)webView
-{
-    NSURL *url = [NSURL URLWithString:self.url];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    [webView loadRequest:request];
-}
 
 @end

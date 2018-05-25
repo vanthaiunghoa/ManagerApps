@@ -15,40 +15,70 @@ PODS:
   - AFNetworking/UIKit (3.2.0):
     - AFNetworking/NSURLSession
   - FDFullscreenPopGesture (1.1)
+  - FTPopOverMenu (1.3.4)
+  - HSSetTableViewController (1.3.1):
+    - SDWebImage
   - IQKeyboardManager (6.0.2)
   - Masonry (1.1.0)
   - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - REFrostedViewController (2.4.8)
+  - SDAutoLayout (2.2.0)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - SVProgressHUD (2.2.5)
   - WebViewJavascriptBridge (6.0.3)
+  - WMPageController (2.5.2)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - FDFullscreenPopGesture (= 1.1)
+  - FTPopOverMenu
+  - HSSetTableViewController (~> 1.3.1)
   - IQKeyboardManager
   - Masonry
   - MJExtension
+  - MJRefresh (~> 3.1.15.3)
+  - REFrostedViewController (~> 2.4.8)
+  - SDAutoLayout (~> 2.2.0)
   - SVProgressHUD
   - WebViewJavascriptBridge (~> 6.0)
+  - WMPageController (~> 2.5.2)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - AFNetworking
     - FDFullscreenPopGesture
+    - FTPopOverMenu
+    - HSSetTableViewController
     - IQKeyboardManager
     - Masonry
     - MJExtension
+    - MJRefresh
+    - REFrostedViewController
+    - SDAutoLayout
+    - SDWebImage
     - SVProgressHUD
     - WebViewJavascriptBridge
+    - WMPageController
 
 SPEC CHECKSUMS:
   AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
   FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  FTPopOverMenu: 1f6c5fb6a690d8d438176d6844e1d1c05a8758fe
+  HSSetTableViewController: e1845101c7b16c70d9f72dee63bab6f74bca8660
   IQKeyboardManager: c49d59e358aeeffaa0280aa305093c2b194d2607
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  REFrostedViewController: a893b4979ba1f200c547aef9ff4c3fd5a18f5923
+  SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
+  WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
 
-PODFILE CHECKSUM: d44f997fff59535931afb2956e6fcecf504ceeac
+PODFILE CHECKSUM: 5a1465b1ba0cb7b998477c01a8e43c77af83f53b
 
 COCOAPODS: 1.5.0

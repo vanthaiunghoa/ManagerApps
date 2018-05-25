@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface TaskViewController : UIViewController <UIWebViewDelegate>
+@interface TaskViewController : UIViewController 
 
 @end

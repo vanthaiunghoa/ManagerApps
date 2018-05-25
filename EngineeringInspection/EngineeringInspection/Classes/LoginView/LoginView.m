@@ -25,15 +25,15 @@
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login_bkg"];
     bkg.image = [UIImage imageWithContentsOfFile:path];
     [self addSubview:bkg];
-    [bkg makeConstraints:^(MASConstraintMaker *make) {
+    [bkg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.right.equalTo(self);
     }];
     
     UIImageView *logoIcon = [UIImageView new];
     logoIcon.image = [UIImage imageNamed:@"logo-company"];
     [self addSubview:logoIcon];
-    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+    [logoIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(@(H(68)));
         make.width.equalTo(@(W(171)));
         make.height.equalTo(@(H(54)));
@@ -46,9 +46,9 @@
     company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:26];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
-    [company makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(logoIcon.bottom).offset(H(11));
+    [company mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(logoIcon.mas_bottom).offset(H(11));
         make.left.right.equalTo(self);
     }];
     
@@ -81,9 +81,9 @@
     usernameBkg.layer.cornerRadius = 20;
     usernameBkg.clipsToBounds = YES;
     [self addSubview:usernameBkg];
-    [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(company.bottom).with.offset(H(50));
+    [usernameBkg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(company.mas_bottom).with.offset(H(50));
         make.left.equalTo(self).offset(H(30));
         make.right.equalTo(self).offset(H(-30));
         make.height.equalTo(@(H(40)));
@@ -92,8 +92,8 @@
     UIImageView *userIcon = [UIImageView new];
     userIcon.image = [UIImage imageNamed:@"user"];
     [usernameBkg addSubview:userIcon];
-    [userIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(usernameBkg.centerY);
+    [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(usernameBkg.mas_centerY);
         make.left.equalTo(@(W(20)));
         make.width.height.equalTo(@(W(18)));
     }];
@@ -109,10 +109,10 @@
     self.usernameTextField.returnKeyType =UIReturnKeyNext;
     self.usernameTextField.delegate = self;
     [usernameBkg addSubview:self.usernameTextField];
-    [self.usernameTextField makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(userIcon.right).with.offset(W(20));
+    [self.usernameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(userIcon.mas_right).with.offset(W(20));
         make.top.bottom.equalTo(usernameBkg);
-        make.right.equalTo(usernameBkg.right).offset(W(-20));
+        make.right.equalTo(usernameBkg.mas_right).offset(W(-20));
     }];
     
     UIView *passwordBkg = [UIView new];
@@ -120,16 +120,16 @@
     passwordBkg.layer.cornerRadius = 20;
     passwordBkg.clipsToBounds = YES;
     [self addSubview:passwordBkg];
-    [passwordBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(usernameBkg.left);
-        make.top.equalTo(usernameBkg.bottom).with.offset(H(20));
+    [passwordBkg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(usernameBkg.mas_left);
+        make.top.equalTo(usernameBkg.mas_bottom).with.offset(H(20));
         make.width.height.equalTo(usernameBkg);
     }];
     
     UIImageView *passwordIcon = [UIImageView new];
     passwordIcon.image = [UIImage imageNamed:@"password"];
     [passwordBkg addSubview:passwordIcon];
-    [passwordIcon makeConstraints:^(MASConstraintMaker *make) {
+    [passwordIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(passwordBkg.mas_centerY);
         make.width.height.equalTo(@(W(18)));
         make.left.equalTo(@(W(20)));
@@ -147,7 +147,7 @@
     self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwordTextField.delegate = self;
     [passwordBkg addSubview:self.passwordTextField];
-    [self.passwordTextField makeConstraints:^(MASConstraintMaker *make) {
+    [self.passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(@0);
         make.left.right.width.height.equalTo(self.usernameTextField);
     }];
@@ -161,9 +161,9 @@
     self.accountBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.accountBtn addTarget:self action:@selector(accountClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.accountBtn];
-    [self.accountBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(passwordBkg.left);
-        make.top.equalTo(passwordBkg.bottom).with.offset(H(20));
+    [self.accountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(passwordBkg.mas_left);
+        make.top.equalTo(passwordBkg.mas_bottom).with.offset(H(20));
     }];
     
     self.autoLoginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
@@ -175,9 +175,9 @@
     self.autoLoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.autoLoginBtn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.autoLoginBtn];
-    [self.autoLoginBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.accountBtn.centerY);
-        make.right.equalTo(passwordBkg.right);
+    [self.autoLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.accountBtn.mas_centerY);
+        make.right.equalTo(passwordBkg.mas_right);
     }];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -189,10 +189,10 @@
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:20];
     [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3ECE89"]] forState:UIControlStateNormal];
     [self addSubview:loginBtn];
-    [loginBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+    [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
         make.width.height.equalTo(passwordBkg);
-        make.top.equalTo(self.autoLoginBtn.bottom).with.offset(H(20));
+        make.top.equalTo(self.autoLoginBtn.mas_bottom).with.offset(H(20));
     }];
 
     return self;
