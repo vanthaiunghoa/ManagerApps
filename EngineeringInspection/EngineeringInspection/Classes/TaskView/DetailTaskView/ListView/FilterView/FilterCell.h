@@ -1,18 +1,17 @@
 #import <UIKit/UIKit.h>
 
-@class ListModel;
-
-@protocol FilterCellDelegate <NSObject>
-
-@optional
-
-- (void)didSelectClicked:(ListModel *)model selected:(BOOL )isSelected;
-
-@end
+//@protocol FilterCellDelegate <NSObject>
+//
+//@optional
+//
+//- (void)didBtnClicked:(NSString *) selected:(BOOL )isSelected;
+//
+//@end
 
 @interface FilterCell : UITableViewCell
 
-@property (nonatomic, weak) id<FilterCellDelegate> delegate;
-@property (nonatomic, strong) ListModel *model;
+//@property (nonatomic, weak) id<FilterCellDelegate> delegate;
+@property (nonatomic, strong) NSMutableArray *btnArray;
+@property (nonatomic, strong) NSArray *detailArray;
 
 @end

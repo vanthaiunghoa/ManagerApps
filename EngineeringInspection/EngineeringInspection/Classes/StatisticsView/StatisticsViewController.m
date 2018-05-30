@@ -1,20 +1,15 @@
 #import "StatisticsViewController.h"
-#import "WebViewJavascriptBridge.h"
-#import "KxMenu.h"
+#import "UIColor+color.h"
+#import "StatisticsCell.h"
+#import "StatisticsDetailViewController.h"
 #import "UIImage+image.h"
-#import "NSString+extension.h"
-#import "UrlManager.h"
-#import "UserManager.h"
-#import "UserModel.h"
 
-@interface StatisticsViewController ()<NSXMLParserDelegate>
+@interface StatisticsViewController ()<UITableViewDataSource,UITableViewDelegate, UIGestureRecognizerDelegate>
 
-@property WebViewJavascriptBridge* bridge;
-@property (nonatomic, strong) NSString *content;
-@property (nonatomic, strong) NSString *sessionId;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) NSString *openType;
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *sectionArray;
+@property (nonatomic, strong) NSArray *projectArray;
+@property (nonatomic, strong) NSMutableArray *isExpandArray;
 
 @end
 
@@ -23,348 +18,147 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = TITLE;
-    
-    [self setupNavBtn];
-    self.openType = @"tjbb_hztj";
-    [self loginWebService];
+    self.view.backgroundColor = [UIColor colorWithRGB:239 green:246 blue:252];
+    [self initTableView];
 }
 
-- (void)loginWebService
+#pragma mark - init
+
+- (void)initTableView
 {
-    self.view.userInteractionEnabled = NO;
-    [SVProgressHUD showWithStatus:@"验证中，请稍等..."];
-    
-    NSString *password = [[UrlManager sharedUrlManager] getPassword];
-    password = [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    password = [NSString urlEncode:password];
-    PLog(@"password == %@", password);
-    
-    UserModel *model = [[UserManager sharedUserManager] getUserModel];
-    
-    NSString *soapMsg = [NSString stringWithFormat:
-                         @"<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
-                         "<REQUEST>"
-                         "<USER>%@</USER>"
-                         "<PASSWORD>%@</PASSWORD>"
-                         "<SP_ID>%@</SP_ID>"
-                         "</REQUEST>", model.username, password, [[UrlManager sharedUrlManager] getSPID]];
-    PLog(@"soapMsg == %@", soapMsg);
-
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-    // 设置请求超时时间
-    manager.requestSerializer.timeoutInterval = 60;
-    // 返回NSData
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    // 设置请求头，也可以不设置
-    [manager.requestSerializer setValue:@"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"%zd", soapMsg.length] forHTTPHeaderField:@"Content-Length"];
-    // 设置HTTPBody
-    [manager.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error)
-     {
-         return soapMsg;
-     }];
-
-    [manager POST:[[UrlManager sharedUrlManager] getSingleUrl] parameters:soapMsg success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [SVProgressHUD dismiss];
-        self.view.userInteractionEnabled = YES;
-        // 把返回的二进制数据转为字符串
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        PLog(@"result == %@", result);
-        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:responseObject];
-        [parser setDelegate:self];
-        [parser parse];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        PLog(@"error == @%", error.userInfo);
-        self.view.userInteractionEnabled = YES;
-        [SVProgressHUD showInfoWithStatus:@"网络异常"];
+    _tableView = [[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    _tableView.backgroundColor = [UIColor colorWithRGB:239 green:246 blue:252];
+    [self.view addSubview:_tableView];
+    [_tableView setDelegate:self];
+    [_tableView setDataSource:self];
+    _tableView.sectionHeaderHeight = 44;
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.equalTo(self.view);
     }];
     
+    [_tableView registerClass:[StatisticsCell class] forCellReuseIdentifier:NSStringFromClass([StatisticsCell class])];
 }
 
-#pragma mark - nav item
-- (void)setupNavBtn
-{
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"logout"] style:UIBarButtonItemStylePlain target:self action:@selector(logoutClicked:)];
-    
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
+#pragma mark - tableView delegate
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.sectionArray.count;
 }
 
-#pragma mark - clicked
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGFloat arrowHeight = 18;
+    CGFloat arrowWidth = 18;
 
-- (void)logoutClicked:(UIButton *)sender
-{
-    NSArray *menuItems =
-    @[
-      
-      [KxMenuItem menuItem:@"切换账号"
-                     image:nil
-                    target:self
-                    action:@selector(switchClicked:)],
-      
-      [KxMenuItem menuItem:@"退出"
-                     image:nil
-                    target:self
-                    action:@selector(exitClicked:)],
-      ];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [headerView setBackgroundColor:[UIColor whiteColor]];
+    UILabel *classify = [[UILabel alloc]initWithFrame:CGRectMake(15, 0, SCREEN_WIDTH - 30 - arrowWidth, 44)];
+    classify.textColor = [UIColor colorWithRGB:28 green:120 blue:255];
+    classify.text = self.sectionArray[section];
+    [headerView addSubview:classify];
     
-    for(KxMenuItem *item in menuItems)
+    UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH - arrowWidth - 15, (44 - arrowHeight)/2.0, arrowWidth, arrowHeight)];
+    arrow.userInteractionEnabled = NO;
+    if([self.isExpandArray[section] isEqualToString:@"0"])
     {
-        item.alignment = NSTextAlignmentCenter;
+        arrow.image = [UIImage imageNamed:@"statistics-arrow-down"];
     }
-    
-    CGRect frame = CGRectMake(6, TOP_HEIGHT - 44, 44, 44);
-    
-    [KxMenu showMenuInView:self.view
-                  fromRect:frame
-                 menuItems:menuItems];
-}
-
-- (void)switchClicked:(id)sender
-{
-    [[UserManager sharedUserManager] logout];
-}
-
-- (void)exitClicked:(id)sender
-{
-    [UIView beginAnimations:@"exitApplication" context:nil];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationTransition:UIViewAnimationCurveEaseOut forView:self.view.window cache:NO];
-    [UIView setAnimationDidStopSelector:@selector(animationFinished:finished:context:)];
-    self.view.window.bounds = CGRectMake(0, 0, 0, 0);
-    [UIView commitAnimations];
-}
-
-- (void)animationFinished:(NSString *)animationID finished:(NSNumber *)finished context:(void *)context
-{
-    if ([animationID compare:@"exitApplication"] == 0)
+    else
     {
-        //退出
-        exit(0);
+        arrow.image = [UIImage imageNamed:@"statistics-arrow-up"];
+    }
+
+    [headerView addSubview:arrow];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClicked:)];
+    tap.delegate = self;
+    [headerView addGestureRecognizer:tap];
+    headerView.tag = section;
+    
+    return headerView;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([self.isExpandArray[section]isEqualToString:@"1"])
+    {
+        return self.projectArray.count;
+    }
+    else
+    {
+        return 0;
     }
 }
 
-- (void)moreClicked:(UIButton *)sender
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSArray *menuItems =
-    @[
-      
-      [KxMenuItem menuItem:@"汇总统计"
-                     image:nil
-                    target:self
-                    action:@selector(statisticsClicked:)],
-      
-      [KxMenuItem menuItem:@"项目状态"
-                     image:nil
-                    target:self
-                    action:@selector(statusClicked:)],
-      
-      [KxMenuItem menuItem:@"项目科室"
-                     image:nil
-                    target:self
-                    action:@selector(departmentClicked:)],
-      
-      [KxMenuItem menuItem:@"项目类别"
-                     image:nil
-                    target:self
-                    action:@selector(categoryClicked:)],
-      
-      [KxMenuItem menuItem:@"项目投资"
-                     image:nil
-                    target:self
-                    action:@selector(investmentClicked:)],
-      
-//      [KxMenuItem menuItem:@"品牌公开"
-//                     image:nil
-//                    target:self
-//                    action:@selector(brandClicked:)],
-      ];
+    return 44;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    StatisticsCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([StatisticsCell class])];
+    cell.projectName = self.projectArray[indexPath.row];
     
-    //    KxMenuItem *first = menuItems[0];
-    //    first.foreColor = [UIColor colorWithRed:47/255.0f green:112/255.0f blue:225/255.0f alpha:1.0];
-    for(KxMenuItem *item in menuItems)
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    StatisticsDetailViewController *vc = [[StatisticsDetailViewController alloc] init];
+    vc.selectIndex = 0;
+    //    vc.title = key;
+    vc.menuViewStyle = WMMenuViewStyleLine;
+    vc.automaticallyCalculatesItemWidths = YES;
+    
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)tapClicked:(UITapGestureRecognizer *)tap
+{
+    if ([self.isExpandArray[tap.view.tag] isEqualToString:@"0"])
     {
-        item.alignment = NSTextAlignmentCenter;
+        //关闭 => 展开
+        [self.isExpandArray replaceObjectAtIndex:tap.view.tag withObject:@"1"];
+    }else
+    {
+        //展开 => 关闭
+        [self.isExpandArray replaceObjectAtIndex:tap.view.tag withObject:@"0"];
     }
     
-    CGRect frame = CGRectMake(SCREEN_WIDTH - 50, TOP_HEIGHT - 44, 44, 44);
-    
-    [KxMenu showMenuInView:self.view
-                  fromRect:frame
-                 menuItems:menuItems];
+    NSIndexSet *set = [NSIndexSet indexSetWithIndex:tap.view.tag];
+    [_tableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
 }
 
-- (void)statisticsClicked:(id)sender
+#pragma mark - lazy load
+
+- (NSArray *)sectionArray
 {
-    self.openType = @"tjbb_hztj";
-    [self loginWebService];
-}
-
-- (void)statusClicked:(id)sender
-{
-    self.openType = @"tjbb_xmzt";
-    [self loginWebService];
-}
-
-- (void)departmentClicked:(id)sender
-{
-    self.openType = @"tjbb_xmks";
-    [self loginWebService];
-}
-
-- (void)categoryClicked:(id)sender
-{
-    self.openType = @"tjbb_xmlb";
-    [self loginWebService];
-}
-
-- (void)investmentClicked:(id)sender
-{
-    self.openType = @"tjbb_xmtz";
-    [self loginWebService];
-}
-
-- (void)brandClicked:(id)sender
-{
-    self.openType = @"tjbb_ppgk";
-    [self loginWebService];
-}
-
-#pragma mark - NSXMLParserDelegate
-// 1.开始解析XML文件
--(void)parserDidStartDocument:(NSXMLParser *)parser{
-    PLog(@"开始解析XML文件");
-}
-
-// 2.解析XML文件中所有的元素
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict{
-    //    PLog(@"解析XML文件中所有的元素:elementName:%@,attributeDict:%@",elementName,attributeDict);
-    //    if ([elementName isEqualToString:@"CheckUserLoginResult"]) {
-    //        // MJExtension 解析数据
-    //        Model *model = [Model mj_objectWithKeyValues:attributeDict];
-    //        [self.dataArrM addObject:model];
-    //    }
-}
-
-// 3.XML文件中每一个元素解析完成
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName
-{
-    //    PLog(@"XML文件中每一个元素解析完成:elementName:%@, qName:%@",elementName, qName);
-    
-    if ([elementName isEqualToString:@"RESP_CODE"])
+    if(_sectionArray == nil)
     {
-        if([self.content isEqualToString:@"0000"])
+        _sectionArray = [NSArray array];
+        _sectionArray = @[@"万维博通大厦"];
+        
+        _isExpandArray = [NSMutableArray array];
+        for(int i = 0; i < _sectionArray.count; ++i)
         {
-            NSString *tmpUrl = [[UrlManager sharedUrlManager] getWebUrl];
-            tmpUrl = [tmpUrl stringByAppendingString:@"&SessionId="];
-            tmpUrl = [tmpUrl stringByAppendingString:self.sessionId];
-            tmpUrl = [tmpUrl stringByAppendingString:@"&OpenType="];
-            self.url = [tmpUrl stringByAppendingString:self.openType];
-            PLog(@"url == %@", self.url);
-            
-            if (_bridge)
-            {
-                [self loadWebView:self.webView];
-            }
-            else
-            {
-                [self initWebView];
-            }
-        }
-        else if([self.content isEqualToString:@"1001"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"非法交易类型"];
-        }
-        else if([self.content isEqualToString:@"1002"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"非法接入账号"];
-        }
-        else if([self.content isEqualToString:@"1003"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"接入密码错误"];
-        }
-        else if([self.content isEqualToString:@"1004"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"登录用户无效"];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:@"系统内部错误"];
+            [_isExpandArray addObject:@"0"];
         }
     }
     
-    if([elementName isEqualToString:@"WEBSESSION"])
+    return _sectionArray;
+}
+
+- (NSArray *)projectArray
+{
+    if(_projectArray == nil)
     {
-        self.sessionId = self.content;
+        _projectArray = [NSArray array];
+        _projectArray = @[@"项目一", @"项目二", @"项目三"];
     }
-}
-
-// 读取标签之间的文本
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
-{
-    self.content = string;
-}
-
-
-// 4.XML所有元素解析完毕
--(void)parserDidEndDocument:(NSXMLParser *)parser
-{
-    PLog(@"解析完毕");
-}
-
-// 解析出现错误时调用
-- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
-{
-    PLog(@"error == %@", validationError.userInfo);
-}
-
-- (void)initWebView
-{
-    //    [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    if (_bridge) { return; }
-    
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:webView];
-    self.webView = webView;
-    
-    [WebViewJavascriptBridge enableLogging];
-    
-    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
-    [_bridge setWebViewDelegate:self];
-    
-    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-        NSLog(@"testObjcCallback called: %@", data);
-        responseCallback(@"Response from testObjcCallback");
-    }];
-    
-    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
-    
-    [self loadWebView:webView];
+    return _projectArray;
 }
 
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidStartLoad");
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidFinishLoad");
-}
-
-- (void)callHandler:(id)sender {
-    id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
-    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
-        NSLog(@"testJavascriptHandler responded: %@", response);
-    }];
-}
-
-- (void)loadWebView:(UIWebView*)webView
-{
-    NSURL *url = [NSURL URLWithString:self.url];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    [webView loadRequest:request];
-}
 
 @end

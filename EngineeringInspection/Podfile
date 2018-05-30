@@ -14,6 +14,7 @@ pod 'WMPageController', '~> 2.5.2'
 pod 'MJRefresh', '~> 3.1.15.3'
 pod 'SDAutoLayout', '~> 2.2.0'
 pod 'REFrostedViewController', '~> 2.4.8'
+pod 'PNChart', '~> 0.8.9'
 
 end
 

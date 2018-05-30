@@ -1,0 +1,4 @@
+
+@interface StatisticsDetailViewController : WMPageController
+
+@end

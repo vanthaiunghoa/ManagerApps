@@ -10,9 +10,12 @@
 		1653561C8D6B211F590E0942 /* libPods-EngineeringInspection.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E384D126D31FA89A6488BC /* libPods-EngineeringInspection.a */; };
 		E80A09BC20B7B4B70032FFF9 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A09BB20B7B4B60032FFF9 /* FilterViewController.m */; };
 		E80A09C320B7FE580032FFF9 /* FilterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E80A09C120B7FE580032FFF9 /* FilterCell.m */; };
+		E8185F8A20BCDE2B00E256B3 /* NewIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8185F8920BCDE2B00E256B3 /* NewIssueViewController.m */; };
+		E8185F9F20BD042600E256B3 /* ClassifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8185F9E20BD042600E256B3 /* ClassifyView.m */; };
 		E81AAE2B20B3ABA00091E434 /* SetUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E81AAE2920B3ABA00091E434 /* SetUpViewController.m */; };
 		E81AAE3020B3B86F0091E434 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E81AAE2D20B3B86F0091E434 /* TaskModel.m */; };
 		E81AAE3120B3B86F0091E434 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E81AAE2E20B3B86F0091E434 /* TaskCell.m */; };
+		E83B53B420BBB735003FF9EA /* filter.plist in Resources */ = {isa = PBXBuildFile; fileRef = E83B53B320BBB734003FF9EA /* filter.plist */; };
 		E8789DB520AC04450084847F /* login_bkg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8789DB220AC04450084847F /* login_bkg@3x.png */; };
 		E8789DB620AC04450084847F /* login_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8789DB320AC04450084847F /* login_bkg@2x.png */; };
 		E8789DB720AC04450084847F /* login_bkg.png in Resources */ = {isa = PBXBuildFile; fileRef = E8789DB420AC04450084847F /* login_bkg.png */; };
@@ -42,6 +45,14 @@
 		E8CC32E720B54346000EC4F0 /* ListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC32E120B54345000EC4F0 /* ListCell.m */; };
 		E8CC32E820B54346000EC4F0 /* ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC32E220B54345000EC4F0 /* ListViewController.m */; };
 		E8CC32E920B54346000EC4F0 /* ListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8CC32E620B54345000EC4F0 /* ListModel.m */; };
+		E8FA41F420BE34D7006A01BD /* StatisticsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA41F320BE34D7006A01BD /* StatisticsCell.m */; };
+		E8FA421320BE4A7D006A01BD /* StatisticsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA421220BE4A7D006A01BD /* StatisticsDetailViewController.m */; };
+		E8FA421B20BE54B3006A01BD /* SchemaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA421520BE54B3006A01BD /* SchemaCell.m */; };
+		E8FA421C20BE54B3006A01BD /* SchemaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA421620BE54B3006A01BD /* SchemaModel.m */; };
+		E8FA421D20BE54B3006A01BD /* SchemaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA421720BE54B3006A01BD /* SchemaViewController.m */; };
+		E8FA422520BE9081006A01BD /* TrackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA422020BE9081006A01BD /* TrackViewController.m */; };
+		E8FA422620BE9081006A01BD /* TrackCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA422220BE9081006A01BD /* TrackCell.m */; };
+		E8FA422720BE9081006A01BD /* TrackModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FA422320BE9081006A01BD /* TrackModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,12 +79,17 @@
 		E80A09BB20B7B4B60032FFF9 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		E80A09C120B7FE580032FFF9 /* FilterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterCell.m; sourceTree = "<group>"; };
 		E80A09C220B7FE580032FFF9 /* FilterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterCell.h; sourceTree = "<group>"; };
+		E8185F8820BCDE2B00E256B3 /* NewIssueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NewIssueViewController.h; sourceTree = "<group>"; };
+		E8185F8920BCDE2B00E256B3 /* NewIssueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NewIssueViewController.m; sourceTree = "<group>"; };
+		E8185F9D20BD042600E256B3 /* ClassifyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassifyView.h; sourceTree = "<group>"; };
+		E8185F9E20BD042600E256B3 /* ClassifyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClassifyView.m; sourceTree = "<group>"; };
 		E81AAE2920B3ABA00091E434 /* SetUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetUpViewController.m; sourceTree = "<group>"; };
 		E81AAE2A20B3ABA00091E434 /* SetUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetUpViewController.h; sourceTree = "<group>"; };
 		E81AAE2C20B3B86F0091E434 /* TaskCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCell.h; sourceTree = "<group>"; };
 		E81AAE2D20B3B86F0091E434 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
 		E81AAE2E20B3B86F0091E434 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		E81AAE2F20B3B86F0091E434 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		E83B53B320BBB734003FF9EA /* filter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = filter.plist; sourceTree = "<group>"; };
 		E8789DB220AC04450084847F /* login_bkg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bkg@3x.png"; sourceTree = "<group>"; };
 		E8789DB320AC04450084847F /* login_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bkg@2x.png"; sourceTree = "<group>"; };
 		E8789DB420AC04450084847F /* login_bkg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_bkg.png; sourceTree = "<group>"; };
@@ -132,6 +148,22 @@
 		E8CC32E420B54345000EC4F0 /* ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListViewController.h; sourceTree = "<group>"; };
 		E8CC32E520B54345000EC4F0 /* ListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCell.h; sourceTree = "<group>"; };
 		E8CC32E620B54345000EC4F0 /* ListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListModel.m; sourceTree = "<group>"; };
+		E8FA41F220BE34D7006A01BD /* StatisticsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsCell.h; sourceTree = "<group>"; };
+		E8FA41F320BE34D7006A01BD /* StatisticsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsCell.m; sourceTree = "<group>"; };
+		E8FA421120BE4A7D006A01BD /* StatisticsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsDetailViewController.h; sourceTree = "<group>"; };
+		E8FA421220BE4A7D006A01BD /* StatisticsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsDetailViewController.m; sourceTree = "<group>"; };
+		E8FA421520BE54B3006A01BD /* SchemaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchemaCell.m; sourceTree = "<group>"; };
+		E8FA421620BE54B3006A01BD /* SchemaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchemaModel.m; sourceTree = "<group>"; };
+		E8FA421720BE54B3006A01BD /* SchemaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchemaViewController.m; sourceTree = "<group>"; };
+		E8FA421820BE54B3006A01BD /* SchemaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaModel.h; sourceTree = "<group>"; };
+		E8FA421920BE54B3006A01BD /* SchemaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaCell.h; sourceTree = "<group>"; };
+		E8FA421A20BE54B3006A01BD /* SchemaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchemaViewController.h; sourceTree = "<group>"; };
+		E8FA421F20BE9081006A01BD /* TrackCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackCell.h; sourceTree = "<group>"; };
+		E8FA422020BE9081006A01BD /* TrackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackViewController.m; sourceTree = "<group>"; };
+		E8FA422120BE9081006A01BD /* TrackModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackModel.h; sourceTree = "<group>"; };
+		E8FA422220BE9081006A01BD /* TrackCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackCell.m; sourceTree = "<group>"; };
+		E8FA422320BE9081006A01BD /* TrackModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackModel.m; sourceTree = "<group>"; };
+		E8FA422420BE9081006A01BD /* TrackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewController.h; sourceTree = "<group>"; };
 		F4405DAE78D5535D95874616 /* Pods-EngineeringInspection.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EngineeringInspection.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EngineeringInspection/Pods-EngineeringInspection.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -185,8 +217,19 @@
 				E80A09C120B7FE580032FFF9 /* FilterCell.m */,
 				E80A09BA20B7B4B60032FFF9 /* FilterViewController.h */,
 				E80A09BB20B7B4B60032FFF9 /* FilterViewController.m */,
+				E8185F9D20BD042600E256B3 /* ClassifyView.h */,
+				E8185F9E20BD042600E256B3 /* ClassifyView.m */,
 			);
 			path = FilterView;
+			sourceTree = "<group>";
+		};
+		E8185F8720BCDA4D00E256B3 /* NewIssueView */ = {
+			isa = PBXGroup;
+			children = (
+				E8185F8820BCDE2B00E256B3 /* NewIssueViewController.h */,
+				E8185F8920BCDE2B00E256B3 /* NewIssueViewController.m */,
+			);
+			path = NewIssueView;
 			sourceTree = "<group>";
 		};
 		E8789DB020AC04450084847F /* Resources */ = {
@@ -232,6 +275,7 @@
 		E8AB57C820ABB76100FF2882 /* EngineeringInspection */ = {
 			isa = PBXGroup;
 			children = (
+				E83B53B320BBB734003FF9EA /* filter.plist */,
 				E8789DB020AC04450084847F /* Resources */,
 				E8AB583220ABC53F00FF2882 /* AppDelegate.h */,
 				E8AB583120ABC53F00FF2882 /* AppDelegate.m */,
@@ -301,6 +345,9 @@
 		E8AB580920ABC53E00FF2882 /* StatisticsView */ = {
 			isa = PBXGroup;
 			children = (
+				E8FA41F520BE4A0D006A01BD /* StatisticsDetailView */,
+				E8FA41F220BE34D7006A01BD /* StatisticsCell.h */,
+				E8FA41F320BE34D7006A01BD /* StatisticsCell.m */,
 				E8AB580A20ABC53E00FF2882 /* StatisticsViewController.h */,
 				E8AB580B20ABC53E00FF2882 /* StatisticsViewController.m */,
 			);
@@ -419,6 +466,7 @@
 		E8CC32E020B54345000EC4F0 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				E8185F8720BCDA4D00E256B3 /* NewIssueView */,
 				E80A09B920B7B4B60032FFF9 /* FilterView */,
 				E8CC32E320B54345000EC4F0 /* ListModel.h */,
 				E8CC32E620B54345000EC4F0 /* ListModel.m */,
@@ -428,6 +476,43 @@
 				E8CC32E220B54345000EC4F0 /* ListViewController.m */,
 			);
 			path = ListView;
+			sourceTree = "<group>";
+		};
+		E8FA41F520BE4A0D006A01BD /* StatisticsDetailView */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA421E20BE9081006A01BD /* TrackView */,
+				E8FA421420BE54B3006A01BD /* SchemaView */,
+				E8FA421120BE4A7D006A01BD /* StatisticsDetailViewController.h */,
+				E8FA421220BE4A7D006A01BD /* StatisticsDetailViewController.m */,
+			);
+			path = StatisticsDetailView;
+			sourceTree = "<group>";
+		};
+		E8FA421420BE54B3006A01BD /* SchemaView */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA421920BE54B3006A01BD /* SchemaCell.h */,
+				E8FA421520BE54B3006A01BD /* SchemaCell.m */,
+				E8FA421820BE54B3006A01BD /* SchemaModel.h */,
+				E8FA421620BE54B3006A01BD /* SchemaModel.m */,
+				E8FA421A20BE54B3006A01BD /* SchemaViewController.h */,
+				E8FA421720BE54B3006A01BD /* SchemaViewController.m */,
+			);
+			path = SchemaView;
+			sourceTree = "<group>";
+		};
+		E8FA421E20BE9081006A01BD /* TrackView */ = {
+			isa = PBXGroup;
+			children = (
+				E8FA421F20BE9081006A01BD /* TrackCell.h */,
+				E8FA422220BE9081006A01BD /* TrackCell.m */,
+				E8FA422120BE9081006A01BD /* TrackModel.h */,
+				E8FA422320BE9081006A01BD /* TrackModel.m */,
+				E8FA422420BE9081006A01BD /* TrackViewController.h */,
+				E8FA422020BE9081006A01BD /* TrackViewController.m */,
+			);
+			path = TrackView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -541,6 +626,7 @@
 				E8789DB720AC04450084847F /* login_bkg.png in Resources */,
 				E8789DB520AC04450084847F /* login_bkg@3x.png in Resources */,
 				E8789DB620AC04450084847F /* login_bkg@2x.png in Resources */,
+				E83B53B420BBB735003FF9EA /* filter.plist in Resources */,
 				E8AB57D320ABB76100FF2882 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -614,6 +700,7 @@
 				E8CC32E820B54346000EC4F0 /* ListViewController.m in Sources */,
 				E8CC32DF20B504E5000EC4F0 /* DetailTaskViewController.m in Sources */,
 				E8CC32E720B54346000EC4F0 /* ListCell.m in Sources */,
+				E8FA422620BE9081006A01BD /* TrackCell.m in Sources */,
 				E8AB584520ABC53F00FF2882 /* AppDelegate.m in Sources */,
 				E8AB583520ABC53F00FF2882 /* WebViewController.m in Sources */,
 				E8AB57D920ABB76100FF2882 /* main.m in Sources */,
@@ -621,21 +708,30 @@
 				E8AB584020ABC53F00FF2882 /* TaskViewController.m in Sources */,
 				E8AB583B20ABC53F00FF2882 /* TabBarController.m in Sources */,
 				E8AB584320ABC53F00FF2882 /* UserModel.m in Sources */,
+				E8FA421D20BE54B3006A01BD /* SchemaViewController.m in Sources */,
 				E8AB583D20ABC53F00FF2882 /* UserManager.m in Sources */,
+				E8185F8A20BCDE2B00E256B3 /* NewIssueViewController.m in Sources */,
+				E8FA421C20BE54B3006A01BD /* SchemaModel.m in Sources */,
+				E8FA41F420BE34D7006A01BD /* StatisticsCell.m in Sources */,
 				E8AB583C20ABC53F00FF2882 /* BaseNavigationController.m in Sources */,
 				E8AB583620ABC53F00FF2882 /* StatisticsViewController.m in Sources */,
+				E8FA421B20BE54B3006A01BD /* SchemaCell.m in Sources */,
 				E8AB584220ABC53F00FF2882 /* LoginViewController.m in Sources */,
+				E8FA421320BE4A7D006A01BD /* StatisticsDetailViewController.m in Sources */,
 				E8AB583920ABC53F00FF2882 /* UIFont+runtime.m in Sources */,
+				E8185F9F20BD042600E256B3 /* ClassifyView.m in Sources */,
 				E8AB584120ABC53F00FF2882 /* RecordViewController.m in Sources */,
 				E8AB584420ABC53F00FF2882 /* LoginView.m in Sources */,
 				E8CC32E920B54346000EC4F0 /* ListModel.m in Sources */,
 				E81AAE3120B3B86F0091E434 /* TaskCell.m in Sources */,
+				E8FA422720BE9081006A01BD /* TrackModel.m in Sources */,
 				E80A09BC20B7B4B70032FFF9 /* FilterViewController.m in Sources */,
 				E8AB583720ABC53F00FF2882 /* UIColor+color.m in Sources */,
 				E8AB583E20ABC53F00FF2882 /* UrlManager.m in Sources */,
 				E81AAE2B20B3ABA00091E434 /* SetUpViewController.m in Sources */,
 				E81AAE3020B3B86F0091E434 /* TaskModel.m in Sources */,
 				E8AB583820ABC53F00FF2882 /* UIImage+image.m in Sources */,
+				E8FA422520BE9081006A01BD /* TrackViewController.m in Sources */,
 				E80A09C320B7FE580032FFF9 /* FilterCell.m in Sources */,
 				E8AB583A20ABC53F00FF2882 /* NSString+extension.m in Sources */,
 				E8AB583F20ABC53F00FF2882 /* KxMenu.m in Sources */,

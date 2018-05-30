@@ -7,7 +7,6 @@
 #import "REFrostedViewController.h"
 #import "FilterViewController.h"
 
-
 @interface LoginViewController ()<LoginViewDelegate, NSXMLParserDelegate>
 
 @property (nonatomic, strong) LoginView *loginView;

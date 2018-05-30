@@ -285,18 +285,18 @@ static const CGFloat MJDuration = 2.0;
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"willHideMenuViewController");
-    FilterViewController *vc = (FilterViewController *)menuViewController;
-    NSInteger num = vc.huge;
-    NSLog(@"num == %ld", num);
+//    NSLog(@"willHideMenuViewController");
+//    FilterViewController *vc = (FilterViewController *)menuViewController;
+//    NSInteger num = vc.huge;
+//    NSLog(@"num == %ld", num);
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController
 {
-    NSLog(@"didHideMenuViewController");
-    FilterViewController *vc = (FilterViewController *)menuViewController;
-    NSInteger num = vc.num;
-    NSLog(@"num == %ld", num);
+//    NSLog(@"didHideMenuViewController");
+//    FilterViewController *vc = (FilterViewController *)menuViewController;
+//    NSInteger num = vc.num;
+//    NSLog(@"num == %ld", num);
 }
 
 #pragma mark - 示例代码

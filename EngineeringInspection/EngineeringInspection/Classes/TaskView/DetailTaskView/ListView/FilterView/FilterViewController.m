@@ -5,17 +5,15 @@
 #import "UserModel.h"
 #import "UrlManager.h"
 #import "UIColor+color.h"
+#import "ClassifyView.h"
 
-static const CGFloat MJDuration = 2.0;
+@interface FilterViewController()<UITableViewDataSource,UITableViewDelegate, UIGestureRecognizerDelegate>
 
-@interface FilterViewController()<UITableViewDataSource,UITableViewDelegate>
-
-@property (nonatomic, strong) UITableView *issueTableView;
-@property (nonatomic, strong) NSMutableArray *modelsArray;
+@property (nonatomic, strong) UITableView *filterTableView;
+@property (nonatomic, strong) NSDictionary *classifyDict;
+@property (nonatomic, strong) NSArray *classifyArray;
+@property (nonatomic, strong) NSMutableArray *isExpandArray;
 @property (nonatomic, assign) NSInteger page;
-@property (nonatomic, strong) UIButton *btnPre;
-@property (nonatomic, strong) UIView *issueView;
-@property (nonatomic, strong) UIView *dispatchView;
 @property (nonatomic, strong) NSMutableArray *cells;
 
 @end
@@ -27,145 +25,110 @@ static const CGFloat MJDuration = 2.0;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithRGB:239 green:246 blue:252];
     
-    [self initSegmentControl];
+    [self initTopView];
     [self initBottomView];
-    [self initIssueTableView];
+//    [self initfilterTableView];
+    [self initScrollView];
 }
 
 #pragma mark - init
 
-- (void)initSegmentControl
+- (void)initTopView
 {
-    CGFloat btnW = (self.view.bounds.size.width - 50)/3.0;
-    CGFloat x = 0;
-    NSArray *arr = [[NSArray alloc]initWithObjects:@"问题清单", @"待办事项", @"筛选", nil];
+    CGFloat topHeight = 70;
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, FilterViewWidth, topHeight)];
+    [topView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:topView];
     
-    for(int i = 0; i < arr.count; ++i)
-    {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setFrame:CGRectMake(x, TOP_HEIGHT, btnW, 44)];
-        [btn setTitle:arr[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor colorWithRGB:28 green:120 blue:255] forState:UIControlStateSelected];
-        btn.tag = i;
-        [btn setBackgroundColor:[UIColor whiteColor]];
-        [self.view addSubview:btn];
-        if(0 == i)
-        {
-            btn.selected = YES;
-            _btnPre = btn;
-        }
-        
-        [btn addTarget:self action:@selector(selected:) forControlEvents:UIControlEventTouchUpInside];
-        
-        x += btnW;
-    }
+    CGFloat btnHeight = 40;
+    UIButton *btnCreate = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnCreate setFrame:CGRectMake(10, (topHeight - btnHeight)/2.0, (FilterViewWidth - 50)/3.0, btnHeight)];
+    [btnCreate setTitle:@"我创建的" forState:UIControlStateNormal];
+    [btnCreate setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnCreate.layer setCornerRadius:10];
+    [btnCreate setBackgroundColor:[UIColor colorWithRGB:28 green:120 blue:255]];
+    [topView addSubview:btnCreate];
+    
+    [btnCreate addTarget:self action:@selector(myCreateClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 - (void)initBottomView
 {
-    _issueView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 44, (self.view.bounds.size.width - 50), 44)];
-    [_issueView setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:_issueView];
+    UIView *confirmView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 44, FilterViewWidth, 44)];
+    [confirmView setBackgroundColor:[UIColor whiteColor]];
+    [self.view addSubview:confirmView];
     
-    _dispatchView = [[UIView alloc] initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 44, (self.view.bounds.size.width - 50), 44)];
-    [_dispatchView setBackgroundColor:[UIColor whiteColor]];
-    [self.view addSubview:_dispatchView];
-    _dispatchView.hidden = YES;
-    
-    CGFloat btnW = (self.view.bounds.size.width - 50)/2.0;
+    CGFloat btnW = FilterViewWidth/2.0;
     CGFloat x = 0;
-    NSArray *arr = [[NSArray alloc]initWithObjects:@"指派", @"新增", nil];
+    NSArray *arr = [[NSArray alloc]initWithObjects:@"重置", @"确定", nil];
     
     for(int i = 0; i < arr.count; ++i)
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setFrame:CGRectMake(x, 0, btnW, 44)];
         [btn setTitle:arr[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        if(0 == i)
+        {
+            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+            [btn setBackgroundColor:[UIColor whiteColor]];
+        }
+        else
+        {
+            [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [btn setBackgroundColor:[UIColor colorWithRGB:28 green:120 blue:255]];
+        }
         btn.tag = i;
-        [btn setBackgroundColor:[UIColor whiteColor]];
-        [_issueView addSubview:btn];
+        [confirmView addSubview:btn];
         
-        [btn addTarget:self action:@selector(issueViewClicked:) forControlEvents:UIControlEventTouchUpInside];
-        
-        x += btnW;
-    }
-    
-    UIView *vLine = [[UIView alloc] initWithFrame:CGRectMake((self.view.bounds.size.width - 50)/2.0, 4, 1, 36)];
-    [vLine setBackgroundColor:[UIColor lightGrayColor]];
-    [_issueView addSubview:vLine];
-
-    NSArray *dispatchArr = [[NSArray alloc]initWithObjects:@"取消", @"全选", @"指派负责人", @"指派期限", nil];
-    
-    x = 0;
-    btnW = (self.view.bounds.size.width - 50)/4.0;
-    for(int i = 0; i < dispatchArr.count; ++i)
-    {
-        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setFrame:CGRectMake(x, 0, btnW, 44)];
-        [btn setTitle:dispatchArr[i] forState:UIControlStateNormal];
-        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        btn.tag = i;
-        [btn setBackgroundColor:[UIColor whiteColor]];
-        [_dispatchView addSubview:btn];
-        
-        [btn addTarget:self action:@selector(dispatchClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [btn addTarget:self action:@selector(confirmViewClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         x += btnW;
     }
 }
 
-- (void)initIssueTableView
+- (void)initScrollView
 {
-    _modelsArray = [NSMutableArray array];
-    NSMutableArray *tmp = [NSMutableArray array];
-    NSMutableArray *tmp2 = [NSMutableArray array];
+    CGFloat y = 105;
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, FilterViewWidth, SCREEN_HEIGHT - 105 - 44)];
+    scrollView.backgroundColor = [UIColor colorWithRGB:239 green:246 blue:252];
+    [self.view addSubview:scrollView];
     
-    for(int i = 0; i < 3; ++i)
+    y = 0;
+    for(int i = 0; i < self.classifyArray.count; ++i)
     {
-        ListModel *model = [ListModel new];
-        model.Title = @"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
-        model.HJ = @"缓急";
-        model.SendDate = @"类型类型类型";
-        model.WhoGiveName = @"位置位置位置";
+        ClassifyView *classifyView = [[ClassifyView alloc] initWithFrame:CGRectMake(0, y, FilterViewWidth, 100)];
+        classifyView.title = self.classifyArray[i];
+        classifyView.detailArray = [self.classifyDict objectForKey:self.classifyArray[i]];
+        [scrollView addSubview:classifyView];
         
-        [tmp addObject:model];
+        y += 100;
     }
     
-    for(int i = 0; i < 3; ++i)
+    [scrollView setContentSize:CGSizeMake(FilterViewWidth, y)];
+}
+
+- (void)initfilterTableView
+{
+    _classifyArray = [NSArray array];
+    _isExpandArray = [NSMutableArray array];
+    
+    NSString *dataList = [[NSBundle mainBundle]pathForResource:@"filter" ofType:@"plist"];
+    _classifyDict = [[NSDictionary alloc]initWithContentsOfFile:dataList];
+    _classifyArray = [_classifyDict allKeys];
+    for (NSInteger i = 0; i < _classifyArray.count; i++)
     {
-        ListModel *model = [ListModel new];
-        model.Title = @"测试内容测试内容测试内容内容测试内容测试内容测试内容222222222222222222";
-        model.HJ = @"缓急2222";
-        model.SendDate = @"类型类型类型222";
-        model.WhoGiveName = @"位置位置位置222222222";
-        
-        [tmp2 addObject:model];
+        //0:没展开 1:展开
+        [_isExpandArray addObject:@"0"];
     }
     
-    for(int i = 0; i < 10; ++i)
-    {
-        if(i%2 == 0)
-        {
-            [_modelsArray addObject:tmp];
-        }
-        else
-        {
-            [_modelsArray addObject:tmp2];
-        }
-    }
-    
-    _issueTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, TOP_HEIGHT + 44, (self.view.bounds.size.width - 50), self.view.bounds.size.height - 88 - TOP_HEIGHT) style:UITableViewStylePlain];
-    [_issueTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
-    [_issueTableView setBackgroundColor:[UIColor colorWithRGB:239 green:246 blue:252]];
-    [_issueTableView registerClass:[FilterCell class] forCellReuseIdentifier:NSStringFromClass([FilterCell class])];
-    [_issueTableView setDelegate:self];
-    [_issueTableView setDataSource:self];
-    _issueTableView.sectionHeaderHeight = 40;
-    [self.view addSubview:_issueTableView];
-    
-    [self loadMore];
+    _filterTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 105, FilterViewWidth, SCREEN_HEIGHT - 105 - 44) style:UITableViewStyleGrouped];
+    [_filterTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+    [_filterTableView setBackgroundColor:[UIColor colorWithRGB:239 green:246 blue:252]];
+    [_filterTableView registerClass:[FilterCell class] forCellReuseIdentifier:NSStringFromClass([FilterCell class])];
+    [_filterTableView setDelegate:self];
+    [_filterTableView setDataSource:self];
+    _filterTableView.sectionHeaderHeight = 44;
+    [self.view addSubview:_filterTableView];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -176,29 +139,20 @@ static const CGFloat MJDuration = 2.0;
 
 #pragma mark -clicked
 
--(void)selected:(UIButton *)sender
+-(void)myCreateClicked:(UIButton *)sender
 {
-    //    UISegmentedControl* control = (UISegmentedControl*)sender;
-    if(sender.tag < 2 && (_btnPre.tag != sender.tag))
-    {
-        _btnPre.selected = NO;
-        _btnPre = sender;
-    }
-    
+
+}
+
+- (void)confirmViewClicked:(UIButton *)sender
+{
     switch (sender.tag)
     {
         case 0:
-            PLog(@"问题清单");
-            sender.selected = YES;
+            PLog(@"重置");
             break;
         case 1:
-            sender.selected = YES;
-            PLog(@"待办事项");
-            break;
-        case 2:
-            PLog(@"筛选");
-            self.huge = 5432;
-            self.num = 520;
+            PLog(@"确定");
             break;
         default:
             PLog(@"error");
@@ -206,266 +160,108 @@ static const CGFloat MJDuration = 2.0;
     }
 }
 
-- (void)issueViewClicked:(UIButton *)sender
+- (void)allClicked:(UIButton *)sender
 {
-    switch (sender.tag)
+
+}
+
+- (void)tapClicked:(UITapGestureRecognizer *)tap
+{
+    if ([self.isExpandArray[tap.view.tag] isEqualToString:@"0"])
     {
-        case 0:
-            PLog(@"指派");
-            _issueView.hidden = YES;
-            _dispatchView.hidden = NO;
-            break;
-        case 1:
-            PLog(@"新增");
-            break;
-        default:
-            PLog(@"error");
-            break;
-    }
-}
-
-- (void)dispatchClicked:(UIButton *)sender
-{
-    switch (sender.tag)
+        //关闭 => 展开
+        [self.isExpandArray replaceObjectAtIndex:tap.view.tag withObject:@"1"];
+    }else
     {
-        case 0:
-            PLog(@"取消");
-            _dispatchView.hidden = YES;
-            _issueView.hidden = NO;
-            break;
-        case 1:
-            PLog(@"全选");
-            break;
-        case 2:
-            PLog(@"指派负责人");
-            break;
-        case 3:
-            PLog(@"指派期限");
-            break;
-        default:
-            PLog(@"error");
-            break;
+        //展开 => 关闭
+        [self.isExpandArray replaceObjectAtIndex:tap.view.tag withObject:@"0"];
     }
-}
-
-#pragma mark - 示例代码
-#pragma mark UITableView + 下拉刷新 默认
-- (void)refresh
-{
-//    __weak __typeof(self) weakSelf = self;
-
-    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    _issueTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [weakSelf loadNewData];
-        _page = 1;
-        [self download:_page];
-    }];
-
-    // 马上进入刷新状态
-    [_issueTableView.mj_header beginRefreshing];
-}
-
-#pragma mark UITableView + 上拉刷新 默认
-- (void)loadMore
-{
-    [self refresh];
-
-    __weak __typeof(self) weakSelf = self;
-
-    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    _issueTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        [weakSelf loadMoreData];
-    }];
-}
-
-#pragma mark - 数据处理相关
-#pragma mark 下拉刷新数据
-- (void)loadNewData
-{
-    // 1.添加假数据
-//    for (int i = 0; i<5; i++) {
-//        [self.data insertObject:MJRandomData atIndex:0];
-//    }
-
-    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
-    __weak UITableView *tableView = _issueTableView;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-        [tableView reloadData];
-
-        // 拿到当前的下拉刷新控件，结束刷新状态
-        [tableView.mj_header endRefreshing];
-    });
-}
-
-- (void)download:(NSInteger)page
-{
-/*    self.view.userInteractionEnabled = NO;
-    [SVProgressHUD showWithStatus:@"数据加载中，请稍等..."];
     
-    //1.创建一个请求管理者
-    //AFHTTPRequestOperationManager内部封装了URLSession
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",nil];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    // 2.发送请求
-    NSString *jsonRequest = [NSString stringWithFormat:@"{\"ActiveCode\":\"%@\",\"PageSize\":\"10\",\"PageNum\":\"%zd\",\"BLState\":\"ALL\"}", userModel.activeCode, self.page];
-//    NSString *state = @"1";
-//    NSString *jsonRequest = [NSString stringWithFormat:@"{\"ActiveCode\":\"%@\",\"BLState\":\"%@\"}", userModel.activeCode, state];
-    NSDictionary *dict = @{
-                           @"Action":@"GetSWHandleListOfBLState",
-                           @"jsonRequest":jsonRequest
-                           };
-    PLog(@"dict == %@", dict);
-    
-    [manager POST:[[UrlManager sharedUrlManager] getSWHandlerListUrl] parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        self.view.userInteractionEnabled = YES;
-        [SVProgressHUD dismiss];
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        PLog(@"请求成功--result == %@", result);
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-
-        NSNumber *isSuccess = dict[@"IsSuccess"];
-        PLog(@"isSuccess == %@", isSuccess);
-        NSNumber *num = [NSNumber numberWithInt:1];
-        if([isSuccess isEqualToNumber:num])
-        {
-            if(1 == self.page)
-            {
-                _modelsArray = [ListModel mj_objectArrayWithKeyValuesArray:dict[@"Datas"]];
-            }
-            else
-            {
-                NSMutableArray *tmp = [ListModel mj_objectArrayWithKeyValuesArray:dict[@"Datas"]];
-                for(ListModel *model in tmp)
-                {
-                    [_modelsArray addObject:model];
-                }
-            }
-        }
-        else
-        {
-            NSString *mes = dict[@"ErrorMessage"];
-            [SVProgressHUD showErrorWithStatus:mes];
-        }
-
-        [_issueTableView reloadData];
-        if(1 == _page)
-        {
-            [_issueTableView.mj_header endRefreshing];
-        }
-        else
-        {
-            [_issueTableView.mj_footer endRefreshing];
-        }
-    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
-        self.view.userInteractionEnabled = YES;
-        PLog(@"请求失败--%@",error);
-        [SVProgressHUD showInfoWithStatus:@"网络异常"];
-        if(1 == _page)
-        {
-            [_issueTableView.mj_header endRefreshing];
-        }
-        else
-        {
-            [_issueTableView.mj_footer endRefreshing];
-        }
-    }];*/
-}
-
-#pragma mark 上拉加载更多数据
-- (void)loadMoreData
-{
-    ++_page;
-    [self download:_page];
-}
-
-#pragma mark 加载最后一份数据
-- (void)loadLastData
-{
-    // 1.添加假数据
-//    for (int i = 0; i<5; i++) {
-//        [self.data addObject:MJRandomData];
-//    }
-
-    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
-    __weak UITableView *tableView = _issueTableView;
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        // 刷新表格
-        [tableView reloadData];
-
-        // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-        [tableView.mj_footer endRefreshingWithNoMoreData];
-    });
+    NSIndexSet *set = [NSIndexSet indexSetWithIndex:tap.view.tag];
+    [_filterTableView reloadSections:set withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark - tableView delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 5;
+#pragma - mark tableViewDataSource
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.classifyArray.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [_modelsArray[section] count];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if ([self.isExpandArray[section]isEqualToString:@"1"]) {
+        return 1;
+    }
+    else{
+        return 0;
+    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+//    return 44;
+//}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+    return 0.1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 60;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    CGFloat btnWidth = 80;
+    
+//    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, FilterViewWidth, 44)];
+    UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [headerView setBackgroundColor:[UIColor redColor]];
+    UILabel *classify = [[UILabel alloc]initWithFrame:CGRectMake(10, 0, FilterViewWidth - 20 - btnWidth, 44)];
+    classify.textColor = [UIColor blackColor];
+    classify.text = self.classifyArray[section];
+    [headerView addSubview:classify];
+    
+    UIButton *btnAll = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnAll setFrame:CGRectMake(FilterViewWidth - 10 - btnWidth, 0, btnWidth, 44)];
+    [btnAll setTitle:@"全部" forState:UIControlStateNormal];
+    [btnAll.titleLabel setFont:[UIFont systemFontOfSize:14]];
+    [btnAll.titleLabel setTextAlignment:NSTextAlignmentLeft];
+    [btnAll setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [headerView addSubview:btnAll];
+    
+    [btnAll addTarget:self action:@selector(allClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+    CGFloat arrowHeight = 8.4;
+    CGFloat arrowWidth = 16;
+    UIImageView *arrow = [[UIImageView alloc]initWithFrame:CGRectMake(btnWidth - arrowWidth, (44 - arrowHeight)/2.0, arrowWidth, arrowHeight)];
+    arrow.userInteractionEnabled = NO;
+    arrow.image = [UIImage imageNamed:@"gray-arrow-down"];
+    [btnAll addSubview:arrow];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClicked:)];
+    tap.delegate = self;
+    [headerView addGestureRecognizer:tap];
+    headerView.tag = section;
+   
+    return headerView;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     Class currentClass = [FilterCell class];
-    ListModel *model = self.modelsArray[indexPath.section][indexPath.row];
+    FilterCell *cell = nil;
 //
+//    ReceiveCommonModel *model = self.modelsArray[indexPath.row];
 //    if (model.imagePathsArray.count > 1)
 //    {
 //        currentClass = [ReceiveCell2 class];
 //    }
-    /*
-     普通版也可实现一步设置搞定高度自适应，不再推荐使用此套方法，具体参看“UITableView+SDAutoTableViewCellHeight”头文件
-     return [_issueTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:currentClass];
-     */
-    
-    // 推荐使用此普通简化版方法（一步设置搞定高度自适应，性能好，易用性好）
-    return [_issueTableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:currentClass contentViewWidth:[self cellContentViewWith]] + 20;
-}
 
-- (CGFloat)cellContentViewWith
-{
-    CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    
-    // 适配ios7横屏
-    if ([UIApplication sharedApplication].statusBarOrientation != UIInterfaceOrientationPortrait && [[UIDevice currentDevice].systemVersion floatValue] < 8) {
-        width = [UIScreen mainScreen].bounds.size.height;
-    }
-    return width;
-}
+    cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass(currentClass)];
+    NSString *keyOfClassify = self.classifyArray[indexPath.section];
+    cell.detailArray = [self.classifyDict objectForKey:keyOfClassify];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//    cell.delegate = self;
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    ListModel *model = self.modelsArray[indexPath.section][indexPath.row];
-    FilterCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([FilterCell class])];
-    cell.model = model;
-    ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
-    
-    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    
-    ///////////////////////////////////////////////////////////////////////
-    [self.cells addObject:cell];
-    
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"2018-08-08 08:08:08";
 }
 
 #pragma mark - lazy load
@@ -478,5 +274,39 @@ static const CGFloat MJDuration = 2.0;
     }
     return _cells;
 }
+
+- (NSArray *)classifyArray
+{
+    if(_classifyArray == nil)
+    {
+        _classifyArray = [NSArray array];
+        _classifyArray = @[@"状态", @"任务", @"部位", @"检查项", @"检查组", @"整改日期"];
+    }
+    return _classifyArray;
+}
+
+- (NSDictionary *)classifyDict
+{
+    if(_classifyDict == nil)
+    {
+        NSString *dataList = [[NSBundle mainBundle]pathForResource:@"filter" ofType:@"plist"];
+        _classifyDict = [[NSDictionary alloc]initWithContentsOfFile:dataList];
+    }
+    
+    return _classifyDict;
+}
+
+//- (NSMutableArray *)isExpandArray
+//{
+//    if(_isExpandArray == nil && self.classifyArray)
+//    {
+//        _isExpandArray = [NSMutableArray array];
+//        for(int i = 0; i < self.classifyArray.count; ++i)
+//        {
+//            [_isExpandArray addObject:@"0"];
+//        }
+//    }
+//    return _isExpandArray;
+//}
 
 @end

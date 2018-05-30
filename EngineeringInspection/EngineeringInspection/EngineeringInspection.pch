@@ -45,6 +45,9 @@
 #define PLog(...)
 #endif
 
+#define FilterViewMargin 50
+#define FilterViewWidth (SCREEN_WIDTH - FilterViewMargin)
+
 #import "Masonry.h"
 #import "SVProgressHUD.h"
 #import "AFNetworking.h"

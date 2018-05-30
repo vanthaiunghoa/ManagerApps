@@ -22,165 +22,73 @@
 
 - (void)setup
 {
-    _imageView = [UIImageView new];
-    [self.contentView addSubview:_imageView];
-    [_imageView setImage:[UIImage imageNamed:@"select"]];
-    _imageView.layer.borderColor = [UIColor grayColor].CGColor;
-    _imageView.layer.borderWidth = 1;
+    self.backgroundColor = [UIColor whiteColor];
+    CGFloat margin = 15;
+    CGFloat btnW = (FilterViewWidth - 2.0*margin - 20)/3.0;
+    CGFloat btnH = 40;
+    CGFloat x = 10;
+//    NSArray *arr = [[NSArray alloc]initWithObjects:@"重置", @"确定", @"重置", nil];
     
-    _type = [UILabel new];
-    [self.contentView addSubview:_type];
-//    _type.textColor = [UIColor darkGrayColor];
-    _type.font = [UIFont systemFontOfSize:16];
-    _type.numberOfLines = 0;
-
-    _select = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_select setImage:[UIImage imageNamed:@"unselect"] forState:UIControlStateNormal];
-    [_select setImage:[UIImage imageNamed:@"select"] forState:UIControlStateSelected];
-    [_select setImageEdgeInsets:UIEdgeInsetsMake(10, 10, 10, 10)];
-    [self.contentView addSubview:_select];
-//    _select.hidden = YES;
-
-    [_select addTarget:self action:@selector(selectClicked:) forControlEvents:UIControlEventTouchUpInside];
-
-    UIView *lineView = [UIView new];
-//    lineView.backgroundColor = [UIColor lightGrayColor];
-    lineView.backgroundColor = [UIColor redColor];
-    [self.contentView addSubview:lineView];
-
-    _position = [UILabel new];
-    [self.contentView addSubview:_position];
-    //    _content.textColor = [UIColor darkGrayColor];
-    _position.font = [UIFont systemFontOfSize:14];
-    _position.numberOfLines = 0;
-
-    _content = [UILabel new];
-    [self.contentView addSubview:_content];
-    _content.textColor = [UIColor darkGrayColor];
-    _content.font = [UIFont systemFontOfSize:14];
-    _content.numberOfLines = 0;
-
-    _imgs = [[NSMutableArray alloc] init];
     for(int i = 0; i < 3; ++i)
     {
-        UIImageView *imageView = [UIImageView new];
-        [self.contentView addSubview:imageView];
-        imageView.image = [UIImage imageNamed:@"logo-company"];
-        imageView.layer.borderColor = [UIColor grayColor].CGColor;
-        imageView.layer.borderWidth = 1;
-        [_imgs addObject:imageView];
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setFrame:CGRectMake(x, 10, btnW, btnH)];
+        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [btn setBackgroundColor:[UIColor colorWithRGB:239 green:246 blue:252]];
+        [btn.layer setCornerRadius:25];
+//        btn.tag = i;
+        [self.contentView addSubview:btn];
+        [self.btnArray addObject:btn];
+        
+        [btn addTarget:self action:@selector(btnClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        x += btnW + margin;
     }
-
-    UIView *marginLine = [UIView new];
-    marginLine.backgroundColor = [UIColor colorWithRGB:239 green:246 blue:252];
-    [self.contentView addSubview:marginLine];
-
-    CGFloat margin = 10;
-    UIView *contentView = self.contentView;
-
-    _imageView.sd_layout
-    .topSpaceToView(contentView, 14)
-    .leftSpaceToView(contentView, margin)
-    .widthIs(16)
-    .heightIs(16);
-
-    _type.sd_layout
-    .topEqualToView(contentView)
-    .leftSpaceToView(_imageView, margin)
-    .widthIs(200.0)
-    .heightIs(44);
-
-    _select.sd_layout
-    .rightSpaceToView(contentView, margin + 50)
-    .topEqualToView(contentView)
-    .widthIs(44)
-    .heightIs(44);
-
-    lineView.sd_layout
-    .topSpaceToView(_select, 0)
-    .leftSpaceToView(contentView, margin)
-    .rightSpaceToView(contentView, margin + 50)
-    .heightIs(1);
-
-    _position.sd_layout
-    .topSpaceToView(lineView, 10)
-    .leftSpaceToView(contentView, 30)
-    .rightSpaceToView(contentView, 30 + 50)
-    .autoHeightRatio(0);
-
-    _content.sd_layout
-    .topSpaceToView(_position, 10)
-    .leftSpaceToView(contentView, 30)
-    .rightSpaceToView(contentView, 30 + 50)
-    .autoHeightRatio(0);
-
-    CGFloat imgW = (SCREEN_WIDTH - 50 - 60 - 30)/3.0;
-    CGFloat imgH = 60.0;
-    
-    __block UIImageView *tmp = nil;
-
-    [_imgs enumerateObjectsUsingBlock:^(UIImageView *img, NSUInteger idx, BOOL * _Nonnull stop) {
-        if(0 == idx)
-        {
-            img.sd_layout
-            .topSpaceToView(_content, margin)
-            .leftSpaceToView(contentView, 30)
-            .widthIs(imgW)
-            .heightIs(imgH);
-
-            tmp = img;
-        }
-        else
-        {
-            img.sd_layout
-            .topSpaceToView(_content, margin)
-            .leftSpaceToView(tmp, 15)
-            .widthIs(imgW)
-            .heightIs(imgH);
-
-            tmp = img;
-        }
-    }];
-    
-    marginLine.sd_layout
-    .topSpaceToView(tmp, margin)
-//    .topSpaceToView(_content, margin)
-    .leftEqualToView(contentView)
-    .rightEqualToView(contentView)
-    .heightIs(1);
-    
-    [self setupAutoHeightWithBottomView:marginLine bottomMargin:0];
-    
-    // 当你不确定哪个view在自动布局之后会排布在cell最下方的时候可以调用次方法将所有可能在最下方的view都传过去
-//    [self setupAutoHeightWithBottomViewsArray:@[_titleLabel, _imageView] bottomMargin:margin];
 }
 
-- (void)setModel:(ListModel *)model
+- (void)setDetailArray:(NSArray *)detailArray
 {
-    _model = model;
+    _detailArray = detailArray;
 
-    _content.text = model.Title;
-    _type.text = model.SendDate;
-    _position.text = model.WhoGiveName;
-    
-//    _imageView.image = [UIImage imageNamed:model.imagePathsArray.firstObject];
-}
-
-- (void)setFrame:(CGRect)frame
-{
-    //    frame.origin.x += 10;
-//    frame.origin.y += 20;
-    frame.size.height -= 20;
-//    frame.size.width -= 50;
-    [super setFrame:frame];
+    for(int i = 0; i < _detailArray.count; ++i)
+    {
+        [self.btnArray[i] setTitle:_detailArray[i] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - clicked
 
-- (void)selectClicked:(UIButton *)sender
+- (void)btnClicked:(UIButton *)sender
 {
     sender.selected = !sender.selected;
-    [_delegate didSelectClicked:_model selected:sender.isSelected];
+    if(sender.isSelected)
+    {
+        [sender setBackgroundColor:[UIColor colorWithRGB:28 green:120 blue:255]];
+    }
+    else
+    {
+        [sender setBackgroundColor:[UIColor colorWithRGB:239 green:246 blue:252]];
+    }
+}
+
+#pragma mark - lazy load
+
+- (NSMutableArray *)btnArray
+{
+    if(_btnArray == nil)
+    {
+        _btnArray = [NSMutableArray array];
+    }
+    return _btnArray;
+}
+
+- (NSArray *)_detailArray
+{
+    if(_detailArray == nil)
+    {
+        _detailArray = [NSArray array];
+    }
+    return _detailArray;
 }
 
 @end

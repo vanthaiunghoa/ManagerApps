@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>状态</key>
+	<array>
+		<string>待销项</string>
+		<string>待指派</string>
+	</array>
+	<key>任务</key>
+	<array>
+        <string>待销项</string>
+        <string>待指派</string>
+        <string>待指派</string>
+	</array>
+	<key>部位</key>
+	<array>
+        <string>待销项</string>
+        <string>待指派</string>
+        <string>待指派</string>
+	</array>
+	<key>检查项</key>
+	<array>
+		<string>内 部</string>
+		<string>墙 体</string>
+		<string>外 部</string>
+	</array>
+	<key>检查组</key>
+	<array>
+        <string>待销项</string>
+        <string>待指派</string>
+        <string>待指派</string>
+	</array>
+	<key>整改日期</key>
+	<array>
+		<string>起 始</string>
+		<string>终 止</string>
+	</array>
+</dict>
+</plist>

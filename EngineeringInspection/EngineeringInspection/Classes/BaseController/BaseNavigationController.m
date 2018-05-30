@@ -39,9 +39,9 @@
     
     // 3.标题
 #ifdef __IPHONE_7_0
-    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor colorWithHexString:@"#555555"]}];
+    [navBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 #else
-    [navBar setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor colorWithHexString:@"#555555"]}];
+    [navBar setTitleTextAttributes:@{UITextAttributeTextColor : [UIColor whiteColor]}];
 #endif
 }
 
