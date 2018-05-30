@@ -8,8 +8,10 @@
 #import <LeoPayManager/LeoPayManager.h>
 #import "UserModel.h"
 #import "UserManager.h"
+#import "BaseNavigationController.h"
+#import "LoginViewController.h"
 
-@interface WebViewController()
+@interface WebViewController()<UIGestureRecognizerDelegate, NSURLSessionDelegate>
 
 @property WebViewJavascriptBridge *bridge;
 @property (nonatomic, strong) UIImageView *testView;
@@ -18,6 +20,7 @@
 @property (nonatomic, strong) CBPeripheral *peripheral;
 @property (nonatomic, strong) NSString *orderNo;
 @property (nonatomic, strong) NSString *staffNo;
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 
@@ -28,6 +31,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    //设置状态栏颜色
+    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+    statusBarView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:statusBarView];
 //    _printDatas = [NSMutableArray array];
 //    [NSTimer scheduledTimerWithTimeInterval:(float)0.02 target:self selector:@selector(sendDataTimer:) userInfo:nil repeats:YES];
 }
@@ -41,11 +48,17 @@
     
     if (_bridge) { return; }
     
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-    [self.view addSubview:webView];
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20)];
+    _webView.scrollView.bounces = NO;
+    
+    [self.view addSubview:_webView];
+    
+    UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
+    longPressed.delegate = self;
+    [_webView addGestureRecognizer:longPressed];
 
     [WebViewJavascriptBridge enableLogging];
-    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:_webView];
     [_bridge setWebViewDelegate:self];
     
 //    [self openScan];
@@ -56,7 +69,7 @@
     [self callPhone];
 //    [self renderButtons:webView];
     [self goPay];
-    [self loadWebView:webView];
+    [self loadWebView:_webView];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -426,7 +439,9 @@
             
             [self cleanCacheAndCookie];
 //            [self.navigationController popViewControllerAnimated:YES];
-            [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"LoginViewController") new];
+            LoginViewController *vc = [LoginViewController new];
+            BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
+            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         }
     }];
 }
@@ -841,6 +856,78 @@
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle{
+    
+    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+    
+    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
+    {
+        statusBar.backgroundColor = [UIColor cyanColor];
+    }
+    
+    return UIStatusBarStyleLightContent;
+}
+
+#pragma mark - savePictrue
+
+- (void)longPressed:(UILongPressGestureRecognizer *)longPressGestureRecognizer
+{
+    if(longPressGestureRecognizer.state != UIGestureRecognizerStateBegan){
+        return;
+    }
+    CGPoint touchPoint = [longPressGestureRecognizer locationInView:_webView];
+    NSString *srcStr = [NSString stringWithFormat:@"document.elementFromPoint(%f, %f).src",touchPoint.x,touchPoint.y];
+    NSString *saveUrl = [_webView stringByEvaluatingJavaScriptFromString:srcStr];
+    if(srcStr.length == 0){
+        return;
+    }
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"保存图片到相册" preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction *ok = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self savePhotoToPhotosAlbumWithImgUrl:saveUrl];
+    }];
+    UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    
+    [alert addAction:ok];
+    [alert addAction:cancel];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void)savePhotoToPhotosAlbumWithImgUrl:(NSString *)url {
+    NSURL *ImgUrl = [NSURL URLWithString:url];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:self delegateQueue:[NSOperationQueue new]];
+   
+    NSURLRequest *request = [NSURLRequest requestWithURL:ImgUrl cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
+  
+    NSURLSessionDownloadTask *task = [session downloadTaskWithRequest:request completionHandler:^(NSURL * _Nullable location, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        if(error){
+            return;
+        }
+        NSData *imgData = [NSData dataWithContentsOfURL:location];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage *img = [UIImage imageWithData:imgData];
+            UIImageWriteToSavedPhotosAlbum(img, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+        });
+    }];
+    [task resume];
+}
+
+- (void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+{
+    if (error) {
+        [SVProgressHUD showErrorWithStatus:@"保存失败"];
+    }else{
+        [SVProgressHUD showSuccessWithStatus:@"保存成功"];
+    }
+}
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
 
 @end
 

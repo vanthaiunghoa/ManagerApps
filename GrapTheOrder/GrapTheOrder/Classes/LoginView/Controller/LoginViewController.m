@@ -84,8 +84,18 @@
     // 方法synchronise是为了强制存储，其实并非必要，因为这个方法会在系统中默认调用，但是你确认需要马上就存储，这样做是可行的
     [defaults synchronize];
     
-    UIViewController *vc = [NSClassFromString(@"WebDetailViewController") new];
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:[NSClassFromString(@"WebDetailViewController") new] animated:YES];
+}
+
+- (void)didClickForgotPassword
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:@"http://xin.xinkozi.com:8088/xds/app/register/findPwdPage.do" forKey:@"url"];
+    
+    // 方法synchronise是为了强制存储，其实并非必要，因为这个方法会在系统中默认调用，但是你确认需要马上就存储，这样做是可行的
+    [defaults synchronize];
+    
+    [self.navigationController pushViewController:[NSClassFromString(@"WebDetailViewController") new] animated:YES];
 }
 
 -(void)login

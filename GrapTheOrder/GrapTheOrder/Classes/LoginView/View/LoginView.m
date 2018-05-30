@@ -119,6 +119,21 @@
         make.left.right.equalTo(self.passwordTextField);
         make.height.equalTo(@2);
     }];
+    
+    UIButton *btnForgotPassword = [UIButton new];
+    [btnForgotPassword setTitle:@"忘记密码？" forState:UIControlStateNormal];
+    [btnForgotPassword.titleLabel setTextAlignment:NSTextAlignmentRight];
+    [btnForgotPassword setTitleColor:[UIColor colorWithHexString:@"#3ECE89"] forState:UIControlStateNormal];
+    btnForgotPassword.titleLabel.font = [UIFont systemFontOfSize:12];
+    [self addSubview:btnForgotPassword];
+    [btnForgotPassword makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line2.bottom);
+        make.right.equalTo(line2.right);
+        make.width.equalTo(@68);
+        make.height.equalTo(@44);
+    }];
+    
+    [btnForgotPassword addTarget:self action:@selector(forgotPasswordClick:) forControlEvents:UIControlEventTouchUpInside];
 //
 //    self.accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [self.accountBtn setTitle:@"记住账号和密码" forState:UIControlStateNormal];
@@ -158,7 +173,7 @@
     [self.loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3ECE89"]] forState:UIControlStateNormal];
     [self addSubview:self.loginBtn];
     [self.loginBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(line2.bottom).with.offset(H(25));
+        make.top.equalTo(btnForgotPassword.bottom);
         make.left.right.equalTo(line2);
         make.height.equalTo(@44);
     }];
@@ -176,6 +191,7 @@
     UILabel *labAccount = [UILabel new];
     labAccount.text = @"没有账号？";
     labAccount.font = [UIFont systemFontOfSize:12];
+    labAccount.textAlignment = NSTextAlignmentRight;
     [self addSubview:labAccount];
     [labAccount makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.loginBtn.bottom).offset(H(10));
@@ -188,6 +204,7 @@
     [btnRegister setTitle:@"立即注册" forState:UIControlStateNormal];
     [btnRegister setTitleColor:[UIColor colorWithHexString:@"#3ECE89"] forState:UIControlStateNormal];
     btnRegister.titleLabel.font = [UIFont systemFontOfSize:12];
+    [btnRegister.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [self addSubview:btnRegister];
     [btnRegister makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.loginBtn.bottom).offset(H(10));
@@ -234,6 +251,11 @@
 - (void)registerClick:(UIButton *)sender
 {
     [_delegate didClickRegister];
+}
+
+- (void)forgotPasswordClick:(UIButton *)sender
+{
+    [_delegate didClickForgotPassword];
 }
 
 - (void)vpnSettingClick:(UIButton *)sender

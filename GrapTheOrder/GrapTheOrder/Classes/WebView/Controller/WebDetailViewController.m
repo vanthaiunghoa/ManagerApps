@@ -23,7 +23,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self.navigationController setNavigationBarHidden:NO];
+    [self.navigationController setNavigationBarHidden:YES];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadWebView) name:LoadWebViewAgain object:nil];
     
     if (_bridge) { return; }
