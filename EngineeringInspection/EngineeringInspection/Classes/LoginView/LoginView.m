@@ -20,70 +20,51 @@
     self = [super init];
     if (!self) return nil;
     
-    UIImageView *bkg = [UIImageView new];
-//    bkg.image = [UIImage imageNamed:@"login_bkg"]; // 大图耗内存
-    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login_bkg"];
-    bkg.image = [UIImage imageWithContentsOfFile:path];
-    [self addSubview:bkg];
-    [bkg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.left.bottom.right.equalTo(self);
+    self.backgroundColor = [UIColor whiteColor];
+    
+    UIView *topView = [UIView new];
+    topView.backgroundColor = [UIColor colorWithRGB:28 green:120 blue:255];
+    [self addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top);
+        make.left.right.equalTo(self);
+        make.height.equalTo(@(H(250)));
     }];
     
     UIImageView *logoIcon = [UIImageView new];
-    logoIcon.image = [UIImage imageNamed:@"logo-company"];
-    [self addSubview:logoIcon];
+    logoIcon.image = [UIImage imageNamed:@"logo"];
+    [topView addSubview:logoIcon];
     [logoIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(@(H(68)));
-        make.width.equalTo(@(W(171)));
-        make.height.equalTo(@(H(54)));
+        make.centerX.equalTo(topView.mas_centerX);
+        make.top.equalTo(topView.mas_top).offset(H(75));
+        make.width.equalTo(@(W(140)));
+        make.height.equalTo(@(H(60.8)));
     }];
     
-    UILabel *company = [UILabel new];
-    company.text = @"万维博通";
-    company.textColor = [UIColor whiteColor];
-//    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
-    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:26];
-    company.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:company];
-    [company mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(logoIcon.mas_bottom).offset(H(11));
-        make.left.right.equalTo(self);
+    CGFloat waveH = 111.0*SCREEN_WIDTH/750.0;
+    UIImageView *wave = [UIImageView new];
+    wave.image = [UIImage imageNamed:@"wave"];
+    [topView addSubview:wave];
+    [wave mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(topView.mas_bottom);
+        make.left.right.equalTo(topView);
+        make.height.equalTo(@(waveH));
     }];
-    
-//    UILabel *titleLab = [UILabel new];
-//    titleLab.text = @"工程数据管理平台";
-//    titleLab.textColor = [UIColor whiteColor];
-//    titleLab.font = [UIFont systemFontOfSize:22];
-//    titleLab.textAlignment = NSTextAlignmentCenter;
-//    [self addSubview:titleLab];
-//    [titleLab makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.centerX);
-//        make.top.equalTo(company.bottom).with.offset(H(20.5));
-//        make.left.right.equalTo(self);
-//    }];
-
-//    UILabel *titleLabEN = [UILabel new];
-//    titleLabEN.text = @"（ EIM ）";
-//    titleLabEN.textColor = [UIColor whiteColor];
-//    titleLabEN.font = [UIFont systemFontOfSize:24];
-//    titleLabEN.textAlignment = NSTextAlignmentCenter;
-//    [self addSubview:titleLabEN];
-//    [titleLabEN makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.centerX);
-//        make.top.equalTo(titleLab.bottom).with.offset(H(7.5));
-//        make.left.right.equalTo(self);
-//    }];
     
     UIView *usernameBkg = [UIView new];
     usernameBkg.backgroundColor = [UIColor whiteColor];
+    
+    [usernameBkg.layer setBorderWidth:2];
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGColorRef colorref = CGColorCreate(colorSpace,(CGFloat[]){ 211.0/255.0, 211.0/255.0, 211.0/255.0, 1 });
+    [usernameBkg.layer setBorderColor:colorref];
+    
     usernameBkg.layer.cornerRadius = 20;
     usernameBkg.clipsToBounds = YES;
     [self addSubview:usernameBkg];
     [usernameBkg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(company.mas_bottom).with.offset(H(50));
+        make.top.equalTo(topView.mas_bottom).with.offset(H(50));
         make.left.equalTo(self).offset(H(30));
         make.right.equalTo(self).offset(H(-30));
         make.height.equalTo(@(H(40)));
@@ -117,6 +98,10 @@
     
     UIView *passwordBkg = [UIView new];
     passwordBkg.backgroundColor = [UIColor whiteColor];
+    
+    [passwordBkg.layer setBorderWidth:2];
+    [passwordBkg.layer setBorderColor:colorref];
+    
     passwordBkg.layer.cornerRadius = 20;
     passwordBkg.clipsToBounds = YES;
     [self addSubview:passwordBkg];
@@ -152,33 +137,33 @@
         make.left.right.width.height.equalTo(self.usernameTextField);
     }];
     
-    self.accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.accountBtn setTitle:@"记住账号" forState:UIControlStateNormal];
-    [self.accountBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.accountBtn setImage:[UIImage imageNamed:@"remember-unselected"] forState:UIControlStateNormal];
-    [self.accountBtn setImage:[UIImage imageNamed:@"remember-selected"] forState:UIControlStateSelected];
-    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:17];
-    self.accountBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
-    [self.accountBtn addTarget:self action:@selector(accountClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.accountBtn];
-    [self.accountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(passwordBkg.mas_left);
-        make.top.equalTo(passwordBkg.mas_bottom).with.offset(H(20));
-    }];
-    
-    self.autoLoginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-    [self.autoLoginBtn setTitle:@"自动登录" forState:UIControlStateNormal];
-    [self.autoLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember-unselected"] forState:UIControlStateNormal];
-    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember-selected"] forState:UIControlStateSelected];
-    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:17];
-    self.autoLoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
-    [self.autoLoginBtn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:self.autoLoginBtn];
-    [self.autoLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.accountBtn.mas_centerY);
-        make.right.equalTo(passwordBkg.mas_right);
-    }];
+//    self.accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.accountBtn setTitle:@"记住账号" forState:UIControlStateNormal];
+//    [self.accountBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [self.accountBtn setImage:[UIImage imageNamed:@"remember-unselected"] forState:UIControlStateNormal];
+//    [self.accountBtn setImage:[UIImage imageNamed:@"remember-selected"] forState:UIControlStateSelected];
+//    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:17];
+//    self.accountBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
+//    [self.accountBtn addTarget:self action:@selector(accountClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:self.accountBtn];
+//    [self.accountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.equalTo(passwordBkg.mas_left);
+//        make.top.equalTo(passwordBkg.mas_bottom).with.offset(H(20));
+//    }];
+//
+//    self.autoLoginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
+//    [self.autoLoginBtn setTitle:@"自动登录" forState:UIControlStateNormal];
+//    [self.autoLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember-unselected"] forState:UIControlStateNormal];
+//    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember-selected"] forState:UIControlStateSelected];
+//    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:17];
+//    self.autoLoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
+//    [self.autoLoginBtn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:self.autoLoginBtn];
+//    [self.autoLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.equalTo(self.accountBtn.mas_centerY);
+//        make.right.equalTo(passwordBkg.mas_right);
+//    }];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginBtn setTitle:@"登  录" forState:UIControlStateNormal];
@@ -187,12 +172,24 @@
     [loginBtn.layer setCornerRadius:20];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:20];
-    [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3ECE89"]] forState:UIControlStateNormal];
+//    [loginBtn setBackgroundColor:[UIColor colorWithRGB:28 green:120 blue:255]];
+    [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:28 green:120 blue:255]] forState:UIControlStateNormal];
     [self addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.mas_centerX);
         make.width.height.equalTo(passwordBkg);
-        make.top.equalTo(self.autoLoginBtn.mas_bottom).with.offset(H(20));
+        make.top.equalTo(passwordBkg.mas_bottom).with.offset(H(30));
+    }];
+    
+    UILabel *labCompany = [UILabel new];
+    [labCompany setText:@"万维博通信息技术有限公司"];
+    [labCompany setTextColor:[UIColor colorWithRGB:98 green:173 blue:249]];
+    [labCompany setFont:[UIFont systemFontOfSize:14]];
+    [labCompany setTextAlignment:NSTextAlignmentCenter];
+    [self addSubview:labCompany];
+    [labCompany mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottom).offset(-20);
+        make.left.right.equalTo(self);
     }];
 
     return self;
@@ -282,9 +279,9 @@
 - (void)reloadData
 {
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    self.passwordTextField.secureTextEntry = YES;
-    self.accountBtn.selected = userModel.isRememberUsername;
-    self.autoLoginBtn.selected = userModel.isAutoLogin;
+//    self.passwordTextField.secureTextEntry = YES;
+//    self.accountBtn.selected = userModel.isRememberUsername;
+//    self.autoLoginBtn.selected = userModel.isAutoLogin;
     
     if(userModel.isLogout)
     {
@@ -294,33 +291,33 @@
     }
     else
     {
-        if(self.autoLoginBtn.isSelected)
-        {
+//        if(self.autoLoginBtn.isSelected)
+//        {
             self.usernameTextField.text = userModel.username;
             self.passwordTextField.text = userModel.password;
-        }
-        else
-        {
-            self.usernameTextField.text = @"";
-            self.passwordTextField.text = @"";
-            if(self.accountBtn.isSelected)
-            {
-                self.usernameTextField.text = userModel.username;
-                self.passwordTextField.text = userModel.password;
-            }
-        }
-        
-        if(0 == self.usernameTextField.text.length)
-        {
-            [self.usernameTextField becomeFirstResponder];
-        }
-        else
-        {
-            if(0 == self.passwordTextField.text.length)
-            {
-                [self.passwordTextField becomeFirstResponder];
-            }
-        }
+//        }
+//        else
+//        {
+//            self.usernameTextField.text = @"";
+//            self.passwordTextField.text = @"";
+//            if(self.accountBtn.isSelected)
+//            {
+//                self.usernameTextField.text = userModel.username;
+//                self.passwordTextField.text = userModel.password;
+//            }
+//        }
+//
+//        if(0 == self.usernameTextField.text.length)
+//        {
+//            [self.usernameTextField becomeFirstResponder];
+//        }
+//        else
+//        {
+//            if(0 == self.passwordTextField.text.length)
+//            {
+//                [self.passwordTextField becomeFirstResponder];
+//            }
+//        }
     }
 }
 

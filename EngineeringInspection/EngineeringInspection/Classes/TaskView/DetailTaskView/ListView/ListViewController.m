@@ -235,6 +235,7 @@ static const CGFloat MJDuration = 2.0;
             break;
         case 1:
             PLog(@"新增");
+            [self.navigationController pushViewController:[NSClassFromString(@"NewIssueViewController") new] animated:YES];
             break;
         default:
             PLog(@"error");

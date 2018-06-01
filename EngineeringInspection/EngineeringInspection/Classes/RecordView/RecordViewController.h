@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface RecordViewController : UIViewController <UIWebViewDelegate>
+@interface RecordViewController : UIViewController 
 
 @end

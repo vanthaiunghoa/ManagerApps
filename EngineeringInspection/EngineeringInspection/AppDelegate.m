@@ -64,7 +64,7 @@
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
     if(userModel == nil)
     {
-        userModel = UserModel.new;
+        userModel = [UserModel new];
         userModel.username = @"";
         userModel.password = @"";
         userModel.status = @"";

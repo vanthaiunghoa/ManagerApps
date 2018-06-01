@@ -8,6 +8,10 @@
 
 #import "SetUpViewController.h"
 #import "HSSetTableViewController.h"
+#import "UserModel.h"
+#import "UserManager.h"
+#import "LoginViewController.h"
+#import "BaseNavigationController.h"
 
 @interface SetUpViewController ()
 
@@ -65,7 +69,16 @@
     }];
     
     HSTitleCellModel *logout = [[HSTitleCellModel alloc] initWithTitle:@"退出登录" actionBlock:^(HSBaseCellModel *model) {
-        HSLog(@"退出登录")
+        UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+        userModel.username = @"";
+        userModel.password = @"";
+        userModel.isAutoLogin = NO;
+        userModel.isLogout = YES;
+        [[UserManager sharedUserManager] saveUserModel:userModel];
+        
+        LoginViewController *vc = [LoginViewController new];
+        BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
+        [UIApplication sharedApplication].keyWindow.rootViewController = nav;
     }];
     logout.showArrow = NO;
     //    about.titleColor = [UIColor redColor];

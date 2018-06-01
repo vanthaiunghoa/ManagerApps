@@ -67,6 +67,14 @@
     {
         arrow.image = [UIImage imageNamed:@"statistics-arrow-up"];
     }
+    
+//    [UIView animateWithDuration:0.3 animations:^{
+//        if (on) {
+//            self.imageView.transform = CGAffineTransformMakeRotation(M_PI);
+//        } else {
+//            self.imageView.transform = CGAffineTransformMakeRotation(0);
+//        }
+//    }];
 
     [headerView addSubview:arrow];
     

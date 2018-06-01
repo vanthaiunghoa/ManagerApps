@@ -1,5 +1,5 @@
 #import <UIKit/UIKit.h>
 
-@interface StatisticsViewController : UIViewController <UIWebViewDelegate>
+@interface StatisticsViewController : UIViewController
 
 @end
