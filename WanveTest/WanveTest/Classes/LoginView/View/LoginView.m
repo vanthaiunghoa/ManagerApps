@@ -43,10 +43,10 @@
 //    }];
 //
     UILabel *company = [UILabel new];
-//    company.text = @"东莞市科学技术局";
+    company.text = @"东莞市科学技术局";
 //    company.text = @"东莞市水务局";
 //    company.text = @"流转系统";
-    company.text = @"东莞市滨海湾新区管委会";
+//    company.text = @"东莞市滨海湾新区管委会";
     company.textColor = [UIColor whiteColor];
     company.font = [UIFont systemFontOfSize:28];
     company.textAlignment = NSTextAlignmentCenter;

@@ -33,12 +33,12 @@ static id _instance;
 //    return @"http://19.104.120.8:80/DMS_Phone";
     
     // 科技局
-//    return @"http://kjjoa.dg/DMS_Phone";
+    return @"http://kjjoa.dg/DMS_Phone";
     // 农业局
 //    return @"http://nyj.dg/DMS_Phone";
 //    return @"http://19.104.9.233:80/DMS_Phone";
     // 滨海湾新区
-    return @"http://19.111.48.16:80/DMS_Phone";
+//    return @"http://19.111.48.16:80/DMS_Phone";
     
     // 智慧政务
 //    return @"http://121.15.203.82:9210/DMS_Phone";

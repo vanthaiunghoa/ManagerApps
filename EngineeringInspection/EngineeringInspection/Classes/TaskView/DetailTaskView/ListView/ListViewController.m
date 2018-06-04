@@ -15,11 +15,11 @@ static const CGFloat MJDuration = 2.0;
 
 @property (nonatomic, strong) UITableView *issueTableView;
 @property (nonatomic, strong) NSMutableArray *modelsArray;
+@property (nonatomic, strong) NSMutableArray *selectedArray;
 @property (nonatomic, assign) NSInteger page;
 @property (nonatomic, strong) UIButton *btnPre;
 @property (nonatomic, strong) UIView *issueView;
 @property (nonatomic, strong) UIView *dispatchView;
-@property (nonatomic, strong) NSMutableArray *cells;
 
 @end
 
@@ -32,8 +32,14 @@ static const CGFloat MJDuration = 2.0;
     
     [self initSegmentControl];
     [self initBottomView];
-    [self setFrostedViewDelegate];
     [self initIssueTableView];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    self.frostedViewController.delegate = self;
 }
 
 #pragma mark - init
@@ -120,21 +126,31 @@ static const CGFloat MJDuration = 2.0;
     }
 }
 
-- (void)setFrostedViewDelegate
-{
-    self.frostedViewController.delegate = self;
-}
-
 - (void)initIssueTableView
 {
     _modelsArray = [NSMutableArray array];
     NSMutableArray *tmp = [NSMutableArray array];
     NSMutableArray *tmp2 = [NSMutableArray array];
+    NSMutableArray *tmp3 = [NSMutableArray array];
     
     for(int i = 0; i < 3; ++i)
     {
         ListModel *model = [ListModel new];
-        model.Title = @"测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        if(0 == i)
+        {
+            model.Title = @"111111111内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        else if(1 == i)
+        {
+            model.Title = @"222222222内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        else
+        {
+            model.Title = @"333333333内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        model.keyForIndex = i;
+        model.isSelected = NO;
+        model.isHidden = YES;
         model.HJ = @"缓急";
         model.SendDate = @"类型类型类型";
         model.WhoGiveName = @"位置位置位置";
@@ -145,7 +161,22 @@ static const CGFloat MJDuration = 2.0;
     for(int i = 0; i < 3; ++i)
     {
         ListModel *model = [ListModel new];
-        model.Title = @"测试内容测试内容测试内容内容测试内容测试内容测试内容222222222222222222";
+        if(0 == i)
+        {
+            model.Title = @"4444444444内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        else if(1 == i)
+        {
+            model.Title = @"5555555555内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        else
+        {
+            model.Title = @"6666666666内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+
+        model.keyForIndex = i+3;
+        model.isSelected = NO;
+        model.isHidden = YES;
         model.HJ = @"缓急2222";
         model.SendDate = @"类型类型类型222";
         model.WhoGiveName = @"位置位置位置222222222";
@@ -153,17 +184,35 @@ static const CGFloat MJDuration = 2.0;
         [tmp2 addObject:model];
     }
     
-    for(int i = 0; i < 10; ++i)
+    for(int i = 0; i < 3; ++i)
     {
-        if(i%2 == 0)
+        ListModel *model = [ListModel new];
+        if(0 == i)
         {
-            [_modelsArray addObject:tmp];
+            model.Title = @"4444444444内容测试内容测试内容测试内容测试内容测试内容测试内容";
+        }
+        else if(1 == i)
+        {
+            model.Title = @"5555555555内容测试内容测试内容测试内容测试内容测试内容测试内容";
         }
         else
         {
-            [_modelsArray addObject:tmp2];
+            model.Title = @"6666666666内容测试内容测试内容测试内容测试内容测试内容测试内容";
         }
+        
+        model.keyForIndex = i+6;
+        model.isSelected = NO;
+        model.isHidden = YES;
+        model.HJ = @"缓急2222";
+        model.SendDate = @"类型类型类型222";
+        model.WhoGiveName = @"位置位置位置222222222";
+        
+        [tmp3 addObject:model];
     }
+    
+    [_modelsArray addObject:tmp];
+    [_modelsArray addObject:tmp2];
+    [_modelsArray addObject:tmp3];
     
     _issueTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 44, SCREEN_WIDTH, self.view.bounds.size.height - 88 - TOP_HEIGHT - 44) style:UITableViewStylePlain];
     [_issueTableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
@@ -251,9 +300,11 @@ static const CGFloat MJDuration = 2.0;
             PLog(@"取消");
             _dispatchView.hidden = YES;
             _issueView.hidden = NO;
+            [self cancelSelectedAll];
             break;
         case 1:
             PLog(@"全选");
+            [self selectedAll];
             break;
         case 2:
             PLog(@"指派负责人");
@@ -286,18 +337,18 @@ static const CGFloat MJDuration = 2.0;
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController willHideMenuViewController:(UIViewController *)menuViewController
 {
-//    NSLog(@"willHideMenuViewController");
-//    FilterViewController *vc = (FilterViewController *)menuViewController;
-//    NSInteger num = vc.huge;
-//    NSLog(@"num == %ld", num);
+    NSLog(@"willHideMenuViewController");
+    FilterViewController *vc = (FilterViewController *)menuViewController;
+    NSInteger num = vc.huge;
+    NSLog(@"list num == %ld", num);
 }
 
 - (void)frostedViewController:(REFrostedViewController *)frostedViewController didHideMenuViewController:(UIViewController *)menuViewController
 {
-//    NSLog(@"didHideMenuViewController");
-//    FilterViewController *vc = (FilterViewController *)menuViewController;
-//    NSInteger num = vc.num;
-//    NSLog(@"num == %ld", num);
+    NSLog(@"didHideMenuViewController");
+    FilterViewController *vc = (FilterViewController *)menuViewController;
+    NSInteger num = vc.num;
+    NSLog(@"list num == %ld", num);
 }
 
 #pragma mark - 示例代码
@@ -458,7 +509,7 @@ static const CGFloat MJDuration = 2.0;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 5;
+    return self.modelsArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -499,13 +550,26 @@ static const CGFloat MJDuration = 2.0;
 {
     ListModel *model = self.modelsArray[indexPath.section][indexPath.row];
     ListCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ListCell class])];
+    
+    [cell cellSelectedWithBlock:^(ListModel *model) {
+        
+        if(model.isSelected)
+        {
+            [self.selectedArray addObject:model];
+        }else
+        {
+            [self.selectedArray removeObject:model];
+        }
+        
+        [self replaceModel:model];
+    }];
+    
     cell.model = model;
     ////// 此步设置用于实现cell的frame缓存，可以让tableview滑动更加流畅 //////
     
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     ///////////////////////////////////////////////////////////////////////
-    [self.cells addObject:cell];
     
     return cell;
 }
@@ -520,15 +584,62 @@ static const CGFloat MJDuration = 2.0;
     return @"2018-08-08 08:08:08";
 }
 
+#pragma mark - private
+
+- (void)replaceModel:(ListModel *)selectedModel
+{
+    for(int i = 0; i < self.modelsArray.count; ++i)
+    {
+        for(int j = 0; j < [self.modelsArray[i] count]; ++j)
+        {
+            ListModel *model = self.modelsArray[i][j];
+            if(selectedModel.keyForIndex == model.keyForIndex)
+            {
+                self.modelsArray[i][j] = selectedModel;
+                break;
+            }
+        }
+    }
+}
+
+- (void)selectedAll
+{
+    [self.selectedArray removeAllObjects];
+    for(int i = 0; i < self.modelsArray.count; ++i)
+    {
+        for(ListModel *model in self.modelsArray[i])
+        {
+            model.isSelected = YES;
+            model.isHidden = NO;
+            [self.selectedArray addObject:model];
+        }
+    }
+    [_issueTableView reloadData];
+}
+
+- (void)cancelSelectedAll
+{
+    [self.selectedArray removeAllObjects];
+    for(int i = 0; i < self.modelsArray.count; ++i)
+    {
+        for(ListModel *model in self.modelsArray[i])
+        {
+            model.isSelected = NO;
+            model.isHidden = YES;
+        }
+    }
+    [_issueTableView reloadData];
+}
+
 #pragma mark - lazy load
 
-- (NSMutableArray *)cells
+- (NSMutableArray *)selectedArray
 {
-    if(_cells == nil)
+    if(_selectedArray == nil)
     {
-        _cells = [NSMutableArray array];
+        _selectedArray = [NSMutableArray array];
     }
-    return _cells;
+    return _selectedArray;
 }
 
 @end

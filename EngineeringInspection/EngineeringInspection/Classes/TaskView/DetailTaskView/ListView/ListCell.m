@@ -4,6 +4,8 @@
 
 @implementation ListCell
 {
+    CellSelectedBlock cellSelectedBlock;
+    
     UIButton *_select;
     UILabel *_position;
     UILabel *_content;
@@ -162,6 +164,8 @@
     _content.text = model.Title;
     _type.text = model.SendDate;
     _position.text = model.WhoGiveName;
+    _select.selected = model.isSelected;
+    _select.hidden = model.isHidden;
     
 //    _imageView.image = [UIImage imageNamed:model.imagePathsArray.firstObject];
 }
@@ -175,13 +179,25 @@
     [super setFrame:frame];
 }
 
+- (void)cellSelectedWithBlock:(CellSelectedBlock)block
+{
+    cellSelectedBlock = block;
+}
+
 #pragma mark - clicked
 
 - (void)selectClicked:(UIButton *)sender
 {
     sender.selected = !sender.selected;
-    [_delegate didSelectClicked:_model selected:sender.isSelected];
+    _model.isSelected = sender.selected;
+//    [_delegate didSelectClicked:_model selected:sender.isSelected];
+    if(cellSelectedBlock)
+    {
+        cellSelectedBlock(_model);
+    }
 }
+
+
 
 @end
 

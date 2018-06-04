@@ -17,6 +17,9 @@
 		E81AAE2B20B3ABA00091E434 /* SetUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E81AAE2920B3ABA00091E434 /* SetUpViewController.m */; };
 		E81AAE3020B3B86F0091E434 /* TaskModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E81AAE2D20B3B86F0091E434 /* TaskModel.m */; };
 		E81AAE3120B3B86F0091E434 /* TaskCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E81AAE2E20B3B86F0091E434 /* TaskCell.m */; };
+		E82EDD4D20C50F61007A990E /* InspectionItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E82EDD4920C50F61007A990E /* InspectionItemViewController.m */; };
+		E82EDD4E20C50F61007A990E /* InspectionItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E82EDD4A20C50F61007A990E /* InspectionItemModel.m */; };
+		E82EDD5120C51C6A007A990E /* InspectionItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E82EDD4F20C51C6A007A990E /* InspectionItemCell.m */; };
 		E83B53B420BBB735003FF9EA /* filter.plist in Resources */ = {isa = PBXBuildFile; fileRef = E83B53B320BBB734003FF9EA /* filter.plist */; };
 		E8789DB520AC04450084847F /* login_bkg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8789DB220AC04450084847F /* login_bkg@3x.png */; };
 		E8789DB620AC04450084847F /* login_bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8789DB320AC04450084847F /* login_bkg@2x.png */; };
@@ -94,6 +97,12 @@
 		E81AAE2D20B3B86F0091E434 /* TaskModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskModel.m; sourceTree = "<group>"; };
 		E81AAE2E20B3B86F0091E434 /* TaskCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCell.m; sourceTree = "<group>"; };
 		E81AAE2F20B3B86F0091E434 /* TaskModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskModel.h; sourceTree = "<group>"; };
+		E82EDD4620C50F61007A990E /* InspectionItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionItemViewController.h; sourceTree = "<group>"; };
+		E82EDD4820C50F61007A990E /* InspectionItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionItemModel.h; sourceTree = "<group>"; };
+		E82EDD4920C50F61007A990E /* InspectionItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionItemViewController.m; sourceTree = "<group>"; };
+		E82EDD4A20C50F61007A990E /* InspectionItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionItemModel.m; sourceTree = "<group>"; };
+		E82EDD4F20C51C6A007A990E /* InspectionItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InspectionItemCell.m; sourceTree = "<group>"; };
+		E82EDD5020C51C6A007A990E /* InspectionItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InspectionItemCell.h; sourceTree = "<group>"; };
 		E83B53B320BBB734003FF9EA /* filter.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = filter.plist; sourceTree = "<group>"; };
 		E8789DB220AC04450084847F /* login_bkg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bkg@3x.png"; sourceTree = "<group>"; };
 		E8789DB320AC04450084847F /* login_bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_bkg@2x.png"; sourceTree = "<group>"; };
@@ -245,6 +254,19 @@
 				E8060C3B20BFE2A400C41090 /* Localizable.strings */,
 			);
 			path = "zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
+		E82EDD4520C50F61007A990E /* InspectionItemView */ = {
+			isa = PBXGroup;
+			children = (
+				E82EDD5020C51C6A007A990E /* InspectionItemCell.h */,
+				E82EDD4F20C51C6A007A990E /* InspectionItemCell.m */,
+				E82EDD4620C50F61007A990E /* InspectionItemViewController.h */,
+				E82EDD4920C50F61007A990E /* InspectionItemViewController.m */,
+				E82EDD4820C50F61007A990E /* InspectionItemModel.h */,
+				E82EDD4A20C50F61007A990E /* InspectionItemModel.m */,
+			);
+			path = InspectionItemView;
 			sourceTree = "<group>";
 		};
 		E8789DB020AC04450084847F /* Resources */ = {
@@ -472,6 +494,7 @@
 		E8CC32DC20B504E5000EC4F0 /* DetailTaskView */ = {
 			isa = PBXGroup;
 			children = (
+				E82EDD4520C50F61007A990E /* InspectionItemView */,
 				E8060C2920BF7FD600C41090 /* FilterView */,
 				E8060C3020BF7FD600C41090 /* NewIssueView */,
 				E8CC32E020B54345000EC4F0 /* ListView */,
@@ -719,6 +742,7 @@
 			files = (
 				E8CC32E820B54346000EC4F0 /* ListViewController.m in Sources */,
 				E8CC32DF20B504E5000EC4F0 /* DetailTaskViewController.m in Sources */,
+				E82EDD5120C51C6A007A990E /* InspectionItemCell.m in Sources */,
 				E8CC32E720B54346000EC4F0 /* ListCell.m in Sources */,
 				E8FA422620BE9081006A01BD /* TrackCell.m in Sources */,
 				E8AB584520ABC53F00FF2882 /* AppDelegate.m in Sources */,
@@ -734,6 +758,7 @@
 				E8AB583D20ABC53F00FF2882 /* UserManager.m in Sources */,
 				E8FA421C20BE54B3006A01BD /* SchemaModel.m in Sources */,
 				E8FA41F420BE34D7006A01BD /* StatisticsCell.m in Sources */,
+				E82EDD4D20C50F61007A990E /* InspectionItemViewController.m in Sources */,
 				E8AB583C20ABC53F00FF2882 /* BaseNavigationController.m in Sources */,
 				E8AB583620ABC53F00FF2882 /* StatisticsViewController.m in Sources */,
 				E8FA421B20BE54B3006A01BD /* SchemaCell.m in Sources */,
@@ -755,6 +780,7 @@
 				E8FA422520BE9081006A01BD /* TrackViewController.m in Sources */,
 				E8AB583A20ABC53F00FF2882 /* NSString+extension.m in Sources */,
 				E8060C3420BF7FD600C41090 /* ClassifyView.m in Sources */,
+				E82EDD4E20C50F61007A990E /* InspectionItemModel.m in Sources */,
 				E8AB583F20ABC53F00FF2882 /* KxMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

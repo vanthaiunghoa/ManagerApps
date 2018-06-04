@@ -246,7 +246,7 @@
 
 - (void)loginClick:(UIButton *)sender
 {
-    if([self isValid])
+//    if([self isValid])
     {
         [_delegate didLoginWithUserName:self.usernameTextField.text AndPassWord:self.passwordTextField.text];
     }

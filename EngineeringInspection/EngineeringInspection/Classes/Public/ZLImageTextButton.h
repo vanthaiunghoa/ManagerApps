@@ -17,8 +17,8 @@ typedef enum {
 
 #define ImageTextDistance   3
 
-#define ImageWidth  13
-#define ImageHeight 10
+#define ImageWidth  10
+#define ImageHeight 7.7
 
 #define ZLFontSize 16
 

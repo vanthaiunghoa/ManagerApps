@@ -1668,10 +1668,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WanveTest/Classes/ThirdPartyLibs/VPN",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.bhwxq;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.kjjoa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "07453230-21dd-4565-9b8d-9047dc86bbdb";
-				PROVISIONING_PROFILE_SPECIFIER = "bhwxq-dev";
+				PROVISIONING_PROFILE = "389a6823-8d41-4b64-b327-589670e922ba";
+				PROVISIONING_PROFILE_SPECIFIER = "kjjoa-dev";
 			};
 			name = Debug;
 		};
@@ -1693,10 +1693,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WanveTest/Classes/ThirdPartyLibs/VPN",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.bhwxq;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.kjjoa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ef701d5-88e6-433e-b775-653e87d8ef1c";
-				PROVISIONING_PROFILE_SPECIFIER = "bhwxq-dis";
+				PROVISIONING_PROFILE = "0aca383c-79fb-4ab3-837d-2920362b3697";
+				PROVISIONING_PROFILE_SPECIFIER = "kjjoa-dis";
 			};
 			name = Release;
 		};
