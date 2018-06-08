@@ -7,7 +7,7 @@
 #import <FTPopOverMenu.h>
 #import "TaskCell.h"
 #import "TaskModel.h"
-#import "DetailTaskViewController.h"
+#import "TaskDetailViewController.h"
 #import "UIColor+color.h"
 
 @interface TaskViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -140,7 +140,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    DetailTaskViewController *vc = [[DetailTaskViewController alloc] init];
+    TaskDetailViewController *vc = [[TaskDetailViewController alloc] init];
     vc.selectIndex = 1;
 //    vc.title = key;
     vc.menuViewStyle = WMMenuViewStyleLine;

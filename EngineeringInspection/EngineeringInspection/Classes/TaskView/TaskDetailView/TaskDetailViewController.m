@@ -1,4 +1,4 @@
-#import "DetailTaskViewController.h"
+#import "TaskDetailViewController.h"
 #import "ListViewController.h"
 #import "InspectionItemViewController.h"
 #import "UIColor+color.h"
@@ -6,13 +6,13 @@
 #import "NSString+extension.h"
 #import <FTPopOverMenu.h>
 
-@interface DetailTaskViewController ()
+@interface TaskDetailViewController ()
 
 @property (nonatomic, strong) ZLImageTextButton *btnRegion;
 
 @end
 
-@implementation DetailTaskViewController
+@implementation TaskDetailViewController
 
 - (void)viewDidLoad
 {

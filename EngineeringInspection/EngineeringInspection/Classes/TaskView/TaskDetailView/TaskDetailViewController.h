@@ -1,0 +1,4 @@
+
+@interface TaskDetailViewController : WMPageController
+
+@end
