@@ -1156,7 +1156,6 @@
 				E873BF811FB135B000C122AA /* Sources */,
 				E873BF821FB135B000C122AA /* Frameworks */,
 				E873BF831FB135B000C122AA /* Resources */,
-				153B5EC5F61EC85FCA9E0C9F /* [CP] Embed Pods Frameworks */,
 				2D9BB494E752A81B232C36CA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -1380,21 +1379,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		153B5EC5F61EC85FCA9E0C9F /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-WanveTest/Pods-WanveTest-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2D9BB494E752A81B232C36CA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1408,7 +1392,9 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1668,10 +1654,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WanveTest/Classes/ThirdPartyLibs/VPN",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.kjjoa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.swjoa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "389a6823-8d41-4b64-b327-589670e922ba";
-				PROVISIONING_PROFILE_SPECIFIER = "kjjoa-dev";
+				PROVISIONING_PROFILE = "f2b220d8-81f0-4fdb-9ed7-65db162dd69c";
+				PROVISIONING_PROFILE_SPECIFIER = "swjoa-dev";
 			};
 			name = Debug;
 		};
@@ -1693,10 +1679,10 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/WanveTest/Classes/ThirdPartyLibs/VPN",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.kjjoa;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.swjoa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "0aca383c-79fb-4ab3-837d-2920362b3697";
-				PROVISIONING_PROFILE_SPECIFIER = "kjjoa-dis";
+				PROVISIONING_PROFILE = "c971b046-5d9f-49e5-b2b9-17024a99c5f8";
+				PROVISIONING_PROFILE_SPECIFIER = "swjoa-dis";
 			};
 			name = Release;
 		};

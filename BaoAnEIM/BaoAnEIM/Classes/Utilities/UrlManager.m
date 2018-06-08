@@ -48,7 +48,9 @@ static id _instance;
     // 北京房地置业
 //    return @"P5a6ahvUcIBrnh6M1/cfoH3tezVohAV6zZxNqIrkIQCI6MehPDBJSMBTYltTRVocZv5+PgDkyIw=";
     // 北京天运房地产
-    return @"dySAs+Yf0csjYgKunsi84GjwENwW+ktGCR2hf/JvL8rdPVeEXnaDKG7zEES/2/8ZQMgBgfcukIo=";
+//    return @"dySAs+Yf0csjYgKunsi84GjwENwW+ktGCR2hf/JvL8rdPVeEXnaDKG7zEES/2/8ZQMgBgfcukIo=";
+    // 松山湖工程管理局工程数据管理平台
+    return @"jSR1XXg886K4S0P79d4yZxtd21xaGJf79CnZFYP38LPZt8bBoeyOBs25nHg2Xt6hy4D6WwjRXOA=";
 }
 
 - (NSString *)getSPID
@@ -80,7 +82,9 @@ static id _instance;
     // 北京房地置业
 //    return @"http://202.104.110.143:8006";
     // 北京天运房地产
-    return @"http://121.15.203.82:9810";
+//    return @"http://121.15.203.82:9810";
+    // 松山湖工程管理局
+    return @"http://202.104.110.143:8008";
 }
 
 - (NSString *)getLoginUrl

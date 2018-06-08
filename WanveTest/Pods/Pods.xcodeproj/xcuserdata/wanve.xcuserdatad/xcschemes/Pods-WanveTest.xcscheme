@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '36C9863EB71A960541462E2FC9D5700A'
-               BlueprintName = 'Pods-WanveTest'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libPods-WanveTest.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4864BBBB21C4BBDFBEA60507EB5E0BDA"
+               BlueprintName = "Pods-WanveTest"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libPods-WanveTest.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

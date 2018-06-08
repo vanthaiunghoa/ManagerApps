@@ -23,13 +23,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = TITLE;
+//    self.navigationItem.title = TITLE;
+    [self setTitle];
+    
     // 盐田
     self.openType = @"pro_oicinfo";
     [self setupNavBtn];
     
     [self loginWebService];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadHomeViewAgain" object:nil];
+}
+
+- (void)setTitle
+{
+    NSString *title = TITLE;
+    UILabel *labTitle = [UILabel new];
+    [labTitle setText:title];
+    [labTitle setFont:[UIFont systemFontOfSize:16]];
+    self.navigationItem.titleView = labTitle;
 }
 
 - (void)handleNotification

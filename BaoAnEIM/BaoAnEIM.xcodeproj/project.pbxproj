@@ -286,14 +286,14 @@
 		E877B8491FFF5A730091587B /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				E877B84F1FFF5A730091587B /* UIColor+color.h */,
 				E877B84A1FFF5A730091587B /* UIColor+color.m */,
 				E877B84B1FFF5A730091587B /* NSString+extension.h */,
-				E877B84C1FFF5A730091587B /* UIImage+image.m */,
-				E877B84D1FFF5A730091587B /* UIFont+runtime.m */,
 				E877B84E1FFF5A730091587B /* NSString+extension.m */,
-				E877B84F1FFF5A730091587B /* UIColor+color.h */,
 				E877B8501FFF5A730091587B /* UIImage+image.h */,
+				E877B84C1FFF5A730091587B /* UIImage+image.m */,
 				E877B8511FFF5A730091587B /* UIFont+runtime.h */,
+				E877B84D1FFF5A730091587B /* UIFont+runtime.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -789,10 +789,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.bjtyfdc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.sshgcj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "58daf386-51b2-4f15-bbb9-1298a2cbc93d";
-				PROVISIONING_PROFILE_SPECIFIER = "bjtyfdc-dev";
+				PROVISIONING_PROFILE = "425a24b5-e833-4ed2-9ce9-4b38a28ab855";
+				PROVISIONING_PROFILE_SPECIFIER = "sshgcj-dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -811,10 +811,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.bjtyfdc;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.sshgcj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "909ed30a-e727-40d7-abad-91cf4f413cf9";
-				PROVISIONING_PROFILE_SPECIFIER = bjtyfdc;
+				PROVISIONING_PROFILE = "77490827-22ad-4f5d-b305-57a95ba576b9";
+				PROVISIONING_PROFILE_SPECIFIER = "sshgcj-dis";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -24,13 +24,23 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.navigationItem.title = TITLE;
+//    self.navigationItem.title = TITLE;
+    [self setTitle];
     
     [self setupNavBtn];
     self.openType = @"baidumap";
     // 勤智资本
 //    self.openType = @"capital_index";
     [self loginWebService];
+}
+
+- (void)setTitle
+{
+    NSString *title = TITLE;
+    UILabel *labTitle = [UILabel new];
+    [labTitle setText:title];
+    [labTitle setFont:[UIFont systemFontOfSize:16]];
+    self.navigationItem.titleView = labTitle;
 }
 
 - (void)loginWebService

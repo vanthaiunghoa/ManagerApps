@@ -38,7 +38,8 @@
 //    logoIcon.image = [UIImage imageNamed:@"logo-lhgwj"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-szswjt"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-bjfdzy"];
-    logoIcon.image = [UIImage imageNamed:@"logo-bjtyfdc"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-bjtyfdc"];
+    logoIcon.image = [UIImage imageNamed:@"logo-sshgcj"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
@@ -65,7 +66,10 @@
 //        make.width.equalTo(@(W(56.2)));
 //        make.height.equalTo(@(H(60)));
         // 北京天运房地产
-        make.width.equalTo(@(W(60)));
+//        make.width.equalTo(@(W(60)));
+//        make.height.equalTo(@(H(60)));
+        // 松山湖工程管理局工程数据管理平台
+        make.width.equalTo(@(W(120)));
         make.height.equalTo(@(H(60)));
 
     }];
@@ -79,7 +83,8 @@
 //    company.text = @"龙华工务局工程数据管理平台";
 //    company.text = @"深圳水务集团工程数据管理平台";
 //    company.text = @"北京房地置业";
-    company.text = @"北京天运房地产";
+//    company.text = @"北京天运房地产";
+    company.text = @"松山湖工程管理局";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
     company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:26];

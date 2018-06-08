@@ -30,10 +30,10 @@ static id _instance;
 - (NSString *)getBaseUrl
 {
     //  水务局
-//    return @"http://19.104.120.8:80/DMS_Phone";
+    return @"http://19.104.120.8:80/DMS_Phone";
     
     // 科技局
-    return @"http://kjjoa.dg/DMS_Phone";
+//    return @"http://kjjoa.dg/DMS_Phone";
     // 农业局
 //    return @"http://nyj.dg/DMS_Phone";
 //    return @"http://19.104.9.233:80/DMS_Phone";

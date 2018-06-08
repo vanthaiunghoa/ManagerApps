@@ -23,11 +23,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationItem.title = TITLE;
+//    self.navigationItem.title = TITLE;
+    [self setTitle];
     
     [self setupNavBtn];
     self.openType = @"zszx_nbzl";
     [self loginWebService];
+}
+
+- (void)setTitle
+{
+    NSString *title = TITLE;
+    UILabel *labTitle = [UILabel new];
+    [labTitle setText:title];
+    [labTitle setFont:[UIFont systemFontOfSize:16]];
+    self.navigationItem.titleView = labTitle;
 }
 
 - (void)loginWebService

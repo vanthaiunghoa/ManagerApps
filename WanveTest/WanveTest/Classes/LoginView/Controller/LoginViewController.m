@@ -11,8 +11,10 @@
 //#import "AXWebViewController.h"
 //#import "RxWebViewController.h"
 #import "SVWebViewController.h"
+#import <SKPSMTPMessage.h>
+#import <NSData+Base64Additions.h>
 
-@interface LoginViewController ()<LoginViewDelegate>
+@interface LoginViewController ()<LoginViewDelegate, SKPSMTPMessageDelegate>
 
 @property (nonatomic, strong) LoginView *loginView;
 @property (nonatomic, assign) BOOL isStartVPN;
@@ -156,6 +158,8 @@
     int error = manager.errorCode;
     PLog(@"<handleVPNMessage> %@, errorcode: %d",message,[VPNManager sharedVPNManager].errorCode);
     
+    NSString *mes = nil;
+    
     if (message.code == VPN_CB_CONNECTED)
     {
         PLog(@"VPN登录成功");
@@ -163,13 +167,15 @@
         self.isYetVPNLoginSuccess = YES;
 //        [self login];
         // vpn登录使用
-        [self loginOrigin];
+//        [self loginOrigin];
+        mes = @"vpn登陆成功";
     }
     else if (message.code == VPN_CB_DISCONNECTED)
     {
         self.view.userInteractionEnabled = YES;
         PLog(@"VPN连接失败");
         [SVProgressHUD showInfoWithStatus:@"MotionProFgo disconnected"];
+        mes = @"MotionProFgo disconnected";
     }
     else if (message.code == VPN_CB_CONN_FAILED)
     {
@@ -220,6 +226,7 @@
         aMessage  = [NSString stringWithFormat:@"VPN %@",aMessage];
         PLog(@"%@", aMessage);
         [SVProgressHUD showInfoWithStatus:aMessage];
+        mes = aMessage;
     }
     else if (message.code == VPN_CB_DEVID_REG)
     {
@@ -230,6 +237,7 @@
 //                          cancelButtonTitle:@"OK"
 //                          otherButtonTitles:nil, nil] show];
         [SVProgressHUD showInfoWithStatus:@"Your device has not been registered, please register it first"];
+        mes = @"Your device has not been registered, please register it first";
     }
     else if (message.code == VPN_CB_LOGIN)
     {
@@ -245,11 +253,45 @@
 //        }
         //when the login account wrong and try count less max count, or register succeful and redirct to login again or the register wrong.
         [SVProgressHUD showInfoWithStatus:@"Login failed, please check vpn username and password"];
+        mes = @"Login failed, please check vpn username and password";
     }
     else
     {
         self.view.userInteractionEnabled = YES;
+        mes = @"未知错误";
     }
+    
+    if(mes)
+    {
+        [self sendEmail:mes];
+    }
+}
+
+- (void)sendEmail:(NSString *)mes
+{
+    //设置基本参数：
+    SKPSMTPMessage *mail = [[SKPSMTPMessage alloc] init];
+    [mail setSubject:@"vpn错误信息"]; // 设置邮件主题
+    [mail setToEmail:@"2575551606@qq.com"]; // 目标邮箱
+    [mail setFromEmail:@"541062603@qq.com"]; // 发送者邮箱
+    [mail setRelayHost:@"smtp.qq.com"]; // 发送邮件代理服务器
+    [mail setRequiresAuth:YES];
+    [mail setLogin:@"541062603@qq.com"]; // 发送者邮箱账号
+    [mail setPass:@"-wbm563-"]; // 发送者邮箱密码
+    [mail setWantsSecure:YES]; // 需要加密
+    [mail setDelegate:self];
+    //设置邮件正文内容：
+//    NSString *content = [NSString stringWithCString:"测试内容" encoding:NSUTF8StringEncoding];
+    NSDictionary *plainPart = @{kSKPSMTPPartContentTypeKey : @"text/plain; charset=UTF-8", kSKPSMTPPartMessageKey : mes, kSKPSMTPPartContentTransferEncodingKey : @"8bit"};
+    //添加附件（以下代码可在SKPSMTPMessage库的DMEO里找到）：
+//    NSString *vcfPath = [[NSBundle mainBundle] pathForResource:@"EmptyPDF" ofType:@"pdf"];
+//    NSData *vcfData = [NSData dataWithContentsOfFile:vcfPath];
+//    NSDictionary *vcfPart = [NSDictionary dictionaryWithObjectsAndKeys:@"text/directory;\r\n\tx-unix-mode=0644;\r\n\tname=\"EmptyPDF.pdf\"",kSKPSMTPPartContentTypeKey, @"attachment;\r\n\tfilename=\"EmptyPDF.pdf\"",kSKPSMTPPartContentDispositionKey,[vcfData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
+    //执行发送邮件代码
+    [mail setParts:@[plainPart]]; // 邮件首部字段、邮件内容格式和传输编码
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [mail send];
+    });
 }
 
 - (void)didClickVPNSettingBtn
@@ -376,5 +418,17 @@
         }
     }];
 }
+
+#pragma mark - SKPSMTPMessageDelegate
+
+-(void)messageSent:(SKPSMTPMessage *)message{
+    [SVProgressHUD showInfoWithStatus:@"发送email成功"];
+    PLog(@"%@", message);
+}
+-(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error{
+    [SVProgressHUD showInfoWithStatus:@"发送email失败"];
+    PLog(@"message - %@\nerror - %@", message, error);
+}
+
 
 @end
