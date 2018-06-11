@@ -30,7 +30,7 @@ static id _instance;
 - (NSString *)getBaseUrl
 {
     //  水务局
-    return @"http://19.104.120.8:80/DMS_Phone";
+//    return @"http://19.104.120.8:80/DMS_Phone";
     
     // 科技局
 //    return @"http://kjjoa.dg/DMS_Phone";
@@ -41,7 +41,7 @@ static id _instance;
 //    return @"http://19.111.48.16:80/DMS_Phone";
     
     // 智慧政务
-//    return @"http://121.15.203.82:9210/DMS_Phone";
+    return @"http://121.15.203.82:9210/DMS_Phone";
 }
 
 - (NSString *)getLoginUrl

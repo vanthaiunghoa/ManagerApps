@@ -23,6 +23,8 @@
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *password;
 
+@property (nonatomic, assign) BOOL isSend;
+
 @end
 
 @implementation LoginViewController
@@ -34,6 +36,8 @@
     self.isStartVPN = NO;
     self.isLoadOnceData = YES;
     self.isYetVPNLoginSuccess = NO;
+    
+    _isSend = NO;
 }
 
 - (void)loadView
@@ -156,9 +160,7 @@
 {
     VPNManager *manager = [VPNManager sharedVPNManager];
     int error = manager.errorCode;
-    PLog(@"<handleVPNMessage> %@, errorcode: %d",message,[VPNManager sharedVPNManager].errorCode);
-    
-    NSString *mes = nil;
+    PLog(@"<handleVPNMessage> %@, errorcode: %ld",message,message.code);
     
     if (message.code == VPN_CB_CONNECTED)
     {
@@ -167,15 +169,14 @@
         self.isYetVPNLoginSuccess = YES;
 //        [self login];
         // vpn登录使用
-//        [self loginOrigin];
-        mes = @"vpn登陆成功";
+        [self loginOrigin];
     }
     else if (message.code == VPN_CB_DISCONNECTED)
     {
         self.view.userInteractionEnabled = YES;
         PLog(@"VPN连接失败");
-        [SVProgressHUD showInfoWithStatus:@"MotionProFgo disconnected"];
-        mes = @"MotionProFgo disconnected";
+//        [SVProgressHUD showInfoWithStatus:@"MotionProFgo disconnected"];
+        [SVProgressHUD showInfoWithStatus:@"MotionProFgo失去连接"];
     }
     else if (message.code == VPN_CB_CONN_FAILED)
     {
@@ -184,49 +185,60 @@
         switch (error)
         {
             case ERR_DEVID_APPROVE_PENDING:
-                aMessage = NSLocalizedString(@"Your device is registering, please request manager approval",nil);
+//                aMessage = NSLocalizedString(@"Your device is registering, please request manager approval",nil);
+                aMessage = @"您的设备正在注册，请请求管理员批准";
                 break;
             case ERR_DEVID_APPROVE_DENY:
-                aMessage = NSLocalizedString(@"Register device deny, not allow register device auto approve",nil);
+//                aMessage = NSLocalizedString(@"Register device deny, not allow register device auto approve",nil);
+                aMessage = @"注册设备拒绝，不允许注册设备自动批准";
                 break;
             case ERR_DEVID_USER_LIMIT:
-                aMessage = NSLocalizedString(@"User for this device has reached his or her limit",nil);
+//                aMessage = NSLocalizedString(@"User for this device has reached his or her limit",nil);
+                aMessage = @"此设备的用户已达到他或她的极限";
                 break;
             case ERR_DEVID_DEV_LIMIT:
-                aMessage = NSLocalizedString(@"Device has reached its limit",nil);
+//                aMessage = NSLocalizedString(@"Device has reached its limit",nil);
+                aMessage = @"设备已达到极限";
                 break;
             case ERR_WRONG_USER_PASS:
-                aMessage = NSLocalizedString(@"Login failed, please check username and password",nil);
+//                aMessage = NSLocalizedString(@"Login failed, please check username and password",nil);
+                aMessage = @"登录失败，请检查用户名和密码";
                 break;
             case ERR_CALLBACK_FAILED:
+                aMessage = @"回调失败";
                 break;
             case ERR_CERT_NO:
-                aMessage = NSLocalizedString(@"Please select a certificate", nil);
+//                aMessage = NSLocalizedString(@"Please select a certificate", nil);
+                aMessage = @"请选择证书";
                 break;
             case ERR_CERT_INVALID_SIGNTURE:
-                aMessage = NSLocalizedString(@"The certificate of client has an invalid signature", nil);
+//                aMessage = NSLocalizedString(@"The certificate of client has an invalid signature", nil);
                 break;
             case ERR_CERT_UNTRUSTED:
-                aMessage = NSLocalizedString(@"The certificate of client is untrusted", nil);
+//                aMessage = NSLocalizedString(@"The certificate of client is untrusted", nil);
+                aMessage = @"客户证书具有无效签名";
                 break;
             case ERR_CERT_EXPIRED:
-                aMessage = NSLocalizedString(@"The certificate of client is expired", nil);
+//                aMessage = NSLocalizedString(@"The certificate of client is expired", nil);
+                aMessage = @"客户证书到期";
                 break;
             case ERR_CERT_INVALID:
-                aMessage = NSLocalizedString(@"The certificate of client is invalid", nil);
+//                aMessage = NSLocalizedString(@"The certificate of client is invalid", nil);
+                aMessage = @"客户证书无效";
                 break;
             case ERR_CERT_REVOKED:
-                aMessage = NSLocalizedString(@"The certificate of client is revoked", nil);
+//                aMessage = NSLocalizedString(@"The certificate of client is revoked", nil);
+                aMessage = @"客户证书被吊销";
                 break;
             default:
-                aMessage = NSLocalizedString(@"Connection to server failed",nil);
+//                aMessage = NSLocalizedString(@"Connection to server failed",nil);
+                aMessage = @"连接到服务器失败";
                 break;
         }
         
-        aMessage  = [NSString stringWithFormat:@"VPN %@",aMessage];
+        aMessage  = [NSString stringWithFormat:@"VPN：%@",aMessage];
         PLog(@"%@", aMessage);
         [SVProgressHUD showInfoWithStatus:aMessage];
-        mes = aMessage;
     }
     else if (message.code == VPN_CB_DEVID_REG)
     {
@@ -236,8 +248,7 @@
 //                                   delegate:nil
 //                          cancelButtonTitle:@"OK"
 //                          otherButtonTitles:nil, nil] show];
-        [SVProgressHUD showInfoWithStatus:@"Your device has not been registered, please register it first"];
-        mes = @"Your device has not been registered, please register it first";
+        [SVProgressHUD showInfoWithStatus:@"VPN：您的设备尚未注册，请先注册"];
     }
     else if (message.code == VPN_CB_LOGIN)
     {
@@ -252,46 +263,82 @@
 //            [alert show];
 //        }
         //when the login account wrong and try count less max count, or register succeful and redirct to login again or the register wrong.
-        [SVProgressHUD showInfoWithStatus:@"Login failed, please check vpn username and password"];
-        mes = @"Login failed, please check vpn username and password";
+        [SVProgressHUD showInfoWithStatus:@"VPN：登录失败，请检查用户名和密码"];
     }
     else
     {
         self.view.userInteractionEnabled = YES;
-        mes = @"未知错误";
-    }
-    
-    if(mes)
-    {
-        [self sendEmail:mes];
+        NSString *mes = [NSString stringWithFormat:@"VPN：未知错误，错误码：%ld", message.code];
+        [SVProgressHUD showInfoWithStatus:mes];
     }
 }
 
 - (void)sendEmail:(NSString *)mes
 {
-    //设置基本参数：
-    SKPSMTPMessage *mail = [[SKPSMTPMessage alloc] init];
-    [mail setSubject:@"vpn错误信息"]; // 设置邮件主题
-    [mail setToEmail:@"2575551606@qq.com"]; // 目标邮箱
-    [mail setFromEmail:@"541062603@qq.com"]; // 发送者邮箱
-    [mail setRelayHost:@"smtp.qq.com"]; // 发送邮件代理服务器
-    [mail setRequiresAuth:YES];
-    [mail setLogin:@"541062603@qq.com"]; // 发送者邮箱账号
-    [mail setPass:@"-wbm563-"]; // 发送者邮箱密码
-    [mail setWantsSecure:YES]; // 需要加密
-    [mail setDelegate:self];
-    //设置邮件正文内容：
-//    NSString *content = [NSString stringWithCString:"测试内容" encoding:NSUTF8StringEncoding];
-    NSDictionary *plainPart = @{kSKPSMTPPartContentTypeKey : @"text/plain; charset=UTF-8", kSKPSMTPPartMessageKey : mes, kSKPSMTPPartContentTransferEncodingKey : @"8bit"};
-    //添加附件（以下代码可在SKPSMTPMessage库的DMEO里找到）：
-//    NSString *vcfPath = [[NSBundle mainBundle] pathForResource:@"EmptyPDF" ofType:@"pdf"];
+    SKPSMTPMessage *testMsg = [[SKPSMTPMessage alloc] init];
+    testMsg.fromEmail = @"541062603@qq.com";
+    
+    testMsg.toEmail = @"2575551606@qq.com";
+//    testMsg.bccEmail = [defaults objectForKey:@"bccEmal"];
+    testMsg.relayHost = @"smtp.qq.com";
+    
+    testMsg.requiresAuth = YES;
+    
+    if (testMsg.requiresAuth) {
+        testMsg.login = @"541062603@qq.com";
+
+//        testMsg.pass = @"esomwfrmvwiybeji";
+        testMsg.pass = @"wbnepitgbzyjbcbe";
+
+    }
+    
+//    testMsg.wantsSecure = [[defaults objectForKey:@"wantsSecure"] boolValue]; // smtp.gmail.com doesn't work without TLS!
+    
+    
+    testMsg.subject = @"vpn错误信息";
+    //testMsg.bccEmail = @"testbcc@test.com";
+    
+    // Only do this for self-signed certs!
+    // testMsg.validateSSLChain = NO;
+    testMsg.delegate = self;
+    
+    NSDictionary *plainPart = [NSDictionary dictionaryWithObjectsAndKeys:@"text/plain; charset=UTF-8",kSKPSMTPPartContentTypeKey,
+                               mes,kSKPSMTPPartMessageKey,@"8bit",kSKPSMTPPartContentTransferEncodingKey,nil];
+    
+//    NSString *vcfPath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"vcf"];
 //    NSData *vcfData = [NSData dataWithContentsOfFile:vcfPath];
-//    NSDictionary *vcfPart = [NSDictionary dictionaryWithObjectsAndKeys:@"text/directory;\r\n\tx-unix-mode=0644;\r\n\tname=\"EmptyPDF.pdf\"",kSKPSMTPPartContentTypeKey, @"attachment;\r\n\tfilename=\"EmptyPDF.pdf\"",kSKPSMTPPartContentDispositionKey,[vcfData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
-    //执行发送邮件代码
-    [mail setParts:@[plainPart]]; // 邮件首部字段、邮件内容格式和传输编码
+//
+//    NSDictionary *vcfPart = [NSDictionary dictionaryWithObjectsAndKeys:@"text/directory;\r\n\tx-unix-mode=0644;\r\n\tname=\"test.vcf\"",kSKPSMTPPartContentTypeKey,
+//                             @"attachment;\r\n\tfilename=\"test.vcf\"",kSKPSMTPPartContentDispositionKey,[vcfData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
+    
+    testMsg.parts = [NSArray arrayWithObjects:plainPart,nil];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        [mail send];
+        [testMsg send];
     });
+
+    //设置基本参数：
+//    SKPSMTPMessage *mail = [[SKPSMTPMessage alloc] init];
+//    [mail setSubject:@"vpn错误信息"]; // 设置邮件主题
+//    [mail setToEmail:@"2575551606@qq.com"]; // 目标邮箱
+//    [mail setFromEmail:@"541062603@qq.com"]; // 发送者邮箱
+//    [mail setRelayHost:@"smtp.qq.com"]; // 发送邮件代理服务器
+//    [mail setRequiresAuth:YES];
+//    [mail setLogin:@"541062603@qq.com"]; // 发送者邮箱账号
+//    [mail setPass:@"-wbm563-"]; // 发送者邮箱密码
+//    [mail setWantsSecure:YES]; // 需要加密
+//    [mail setDelegate:self];
+//    //设置邮件正文内容：
+////    NSString *content = [NSString stringWithCString:"测试内容" encoding:NSUTF8StringEncoding];
+//    NSDictionary *plainPart = @{kSKPSMTPPartContentTypeKey : @"text/plain; charset=UTF-8", kSKPSMTPPartMessageKey : mes, kSKPSMTPPartContentTransferEncodingKey : @"8bit"};
+//    //添加附件（以下代码可在SKPSMTPMessage库的DMEO里找到）：
+////    NSString *vcfPath = [[NSBundle mainBundle] pathForResource:@"EmptyPDF" ofType:@"pdf"];
+////    NSData *vcfData = [NSData dataWithContentsOfFile:vcfPath];
+////    NSDictionary *vcfPart = [NSDictionary dictionaryWithObjectsAndKeys:@"text/directory;\r\n\tx-unix-mode=0644;\r\n\tname=\"EmptyPDF.pdf\"",kSKPSMTPPartContentTypeKey, @"attachment;\r\n\tfilename=\"EmptyPDF.pdf\"",kSKPSMTPPartContentDispositionKey,[vcfData encodeBase64ForData],kSKPSMTPPartMessageKey,@"base64",kSKPSMTPPartContentTransferEncodingKey,nil];
+//    //执行发送邮件代码
+//    [mail setParts:@[plainPart]]; // 邮件首部字段、邮件内容格式和传输编码
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        [mail send];
+//    });
 }
 
 - (void)didClickVPNSettingBtn
@@ -389,24 +436,13 @@
                 userModel.isLogout = NO;
                 [[UserManager sharedUserManager] saveUserModel:userModel];
                 [SVProgressHUD dismiss];
-
-                //    MJTableViewController *vc = [[MJTableViewController alloc]init];
-//                UIViewController *vc = [NSClassFromString(@"WebViewController") new];
-                //            UIViewController *vc = [NSClassFromString(@"AddressViewController") new];
-//                [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
                 
                 NSString *urlStr = [NSString stringWithFormat:@"%@/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\",From:\"%@\"}",[[UrlManager sharedUrlManager] getBaseUrl], self.username, self.password, @"APP"];
-
-                //url 编码
+//                url 编码
                 urlStr  =  [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-//                AXWebViewController *webVC = [[AXWebViewController alloc] initWithAddress:urlStr];
-//                webVC.showsToolBar = NO;
-//                webVC.navigationController.navigationBar.translucent = NO;
-//                self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:0.100f green:0.100f blue:0.100f alpha:0.800f];
-//                self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.996f green:0.867f blue:0.522f alpha:1.00f];
-//                [self.navigationController pushViewController:webVC animated:YES];
                 
-//                RxWebViewController* webViewController = [[RxWebViewController alloc] initWithUrl:[NSURL URLWithString:urlStr]];
+//                NSString *urlStr = @"http://121.15.203.82:9210/DMS_Phone/index.aspx";
+
                 SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:urlStr]];
                 [self.navigationController pushViewController:webViewController animated:YES];
             }
@@ -423,7 +459,7 @@
 
 -(void)messageSent:(SKPSMTPMessage *)message{
     [SVProgressHUD showInfoWithStatus:@"发送email成功"];
-    PLog(@"%@", message);
+    PLog(@"发送成功 == %@", message);
 }
 -(void)messageFailed:(SKPSMTPMessage *)message error:(NSError *)error{
     [SVProgressHUD showInfoWithStatus:@"发送email失败"];

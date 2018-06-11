@@ -30,37 +30,38 @@
         make.top.left.bottom.right.equalTo(self);
     }];
     
-//    UIImageView *logoIcon = [UIImageView new];
-//    // 勤智资本
-////    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
-//    logoIcon.image = [UIImage imageNamed:@"logo_company"];
-//    [self addSubview:logoIcon];
-//    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.centerX);
-//        make.top.equalTo(@(H(85)));
-//        make.width.equalTo(@(W(129)));
-//        make.height.equalTo(@(H(44)));
-//    }];
-//
+    UIImageView *logoIcon = [UIImageView new];
+    // 勤智资本
+//    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
+    logoIcon.image = [UIImage imageNamed:@"logo_company"];
+    [self addSubview:logoIcon];
+    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.centerX);
+        make.top.equalTo(@(H(85)));
+        make.width.equalTo(@(W(129)));
+        make.height.equalTo(@(H(44)));
+    }];
+
     UILabel *company = [UILabel new];
 //    company.text = @"东莞市科学技术局";
-    company.text = @"东莞市水务局";
+//    company.text = @"东莞市水务局";
 //    company.text = @"流转系统";
 //    company.text = @"东莞市滨海湾新区管委会";
+    company.text = @"万维博通";
     company.textColor = [UIColor whiteColor];
     company.font = [UIFont systemFontOfSize:28];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
     [company makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@(H(130)));
+//        make.top.equalTo(@(H(130)));
         make.centerX.equalTo(self.centerX);
-//        make.top.equalTo(logoIcon.bottom).offset(H(10));
+        make.top.equalTo(logoIcon.bottom).offset(H(10));
         make.left.right.equalTo(self);
     }];
     
     UILabel *titleLab = [UILabel new];
-    titleLab.text = @"智慧办公系统";
-//    titleLab.text = @"智慧政务管理平台";
+//    titleLab.text = @"智慧办公系统";
+    titleLab.text = @"智慧政务管理平台";
 //    titleLab.text = @"投资数据管理平台";
     titleLab.textColor = [UIColor whiteColor];
     titleLab.font = [UIFont systemFontOfSize:25];

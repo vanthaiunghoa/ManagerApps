@@ -317,10 +317,10 @@
     NSArray *menuItems =
     @[
       
-//      [KxMenuItem menuItem:@"通讯录"
-//                     image:nil
-//                    target:self
-//                    action:@selector(addressClicked:)],
+      [KxMenuItem menuItem:@"通讯录"
+                     image:nil
+                    target:self
+                    action:@selector(addressClicked:)],
       
       [KxMenuItem menuItem:@"切换账号"
                      image:nil

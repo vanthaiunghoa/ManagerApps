@@ -318,10 +318,10 @@
 		E8B33616208D6E5800CDC76A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E8B3361A208D6E5800CDC76A /* UserManager.h */,
 				E8B33617208D6E5800CDC76A /* UserManager.m */,
 				E8B33618208D6E5800CDC76A /* Helper.h */,
 				E8B33619208D6E5800CDC76A /* Helper.m */,
-				E8B3361A208D6E5800CDC76A /* UserManager.h */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
