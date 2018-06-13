@@ -911,6 +911,7 @@
 		BCF6652CBF303357BF8129ABFAA5A279 /* RACReplaySubject.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACReplaySubject.h; path = ReactiveCocoa/RACReplaySubject.h; sourceTree = "<group>"; };
 		BE20AC224EC402146317BC671EF3BF3F /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/MessageUI.framework; sourceTree = DEVELOPER_DIR; };
 		BED61FAE8E68747DD58F7E4422F55A4F /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
+		BEFF94B4F89C8B1B9454CC38D55DFF29 /* libjcore-ios-1.1.9.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.9.a"; sourceTree = "<group>"; };
 		BF1D2D4E0CF6BCAD5172BC33293D620E /* NSObject+RACPropertySubscribing.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+RACPropertySubscribing.h"; path = "ReactiveCocoa/NSObject+RACPropertySubscribing.h"; sourceTree = "<group>"; };
 		BF81391F3979ACA3A23AB9FFD9E77C58 /* NSString+RACSupport.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSString+RACSupport.m"; path = "ReactiveCocoa/NSString+RACSupport.m"; sourceTree = "<group>"; };
 		BFC9EE5D605CF34CF40D6CE88B4307B5 /* MJRefreshBackFooter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MJRefreshBackFooter.m; path = MJRefresh/Base/MJRefreshBackFooter.m; sourceTree = "<group>"; };
@@ -919,7 +920,6 @@
 		C0310ADA1E2612F038E22B590734A910 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
 		C0497BE81C588A2FB533AB4A78D3083A /* libMJRefresh.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMJRefresh.a; path = libMJRefresh.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F7F2587480470710C5C75B485E6CA6 /* UIImagePickerController+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImagePickerController+BlocksKit.h"; path = "BlocksKit/UIKit/UIImagePickerController+BlocksKit.h"; sourceTree = "<group>"; };
-		C24BEE0B1A94BF0CF0CED7A0BA414C2B /* libjpush-ios-3.0.8.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.8.a"; sourceTree = "<group>"; };
 		C2D5C3E3EE48D88C794355501A9C6921 /* IQBarButtonItem.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = IQBarButtonItem.m; path = IQKeyboardManager/IQToolbar/IQBarButtonItem.m; sourceTree = "<group>"; };
 		C3D76F46B5236490470D45BEF2439D15 /* NSBundle+MJRefresh.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSBundle+MJRefresh.h"; path = "MJRefresh/NSBundle+MJRefresh.h"; sourceTree = "<group>"; };
 		C432F3058C630D505C08158129EEC1D9 /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
@@ -980,7 +980,6 @@
 		D97E4F479614403671F76E0A692FC5BA /* UIButton+RACCommandSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+RACCommandSupport.h"; path = "ReactiveCocoa/UIButton+RACCommandSupport.h"; sourceTree = "<group>"; };
 		D9FEF87FE42BAD894F8660108FF31A91 /* UIBarButtonItem+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIBarButtonItem+BlocksKit.h"; path = "BlocksKit/UIKit/UIBarButtonItem+BlocksKit.h"; sourceTree = "<group>"; };
 		DA115EEC4B56BB03AAB33362E3535E04 /* BlocksKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BlocksKit-prefix.pch"; sourceTree = "<group>"; };
-		DA17AECCE2CCE70FF01BB7232C0089AC /* libjcore-ios-1.1.7.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjcore-ios-1.1.7.a"; sourceTree = "<group>"; };
 		DA3C6D67221A304F055021232620B56B /* RACStringSequence.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RACStringSequence.m; path = ReactiveCocoa/RACStringSequence.m; sourceTree = "<group>"; };
 		DA6EA0278286B048BA55819A54F990C7 /* LeoPayManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LeoPayManager.m; path = LeoPayManager/LeoPayManager.m; sourceTree = "<group>"; };
 		DB5FCB47C918EAEE0745565A4A04CACB /* UIGestureRecognizer+RACSignalSupport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIGestureRecognizer+RACSignalSupport.h"; path = "ReactiveCocoa/UIGestureRecognizer+RACSignalSupport.h"; sourceTree = "<group>"; };
@@ -1059,6 +1058,7 @@
 		FD8C8F05E078E6FB80ABB490A0FB2B55 /* NSObject+MJKeyValue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+MJKeyValue.m"; path = "MJExtension/NSObject+MJKeyValue.m"; sourceTree = "<group>"; };
 		FDAE894591379DF79A5744B4783A7E3E /* libWeChatSDK.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; name = libWeChatSDK.a; path = OpenSDK/libWeChatSDK.a; sourceTree = "<group>"; };
 		FE7B9236D6765BCFE6BA0AA9E4E1133A /* NSMutableDictionary+BlocksKit.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSMutableDictionary+BlocksKit.h"; path = "BlocksKit/Core/NSMutableDictionary+BlocksKit.h"; sourceTree = "<group>"; };
+		FE7E2A4A4FEBFCF7CD7F55A1D5C90086 /* libjpush-ios-3.0.9.a */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = archive.ar; path = "libjpush-ios-3.0.9.a"; sourceTree = "<group>"; };
 		FFAA03B736FB342D199641AE41DDA860 /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
 		FFAD230A88270F47203D9859B3C6F354 /* RACTestScheduler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RACTestScheduler.h; path = ReactiveCocoa/RACTestScheduler.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1175,6 +1175,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		010A681EB4352AABA19E8F2B592B884D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BEFF94B4F89C8B1B9454CC38D55DFF29 /* libjcore-ios-1.1.9.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		03B95670EB2CE98EF0FA6F3A382E12B0 /* IQKeyboardManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1282,19 +1290,11 @@
 			path = "../Target Support Files/MJExtension";
 			sourceTree = "<group>";
 		};
-		236B9B1051612E28D0CAC3F1CA586CCF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				DA17AECCE2CCE70FF01BB7232C0089AC /* libjcore-ios-1.1.7.a */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		23C219BD2E72DE51B6C126226506ECA8 /* JPush */ = {
 			isa = PBXGroup;
 			children = (
 				FBA0A5788B7D5BB64FCA4510511A6146 /* JPUSHService.h */,
-				8901FC9FBF365FED6CB8FCB06AB89EDE /* Frameworks */,
+				711DA320A6AC0CED1CE1696AD300C976 /* Frameworks */,
 			);
 			name = JPush;
 			path = JPush;
@@ -1539,6 +1539,14 @@
 			path = BlocksKit;
 			sourceTree = "<group>";
 		};
+		711DA320A6AC0CED1CE1696AD300C976 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FE7E2A4A4FEBFCF7CD7F55A1D5C90086 /* libjpush-ios-3.0.9.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		72FD37449E870B868AE1493EFDDF533A /* Security */ = {
 			isa = PBXGroup;
 			children = (
@@ -1594,14 +1602,6 @@
 			);
 			name = UnionPay_SDK_iOS;
 			path = UnionPay_SDK_iOS;
-			sourceTree = "<group>";
-		};
-		8901FC9FBF365FED6CB8FCB06AB89EDE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				C24BEE0B1A94BF0CF0CED7A0BA414C2B /* libjpush-ios-3.0.8.a */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		8E88C122F07F51ED355C94BDB5E7597B /* MessageUI */ = {
@@ -1675,7 +1675,7 @@
 		9727BCB4A9DD01790086B598CC242C3C /* JCore */ = {
 			isa = PBXGroup;
 			children = (
-				236B9B1051612E28D0CAC3F1CA586CCF /* Frameworks */,
+				010A681EB4352AABA19E8F2B592B884D /* Frameworks */,
 			);
 			name = JCore;
 			path = JCore;

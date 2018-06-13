@@ -59,13 +59,13 @@
     [self initJPush:launchOptions];
     [self userModelInit];
     
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.window.backgroundColor = [UIColor whiteColor];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
     
-//    LoginViewController *vc = [LoginViewController new];
-//    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
-//    self.window.rootViewController = nav;
-//    [self.window makeKeyAndVisible];
+    LoginViewController *vc = [LoginViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
     
     return YES;
 }
@@ -147,19 +147,19 @@
         userModel.isLogout = NO;
         [[UserManager sharedUserManager] saveUserModel:userModel];
         
-        [self initRootViewController:NO];
+//        [self initRootViewController:NO];
     }
-    else
-    {
-        if(userModel.isAutoLogin)
-        {
-            [self login:userModel.username password:userModel.password];
-        }
-        else
-        {
-            [self initRootViewController:NO];
-        }
-    }
+//    else
+//    {
+//        if(userModel.isAutoLogin)
+//        {
+//            [self login:userModel.username password:userModel.password];
+//        }
+//        else
+//        {
+//            [self initRootViewController:NO];
+//        }
+//    }
 }
 
 -(void)login:(NSString *)username password:(NSString *)password

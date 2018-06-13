@@ -178,14 +178,6 @@
         make.height.equalTo(@44);
     }];
     
-    RAC(self.loginBtn, enabled) = [RACSignal
-                                   combineLatest:@[self.usernameTextField.rac_textSignal,
-                                                   self.passwordTextField.rac_textSignal
-                                                   ]
-                                   reduce:^(NSString *account, NSString *password){
-                                       return @(account.length > 0 && password.length > 0);
-                                   }];
-    
     CGFloat padding = SCREEN_WIDTH/2.0;
     
     UILabel *labAccount = [UILabel new];
@@ -281,6 +273,14 @@
             [self.passwordTextField becomeFirstResponder];
         }
     }
+    
+    RAC(self.loginBtn, enabled) = [RACSignal
+                                   combineLatest:@[self.usernameTextField.rac_textSignal,
+                                                   self.passwordTextField.rac_textSignal
+                                                   ]
+                                   reduce:^(NSString *account, NSString *password){
+                                       return @(account.length > 0 && password.length > 0);
+                                   }];
 }
 
 #pragma mark - UITextFieldDelegate

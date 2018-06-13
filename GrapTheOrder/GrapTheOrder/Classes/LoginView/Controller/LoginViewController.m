@@ -27,13 +27,14 @@
     _loginView = [[LoginView alloc]init];
     _loginView.delegate = self;
     self.view = _loginView;
+    
+    [_loginView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
 //    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    [_loginView reloadData];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -43,6 +44,7 @@
 
     if(userModel.isAutoLogin)
     {
+        userModel.isAutoLogin = NO;
         [self didLoginWithUserName:userModel.username AndPassWord:userModel.password];
     }
     else
