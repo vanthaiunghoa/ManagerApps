@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="AttachedFilesCell">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="768" height="69.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IVe-a7-vYV">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="69.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jsP-Ri-mHH" customClass="Excel">
+                                <rect key="frame" x="0.0" y="0.0" width="383.5" height="69.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link" translatesAutoresizingMaskIntoConstraints="NO" id="4hn-6k-BEH">
+                                        <rect key="frame" x="20" y="27" width="16" height="16"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBs-vr-y3J">
+                                        <rect key="frame" x="51" y="18" width="324.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="内容1">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fileTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="E5k-d7-VDb"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="oBs-vr-y3J" secondAttribute="trailing" constant="8" id="DtU-Ae-UPV"/>
+                                    <constraint firstItem="oBs-vr-y3J" firstAttribute="leading" secondItem="4hn-6k-BEH" secondAttribute="trailing" constant="15" id="K8u-XH-iAJ"/>
+                                    <constraint firstItem="oBs-vr-y3J" firstAttribute="centerY" secondItem="4hn-6k-BEH" secondAttribute="centerY" id="xVj-Cd-tY5"/>
+                                    <constraint firstItem="4hn-6k-BEH" firstAttribute="centerY" secondItem="jsP-Ri-mHH" secondAttribute="centerY" id="zLM-gv-EYv"/>
+                                    <constraint firstItem="4hn-6k-BEH" firstAttribute="leading" secondItem="jsP-Ri-mHH" secondAttribute="leading" constant="20" id="zmK-iC-DZ3"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nkb-RE-Aow" userLabel="line2">
+                                <rect key="frame" x="383.5" y="0.0" width="1" height="69.5"/>
+                                <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="Gw2-mj-mZT"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dhi-qy-Xtx" customClass="Excel">
+                                <rect key="frame" x="384.5" y="0.0" width="383.5" height="69.5"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="link" translatesAutoresizingMaskIntoConstraints="NO" id="Utm-IT-2ko">
+                                        <rect key="frame" x="20" y="27" width="16" height="16"/>
+                                    </imageView>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDD-5c-YzN">
+                                        <rect key="frame" x="51" y="18" width="324.5" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="内容2">
+                                            <color key="titleColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fileTouched:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Z4U-6M-3J3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PDD-5c-YzN" firstAttribute="centerY" secondItem="Utm-IT-2ko" secondAttribute="centerY" id="3jv-Cf-nIA"/>
+                                    <constraint firstItem="PDD-5c-YzN" firstAttribute="leading" secondItem="Utm-IT-2ko" secondAttribute="trailing" constant="15" id="C6W-cK-50Z"/>
+                                    <constraint firstItem="Utm-IT-2ko" firstAttribute="leading" secondItem="dhi-qy-Xtx" secondAttribute="leading" constant="20" id="Jlo-dy-XZs"/>
+                                    <constraint firstAttribute="trailing" secondItem="PDD-5c-YzN" secondAttribute="trailing" constant="8" id="glW-Ku-FRD"/>
+                                    <constraint firstItem="Utm-IT-2ko" firstAttribute="centerY" secondItem="dhi-qy-Xtx" secondAttribute="centerY" id="jvw-nz-8Oa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="dhi-qy-Xtx" firstAttribute="width" secondItem="jsP-Ri-mHH" secondAttribute="width" id="az8-jU-Wf8"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="IVe-a7-vYV" secondAttribute="trailing" id="2p4-ao-0qk"/>
+                    <constraint firstItem="IVe-a7-vYV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="9CC-oU-ryv"/>
+                    <constraint firstAttribute="bottom" secondItem="IVe-a7-vYV" secondAttribute="bottom" id="ebP-Fa-hi9"/>
+                    <constraint firstItem="IVe-a7-vYV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="z0K-6a-13Q"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
+            <connections>
+                <outlet property="ex1" destination="jsP-Ri-mHH" id="3aT-do-gG0"/>
+                <outlet property="ex2" destination="dhi-qy-Xtx" id="Qij-rr-6Ea"/>
+                <outlet property="file1" destination="oBs-vr-y3J" id="hHa-Zc-sId"/>
+                <outlet property="file2" destination="PDD-5c-YzN" id="EZU-hf-Ig9"/>
+                <outlet property="file2LittleIcon" destination="Utm-IT-2ko" id="ruh-JV-9VC"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="link" width="16" height="16"/>
+    </resources>
+</document>

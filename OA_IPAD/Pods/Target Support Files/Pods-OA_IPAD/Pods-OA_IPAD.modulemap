@@ -1,0 +1,6 @@
+framework module Pods_OA_IPAD {
+  umbrella header "Pods-OA_IPAD-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="EHf-IW-A2E">
+            <objects>
+                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Login/Background" translatesAutoresizingMaskIntoConstraints="NO" id="U4m-3D-69d">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="万维博通智慧办公平台" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Bq-my-Pz2">
+                                <rect key="frame" x="143" y="119" width="482" height="58"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="48"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="欢迎使用VPN接入系统" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2JZ-lL-h4X">
+                                <rect key="frame" x="203" y="213" width="362" height="43"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcometo the VPN access system" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4UO-FJ-rHj">
+                                <rect key="frame" x="203" y="271" width="362" height="28"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="3Bq-my-Pz2" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="99" id="06N-Al-LFi"/>
+                            <constraint firstItem="3Bq-my-Pz2" firstAttribute="centerX" secondItem="2JZ-lL-h4X" secondAttribute="centerX" id="AyB-It-ftd"/>
+                            <constraint firstItem="2JZ-lL-h4X" firstAttribute="top" secondItem="3Bq-my-Pz2" secondAttribute="bottom" constant="36" id="Deu-8w-ozo"/>
+                            <constraint firstItem="3Bq-my-Pz2" firstAttribute="centerX" secondItem="U4m-3D-69d" secondAttribute="centerX" id="LHZ-a2-jlq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="U4m-3D-69d" secondAttribute="bottom" id="QG9-Ay-zUa"/>
+                            <constraint firstItem="4UO-FJ-rHj" firstAttribute="top" secondItem="2JZ-lL-h4X" secondAttribute="bottom" constant="15" id="Rca-Ij-S6q"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="U4m-3D-69d" secondAttribute="trailing" id="cJO-Cv-v0W"/>
+                            <constraint firstItem="3Bq-my-Pz2" firstAttribute="centerX" secondItem="4UO-FJ-rHj" secondAttribute="centerX" id="iND-ed-Rph"/>
+                            <constraint firstItem="U4m-3D-69d" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="lMu-Wg-Ifp"/>
+                            <constraint firstItem="U4m-3D-69d" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="ox2-Dz-WJX"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="52.34375" y="375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Login/Background" width="768" height="1024"/>
+    </resources>
+</document>

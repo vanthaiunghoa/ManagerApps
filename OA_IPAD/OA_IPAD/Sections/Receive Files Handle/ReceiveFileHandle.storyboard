@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="N3g-wu-cC7">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13174"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Receive File Handle View Controller-->
+        <scene sceneID="dTU-FT-bor">
+            <objects>
+                <viewController storyboardIdentifier="ReceiveFileHandleViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="N3g-wu-cC7" customClass="ReceiveFileHandleViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HYb-tl-tQM">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="9P0-mH-oWj">
+                                <rect key="frame" x="0.0" y="20" width="768" height="934"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="separatorColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecordHead" rowHeight="74" id="pDA-5S-3id">
+                                        <rect key="frame" x="0.0" y="55.5" width="768" height="74"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pDA-5S-3id" id="s3k-IG-nlD">
+                                            <rect key="frame" x="0.0" y="0.0" width="768" height="73.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="办理记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x8x-ct-SfO">
+                                                    <rect key="frame" x="20" y="29" width="89.5" height="26.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                    <color key="textColor" red="0.24069669842720032" green="0.59321987628936768" blue="0.98543232679367065" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="x8x-ct-SfO" firstAttribute="top" secondItem="s3k-IG-nlD" secondAttribute="top" constant="29" id="Si0-bQ-Dux"/>
+                                                <constraint firstItem="x8x-ct-SfO" firstAttribute="leading" secondItem="s3k-IG-nlD" secondAttribute="leading" constant="20" id="zeq-RD-2k0"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="N3g-wu-cC7" id="Zcx-x7-iuK"/>
+                                    <outlet property="delegate" destination="N3g-wu-cC7" id="x9P-7m-LNg"/>
+                                </connections>
+                            </tableView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EHN-oT-fpS">
+                                <rect key="frame" x="0.0" y="954" width="768" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IIv-mv-J3f">
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="70"/>
+                                        <color key="backgroundColor" red="0.96461421251296997" green="0.96477204561233521" blue="0.96458059549331665" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="保存意见">
+                                            <color key="titleColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tempSave:" destination="N3g-wu-cC7" eventType="touchUpInside" id="Clm-ki-y3k"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KMs-0j-eFT">
+                                        <rect key="frame" x="384" y="0.0" width="384" height="70"/>
+                                        <color key="backgroundColor" red="0.93228185176849365" green="0.33372604846954346" blue="0.3283308744430542" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="haC-hJ-0uh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="办完退出">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveAndExit:" destination="N3g-wu-cC7" eventType="touchUpInside" id="aci-GE-77Q"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="KMs-0j-eFT" firstAttribute="height" secondItem="IIv-mv-J3f" secondAttribute="height" id="GY1-91-cqn"/>
+                                    <constraint firstItem="KMs-0j-eFT" firstAttribute="width" secondItem="IIv-mv-J3f" secondAttribute="width" id="MEL-BS-y2Z"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="EVj-Ea-BTW" firstAttribute="bottom" secondItem="EHN-oT-fpS" secondAttribute="bottom" id="4aE-0y-Zrq"/>
+                            <constraint firstItem="EHN-oT-fpS" firstAttribute="top" secondItem="9P0-mH-oWj" secondAttribute="bottom" id="5zC-Dn-wDi"/>
+                            <constraint firstItem="EHN-oT-fpS" firstAttribute="leading" secondItem="EVj-Ea-BTW" secondAttribute="leading" id="AED-Nb-JBx"/>
+                            <constraint firstItem="9P0-mH-oWj" firstAttribute="leading" secondItem="EVj-Ea-BTW" secondAttribute="leading" id="e3j-hm-UUW"/>
+                            <constraint firstItem="EVj-Ea-BTW" firstAttribute="trailing" secondItem="EHN-oT-fpS" secondAttribute="trailing" id="hY5-W4-0TS"/>
+                            <constraint firstItem="9P0-mH-oWj" firstAttribute="trailing" secondItem="EVj-Ea-BTW" secondAttribute="trailing" id="imr-dO-239"/>
+                            <constraint firstItem="9P0-mH-oWj" firstAttribute="top" secondItem="HYb-tl-tQM" secondAttribute="topMargin" id="yWY-v5-Y4S"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="EVj-Ea-BTW"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="9P0-mH-oWj" id="JzR-Jq-wcY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hHh-Wf-mir" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="160.9375" y="114.84374999999999"/>
+        </scene>
+        <!--Receive File Review View Controller-->
+        <scene sceneID="uKN-Xa-Fbj">
+            <objects>
+                <tableViewController storyboardIdentifier="ReceiveFileReviewViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bCr-8q-SNc" customClass="ReceiveFileReviewViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="bwr-D6-YHm">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="RecordHead" rowHeight="74" id="57R-86-Vtd">
+                                <rect key="frame" x="0.0" y="55.5" width="768" height="74"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="57R-86-Vtd" id="S3e-ek-xET">
+                                    <rect key="frame" x="0.0" y="0.0" width="768" height="73.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="办理记录" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iji-hf-wgC">
+                                            <rect key="frame" x="20" y="29" width="89.5" height="26.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <color key="textColor" red="0.0" green="0.57647058823529407" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iji-hf-wgC" firstAttribute="top" secondItem="S3e-ek-xET" secondAttribute="top" constant="29" id="4EE-Na-skL"/>
+                                        <constraint firstItem="iji-hf-wgC" firstAttribute="leading" secondItem="S3e-ek-xET" secondAttribute="leading" constant="20" id="6Sc-jy-FJ1"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bCr-8q-SNc" id="PeX-1k-z3P"/>
+                            <outlet property="delegate" destination="bCr-8q-SNc" id="bwz-5V-XwM"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oTN-HC-orQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="785.9375" y="101.953125"/>
+        </scene>
+    </scenes>
+</document>

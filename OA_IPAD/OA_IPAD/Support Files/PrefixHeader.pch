@@ -1,0 +1,42 @@
+//
+//  PrefixHeader.pch
+//  OA_IPAD
+//
+//  Created by cello on 2018/5/14.
+//  Copyright © 2018年 icebartech. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+//屏幕的区域
+#define  SCREEN_BOUNDS [UIScreen mainScreen].bounds
+//屏幕的高度
+#define SCREEN_HEIGHT   MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+//屏幕的宽度
+#define SCREEN_WIDTH    MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+
+#define ViewColor [UIColor colorWithRed:248/255.0 green:248/255.0 blue:248/255.0 alpha:1]
+#define LineColor [UIColor colorWithRed:238/255.0 green:238/255.0 blue:238/255.0 alpha:1]
+#define GrayColor [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/255.0 alpha:1]
+#define NormalColor [UIColor blackColor]
+
+#define TableViewHeaderHeight 15
+
+#ifdef DEBUG
+#define PLog(...) NSLog(@"%s(第%d行) %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define PLog(...)
+#endif
+
+
+#import "Masonry.h"
+#import "AFNetworking.h"
+#import "SVProgressHUD.h"
+#import "UIView+SDAutoLayout.h"
+#import "UITableView+SDAutoTableViewCellHeight.h"
+
+#endif /* PrefixHeader_pch */

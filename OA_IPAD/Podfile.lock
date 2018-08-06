@@ -1,0 +1,79 @@
+PODS:
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
+    - AFNetworking/NSURLSession
+  - FDFullscreenPopGesture (1.1)
+  - IQKeyboardManager (5.0.8)
+  - LCActionSheet (3.4.0):
+    - Masonry (~> 1.1.0)
+  - Masonry (1.1.0)
+  - MBProgressHUD (1.1.0)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - ReactiveObjC (3.1.0)
+  - SDAutoLayout (2.2.0)
+  - SVProgressHUD (2.2.5)
+  - WMPageController (2.5.2)
+  - YYText (1.0.7)
+
+DEPENDENCIES:
+  - AFNetworking
+  - FDFullscreenPopGesture
+  - IQKeyboardManager
+  - LCActionSheet
+  - Masonry
+  - MBProgressHUD
+  - MJExtension
+  - MJRefresh
+  - ReactiveObjC
+  - SDAutoLayout (~> 2.2.0)
+  - SVProgressHUD (~> 2.2.5)
+  - WMPageController (~> 2.5.2)
+  - YYText
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - FDFullscreenPopGesture
+    - IQKeyboardManager
+    - LCActionSheet
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - ReactiveObjC
+    - SDAutoLayout
+    - SVProgressHUD
+    - WMPageController
+    - YYText
+
+SPEC CHECKSUMS:
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  IQKeyboardManager: 266cb7b1d11f94a3e71229d77f960f9a1b538e5b
+  LCActionSheet: af918d2f3f1c4c97f5f6f62cb099e745447aff96
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
+  SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
+
+PODFILE CHECKSUM: 0e92bf3233aec1c7ba0aa6530e1e9230a3eac529
+
+COCOAPODS: 1.5.0
