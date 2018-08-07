@@ -37,7 +37,6 @@
 @property (nonatomic, strong) NSArray *records;
 @property (nonatomic, strong) SuggestCell *suggestCell;
 @property (strong, nonatomic) NSMutableArray<NSString *> *usualArr;
-@property (copy, nonatomic) NSString *shortWord;
 
 @end
 
@@ -53,7 +52,6 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = ViewColor;
-    self.shortWord = @"已阅";
     
     [self initTableView];
     [self initBottomView];
@@ -151,29 +149,29 @@
     RACSignal *response = [self.viewModel fileHandleData];
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     self.view.userInteractionEnabled = NO;
-
+    
     @weakify(self);
     [response subscribeNext:^(RACTuple *x)
      {
-        @strongify(self);
+         @strongify(self);
          self.view.userInteractionEnabled = YES;
          [SVProgressHUD showSuccessWithStatus:@"数据加载成功"];
-
-        if (self)
-        {
-            self.dataObject = [x first];
-            self.attatchFiles = [x second];
-            self.records = [x third];
-            [self initModels];
-            [self.tableView reloadData];
-            [self initSuggestCell];
-        }
-    }error:^(NSError * _Nullable error)
-    {
-        @strongify(self);
-        self.view.userInteractionEnabled = YES;
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-    }];
+         
+         if (self)
+         {
+             self.dataObject = [x first];
+             self.attatchFiles = [x second];
+             self.records = [x third];
+             [self initModels];
+             [self.tableView reloadData];
+             [self initSuggestCell];
+         }
+     }error:^(NSError * _Nullable error)
+     {
+         @strongify(self);
+         self.view.userInteractionEnabled = YES;
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+     }];
 }
 
 - (void)loadUsualData
@@ -236,17 +234,7 @@
 
 - (void)pickerSingler:(XLsn0wPickerSingler *)pickerSingler selectedTitle:(NSString *)selectedTitle selectedRow:(NSInteger)selectedRow
 {
-    NSString *tmp = [_suggestCell getText];
-    NSString *suggest = nil;
-    if([tmp containsString:self.shortWord])
-    {
-        suggest = [tmp stringByReplacingOccurrencesOfString:self.shortWord withString:selectedTitle];
-    }
-    else
-    {
-        suggest = [NSString stringWithFormat:@"%@%@", selectedTitle, [_suggestCell getText]];
-    }
-    self.shortWord = selectedTitle;
+    NSString *suggest = [NSString stringWithFormat:@"%@%@", [_suggestCell getText], selectedTitle];
     
     [_suggestCell setText:suggest];
 }
@@ -477,7 +465,7 @@
     detailModel10.right = self.dataObject.ZSDW;
     detailModel10.isHide = NO;
     [_detailModelArr addObject:detailModel10];
-
+    
     DetailModel *detailModel11 = [DetailModel new];
     detailModel11.left = @"抄送单位";
     detailModel11.right = self.dataObject.CSDW;
@@ -541,3 +529,4 @@
 
 
 @end
+

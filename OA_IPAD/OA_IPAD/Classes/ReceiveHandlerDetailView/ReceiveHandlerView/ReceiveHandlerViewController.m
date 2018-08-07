@@ -67,13 +67,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.title = @"收文办理";
+    //    self.title = @"收文办理";
     self.view.backgroundColor = ViewColor;
-    self.shortWord = @"已阅";
+    self.shortWord = @"";
     
     //初始化落款时间；默认勾选
-    self.viewModel.signDate = [[NSDate new] adviceCellDateString];
-    self.viewModel.fileDueDate = [[NSDate dateWithTimeIntervalSinceNow:24*60*60*7] fileTransferDateString];
     self.viewModel.autoGenerateAdvice = YES;
     self.viewModel.postFile = YES;
     self.viewModel.transferLeaderOperator = @"请";
@@ -137,6 +135,8 @@
 
 - (void)bottomClicked:(UIButton *)sender
 {
+    self.viewModel.signDate = [[NSDate new] adviceCellDateString];
+    self.viewModel.fileDueDate = [[NSDate dateWithTimeIntervalSinceNow:24*60*60*7] fileTransferDateString];
     self.viewModel.advice = [_suggestCell getText];
     
     [SVProgressHUD showWithStatus:@"正在保存..."];
@@ -167,10 +167,10 @@
 
 - (void)loadData
 {
-//    [self _reloadRecords];
+    //    [self _reloadRecords];
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     self.view.userInteractionEnabled = NO;
-     @weakify(self);
+    @weakify(self);
     [[self.viewModel receiveFileAttachFiles] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         self.view.userInteractionEnabled = YES;
@@ -182,8 +182,8 @@
         
     } error:^(NSError * _Nullable error) {
         @strongify(self);
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//        [hud showMessage:error.localizedDescription];
+        //        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        //        [hud showMessage:error.localizedDescription];
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     }];
@@ -466,17 +466,7 @@
 
 - (void)pickerSingler:(XLsn0wPickerSingler *)pickerSingler selectedTitle:(NSString *)selectedTitle selectedRow:(NSInteger)selectedRow
 {
-    NSString *tmp = [_suggestCell getText];
-    NSString *suggest = nil;
-    if([tmp containsString:self.shortWord])
-    {
-        suggest = [tmp stringByReplacingOccurrencesOfString:self.shortWord withString:selectedTitle];
-    }
-    else
-    {
-        suggest = [NSString stringWithFormat:@"%@%@", selectedTitle, [_suggestCell getText]];
-    }
-    self.shortWord = selectedTitle;
+    NSString *suggest = [NSString stringWithFormat:@"%@%@", [_suggestCell getText], selectedTitle];
     
     [_suggestCell setText:suggest];
 }
@@ -554,7 +544,7 @@
         {
             [peoples replaceCharactersInRange:NSMakeRange(peoples.length-1, 1) withString:@""];
         }
-
+        
         DetailModel *detailModel = [DetailModel new];
         detailModel.left = @"批示";
         detailModel.right = peoples;
@@ -580,7 +570,7 @@
         detailModel.right = peoples;
         [self.peopleModelArr addObject:detailModel];
     }
-
+    
     if([transferAssistReceivers count])
     {
         NSMutableString *peoples = [[NSMutableString alloc] init];
@@ -600,7 +590,7 @@
         detailModel.right = peoples;
         [self.peopleModelArr addObject:detailModel];
     }
-
+    
     if([transferReadReceivers count])
     {
         NSMutableString *peoples = [[NSMutableString alloc] init];
@@ -622,7 +612,20 @@
     }
     
     [self.tableView reloadData];
-    [_suggestCell setText:[self.viewModel autoGenerateSentence]];
+    
+    NSString *tmp = [_suggestCell getText];
+    NSString *suggest = nil;
+    if([tmp containsString:self.shortWord])
+    {
+        suggest = [tmp stringByReplacingOccurrencesOfString:self.shortWord withString:[self.viewModel autoGenerateSentence]];
+    }
+    else
+    {
+        suggest = [NSString stringWithFormat:@"%@%@", [_suggestCell getText], [self.viewModel autoGenerateSentence]];
+    }
+    
+    self.shortWord = [self.viewModel autoGenerateSentence];
+    [_suggestCell setText:suggest];
 }
 
 - (CGFloat)cellContentViewWith
@@ -664,25 +667,25 @@
         detailModel2.right = [ModelManager sharedModelManager].model.SWDate;
         detailModel2.isHide = NO;
         [_detailModelArr addObject:detailModel2];
-
+        
         DetailModel *detailModel3 = [DetailModel new];
         detailModel3.left = @"文号";
         detailModel3.right = [ModelManager sharedModelManager].model.WH;
         detailModel3.isHide = NO;
         [_detailModelArr addObject:detailModel3];
-
+        
         DetailModel *detailModel4 = [DetailModel new];
         detailModel4.left = @"来文单位";
         detailModel4.right = [ModelManager sharedModelManager].model.LWDW;
         detailModel4.isHide = NO;
         [_detailModelArr addObject:detailModel4];
-
+        
         DetailModel *detailModel5 = [DetailModel new];
         detailModel5.left = @"来文标题";
         detailModel5.right = [ModelManager sharedModelManager].model.Title;
         detailModel5.isHide = NO;
         [_detailModelArr addObject:detailModel5];
-
+        
         DetailModel *detailModel6 = [DetailModel new];
         detailModel6.left = @"备注";
         detailModel6.right = [ModelManager sharedModelManager].model.Memo;
@@ -751,3 +754,4 @@
 }
 
 @end
+
