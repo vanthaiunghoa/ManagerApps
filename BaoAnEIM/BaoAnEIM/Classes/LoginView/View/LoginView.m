@@ -39,7 +39,9 @@
 //    logoIcon.image = [UIImage imageNamed:@"logo-szswjt"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-bjfdzy"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-bjtyfdc"];
-    logoIcon.image = [UIImage imageNamed:@"logo-sshgcj"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-sshgcj"];
+    logoIcon.image = [UIImage imageNamed:@"logo-luqiao"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-szgws"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
@@ -50,9 +52,8 @@
         // 盐田
 //        make.width.equalTo(@(W(94)));
 //        make.height.equalTo(@(H(63)));
-        // 南山
-//        make.width.equalTo(@(W(54)));
-//        make.height.equalTo(@(H(52.5)));
+//        // 南山
+//        make.width.height.equalTo(@60);
         // 福田
 //        make.width.equalTo(@(W(60)));
 //        make.height.equalTo(@(H(60)));
@@ -69,22 +70,25 @@
 //        make.width.equalTo(@(W(60)));
 //        make.height.equalTo(@(H(60)));
         // 松山湖工程管理局工程数据管理平台
-        make.width.equalTo(@(W(120)));
-        make.height.equalTo(@(H(60)));
-
+//        make.width.equalTo(@(W(120)));
+//        make.height.equalTo(@(H(60)));
+        // 东莞市路桥公司
+        make.width.height.equalTo(@60);
     }];
     
     UILabel *company = [UILabel new];
 //    company.text = @"深圳市宝安区建筑工务局";
 //    company.text = @"投资数据管理平台";
-//    company.text = @"盐田环水局工程数据管理平台";
+//    company.text = @"盐田环水局";
 //    company.text = @"南山工务局";
-//    company.text = @"福田环水局工程数据管理平台";
-//    company.text = @"龙华工务局工程数据管理平台";
-//    company.text = @"深圳水务集团工程数据管理平台";
+//    company.text = @"福田环水局";
+//    company.text = @"龙华工务局";
+//    company.text = @"深圳水务集团";
 //    company.text = @"北京房地置业";
 //    company.text = @"北京天运房地产";
-    company.text = @"松山湖工程管理局";
+//    company.text = @"松山湖工程管理局";
+    company.text = @"东莞市路桥公司";
+//    company.text = @"深圳市建筑工务署";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
     company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:26];
@@ -97,7 +101,11 @@
     }];
     
     UILabel *titleLab = [UILabel new];
-    titleLab.text = @"工程数据管理平台";
+//    titleLab.text = @"工程数据管理平台";
+    // 东莞市路桥公司
+    titleLab.text = @"智慧工务平台";
+    // 深圳市建筑工务署
+//    titleLab.text = @"工程档案数据管理平台";
     titleLab.textColor = [UIColor whiteColor];
     titleLab.font = [UIFont systemFontOfSize:22];
     titleLab.textAlignment = NSTextAlignmentCenter;

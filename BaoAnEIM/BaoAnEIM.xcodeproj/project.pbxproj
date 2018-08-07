@@ -789,10 +789,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.sshgcj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.luqiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "425a24b5-e833-4ed2-9ce9-4b38a28ab855";
-				PROVISIONING_PROFILE_SPECIFIER = "sshgcj-dev";
+				PROVISIONING_PROFILE = "2ab723c1-a29b-41e8-92cf-812140674368";
+				PROVISIONING_PROFILE_SPECIFIER = "luqiao-dev";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -811,10 +811,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.sshgcj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.luqiao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "77490827-22ad-4f5d-b305-57a95ba576b9";
-				PROVISIONING_PROFILE_SPECIFIER = "sshgcj-dis";
+				PROVISIONING_PROFILE = "50de0bd0-81a2-437c-acd5-3684de39a615";
+				PROVISIONING_PROFILE_SPECIFIER = "luqiao-dis";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

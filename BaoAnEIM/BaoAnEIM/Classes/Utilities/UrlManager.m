@@ -50,7 +50,11 @@ static id _instance;
     // 北京天运房地产
 //    return @"dySAs+Yf0csjYgKunsi84GjwENwW+ktGCR2hf/JvL8rdPVeEXnaDKG7zEES/2/8ZQMgBgfcukIo=";
     // 松山湖工程管理局工程数据管理平台
-    return @"jSR1XXg886K4S0P79d4yZxtd21xaGJf79CnZFYP38LPZt8bBoeyOBs25nHg2Xt6hy4D6WwjRXOA=";
+//    return @"jSR1XXg886K4S0P79d4yZxtd21xaGJf79CnZFYP38LPZt8bBoeyOBs25nHg2Xt6hy4D6WwjRXOA=";
+    // 东莞市路桥公司
+    return @"tKB1F69J4TiAVCrC6SRNGiMnDqVMEJGQ2QdFlvMnpUhyBsjP/BDuILz16j4A1q3JO1YFUlt7Fm0=";
+    // 深圳市建筑工务署
+//    return @"jSR1XXg886K4S0P79d4yZ+5Y1U/7PtdhzAvTqnlTkSEKqq7N14zS0hocyct0ZfqI74Gq1I+Orok=";
 }
 
 - (NSString *)getSPID
@@ -84,7 +88,11 @@ static id _instance;
     // 北京天运房地产
 //    return @"http://121.15.203.82:9810";
     // 松山湖工程管理局
-    return @"http://202.104.110.143:8008";
+//    return @"http://202.104.110.143:8008";
+    // 东莞市路桥公司
+    return @"http://120.86.117.106";
+    // 深圳市建筑工务署
+//    return @"http://202.104.110.143:8001";
 }
 
 - (NSString *)getLoginUrl
