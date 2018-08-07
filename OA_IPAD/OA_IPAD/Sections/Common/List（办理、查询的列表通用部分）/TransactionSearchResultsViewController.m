@@ -173,6 +173,7 @@
         ReceiveRetrievalCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ReceiveRetrievalCell class])];
         id<ListCellDataSource> dataSource = self.searchItems [indexPath.row];
         cell.model = dataSource;
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         return cell;
     }
     else if([self.title isEqualToString:@"发文检索"])
@@ -180,12 +181,14 @@
         SendRetrievalCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SendRetrievalCell class])];
         id<ListCellDataSource> dataSource = self.searchItems [indexPath.row];
         cell.model = dataSource;
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         return cell;
     }
     else
     {
         SendHandlerCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SendHandlerCell class])];
         id<ListCellDataSource> dataSource = self.searchItems [indexPath.row];
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         
         cell.indexPath = indexPath;
         cell.delegate = self;

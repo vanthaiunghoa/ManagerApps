@@ -124,6 +124,7 @@
     SendRecordCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SendRecordCell class])];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     cell.model = self.records[indexPath.row];
+    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     return cell;
 }

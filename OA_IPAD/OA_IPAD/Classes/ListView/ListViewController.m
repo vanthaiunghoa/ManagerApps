@@ -250,6 +250,7 @@
         ReceiveRetrievalCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ReceiveRetrievalCell class])];
         id<ListCellDataSource> dataSource = self.viewModel.models[indexPath.row];
         cell.model = dataSource;
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         return cell;
     }
     else if([self.title isEqualToString:@"发文检索"])
@@ -257,12 +258,14 @@
         SendRetrievalCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SendRetrievalCell class])];
         id<ListCellDataSource> dataSource = self.viewModel.models[indexPath.row];
         cell.model = dataSource;
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         return cell;
     }
     else if([self.title isEqualToString:@"收文办理"])
     {
         ReceiveHandlerCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ReceiveHandlerCell class])];
         id<ListCellDataSource> dataSource = self.viewModel.models[indexPath.row];
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         
         cell.isSelected = NO;
         for(NSIndexPath *index in self.selectedModel)
@@ -283,6 +286,7 @@
     {
         SendHandlerCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SendHandlerCell class])];
         id<ListCellDataSource> dataSource = self.viewModel.models[indexPath.row];
+        [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
         
         cell.indexPath = indexPath;
         cell.delegate = self;

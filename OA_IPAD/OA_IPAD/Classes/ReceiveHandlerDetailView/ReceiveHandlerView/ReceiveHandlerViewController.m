@@ -311,6 +311,7 @@
             PeopleCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([PeopleCell class])];
             [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
             cell.model = self.peopleModelArr[indexPath.row - 1];
+            [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
             
             if(indexPath.row == self.peopleModelArr.count)
             {

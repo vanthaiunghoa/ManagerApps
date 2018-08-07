@@ -149,6 +149,7 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     NSArray *recordList = [self.records objectAtIndex:(indexPath.section)];
     cell.model = recordList[indexPath.row];
+    [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
     if(indexPath.row == recordList.count - 1)
     {
