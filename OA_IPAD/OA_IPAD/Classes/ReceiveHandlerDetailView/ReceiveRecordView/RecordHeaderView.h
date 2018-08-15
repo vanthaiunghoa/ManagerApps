@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@class ReceiveFileHandleRecord;
+@class RecordModel;
 @interface RecordHeaderView : UITableViewHeaderFooterView
 
-@property (nonatomic, strong) ReceiveFileHandleRecord *model;
+@property (nonatomic, strong) RecordModel *model;
 
 @end

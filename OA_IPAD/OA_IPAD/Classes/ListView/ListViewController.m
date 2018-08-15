@@ -15,8 +15,9 @@
 
 @interface ListViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate, ReceiveHandlerCellDelegate>
 
-@property(nonatomic, strong) NSMutableArray *selectedModel;
-@property(nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *selectedModel;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, assign) NSInteger currentPage;
 
 @end
 
@@ -77,12 +78,12 @@
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         @strongify(self);
-        [self _requestDataRefresh:YES];
+        [self requestDataRefresh:YES];
     }];
     
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         @strongify(self);
-        [self _requestDataRefresh:NO];
+        [self requestDataRefresh:NO];
     }];
     
     footer.stateLabel.text = @"";
@@ -122,14 +123,15 @@
 
 #pragma mark - data flow
 
-- (void)_requestDataRefresh:(BOOL)refresh {
-    
-    NSDictionary *params = @{@"refresh":@(refresh)};
-    
+- (void)requestDataRefresh:(BOOL)refresh
+{
     if(refresh)
     {
-        self.viewModel.currentPage = 0;
+        self.currentPage = 1;
+        self.viewModel.listItems = [NSMutableArray arrayWithCapacity:10];
     }
+    
+    NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:  @{@"PageSize": @10, @"PageNum": @(self.currentPage)}];
     
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -138,12 +140,12 @@
         @strongify(self);
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD showSuccessWithStatus:@"数据加载成功"];
-
+        
         [self.tableView reloadData];
         [self.tableView.mj_header endRefreshing];
         if ([x count])
         {
-            if((self.viewModel.currentPage+1) != self.viewModel.totalPage)
+            if((self.currentPage) != self.viewModel.totalPage)
             {
                 [self.tableView.mj_footer endRefreshing];
             }
@@ -151,19 +153,22 @@
             {
                 [self.tableView.mj_footer endRefreshingWithNoMoreData];
             }
+            
+            self.currentPage++;
         }
         else
         {
             [self.tableView.mj_footer endRefreshingWithNoMoreData];
         }
         
-    } error:^(NSError * _Nullable error) {
-        @strongify(self);
-        self.view.userInteractionEnabled = YES;
-        [SVProgressHUD showErrorWithStatus:error.localizedDescription];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshing];
-    }];
+    } error:^(NSError * _Nullable error)
+     {
+         @strongify(self);
+         self.view.userInteractionEnabled = YES;
+         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+         [self.tableView.mj_header endRefreshing];
+         [self.tableView.mj_footer endRefreshing];
+     }];
 }
 
 #pragma mark - ReceiveRetrievalCellDelegate

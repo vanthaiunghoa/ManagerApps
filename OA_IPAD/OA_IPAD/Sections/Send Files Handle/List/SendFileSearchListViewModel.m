@@ -37,7 +37,7 @@
 
 // 点击标题下一步
 - (UIViewController *)touchTitleNextViewControllerWithIndex:(NSInteger)index {
-    return [self touchButtonNextViewControllerWithIndex :index];
+    return [self touchButtonNextViewControllerWithIndex:index];
 }
 
 // 点击办理按钮

@@ -25,6 +25,9 @@
 #import "UserManager.h"
 #import "ListViewController.h"
 #import "MeetingViewController.h"
+#import "ReceiveViewController.h"
+#import "SendViewController.h"
+#import "UIColor+color.h"
 
 @interface MainViewController () <LCActionSheetDelegate, MainViewDelegate>
 
@@ -184,18 +187,40 @@
 }
 
 - (void)receiveTransaction:(id)sender {
-//    TransactionListViewController *vc = [[TransactionListViewController alloc] initWithNibName:@"TransactionListViewController" bundle:nil];
-    ListViewController *vc = [[ListViewController alloc] init];
-    vc.viewModel = [ReceiveFileHandleListViewModel new];
-    vc.title = @"收文办理";
+////    TransactionListViewController *vc = [[TransactionListViewController alloc] initWithNibName:@"TransactionListViewController" bundle:nil];
+//    ListViewController *vc = [[ListViewController alloc] init];
+//    vc.viewModel = [ReceiveFileHandleListViewModel new];
+//    vc.title = @"收文办理";
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    ReceiveViewController *vc = [[ReceiveViewController alloc] init];
+    vc.selectIndex = 0;
+    vc.titleColorSelected = [UIColor colorWithHex:0x3D98FF];
+    vc.titleColorNormal = [UIColor blackColor];
+    vc.titleSizeSelected = 20;
+    vc.titleSizeNormal = 20;
+    vc.menuViewStyle = WMMenuViewStyleLine;
+    vc.automaticallyCalculatesItemWidths = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void)touchSendFileHandleButton:(id)sender {
-//    TransactionListViewController *vc = [[TransactionListViewController alloc] initWithNibName:@"TransactionListViewController" bundle:nil];
-    ListViewController *vc = [[ListViewController alloc] init];
-    SendFileListViewModel *viewModel = [SendFileListViewModel new];
-    vc.viewModel = viewModel;
-    vc.title = @"发文办理";
+////    TransactionListViewController *vc = [[TransactionListViewController alloc] initWithNibName:@"TransactionListViewController" bundle:nil];
+//    ListViewController *vc = [[ListViewController alloc] init];
+//    SendFileListViewModel *viewModel = [SendFileListViewModel new];
+//    viewModel.type = @"SearchType";
+//    viewModel.searchType = @"ALL";
+//    vc.viewModel = viewModel;
+//    vc.title = @"发文办理";
+//    [self.navigationController pushViewController:vc animated:YES];
+    
+    SendViewController *vc = [[SendViewController alloc] init];
+    vc.selectIndex = 0;
+    vc.titleColorSelected = [UIColor colorWithHex:0x3D98FF];
+    vc.titleColorNormal = [UIColor blackColor];
+    vc.titleSizeSelected = 20;
+    vc.titleSizeNormal = 20;
+    vc.menuViewStyle = WMMenuViewStyleLine;
+    vc.automaticallyCalculatesItemWidths = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

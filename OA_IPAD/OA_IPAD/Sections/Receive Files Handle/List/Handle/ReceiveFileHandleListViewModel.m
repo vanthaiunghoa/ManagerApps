@@ -24,14 +24,21 @@
 
 @implementation ReceiveFileHandleListViewModel
 
-- (NSString *)appendingURL {
-    return ReceiveFileServiceURL;
+- (NSString *)appendingURL
+{
+    return @"Handlers/SWMan/SWHandler.ashx";
 }
 
-- (NSString *)action {
-    return ReceiveTransactionListAction;
+- (NSString *)action
+{
+//    if(self.isSearch)
+//    {
+//        return @"GetSWHandleList";
+//    }
+    return @"GetSWHandleListOfBLState";
 }
-- (Class)modelType {
+- (Class)modelType
+{
     return ReceiveFileHandleListModel.class;
 }
 

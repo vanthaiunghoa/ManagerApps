@@ -11,7 +11,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 
 #define ReceiveFileServiceURL @"Handlers/SWMan/SWHandler.ashx"
-#define ReceiveTransactionListAction @"GetSWHandleList"
+#define ReceiveTransactionListAction @"GetSWHandleListOfBLState"
 #define ReceiveFileSearchListAction @"SWSearchList"
 #define AttatchFileGetSizeAction @"GetSWFileInfo"
 #define AttatchFileGetStreamAction @"ReadSWFile"

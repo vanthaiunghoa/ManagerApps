@@ -81,7 +81,8 @@
     
     [self initTableView];
     [self initBottomView];
-    [self loadData];
+    [self loadAttach];
+    [self loadAdvice];
 }
 
 - (void)initTableView
@@ -165,7 +166,7 @@
 
 #pragma mark - data
 
-- (void)loadData
+- (void)loadAttach
 {
     //    [self _reloadRecords];
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -177,15 +178,35 @@
         [SVProgressHUD showSuccessWithStatus:@"数据加载成功"];
         self.attatchFiles = x;
         [self.tableView reloadData];
-        
-        [self initSuggestCell];
-        
+
     } error:^(NSError * _Nullable error) {
         @strongify(self);
         //        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         //        [hud showMessage:error.localizedDescription];
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+    }];
+}
+
+- (void)loadAdvice
+{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    self.view.userInteractionEnabled = NO;
+    
+    @weakify(self);
+    [[RequestManager shared] requestWithAction:@"GetSWHandleMainRec" appendingURL:@"Handlers/SWMan/SWHandler.ashx" parameters:@{@"Where_GUID": [ModelManager sharedModelManager].model.WhereGUID} callback:^(BOOL success, id data, NSError *error) {
+        @strongify(self);
+        self.view.userInteractionEnabled = YES;
+        
+        if (success)
+        {
+            [SVProgressHUD showSuccessWithStatus:@"数据加载成功"];
+            [self initSuggestCell:data[@"Datas"][@"YiJian"]];
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        }
     }];
 }
 
@@ -427,10 +448,10 @@
 
 #pragma mark- method
 
-- (void)initSuggestCell
+- (void)initSuggestCell:(NSString *)advice
 {
     _suggestCell.isDone = _viewModel.handled;
-    [_suggestCell setText:@"已阅。"];
+    [_suggestCell setText:advice];
 }
 
 - (void)openAttatchFile:(ReceiveFileAttatchFileInfo *)file

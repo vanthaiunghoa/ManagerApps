@@ -59,6 +59,7 @@
     RACSignal *fileTypes = [[ReceiveTransactionService shared] receiveFileType];
     RACSignal *requestRecords = [fileTypes flattenMap:^__kindof RACSignal * _Nullable(NSArray *types) {
         RACSignal *original = nil;
+        self.recordType = types;
         for (ReceiveFileType *t in types) {
             RACSignal *record = [[ReceiveTransactionService shared] receiveFileHandleRecordsByIdentifier:self.mainGUID fileType:t.FlowName];
             
@@ -132,6 +133,15 @@
 
 - (RACSignal *)receiveFileAttachFiles {
     return [[ReceiveTransactionService shared] receiveFileAttatchFilesWithIdentifier:self.mainGUID];
+}
+
+- (NSArray<ReceiveFileType *> *)recordType
+{
+    if(_recordType == nil)
+    {
+        _recordType = [NSArray array];
+    }
+    return _recordType;
 }
 
 @end

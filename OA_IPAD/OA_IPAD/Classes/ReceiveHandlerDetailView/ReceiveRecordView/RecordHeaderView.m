@@ -8,7 +8,7 @@
 
 #import "RecordHeaderView.h"
 #import "UIColor+color.h"
-#import "ReceiveFileHandleRecord.h"
+#import "RecordModel.h"
 
 @implementation RecordHeaderView
 {
@@ -54,10 +54,10 @@
     .heightIs(50);
 }
 
-- (void)setModel:(ReceiveFileHandleRecord *)model
+- (void)setModel:(RecordModel *)model
 {
     _model = model;
-    _left.text = model.BLType;
+    _left.text = model.title;
 }
 
 

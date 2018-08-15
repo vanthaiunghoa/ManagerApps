@@ -56,6 +56,7 @@
     [self initTableView];
     [self initBottomView];
     [self loadData];
+    [self loadAdvice];
 }
 
 - (void)initTableView
@@ -164,7 +165,6 @@
              self.records = [x third];
              [self initModels];
              [self.tableView reloadData];
-             [self initSuggestCell];
          }
      }error:^(NSError * _Nullable error)
      {
@@ -172,6 +172,28 @@
          self.view.userInteractionEnabled = YES;
          [SVProgressHUD showErrorWithStatus:error.localizedDescription];
      }];
+}
+
+- (void)loadAdvice
+{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    self.view.userInteractionEnabled = NO;
+    
+    @weakify(self);
+    [[RequestManager shared] requestWithAction:@"GetFWHandleSendRecord" appendingURL:@"Handlers/FWMan/FWHandler.ashx" parameters:@{@"Where_GUID": [ModelManager sharedModelManager].recordIdentfier} callback:^(BOOL success, id data, NSError *error) {
+        @strongify(self);
+        self.view.userInteractionEnabled = YES;
+        
+        if (success)
+        {
+            [SVProgressHUD showSuccessWithStatus:@"数据加载成功"];
+            [self initSuggestCell:data[@"RecInfo"][@"YiJian"]];
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        }
+    }];
 }
 
 - (void)loadUsualData
@@ -388,10 +410,10 @@
 
 #pragma mark- method
 
-- (void)initSuggestCell
+- (void)initSuggestCell:(NSString *)advice
 {
     _suggestCell.isDone = _viewModel.handled;
-    [_suggestCell setText:@"已阅。"];
+    [_suggestCell setText:advice];
 }
 
 - (void)openAttatchFile:(SendFileAttatchFileInfo *)file {

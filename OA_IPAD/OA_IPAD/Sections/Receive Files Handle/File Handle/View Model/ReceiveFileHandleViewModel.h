@@ -10,6 +10,7 @@
 #import "Personel.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
+@class ReceiveFileType;
 @interface ReceiveFileHandleViewModel : NSObject
 
 @property (nonatomic, copy) NSString *mainGUID; //MAINGUID
@@ -47,6 +48,8 @@
 @property (nonatomic) BOOL postFile;
 /** 发送短信 */
 @property (nonatomic) BOOL sendMessage;
+
+@property (nonatomic, copy) NSArray<ReceiveFileType *> *recordType;
 
 #pragma mark - 意见信息；需要跟UI绑定
 /** 办理意见 */
@@ -92,5 +95,6 @@
  @return 一个ReceiveFileAttatchFileInfo的数组
  */
 - (RACSignal *)receiveFileAttachFiles;
+
 
 @end

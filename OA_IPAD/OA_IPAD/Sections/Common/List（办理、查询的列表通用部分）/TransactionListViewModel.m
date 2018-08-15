@@ -17,30 +17,30 @@
 
 @implementation TransactionListViewModel
 
-- (RACCommand *)requestListCommand {
+- (RACCommand *)requestListCommand
+{
     if (!_requestListCommand) {
         
         @weakify(self);
         _requestListCommand = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
             @strongify(self);
-            NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:  @{@"PageSize": @30, @"PageNum": @(self.currentPage+1), @"SearchType":@"ALL"}];
-            if ([input[@"refresh"] boolValue]) {
-                params[@"PageNum"] = @1;
-                self.listItems = [NSMutableArray arrayWithCapacity:30];
-            }
+
             RACSignal *responseSignal = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
                 
-                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:params];
-                [[RequestManager shared] requestWithAction:self.action appendingURL:self.appendingURL parameters:dict callback:^(BOOL success, id data, NSError *error) {
-                    if (success) {
+                NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithDictionary:input];
+                [[RequestManager shared] requestWithAction:self.action appendingURL:self.appendingURL parameters:dict callback:^(BOOL success, id data, NSError *error)
+                 {
+                    if (success)
+                    {
                         NSString *strTotalPage = data[@"PageCount"];
                         self.totalPage = [strTotalPage integerValue];
 
                         NSArray *models = [self.modelType mj_objectArrayWithKeyValuesArray:data[@"Datas"]];
                         [[data[@"Datas"] firstObject] createModelWithName:NSStringFromClass(self.modelType)];
                         [subscriber sendNext:models];
-                        self.currentPage++;
-                    } else {
+                    }
+                    else
+                    {
                         [subscriber sendError:error];
                     }
                 }];

@@ -184,12 +184,24 @@
 		E860773F21056D71000BA041 /* SendRetrievalCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E860773D21056D71000BA041 /* SendRetrievalCell.m */; };
 		E860774421057A5B000BA041 /* SendHandlerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E860774121057A5A000BA041 /* SendHandlerCell.m */; };
 		E860774521057A5B000BA041 /* ReceiveHandlerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E860774221057A5B000BA041 /* ReceiveHandlerCell.m */; };
+		E86BFC7A21226CC800D39BBD /* ReceiveHandlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC6E21226CC800D39BBD /* ReceiveHandlingViewController.m */; };
+		E86BFC7B21226CC800D39BBD /* ReceiveWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC7121226CC800D39BBD /* ReceiveWaitingViewController.m */; };
+		E86BFC7C21226CC800D39BBD /* ReceiveAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC7521226CC800D39BBD /* ReceiveAllViewController.m */; };
+		E86BFC7D21226CC800D39BBD /* ReceiveDoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC7721226CC800D39BBD /* ReceiveDoneViewController.m */; };
+		E86BFC802122780B00D39BBD /* ReceiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC7F2122780B00D39BBD /* ReceiveViewController.m */; };
+		E86BFC882122AA2A00D39BBD /* SendViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC872122AA2900D39BBD /* SendViewController.m */; };
+		E86BFC952122AAFD00D39BBD /* SendAllViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC8B2122AAFD00D39BBD /* SendAllViewController.m */; };
+		E86BFC962122AAFD00D39BBD /* SendPrewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC8D2122AAFD00D39BBD /* SendPrewViewController.m */; };
+		E86BFC972122AAFD00D39BBD /* SendWaitingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC902122AAFD00D39BBD /* SendWaitingViewController.m */; };
+		E86BFC982122AAFD00D39BBD /* SendNeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC932122AAFD00D39BBD /* SendNeedViewController.m */; };
+		E86BFC9C2122B7BA00D39BBD /* ReceiveSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BFC9B2122B7BA00D39BBD /* ReceiveSearchViewController.m */; };
 		E87DF81620EDFC460046319E /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87DF81520EDFC460046319E /* MainView.m */; };
 		E87DF81920EDFD300046319E /* login-bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E87DF81720EDFD300046319E /* login-bkg@2x.png */; };
 		E87DF81A20EDFD300046319E /* login-bkg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E87DF81820EDFD300046319E /* login-bkg@3x.png */; };
 		E87DF81E20EE1AA70046319E /* main-bkg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E87DF81C20EE1AA70046319E /* main-bkg@2x.png */; };
 		E87DF81F20EE1AA70046319E /* main-bkg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E87DF81D20EE1AA70046319E /* main-bkg@3x.png */; };
 		E8853398210826C300744454 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8853396210826C300744454 /* ModelManager.m */; };
+		E8ACE30A21218CD300E2D894 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ACE30921218CD300E2D894 /* RecordModel.m */; };
 		E8E09DC7210E9E5C00EAE7B3 /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DC6210E9E5C00EAE7B3 /* SelectViewController.m */; };
 		E8E09DCA210E9EC800EAE7B3 /* SelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DC9210E9EC800EAE7B3 /* SelectCell.m */; };
 		E8E09DCD210EBE8C00EAE7B3 /* SelectHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DCB210EBE8C00EAE7B3 /* SelectHeaderView.m */; };
@@ -537,6 +549,28 @@
 		E860774121057A5A000BA041 /* SendHandlerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendHandlerCell.m; sourceTree = "<group>"; };
 		E860774221057A5B000BA041 /* ReceiveHandlerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveHandlerCell.m; sourceTree = "<group>"; };
 		E860774321057A5B000BA041 /* SendHandlerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendHandlerCell.h; sourceTree = "<group>"; };
+		E86BFC6D21226CC800D39BBD /* ReceiveHandlingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveHandlingViewController.h; sourceTree = "<group>"; };
+		E86BFC6E21226CC800D39BBD /* ReceiveHandlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveHandlingViewController.m; sourceTree = "<group>"; };
+		E86BFC7021226CC800D39BBD /* ReceiveWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveWaitingViewController.h; sourceTree = "<group>"; };
+		E86BFC7121226CC800D39BBD /* ReceiveWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveWaitingViewController.m; sourceTree = "<group>"; };
+		E86BFC7421226CC800D39BBD /* ReceiveAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveAllViewController.h; sourceTree = "<group>"; };
+		E86BFC7521226CC800D39BBD /* ReceiveAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveAllViewController.m; sourceTree = "<group>"; };
+		E86BFC7721226CC800D39BBD /* ReceiveDoneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveDoneViewController.m; sourceTree = "<group>"; };
+		E86BFC7821226CC800D39BBD /* ReceiveDoneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveDoneViewController.h; sourceTree = "<group>"; };
+		E86BFC7E2122780B00D39BBD /* ReceiveViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveViewController.h; sourceTree = "<group>"; };
+		E86BFC7F2122780B00D39BBD /* ReceiveViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveViewController.m; sourceTree = "<group>"; };
+		E86BFC852122AA2900D39BBD /* SendViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendViewController.h; sourceTree = "<group>"; };
+		E86BFC872122AA2900D39BBD /* SendViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendViewController.m; sourceTree = "<group>"; };
+		E86BFC8A2122AAFD00D39BBD /* SendAllViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendAllViewController.h; sourceTree = "<group>"; };
+		E86BFC8B2122AAFD00D39BBD /* SendAllViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendAllViewController.m; sourceTree = "<group>"; };
+		E86BFC8D2122AAFD00D39BBD /* SendPrewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendPrewViewController.m; sourceTree = "<group>"; };
+		E86BFC8E2122AAFD00D39BBD /* SendPrewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendPrewViewController.h; sourceTree = "<group>"; };
+		E86BFC902122AAFD00D39BBD /* SendWaitingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendWaitingViewController.m; sourceTree = "<group>"; };
+		E86BFC912122AAFD00D39BBD /* SendWaitingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendWaitingViewController.h; sourceTree = "<group>"; };
+		E86BFC932122AAFD00D39BBD /* SendNeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendNeedViewController.m; sourceTree = "<group>"; };
+		E86BFC942122AAFD00D39BBD /* SendNeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendNeedViewController.h; sourceTree = "<group>"; };
+		E86BFC9A2122B7BA00D39BBD /* ReceiveSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveSearchViewController.h; sourceTree = "<group>"; };
+		E86BFC9B2122B7BA00D39BBD /* ReceiveSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveSearchViewController.m; sourceTree = "<group>"; };
 		E87DF81420EDFC460046319E /* MainView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
 		E87DF81520EDFC460046319E /* MainView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		E87DF81720EDFD300046319E /* login-bkg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login-bkg@2x.png"; sourceTree = "<group>"; };
@@ -545,6 +579,8 @@
 		E87DF81D20EE1AA70046319E /* main-bkg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "main-bkg@3x.png"; sourceTree = "<group>"; };
 		E8853396210826C300744454 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelManager.m; sourceTree = "<group>"; };
 		E8853397210826C300744454 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelManager.h; sourceTree = "<group>"; };
+		E8ACE30821218CD300E2D894 /* RecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
+		E8ACE30921218CD300E2D894 /* RecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RecordModel.m; sourceTree = "<group>"; };
 		E8E09DC5210E9E5C00EAE7B3 /* SelectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectViewController.h; sourceTree = "<group>"; };
 		E8E09DC6210E9E5C00EAE7B3 /* SelectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectViewController.m; sourceTree = "<group>"; };
 		E8E09DC8210E9EC800EAE7B3 /* SelectCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SelectCell.h; sourceTree = "<group>"; };
@@ -1439,6 +1475,8 @@
 				E85327F32109A7BF00439E79 /* RecordHeaderView.m */,
 				E85327F82109A7BF00439E79 /* RecordCell.h */,
 				E85327F52109A7BF00439E79 /* RecordCell.m */,
+				E8ACE30821218CD300E2D894 /* RecordModel.h */,
+				E8ACE30921218CD300E2D894 /* RecordModel.m */,
 			);
 			path = ReceiveRecordView;
 			sourceTree = "<group>";
@@ -1546,6 +1584,8 @@
 		E860773221056C5F000BA041 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				E86BFC812122AA2900D39BBD /* SendHandlerView */,
+				E86BFC6A21226CC800D39BBD /* ReceiveHandlerView */,
 				E860774021057A5A000BA041 /* ReceiveHandlerCell.h */,
 				E860774221057A5B000BA041 /* ReceiveHandlerCell.m */,
 				E860774321057A5B000BA041 /* SendHandlerCell.h */,
@@ -1575,6 +1615,114 @@
 				E860773221056C5F000BA041 /* ListView */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		E86BFC6A21226CC800D39BBD /* ReceiveHandlerView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC7E2122780B00D39BBD /* ReceiveViewController.h */,
+				E86BFC7F2122780B00D39BBD /* ReceiveViewController.m */,
+				E86BFC992122B7BA00D39BBD /* ReceiveSearchView */,
+				E86BFC6C21226CC800D39BBD /* ReceiveHandlingView */,
+				E86BFC6F21226CC800D39BBD /* ReceiveWaitingView */,
+				E86BFC7321226CC800D39BBD /* ReceiveAllView */,
+				E86BFC7621226CC800D39BBD /* ReceiveDoneView */,
+			);
+			path = ReceiveHandlerView;
+			sourceTree = "<group>";
+		};
+		E86BFC6C21226CC800D39BBD /* ReceiveHandlingView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC6D21226CC800D39BBD /* ReceiveHandlingViewController.h */,
+				E86BFC6E21226CC800D39BBD /* ReceiveHandlingViewController.m */,
+			);
+			path = ReceiveHandlingView;
+			sourceTree = "<group>";
+		};
+		E86BFC6F21226CC800D39BBD /* ReceiveWaitingView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC7021226CC800D39BBD /* ReceiveWaitingViewController.h */,
+				E86BFC7121226CC800D39BBD /* ReceiveWaitingViewController.m */,
+			);
+			path = ReceiveWaitingView;
+			sourceTree = "<group>";
+		};
+		E86BFC7321226CC800D39BBD /* ReceiveAllView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC7421226CC800D39BBD /* ReceiveAllViewController.h */,
+				E86BFC7521226CC800D39BBD /* ReceiveAllViewController.m */,
+			);
+			path = ReceiveAllView;
+			sourceTree = "<group>";
+		};
+		E86BFC7621226CC800D39BBD /* ReceiveDoneView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC7821226CC800D39BBD /* ReceiveDoneViewController.h */,
+				E86BFC7721226CC800D39BBD /* ReceiveDoneViewController.m */,
+			);
+			path = ReceiveDoneView;
+			sourceTree = "<group>";
+		};
+		E86BFC812122AA2900D39BBD /* SendHandlerView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC852122AA2900D39BBD /* SendViewController.h */,
+				E86BFC872122AA2900D39BBD /* SendViewController.m */,
+				E86BFC892122AAFD00D39BBD /* SendAllView */,
+				E86BFC922122AAFD00D39BBD /* SendNeedView */,
+				E86BFC8C2122AAFD00D39BBD /* SendPrewView */,
+				E86BFC8F2122AAFD00D39BBD /* SendWaitingView */,
+			);
+			path = SendHandlerView;
+			sourceTree = "<group>";
+		};
+		E86BFC892122AAFD00D39BBD /* SendAllView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC8A2122AAFD00D39BBD /* SendAllViewController.h */,
+				E86BFC8B2122AAFD00D39BBD /* SendAllViewController.m */,
+			);
+			path = SendAllView;
+			sourceTree = "<group>";
+		};
+		E86BFC8C2122AAFD00D39BBD /* SendPrewView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC8E2122AAFD00D39BBD /* SendPrewViewController.h */,
+				E86BFC8D2122AAFD00D39BBD /* SendPrewViewController.m */,
+			);
+			path = SendPrewView;
+			sourceTree = "<group>";
+		};
+		E86BFC8F2122AAFD00D39BBD /* SendWaitingView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC912122AAFD00D39BBD /* SendWaitingViewController.h */,
+				E86BFC902122AAFD00D39BBD /* SendWaitingViewController.m */,
+			);
+			path = SendWaitingView;
+			sourceTree = "<group>";
+		};
+		E86BFC922122AAFD00D39BBD /* SendNeedView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC942122AAFD00D39BBD /* SendNeedViewController.h */,
+				E86BFC932122AAFD00D39BBD /* SendNeedViewController.m */,
+			);
+			path = SendNeedView;
+			sourceTree = "<group>";
+		};
+		E86BFC992122B7BA00D39BBD /* ReceiveSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				E86BFC9A2122B7BA00D39BBD /* ReceiveSearchViewController.h */,
+				E86BFC9B2122B7BA00D39BBD /* ReceiveSearchViewController.m */,
+			);
+			path = ReceiveSearchView;
 			sourceTree = "<group>";
 		};
 		E87DF81B20EE1AA70046319E /* MainView */ = {
@@ -1901,6 +2049,7 @@
 				E85328102109A7BF00439E79 /* AttachmentCell.m in Sources */,
 				CBDBAF362082253D00E6B29E /* UserInfoCell.m in Sources */,
 				E853280C2109A7BF00439E79 /* HeaderView.m in Sources */,
+				E86BFC9C2122B7BA00D39BBD /* ReceiveSearchViewController.m in Sources */,
 				CB8372A920791FEE00B6BD45 /* StartMeetingViewController.m in Sources */,
 				E853280F2109A7BF00439E79 /* DetailModel.m in Sources */,
 				CB02AE9420727DDB005D5A0F /* ReceiveFileHandleViewModel.m in Sources */,
@@ -1917,6 +2066,7 @@
 				CB4B479820750CFD00AD16C3 /* SendFileService.m in Sources */,
 				CB0CD821208104F9004AA14D /* FilePresentationHeader.m in Sources */,
 				BC875A7E20907D680076D759 /* HandwriteModel.m in Sources */,
+				E8ACE30A21218CD300E2D894 /* RecordModel.m in Sources */,
 				E829523320EB5AE600E9D26B /* UrlManager.m in Sources */,
 				E860774421057A5B000BA041 /* SendHandlerCell.m in Sources */,
 				CB4B478F20750C6B00AD16C3 /* SendFileHandleViewController.m in Sources */,
@@ -1932,6 +2082,7 @@
 				E860774521057A5B000BA041 /* ReceiveHandlerCell.m in Sources */,
 				BC1F53D3209AE89000878B11 /* HandleSendRecord.m in Sources */,
 				E853280B2109A7BF00439E79 /* ReceiveHandlerViewController.m in Sources */,
+				E86BFC882122AA2A00D39BBD /* SendViewController.m in Sources */,
 				CB0CD805207FBC79004AA14D /* TransactionSearchResultsViewController.m in Sources */,
 				E83F3DBF2114001C0039BE58 /* DistributeOperatorCell.m in Sources */,
 				CB8372A32079166100B6BD45 /* ReceiveFileType.m in Sources */,
@@ -1964,8 +2115,10 @@
 				BC1F53CD2092B65400878B11 /* MeetingAttatchFile.m in Sources */,
 				CB87F15B206C011D008C0EAF /* NSDictionary+CreateModel.m in Sources */,
 				CB4B479B207513C600AD16C3 /* SendFileListItem.m in Sources */,
+				E86BFC802122780B00D39BBD /* ReceiveViewController.m in Sources */,
 				CB98680420879ED000D24B57 /* AppDelegate+iAppOffice.m in Sources */,
 				E853280A2109A7BF00439E79 /* ReceiveRecordViewController.m in Sources */,
+				E86BFC972122AAFD00D39BBD /* SendWaitingViewController.m in Sources */,
 				BC1F53C62092B08C00878B11 /* MeetingTheme.m in Sources */,
 				CB01810F2067EEE2003B53F7 /* UIColor+EasyExtend.m in Sources */,
 				E847F00B210ABDB100A47EDE /* SendHandlerContentViewController.m in Sources */,
@@ -1984,11 +2137,13 @@
 				E85328192109A92B00439E79 /* ReceiveRetrievalContentViewController.m in Sources */,
 				E85328262109C60C00439E79 /* SendRetrievalRecordViewController.m in Sources */,
 				E82BA2C420EC503F00D9846F /* BaseNavigationController.m in Sources */,
+				E86BFC7A21226CC800D39BBD /* ReceiveHandlingViewController.m in Sources */,
 				E84E392B21128DD70072A5AC /* MeetingCell.m in Sources */,
 				E829521020EB4D3100E9D26B /* LoginView.m in Sources */,
 				E829521720EB4D9A00E9D26B /* VPNSettingView.m in Sources */,
 				CB6305A12075C78200BB9228 /* HandleInfoGeneralHeader.m in Sources */,
 				E84E39402112E9CA0072A5AC /* IssuesCell.m in Sources */,
+				E86BFC7B21226CC800D39BBD /* ReceiveWaitingViewController.m in Sources */,
 				E847EFF8210AA2FE00A47EDE /* SendAttachmentCell.m in Sources */,
 				CB8372932078BBB100B6BD45 /* Personel.m in Sources */,
 				CB4B479220750C8200AD16C3 /* SendFileListViewModel.m in Sources */,
@@ -1996,6 +2151,7 @@
 				E85499722117DC6D004F9132 /* XLsn0wPickerSingler.m in Sources */,
 				CB8372B6207A58B400B6BD45 /* ReceiveFileSearchListViewModel.m in Sources */,
 				CB0CD801207E59F2004AA14D /* MBProgressHUD+LCL.m in Sources */,
+				E86BFC962122AAFD00D39BBD /* SendPrewViewController.m in Sources */,
 				E853281A2109A92B00439E79 /* ReceiveRetrievalRecordViewController.m in Sources */,
 				CB8372CA207BBDA700B6BD45 /* ReceiveFileRecordHeader.m in Sources */,
 				847AD5CA207B6AE600B03BC3 /* ReceiveFileDetail.m in Sources */,
@@ -2005,6 +2161,7 @@
 				CB026C6B206D34F200F39E59 /* Excel.m in Sources */,
 				CBA5C78B2073CF3F00FECA82 /* FilePresentationViewController.m in Sources */,
 				CB06E2F620A4A2CE009E39E3 /* QuickHandleView.m in Sources */,
+				E86BFC7C21226CC800D39BBD /* ReceiveAllViewController.m in Sources */,
 				CB0CD7F0207D1F82004AA14D /* ListPicker.m in Sources */,
 				CB8372D2207BD28400B6BD45 /* AcessAvailability.m in Sources */,
 				CB33BCFE206680F70067A92E /* AppDelegate.m in Sources */,
@@ -2012,14 +2169,17 @@
 				CB0CD7F7207E47D1004AA14D /* ListPickerHeaderFooter.m in Sources */,
 				E85328112109A7BF00439E79 /* SuggestCell.m in Sources */,
 				84D4457F207C85BD00D6BC45 /* MeetingsService.m in Sources */,
+				E86BFC7D21226CC800D39BBD /* ReceiveDoneViewController.m in Sources */,
 				E84E392E211292CC0072A5AC /* YYTextCell.m in Sources */,
 				E829523220EB5AE600E9D26B /* UserManager.m in Sources */,
 				CB026C64206D2E9E00F39E59 /* InfoCell.m in Sources */,
 				CB83728D2078B83900B6BD45 /* Organization.m in Sources */,
+				E86BFC982122AAFD00D39BBD /* SendNeedViewController.m in Sources */,
 				E84E39382112A5160072A5AC /* OtherMeetingCell.m in Sources */,
 				CB6305B52077AD1600BB9228 /* SendFileSearchListViewModel.m in Sources */,
 				E85499782117E693004F9132 /* ShortWordModel.m in Sources */,
 				E829523620EB5B1400E9D26B /* UserModel.m in Sources */,
+				E86BFC952122AAFD00D39BBD /* SendAllViewController.m in Sources */,
 				E847F00D210ABDB200A47EDE /* SendHandlerDetailViewController.m in Sources */,
 				E8136C0D2106FCE4005B7FE5 /* ReceiveHandlerDetailViewController.m in Sources */,
 				CB87F164206C10AA008C0EAF /* ReceiveFileHandleListModel.m in Sources */,

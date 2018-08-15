@@ -23,7 +23,6 @@
 @property (strong, nonatomic) RACCommand *requestListCommand;
 @property (strong, nonatomic) NSMutableArray *listItems;
 //@property (strong, nonatomic) NSMutableArray *searchItems; //🔍搜索结果
-@property (nonatomic) NSInteger currentPage;
 @property (nonatomic) NSInteger totalPage;
 
 #pragma mark - 提供给列表界面的方法；有一部分需要重写

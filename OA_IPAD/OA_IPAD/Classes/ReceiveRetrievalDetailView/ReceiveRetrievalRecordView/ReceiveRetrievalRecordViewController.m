@@ -13,13 +13,15 @@
 #import "RecordHeaderView.h"
 #import "MBProgressHUD+LCL.h"
 #import "ModelManager.h"
+#import "ReceiveFileType.h"
+#import "ReceiveFileHandleRecord.h"
+#import "RecordModel.h"
 
 @interface ReceiveRetrievalRecordViewController ()<UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) ReceiveFileHandleViewModel *viewModel;
 @property (strong, nonatomic) NSMutableArray *records;
-@property (strong, nonatomic) UILabel *labTips;
 
 @end
 
@@ -31,7 +33,6 @@
     self.view.backgroundColor = ViewColor;
     
     [self initTableView];
-    [self initTips];
     [self loadRecords];
 }
 
@@ -49,18 +50,6 @@
     [self.tableView registerClass:[RecordCell class] forCellReuseIdentifier:NSStringFromClass([RecordCell class])];
 }
 
-- (void)initTips
-{
-    UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(0, 300, SCREEN_WIDTH, 50)];
-    [self.view addSubview:lab];
-    lab.hidden = YES;
-    self.labTips = lab;
-    [lab setText:@"暂无记录"];
-    [lab setFont:[UIFont systemFontOfSize:20]];
-    [lab setTextColor:GrayColor];
-    [lab setTextAlignment:NSTextAlignmentCenter];
-}
-
 #pragma mark - data
 
 - (void)loadRecords
@@ -74,36 +63,42 @@
         @strongify(self);
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD showSuccessWithStatus:@"数据加载成功"];
-
-        if ([x count])
+        
+        if(self.records.count == 0)
         {
-            self.labTips.hidden = YES;
-            
-            [self.records addObject:x];
-            [self.tableView reloadData];
+            for(ReceiveFileType *type in self.viewModel.recordType)
+            {
+                RecordModel *model = [RecordModel new];
+                model.title = type.FlowName;
+                model.records = [NSArray array];
+                
+                [self.records addObject:model];
+            }
         }
-        else
+        
+        if([x count])
         {
-            self.labTips.hidden = NO;
+            ReceiveFileHandleRecord *record = [x firstObject];
+            for(int i = 0; i < self.records.count; ++i)
+            {
+                RecordModel *model = self.records[i];
+                if([record.BLType isEqualToString:model.title])
+                {
+                    model.records = x;
+                    self.records[i] = model;
+                    break;
+                }
+            }
         }
+        [self.tableView reloadData];
     } error:^(NSError * _Nullable error) {
         @strongify(self)
         self.view.userInteractionEnabled = YES;
-        self.labTips.hidden = NO;
         [SVProgressHUD showErrorWithStatus:error.localizedDescription];
     } completed:^{
         @strongify(self)
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD showSuccessWithStatus:@"数据加载完成"];
-        
-        if(self.records.count)
-        {
-            self.labTips.hidden = YES;
-        }
-        else
-        {
-            self.labTips.hidden = NO;
-        }
     }];
 }
 
@@ -117,7 +112,7 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     RecordHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:NSStringFromClass([RecordHeaderView class])];
-    header.model = [[self.records objectAtIndex:(section)] firstObject];
+    header.model = self.records[section];
     return header;
 }
 
@@ -128,19 +123,19 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSArray *recordsOfSection = [self.records objectAtIndex:section];
-    return recordsOfSection.count;
+    RecordModel *model = self.records[section];
+    return model.records.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     RecordCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RecordCell class])];
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    NSArray *recordList = [self.records objectAtIndex:(indexPath.section)];
-    cell.model = recordList[indexPath.row];
+    RecordModel *model = self.records[indexPath.section];
+    cell.model = model.records[indexPath.row];
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
     
-    if(indexPath.row == recordList.count - 1)
+    if(indexPath.row == model.records.count - 1)
     {
         cell.isHiddenLine = YES;
     }
@@ -155,8 +150,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Class currentClass = [RecordCell class];
-    NSArray *recordList = [self.records objectAtIndex:(indexPath.section)];
-    ReceiveFileHandleRecord *model = recordList[indexPath.row];
+    RecordModel *recordModel = self.records[indexPath.section];
+    ReceiveFileHandleRecord *model = recordModel.records[indexPath.row];
     return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:currentClass contentViewWidth:[self cellContentViewWith]];
 }
 
@@ -198,10 +193,13 @@
     return _viewModel;
 }
 
-- (NSMutableArray *)records {
-    if (!_records) {
-        _records = [NSMutableArray arrayWithCapacity:4];
+- (NSMutableArray *)records
+{
+    if(_records == nil)
+    {
+        _records = [NSMutableArray array];
     }
+    
     return _records;
 }
 
