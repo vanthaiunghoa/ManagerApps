@@ -70,10 +70,10 @@ static CGFloat const PickerViewHeight = 400;
 - (void)setupUI
 {
     self.bounds = [UIScreen mainScreen].bounds;
-    self.backgroundColor = RGBA(0, 0, 0, 102.0/255);
+    self.backgroundColor = RGBA(0, 0, 0, 0.5);
     [self.layer setOpaque:0.0];
     [self addSubview:self.pickerView];
-    [self.pickerView addSubview:self.lineView];
+//    [self.pickerView addSubview:self.lineView];
     [self addSubview:self.toolbar];
     [self addTarget:self action:@selector(remove) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -107,6 +107,14 @@ static CGFloat const PickerViewHeight = 400;
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
 {
+    for(UIView *singleLine in pickerView.subviews)
+    {
+        if (singleLine.frame.size.height < 1)
+        {
+            singleLine.backgroundColor = LineColor;
+        }
+    }
+    
     UILabel *label = [[UILabel alloc]init];
     [label setFont:[UIFont systemFontOfSize:18]];
     [label setText:self.arrayData[row]];

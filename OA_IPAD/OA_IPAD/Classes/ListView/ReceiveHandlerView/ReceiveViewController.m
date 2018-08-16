@@ -37,7 +37,7 @@
 - (void)showSearchController:(id)sender
 {
     ReceiveSearchViewController *vc = [ReceiveSearchViewController new];
-    [self.navigationController pushViewController:vc animated:NO];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {

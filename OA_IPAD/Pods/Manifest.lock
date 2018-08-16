@@ -22,6 +22,7 @@ PODS:
   - MBProgressHUD (1.1.0)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.15.3)
+  - PGPickerView (1.2.6)
   - ReactiveObjC (3.1.0)
   - SDAutoLayout (2.2.0)
   - SVProgressHUD (2.2.5)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
+  - PGPickerView (~> 1.2.6)
   - ReactiveObjC
   - SDAutoLayout (~> 2.2.0)
   - SVProgressHUD (~> 2.2.5)
@@ -53,6 +55,7 @@ SPEC REPOS:
     - MBProgressHUD
     - MJExtension
     - MJRefresh
+    - PGPickerView
     - ReactiveObjC
     - SDAutoLayout
     - SVProgressHUD
@@ -68,12 +71,13 @@ SPEC CHECKSUMS:
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  PGPickerView: 8fbbf63d0404065a43a495a0115d339455e0f819
   ReactiveObjC: 2a38ea15335de4119d8b17caf1db1484f61db902
   SDAutoLayout: c5509e77ae75735d9a39f7bc83dba6d3f75d49d8
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: 0e92bf3233aec1c7ba0aa6530e1e9230a3eac529
+PODFILE CHECKSUM: e98429d685c96ff93dd16479d727d703654bb153
 
 COCOAPODS: 1.5.0

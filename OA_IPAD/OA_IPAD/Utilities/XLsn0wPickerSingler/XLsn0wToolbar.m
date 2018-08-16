@@ -69,14 +69,14 @@
 
 - (void)setupUI {
     _title = nil;
-    _font = [UIFont systemFontOfSize:20];
+    _font = [UIFont boldSystemFontOfSize:20];
 //    _labelTitleColor = GrayColor;
 //    _buttonTitleColor = [UIColor blackColor];
 //    _buttonBackgroundColor = [UIColor blueColor];
 //    _borderButtonColor = RGB(205, 205, 205);
     
     self.bounds = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 60);
-    [self setBackgroundColor:[UIColor whiteColor]];
+    [self setBackgroundColor:RGB(241, 237, 246)];
 //    [self addSubview:self.labelTitle];
     [self addSubview:self.buttonLeft];
     [self addSubview:self.buttonRight];
@@ -134,11 +134,12 @@
     if (!_buttonLeft) {
         CGFloat leftX = 15;
         CGFloat leftY = 0;
-        CGFloat leftW = 70;
+        CGFloat leftW = 80;
         CGFloat leftH = 60;
         _buttonLeft = [[UIButton alloc]initWithFrame:CGRectMake(leftX, leftY, leftW, leftH)];
         [_buttonLeft setTitleColor:GrayColor forState:UIControlStateNormal];
 //        [_buttonLeft addBorderColor:self.borderButtonColor];
+        _buttonLeft.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         [_buttonLeft.titleLabel setFont:self.font];
     }
     return _buttonLeft;
@@ -149,12 +150,13 @@
 - (UIButton *)buttonRight
 {
     if (!_buttonRight) {
-        CGFloat rightW = 70;
+        CGFloat rightW = 80;
         CGFloat rightH = 60;
         CGFloat rightX = CGRectGetWidth([UIScreen mainScreen].bounds) - rightW - 15;
         CGFloat rightY = 0;
         _buttonRight = [[UIButton alloc]initWithFrame:CGRectMake(rightX, rightY, rightW, rightH)];
         [_buttonRight setTitleColor:RGB(61, 152, 255) forState:UIControlStateNormal];
+        _buttonRight.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 //        [_buttonRight addBorderColor:self.borderButtonColor];
         [_buttonRight.titleLabel setFont:self.font];
     }

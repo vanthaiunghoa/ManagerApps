@@ -24,6 +24,7 @@
 @property (strong, nonatomic) NSMutableArray *listItems;
 //@property (strong, nonatomic) NSMutableArray *searchItems; //🔍搜索结果
 @property (nonatomic) NSInteger totalPage;
+@property (nonatomic, assign) BOOL isSearch;
 
 #pragma mark - 提供给列表界面的方法；有一部分需要重写
 /** 列表模型数据 */

@@ -256,6 +256,7 @@
     if(_viewModel == nil)
     {
         _viewModel = [ReceiveFileHandleListViewModel new];
+        _viewModel.isSearch = NO;
     }
     
     return _viewModel;

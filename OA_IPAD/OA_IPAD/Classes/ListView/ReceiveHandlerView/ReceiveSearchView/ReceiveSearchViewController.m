@@ -9,12 +9,13 @@
 #import <MJRefresh/MJRefresh.h>
 #import "ReceiveFileHandleListViewModel.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
+#import "ReceiveFilterViewController.h"
 
-@interface ReceiveSearchViewController ()<UISearchBarDelegate, UITableViewDelegate, UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate>
+@interface ReceiveSearchViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate, ReceiveFilterViewControllerDelegate>
 
-@property (strong, nonatomic) UISearchBar *searchBar;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, strong) NSMutableDictionary *dict;
 
 @end
 
@@ -29,58 +30,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.fd_prefersNavigationBarHidden = YES;
-    //    self.navigationItem.leftBarButtonItem = nil;
-    //    self.navigationItem.hidesBackButton = YES;
+    self.title = @"查询结果";
+    
     self.fd_interactivePopDisabled = YES; //禁用侧滑
     self.view.backgroundColor = ViewColor;
     
-    self.automaticallyAdjustsScrollViewInsets = YES;
-    [self addSearchBar];
+//    self.automaticallyAdjustsScrollViewInsets = YES;
+    [self addFilterButton];
     [self initTableView];
 }
 
-- (void)addSearchBar
+- (void)addFilterButton
 {
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 64)];
-    topView.backgroundColor = [UIColor colorWithHex:0x3D98FF];
-    [self.view addSubview:topView];
-    
-    UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(20, 20, SCREEN_WIDTH - 40, 44)];
-    [topView addSubview:searchBar];
-    searchBar.backgroundImage = [self imageWithColor:[UIColor clearColor] size:searchBar.bounds.size];
-    searchBar.delegate = self;
-    _searchBar = searchBar;
-    [searchBar setShowsCancelButton:YES];
-    
-    UIButton *cancleBtn = [searchBar valueForKey:@"cancelButton"];
-    
-    //修改标题和标题颜色
-    [cancleBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancleBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    
-    [_searchBar becomeFirstResponder];
-    _searchBar.placeholder = @"输入文件标题、流水号搜索";
-}
-
-- (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size
-{
-    CGRect rect = CGRectMake(0, 0, size.width, size.height);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return image;
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
+    [btn setTintColor:[UIColor whiteColor]];
+    [btn setTitle:@"筛选条件" forState:0];
+    [btn.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [btn sizeToFit];
+    [btn addTarget:self action:@selector(filterClicked:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
 }
 
 - (void)initTableView
 {
-    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT - 64)];
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
     [self.view addSubview:self.tableView];
     [self.tableView setDelegate:self];
     [self.tableView setDataSource:self];
@@ -103,31 +76,14 @@
     self.tableView.mj_footer = footer;
 }
 
-#pragma mark - search bar callbacks
+#pragma mark - clicked
 
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
+- (void)filterClicked:(UIButton *)sender
 {
-//    self.viewModel.searchType = searchText;
-}
-
-- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
-{
-    [self.tableView.mj_header beginRefreshing];
-}
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
-{
-    [self.searchBar resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
-- (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar {
-    
-}
-
-- (void)cancel:(id)sender {
-    [self.searchBar resignFirstResponder];
-    [self.navigationController popViewControllerAnimated:NO];
+    ReceiveFilterViewController *vc = [[ReceiveFilterViewController alloc] init];
+    vc.dict = [self.dict mutableCopy];
+    vc.delegate = self;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - data flow
@@ -141,21 +97,21 @@
     }
     NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"PageSize" : @10,
                                                                            @"PageNum" : @(self.currentPage),
-                                                                           @"SWBH" : @"",        // 收文流水号
-                                                                           @"HJ" : @"",          // 文件缓急
-                                                                           @"WHT" : @"",         // 文号头
-                                                                           @"WHN" : @"",         // 文号年
-                                                                           @"WHS" : @"",         // 文号数
-                                                                           @"Title" : @"",       // 标题
-                                                                           @"ZTC" : @"",         // 主题词
-                                                                           @"LWDW" : @"",        // 来文单位
-                                                                           @"LWDWLB" : @"",      // 来文单位类别编号
-                                                                           @"MJ" : @"",          // 文件密级
-                                                                           @"WZ" : @"",          // 文种
-                                                                           @"GLML" : @"",        // 归类目录
-                                                                           @"RecKSName" : @"",   // 主办科室名
-                                                                           @"JBTime_S" : @"",    // 交办时间(开始)
-                                                                           @"JBTime_E" : @""}];  // 交办时间(结束)
+                                                                           @"SWBH" : self.dict[@"流水号"],             // 收文流水号
+                                                                           @"HJ" : self.dict[@"缓急"],                // 文件缓急
+                                                                           @"WHT" : self.dict[@"文号头"],              // 文号头
+                                                                           @"WHN" : self.dict[@"文号年"],              // 文号年
+                                                                           @"WHS" : self.dict[@"文号数"],              // 文号数
+                                                                           @"Title" : self.dict[@"标题"],              // 标题
+                                                                           @"ZTC" : @"",                               // 主题词
+                                                                           @"LWDW" : self.dict[@"来文单位"],            // 来文单位
+                                                                           @"LWDWLB" : @"",                            // 来文单位类别编号
+                                                                           @"MJ" : @"",                                // 文件密级
+                                                                           @"WZ" : @"",                                // 文种
+                                                                           @"GLML" : @"",                              // 归类目录
+                                                                           @"RecKSName" : @"",                         // 主办科室名
+                                                                           @"JBTime_S" : self.dict[@"交办时间开始"],     // 交办时间(开始)
+                                                                           @"JBTime_E" : self.dict[@"交办时间结束"]}];   // 交办时间(结束)
     
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -203,6 +159,16 @@
     if (next) {
         [self.navigationController pushViewController:next animated:YES];
     }
+}
+
+#pragma mark - ReceiveFilterViewControllerDelegate
+
+- (void)controller:(ReceiveFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
+{
+    [controller.navigationController popViewControllerAnimated:YES];
+
+    self.dict = [dict mutableCopy];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - tableview
@@ -263,9 +229,34 @@
     if(_viewModel == nil)
     {
         _viewModel = [ReceiveFileHandleListViewModel new];
+        _viewModel.isSearch = YES;
     }
     
     return _viewModel;
+}
+
+- (NSMutableDictionary *)dict
+{
+    if(_dict == nil)
+    {
+        _dict = [NSMutableDictionary dictionaryWithCapacity:9];
+        
+        //向词典中动态添加数据
+        [_dict setObject:@"" forKey:@"流水号"];          // 收文流水号
+        [_dict setObject:@"" forKey:@"缓急"];           // 文件缓急
+       
+        [_dict setObject:@"" forKey:@"文号头"];         // 文号头
+        [_dict setObject:@"" forKey:@"文号年"];         // 文号年
+
+        [_dict setObject:@"" forKey:@"文号数"];         // 文号数
+        [_dict setObject:@"" forKey:@"标题"];           // 标题
+
+        [_dict setObject:@"" forKey:@"来文单位"];        // 来文单位
+        [_dict setObject:@"" forKey:@"交办时间开始"];     // 交办时间(开始)
+        [_dict setObject:@"" forKey:@"交办时间结束"];     // 交办时间(结束)
+    }
+    
+    return _dict;
 }
 
 @end

@@ -31,10 +31,10 @@
 
 - (NSString *)action
 {
-//    if(self.isSearch)
-//    {
-//        return @"GetSWHandleList";
-//    }
+    if(self.isSearch)
+    {
+        return @"GetSWHandleList";
+    }
     return @"GetSWHandleListOfBLState";
 }
 - (Class)modelType
