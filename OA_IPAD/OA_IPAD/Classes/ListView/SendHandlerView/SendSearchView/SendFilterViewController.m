@@ -14,12 +14,16 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "PGDatePickManager.h"
 #import "XLsn0wPickerSingler.h"
+#import "RequestManager.h"
+#import "FileTypeModel.h"
+#import <MJExtension/MJExtension.h>
 
 @interface SendFilterViewController ()<UITableViewDelegate, UITableViewDataSource, InputCellDelegate, SinglePickerCellDelegate, XLsn0wPickerSinglerDelegate, PGDatePickerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) SinglePickerCell *whnCell;
 @property (strong, nonatomic) SinglePickerCell *wzCell;
+@property (strong, nonatomic) NSMutableArray<NSString *> *wzArr;
 
 @end
 
@@ -223,15 +227,59 @@
     self.dict[valueOfKey] = value;
 }
 
+#pragma mark - data
+
+- (void)loadWZData
+{
+    [SVProgressHUD showWithStatus:@"数据加载中..."];
+    self.view.userInteractionEnabled = NO;
+    
+    @weakify(self);
+    [[RequestManager shared] requestWithAction:@"GetFW_WZ_List" appendingURL:@"Handlers/FWMan/FWHandler.ashx" parameters:nil callback:^(BOOL success, id data, NSError *error) {
+        @strongify(self);
+        self.view.userInteractionEnabled = YES;
+        
+        if (success)
+        {
+            [SVProgressHUD dismiss];
+            NSArray *tmp = [FileTypeModel mj_objectArrayWithKeyValuesArray:data[@"Datas"]];
+            if(tmp.count)
+            {
+                for(FileTypeModel *p in tmp)
+                {
+                    [self.wzArr addObject:p.Value];
+                }
+
+                XLsn0wPickerSingler *singler = [[XLsn0wPickerSingler alloc] initWithArrayData:self.wzArr unitTitle:@"" xlsn0wDelegate:self];
+                [singler show];
+            }
+            else
+            {
+                [SVProgressHUD showInfoWithStatus:@"暂无文种类型"];
+            }
+        }
+        else
+        {
+            [SVProgressHUD showErrorWithStatus:error.localizedDescription];
+        }
+    }];
+}
+
 #pragma mark - SinglePickerCellDelegate
 
 - (void)didSinglePickerCellBtnClicked:(NSString *)valueOfKey
 {
     if([valueOfKey isEqualToString:@"文种"])
     {
-        NSArray *arr = @[@"不选择", @"通知", @"函", @"报告", @"会议纪要"];
-        XLsn0wPickerSingler *singler = [[XLsn0wPickerSingler alloc] initWithArrayData:arr unitTitle:@"" xlsn0wDelegate:self];
-        [singler show];
+        if(self.wzArr.count == 1)
+        {
+            [self loadWZData];
+        }
+        else
+        {
+            XLsn0wPickerSingler *singler = [[XLsn0wPickerSingler alloc] initWithArrayData:self.wzArr unitTitle:@"" xlsn0wDelegate:self];
+            [singler show];
+        }
     }
     else
     {
@@ -288,6 +336,15 @@
 
 #pragma mark - lazy load
 
-
+- (NSMutableArray<NSString *> *)wzArr
+{
+    if(_wzArr == nil)
+    {
+        _wzArr = [NSMutableArray array];
+        [_wzArr addObject:@"不选择"];
+    }
+    
+    return _wzArr;
+}
 
 @end

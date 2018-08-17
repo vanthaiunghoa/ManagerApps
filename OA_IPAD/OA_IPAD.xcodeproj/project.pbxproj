@@ -145,6 +145,7 @@
 		E83F3DBE2114001C0039BE58 /* ReceiveDistributeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E83F3DB92114001C0039BE58 /* ReceiveDistributeViewController.m */; };
 		E83F3DBF2114001C0039BE58 /* DistributeOperatorCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83F3DBB2114001C0039BE58 /* DistributeOperatorCell.m */; };
 		E83F3DC02114001C0039BE58 /* DistributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E83F3DBD2114001C0039BE58 /* DistributeCell.m */; };
+		E8430B69212663E1008C5399 /* FileTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8430B68212663E1008C5399 /* FileTypeModel.m */; };
 		E8460FF220FD82F3000D2AC1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8460FF120FD82F3000D2AC1 /* Images.xcassets */; };
 		E847EFF8210AA2FE00A47EDE /* SendAttachmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E847EFF6210AA2FD00A47EDE /* SendAttachmentCell.m */; };
 		E847EFFB210AA3E200A47EDE /* SendRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E847EFFA210AA3E200A47EDE /* SendRecordCell.m */; };
@@ -506,6 +507,8 @@
 		E83F3DBB2114001C0039BE58 /* DistributeOperatorCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributeOperatorCell.m; sourceTree = "<group>"; };
 		E83F3DBC2114001C0039BE58 /* ReceiveDistributeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveDistributeViewController.h; sourceTree = "<group>"; };
 		E83F3DBD2114001C0039BE58 /* DistributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DistributeCell.m; sourceTree = "<group>"; };
+		E8430B67212663E1008C5399 /* FileTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTypeModel.h; sourceTree = "<group>"; };
+		E8430B68212663E1008C5399 /* FileTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileTypeModel.m; sourceTree = "<group>"; };
 		E8460FF120FD82F3000D2AC1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E847EFF6210AA2FD00A47EDE /* SendAttachmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendAttachmentCell.m; sourceTree = "<group>"; };
 		E847EFF7210AA2FE00A47EDE /* SendAttachmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendAttachmentCell.h; sourceTree = "<group>"; };
@@ -1917,6 +1920,8 @@
 				E884E93E2125610700BAA213 /* SendFilterViewController.m */,
 				E884E93F2125610700BAA213 /* SendSearchViewController.h */,
 				E884E9412125610700BAA213 /* SendSearchViewController.m */,
+				E8430B67212663E1008C5399 /* FileTypeModel.h */,
+				E8430B68212663E1008C5399 /* FileTypeModel.m */,
 			);
 			path = SendSearchView;
 			sourceTree = "<group>";
@@ -2314,6 +2319,7 @@
 				CB6305D820787DF300BB9228 /* ChooseNameViewController.m in Sources */,
 				E884E9422125610700BAA213 /* SendFilterViewController.m in Sources */,
 				E85499752117E3F9004F9132 /* XLsn0wToolbar.m in Sources */,
+				E8430B69212663E1008C5399 /* FileTypeModel.m in Sources */,
 				CBB7321E206E821C00BA065B /* FileTransferCell.m in Sources */,
 				E84923612123D72C000C5457 /* InputCell.m in Sources */,
 				E884E9332125540C00BAA213 /* NSDate+PGCategory.m in Sources */,
