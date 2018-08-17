@@ -1,20 +1,21 @@
-#import "ReceiveSearchViewController.h"
+#import "SendSearchViewController.h"
 #import "SendHandlerCell.h"
 #import "UIColor+color.h"
 #import <MJRefresh/MJRefresh.h>
-#import "ReceiveFileHandleListViewModel.h"
+#import "SendFileListViewModel.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
-#import "ReceiveFilterViewController.h"
+#import "SendFilterViewController.h"
 
-@interface ReceiveSearchViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate, ReceiveFilterViewControllerDelegate>
+@interface SendSearchViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate, SendFilterViewControllerDelegate>
 
+@property (nonatomic, strong) SendFileListViewModel *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) NSInteger currentPage;
 @property (nonatomic, strong) NSMutableDictionary *dict;
 
 @end
 
-@implementation ReceiveSearchViewController
+@implementation SendSearchViewController
 
 #pragma mark - view controller life cycle
 
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"收文办理查询";
+    self.title = @"发文办理查询";
     
     self.fd_interactivePopDisabled = YES; //禁用侧滑
     self.view.backgroundColor = ViewColor;
@@ -75,7 +76,7 @@
 
 - (void)filterClicked:(UIButton *)sender
 {
-    ReceiveFilterViewController *vc = [[ReceiveFilterViewController alloc] init];
+    SendFilterViewController *vc = [[SendFilterViewController alloc] init];
     vc.dict = [self.dict mutableCopy];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
@@ -92,21 +93,14 @@
     }
     NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"PageSize" : @10,
                                                                            @"PageNum" : @(self.currentPage),
-                                                                           @"SWBH" : self.dict[@"流水号"],             // 收文流水号
-                                                                           @"HJ" : self.dict[@"缓急"],                // 文件缓急
+                                                                           @"FWState" : @"",                          // 发文状态
                                                                            @"WHT" : self.dict[@"文号头"],              // 文号头
                                                                            @"WHN" : self.dict[@"文号年"],              // 文号年
-                                                                           @"WHS" : self.dict[@"文号数"],              // 文号数
-                                                                           @"Title" : self.dict[@"标题"],              // 标题
-                                                                           @"ZTC" : @"",                               // 主题词
-                                                                           @"LWDW" : self.dict[@"来文单位"],            // 来文单位
-                                                                           @"LWDWLB" : @"",                            // 来文单位类别编号
-                                                                           @"MJ" : @"",                                // 文件密级
-                                                                           @"WZ" : @"",                                // 文种
-                                                                           @"GLML" : @"",                              // 归类目录
-                                                                           @"RecKSName" : @"",                         // 主办科室名
-                                                                           @"JBTime_S" : self.dict[@"交办时间开始"],     // 交办时间(开始)
-                                                                           @"JBTime_E" : self.dict[@"交办时间结束"]}];   // 交办时间(结束)
+                                                                           @"WHZ" : self.dict[@"文号字"],              // 文号字
+                                                                           @"BT" : self.dict[@"标题"],                 // 标题
+                                                                           @"WZ" : self.dict[@"文种"],
+                                                                           @"NGR" : self.dict[@"拟稿人"],            //
+                                                                           @"ZTC" : @""}];
     
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -156,9 +150,9 @@
     }
 }
 
-#pragma mark - ReceiveFilterViewControllerDelegate
+#pragma mark - SendFilterViewControllerDelegate
 
-- (void)controller:(ReceiveFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
+- (void)controller:(SendFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
 {
     [controller.navigationController popViewControllerAnimated:YES];
 
@@ -219,12 +213,11 @@
 
 #pragma mark - lazy load
 
-- (ReceiveFileHandleListViewModel *)viewModel
+- (SendFileListViewModel *)viewModel
 {
     if(_viewModel == nil)
     {
-        _viewModel = [ReceiveFileHandleListViewModel new];
-        _viewModel.isSearch = YES;
+        _viewModel = [SendFileListViewModel new];
     }
     
     return _viewModel;
@@ -237,18 +230,14 @@
         _dict = [NSMutableDictionary dictionaryWithCapacity:9];
         
         //向词典中动态添加数据
-        [_dict setObject:@"" forKey:@"流水号"];          // 收文流水号
-        [_dict setObject:@"" forKey:@"缓急"];           // 文件缓急
-       
         [_dict setObject:@"" forKey:@"文号头"];         // 文号头
         [_dict setObject:@"" forKey:@"文号年"];         // 文号年
 
-        [_dict setObject:@"" forKey:@"文号数"];         // 文号数
+        [_dict setObject:@"" forKey:@"文号字"];         // 文号字
         [_dict setObject:@"" forKey:@"标题"];           // 标题
 
-        [_dict setObject:@"" forKey:@"来文单位"];        // 来文单位
-        [_dict setObject:@"" forKey:@"交办时间开始"];     // 交办时间(开始)
-        [_dict setObject:@"" forKey:@"交办时间结束"];     // 交办时间(结束)
+        [_dict setObject:@"" forKey:@"文种"];
+        [_dict setObject:@"" forKey:@"拟稿人"];
     }
     
     return _dict;

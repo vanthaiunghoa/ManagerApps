@@ -229,11 +229,17 @@
 		E884E93A2125540C00BAA213 /* PGDatePickManagerHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E884E9202125540C00BAA213 /* PGDatePickManagerHeaderView.m */; };
 		E884E93B2125540C00BAA213 /* PGDatePicker+Year.m in Sources */ = {isa = PBXBuildFile; fileRef = E884E9212125540C00BAA213 /* PGDatePicker+Year.m */; };
 		E884E93C2125540C00BAA213 /* PGDatePicker+DateHourMinuteSecond.m in Sources */ = {isa = PBXBuildFile; fileRef = E884E9232125540C00BAA213 /* PGDatePicker+DateHourMinuteSecond.m */; };
+		E884E9422125610700BAA213 /* SendFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E884E93E2125610700BAA213 /* SendFilterViewController.m */; };
+		E884E9432125610700BAA213 /* SendSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E884E9412125610700BAA213 /* SendSearchViewController.m */; };
 		E8853398210826C300744454 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8853396210826C300744454 /* ModelManager.m */; };
 		E8ACE30A21218CD300E2D894 /* RecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8ACE30921218CD300E2D894 /* RecordModel.m */; };
 		E8E09DC7210E9E5C00EAE7B3 /* SelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DC6210E9E5C00EAE7B3 /* SelectViewController.m */; };
 		E8E09DCA210E9EC800EAE7B3 /* SelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DC9210E9EC800EAE7B3 /* SelectCell.m */; };
 		E8E09DCD210EBE8C00EAE7B3 /* SelectHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DCB210EBE8C00EAE7B3 /* SelectHeaderView.m */; };
+		E8FD55362125733B00E2EB23 /* SendRetrievalFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD55322125733A00E2EB23 /* SendRetrievalFilterViewController.m */; };
+		E8FD55372125733B00E2EB23 /* SendRetrievalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD55352125733A00E2EB23 /* SendRetrievalSearchViewController.m */; };
+		E8FD553D2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD553A2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m */; };
+		E8FD553E2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD553B2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -665,6 +671,10 @@
 		E884E9212125540C00BAA213 /* PGDatePicker+Year.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+Year.m"; sourceTree = "<group>"; };
 		E884E9222125540C00BAA213 /* PGDatePickManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PGDatePickManager.h; sourceTree = "<group>"; };
 		E884E9232125540C00BAA213 /* PGDatePicker+DateHourMinuteSecond.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PGDatePicker+DateHourMinuteSecond.m"; sourceTree = "<group>"; };
+		E884E93E2125610700BAA213 /* SendFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendFilterViewController.m; sourceTree = "<group>"; };
+		E884E93F2125610700BAA213 /* SendSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendSearchViewController.h; sourceTree = "<group>"; };
+		E884E9402125610700BAA213 /* SendFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendFilterViewController.h; sourceTree = "<group>"; };
+		E884E9412125610700BAA213 /* SendSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendSearchViewController.m; sourceTree = "<group>"; };
 		E8853396210826C300744454 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelManager.m; sourceTree = "<group>"; };
 		E8853397210826C300744454 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelManager.h; sourceTree = "<group>"; };
 		E8ACE30821218CD300E2D894 /* RecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecordModel.h; sourceTree = "<group>"; };
@@ -675,6 +685,14 @@
 		E8E09DC9210E9EC800EAE7B3 /* SelectCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SelectCell.m; sourceTree = "<group>"; };
 		E8E09DCB210EBE8C00EAE7B3 /* SelectHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectHeaderView.m; sourceTree = "<group>"; };
 		E8E09DCC210EBE8C00EAE7B3 /* SelectHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectHeaderView.h; sourceTree = "<group>"; };
+		E8FD55322125733A00E2EB23 /* SendRetrievalFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendRetrievalFilterViewController.m; sourceTree = "<group>"; };
+		E8FD55332125733A00E2EB23 /* SendRetrievalSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendRetrievalSearchViewController.h; sourceTree = "<group>"; };
+		E8FD55342125733A00E2EB23 /* SendRetrievalFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendRetrievalFilterViewController.h; sourceTree = "<group>"; };
+		E8FD55352125733A00E2EB23 /* SendRetrievalSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendRetrievalSearchViewController.m; sourceTree = "<group>"; };
+		E8FD55392125813700E2EB23 /* ReceiveRetrievalSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveRetrievalSearchViewController.h; sourceTree = "<group>"; };
+		E8FD553A2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveRetrievalFilterViewController.m; sourceTree = "<group>"; };
+		E8FD553B2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveRetrievalSearchViewController.m; sourceTree = "<group>"; };
+		E8FD553C2125813700E2EB23 /* ReceiveRetrievalFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveRetrievalFilterViewController.h; sourceTree = "<group>"; };
 		EE10E21744962831981905B1 /* Pods-OA_IPAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OA_IPAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-OA_IPAD/Pods-OA_IPAD.release.xcconfig"; sourceTree = "<group>"; };
 		FC5A324B42CD15DE351C5773 /* Pods-RequestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RequestTests/Pods-RequestTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -1673,6 +1691,8 @@
 		E860773221056C5F000BA041 /* ListView */ = {
 			isa = PBXGroup;
 			children = (
+				E8FD55382125813700E2EB23 /* ReceiveRetrievalSearchView */,
+				E8FD55312125733A00E2EB23 /* SendRetrievalSearchView */,
 				E86BFC812122AA2900D39BBD /* SendHandlerView */,
 				E86BFC6A21226CC800D39BBD /* ReceiveHandlerView */,
 				E860774021057A5A000BA041 /* ReceiveHandlerCell.h */,
@@ -1761,6 +1781,7 @@
 			children = (
 				E86BFC852122AA2900D39BBD /* SendViewController.h */,
 				E86BFC872122AA2900D39BBD /* SendViewController.m */,
+				E884E93D2125610700BAA213 /* SendSearchView */,
 				E86BFC892122AAFD00D39BBD /* SendAllView */,
 				E86BFC922122AAFD00D39BBD /* SendNeedView */,
 				E86BFC8C2122AAFD00D39BBD /* SendPrewView */,
@@ -1889,6 +1910,17 @@
 			path = PGDatePicker;
 			sourceTree = "<group>";
 		};
+		E884E93D2125610700BAA213 /* SendSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				E884E9402125610700BAA213 /* SendFilterViewController.h */,
+				E884E93E2125610700BAA213 /* SendFilterViewController.m */,
+				E884E93F2125610700BAA213 /* SendSearchViewController.h */,
+				E884E9412125610700BAA213 /* SendSearchViewController.m */,
+			);
+			path = SendSearchView;
+			sourceTree = "<group>";
+		};
 		E8853395210826C300744454 /* ModelManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -1909,6 +1941,28 @@
 				E8E09DC9210E9EC800EAE7B3 /* SelectCell.m */,
 			);
 			path = SelectView;
+			sourceTree = "<group>";
+		};
+		E8FD55312125733A00E2EB23 /* SendRetrievalSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				E8FD55332125733A00E2EB23 /* SendRetrievalSearchViewController.h */,
+				E8FD55352125733A00E2EB23 /* SendRetrievalSearchViewController.m */,
+				E8FD55342125733A00E2EB23 /* SendRetrievalFilterViewController.h */,
+				E8FD55322125733A00E2EB23 /* SendRetrievalFilterViewController.m */,
+			);
+			path = SendRetrievalSearchView;
+			sourceTree = "<group>";
+		};
+		E8FD55382125813700E2EB23 /* ReceiveRetrievalSearchView */ = {
+			isa = PBXGroup;
+			children = (
+				E8FD55392125813700E2EB23 /* ReceiveRetrievalSearchViewController.h */,
+				E8FD553B2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m */,
+				E8FD553C2125813700E2EB23 /* ReceiveRetrievalFilterViewController.h */,
+				E8FD553A2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m */,
+			);
+			path = ReceiveRetrievalSearchView;
 			sourceTree = "<group>";
 		};
 		F1F62DED20366843208762C3 /* Pods */ = {
@@ -2209,6 +2263,7 @@
 				E847F001210AA9A600A47EDE /* SendRecordHeaderView.m in Sources */,
 				E884E92D2125540C00BAA213 /* PGDatePickManager.m in Sources */,
 				E85328102109A7BF00439E79 /* AttachmentCell.m in Sources */,
+				E8FD55372125733B00E2EB23 /* SendRetrievalSearchViewController.m in Sources */,
 				CBDBAF362082253D00E6B29E /* UserInfoCell.m in Sources */,
 				E853280C2109A7BF00439E79 /* HeaderView.m in Sources */,
 				E884E9272125540C00BAA213 /* UIColor+PGHex.m in Sources */,
@@ -2257,6 +2312,7 @@
 				CB6305B82077AF8600BB9228 /* SendFileSearchItem.m in Sources */,
 				E884E9322125540C00BAA213 /* PGDatePicker+DateHourMinute.m in Sources */,
 				CB6305D820787DF300BB9228 /* ChooseNameViewController.m in Sources */,
+				E884E9422125610700BAA213 /* SendFilterViewController.m in Sources */,
 				E85499752117E3F9004F9132 /* XLsn0wToolbar.m in Sources */,
 				CBB7321E206E821C00BA065B /* FileTransferCell.m in Sources */,
 				E84923612123D72C000C5457 /* InputCell.m in Sources */,
@@ -2271,6 +2327,7 @@
 				E829520F20EB4D3100E9D26B /* LoginViewController.m in Sources */,
 				E860773E21056D71000BA041 /* ReceiveRetrievalCell.m in Sources */,
 				CB018120206924C6003B53F7 /* TransactionListViewController.m in Sources */,
+				E8FD55362125733B00E2EB23 /* SendRetrievalFilterViewController.m in Sources */,
 				E829521620EB4D9A00E9D26B /* VPNSettingViewController.m in Sources */,
 				E884E9282125540C00BAA213 /* PGDatePickerView.m in Sources */,
 				E84E392A21128DD70072A5AC /* MeetingViewController.m in Sources */,
@@ -2282,6 +2339,7 @@
 				E8E09DCD210EBE8C00EAE7B3 /* SelectHeaderView.m in Sources */,
 				CB6305A92077892700BB9228 /* SendFileHandleViewModel.m in Sources */,
 				CB018128206BD490003B53F7 /* ReceiveTransactionService.m in Sources */,
+				E8FD553E2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m in Sources */,
 				CBDBAF272082227B00E6B29E /* UserInfo.m in Sources */,
 				E8E09DCA210E9EC800EAE7B3 /* SelectCell.m in Sources */,
 				CB01810120675755003B53F7 /* MainViewController.m in Sources */,
@@ -2295,6 +2353,7 @@
 				E884E9312125540C00BAA213 /* PGDatePicker+MonthDayHourMinuteSecond.m in Sources */,
 				E86BFC972122AAFD00D39BBD /* SendWaitingViewController.m in Sources */,
 				E884E9382125540C00BAA213 /* PGDatePicker+Common.m in Sources */,
+				E8FD553D2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m in Sources */,
 				BC1F53C62092B08C00878B11 /* MeetingTheme.m in Sources */,
 				E884E92E2125540C00BAA213 /* PGDatePicker+Logic.m in Sources */,
 				CB01810F2067EEE2003B53F7 /* UIColor+EasyExtend.m in Sources */,
@@ -2310,6 +2369,7 @@
 				E87DF81620EDFC460046319E /* MainView.m in Sources */,
 				CB6305BD2077B82200BB9228 /* TransactionListViewModel.m in Sources */,
 				CB8372C2207A666B00B6BD45 /* ReceiveFileReviewViewController.m in Sources */,
+				E884E9432125610700BAA213 /* SendSearchViewController.m in Sources */,
 				CB02AE8E20726D68005D5A0F /* ChooseNameView.m in Sources */,
 				CB4B47A12075303E00AD16C3 /* SendFileDetail.m in Sources */,
 				CB01810B2067E7D0003B53F7 /* ListCell.m in Sources */,

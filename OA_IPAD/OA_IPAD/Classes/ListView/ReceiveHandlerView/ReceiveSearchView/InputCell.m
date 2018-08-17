@@ -73,5 +73,11 @@
     [self.lab setText:key];
 }
 
+- (void)setIsHiddenLine:(BOOL )isHiddenLine
+{
+    _isHiddenLine = isHiddenLine;
+    _line.hidden = isHiddenLine;
+}
+
 
 @end

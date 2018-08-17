@@ -1,20 +1,21 @@
-#import "ReceiveSearchViewController.h"
-#import "SendHandlerCell.h"
+#import "SendRetrievalSearchViewController.h"
+#import "SendRetrievalCell.h"
 #import "UIColor+color.h"
 #import <MJRefresh/MJRefresh.h>
-#import "ReceiveFileHandleListViewModel.h"
+#import "SendFileSearchListViewModel.h"
 #import <FDFullscreenPopGesture/UINavigationController+FDFullscreenPopGesture.h>
-#import "ReceiveFilterViewController.h"
+#import "SendRetrievalFilterViewController.h"
 
-@interface ReceiveSearchViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate, ReceiveFilterViewControllerDelegate>
+@interface SendRetrievalSearchViewController ()<UITableViewDelegate, UITableViewDataSource, SendRetrievalFilterViewControllerDelegate>
 
+@property (nonatomic, strong) SendFileSearchListViewModel *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) NSInteger currentPage;
 @property (nonatomic, strong) NSMutableDictionary *dict;
 
 @end
 
-@implementation ReceiveSearchViewController
+@implementation SendRetrievalSearchViewController
 
 #pragma mark - view controller life cycle
 
@@ -25,7 +26,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"收文办理查询";
+    self.title = @"发文检索查询";
     
     self.fd_interactivePopDisabled = YES; //禁用侧滑
     self.view.backgroundColor = ViewColor;
@@ -54,7 +55,7 @@
     [self.tableView setDataSource:self];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableView.backgroundColor = ViewColor;
-    [self.tableView registerClass:[SendHandlerCell class] forCellReuseIdentifier:NSStringFromClass([SendHandlerCell class])];
+    [self.tableView registerClass:[SendRetrievalCell class] forCellReuseIdentifier:NSStringFromClass([SendRetrievalCell class])];
     
     @weakify(self);
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
@@ -75,7 +76,7 @@
 
 - (void)filterClicked:(UIButton *)sender
 {
-    ReceiveFilterViewController *vc = [[ReceiveFilterViewController alloc] init];
+    SendRetrievalFilterViewController *vc = [[SendRetrievalFilterViewController alloc] init];
     vc.dict = [self.dict mutableCopy];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
@@ -90,23 +91,25 @@
         self.currentPage = 1;
         self.viewModel.listItems = [NSMutableArray arrayWithCapacity:10];
     }
+
     NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"PageSize" : @10,
                                                                            @"PageNum" : @(self.currentPage),
-                                                                           @"SWBH" : self.dict[@"流水号"],             // 收文流水号
-                                                                           @"HJ" : self.dict[@"缓急"],                // 文件缓急
+                                                                           @"ifFF" : @"",               // 是否封发
+                                                                           @"FWH" : @"",                // 发文号
                                                                            @"WHT" : self.dict[@"文号头"],              // 文号头
                                                                            @"WHN" : self.dict[@"文号年"],              // 文号年
-                                                                           @"WHS" : self.dict[@"文号数"],              // 文号数
-                                                                           @"Title" : self.dict[@"标题"],              // 标题
+                                                                           @"WHZ" : self.dict[@"文号字"],              // 文号字
+                                                                           @"BT" : self.dict[@"标题"],               // 标题
                                                                            @"ZTC" : @"",                               // 主题词
-                                                                           @"LWDW" : self.dict[@"来文单位"],            // 来文单位
-                                                                           @"LWDWLB" : @"",                            // 来文单位类别编号
-                                                                           @"MJ" : @"",                                // 文件密级
-                                                                           @"WZ" : @"",                                // 文种
-                                                                           @"GLML" : @"",                              // 归类目录
-                                                                           @"RecKSName" : @"",                         // 主办科室名
-                                                                           @"JBTime_S" : self.dict[@"交办时间开始"],     // 交办时间(开始)
-                                                                           @"JBTime_E" : self.dict[@"交办时间结束"]}];   // 交办时间(结束)
+                                                                           @"WZ" : self.dict[@"文种"],            // 文种
+                                                                           @"XXGKCatalog" : @"",                       // 信息公开类目
+                                                                           @"NGR" : self.dict[@"拟稿人"],
+                                                                           @"ZSDW" : @"",                              // 主送单位
+                                                                           @"ZBKS" : @"",                         // 主办科室
+                                                                           @"QFR" : @"",                              // 签发人
+                                                                           @"GJQK" : @"",                         // 归档情况
+                                                                           @"QFDateStart" : self.dict[@"签发日期起"],
+                                                                           @"QFDateEnd" : self.dict[@"签发日期止"]}];
     
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -146,19 +149,9 @@
      }];
 }
 
-#pragma mark - SendHandlerCellDelegate
+#pragma mark - SendRetrievalFilterViewControllerDelegate
 
-- (void)approval:(NSIndexPath *)indexPath
-{
-    UIViewController *next = [self.viewModel touchTitleNextViewControllerWithIndex:indexPath.row];
-    if (next) {
-        [self.navigationController pushViewController:next animated:YES];
-    }
-}
-
-#pragma mark - ReceiveFilterViewControllerDelegate
-
-- (void)controller:(ReceiveFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
+- (void)controller:(SendRetrievalFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
 {
     [controller.navigationController popViewControllerAnimated:YES];
 
@@ -178,12 +171,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SendHandlerCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SendHandlerCell class])];
+    SendRetrievalCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SendRetrievalCell class])];
     id<ListCellDataSource> dataSource = self.viewModel.models[indexPath.row];
     [cell useCellFrameCacheWithIndexPath:indexPath tableView:tableView];
-    
-    cell.indexPath = indexPath;
-    cell.delegate = self;
     cell.model = dataSource;
 
     return cell;
@@ -191,7 +181,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Class currentClass = [SendHandlerCell class];
+    Class currentClass = [SendRetrievalCell class];
     id<ListCellDataSource> model = self.viewModel.models[indexPath.row];
     return [self.tableView cellHeightForIndexPath:indexPath model:model keyPath:@"model" cellClass:currentClass contentViewWidth:[self cellContentViewWith]] + 20;
 }
@@ -219,11 +209,11 @@
 
 #pragma mark - lazy load
 
-- (ReceiveFileHandleListViewModel *)viewModel
+- (SendFileSearchListViewModel *)viewModel
 {
     if(_viewModel == nil)
     {
-        _viewModel = [ReceiveFileHandleListViewModel new];
+        _viewModel = [SendFileSearchListViewModel new];
         _viewModel.isSearch = YES;
     }
     
@@ -237,18 +227,17 @@
         _dict = [NSMutableDictionary dictionaryWithCapacity:9];
         
         //向词典中动态添加数据
-        [_dict setObject:@"" forKey:@"流水号"];          // 收文流水号
-        [_dict setObject:@"" forKey:@"缓急"];           // 文件缓急
+        [_dict setObject:@"" forKey:@"文种"];
+        [_dict setObject:@"" forKey:@"拟稿人"];
        
         [_dict setObject:@"" forKey:@"文号头"];         // 文号头
         [_dict setObject:@"" forKey:@"文号年"];         // 文号年
 
-        [_dict setObject:@"" forKey:@"文号数"];         // 文号数
+        [_dict setObject:@"" forKey:@"文号字"];         // 文号字
         [_dict setObject:@"" forKey:@"标题"];           // 标题
 
-        [_dict setObject:@"" forKey:@"来文单位"];        // 来文单位
-        [_dict setObject:@"" forKey:@"交办时间开始"];     // 交办时间(开始)
-        [_dict setObject:@"" forKey:@"交办时间结束"];     // 交办时间(结束)
+        [_dict setObject:@"" forKey:@"签发日期起"];     // 交办时间(开始)
+        [_dict setObject:@"" forKey:@"签发日期止"];     // 交办时间(结束)
     }
     
     return _dict;

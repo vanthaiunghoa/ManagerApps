@@ -19,5 +19,6 @@
 @property (nonatomic, weak) id<InputCellDelegate> delegate;
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic, copy) NSString *value;
+@property (nonatomic, assign) BOOL isHiddenLine;
 
 @end

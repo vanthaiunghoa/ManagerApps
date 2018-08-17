@@ -3,6 +3,7 @@
 #import "SendWaitingViewController.h"
 #import "SendPrewViewController.h"
 #import "SendAllViewController.h"
+#import "SendSearchViewController.h"
 #import "UIColor+color.h"
 
 @interface SendViewController ()
@@ -33,11 +34,10 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:searchButton];
 }
 
-- (void)showSearchController:(id)sender {
-//    TransactionSearchResultsViewController *vc = [TransactionSearchResultsViewController new];
-//    vc.viewModel = self.viewModel;
-//    vc.title = self.title;
-//    [self.navigationController pushViewController:vc animated:NO];
+- (void)showSearchController:(id)sender
+{
+    SendSearchViewController *vc = [SendSearchViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {

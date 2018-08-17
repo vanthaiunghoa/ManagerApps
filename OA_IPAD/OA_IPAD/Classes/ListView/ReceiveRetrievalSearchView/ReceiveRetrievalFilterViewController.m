@@ -1,12 +1,12 @@
 //
-//  ReceiveFilterViewController.m
+//  ReceiveRetrievalFilterViewController.m
 //  OA_IPAD
 //
 //  Created by wanve on 2018/7/30.
 //  Copyright © 2018年 icebartech. All rights reserved.
 //
 
-#import "ReceiveFilterViewController.h"
+#import "ReceiveRetrievalFilterViewController.h"
 #import "UIColor+color.h"
 #import "UIImage+image.h"
 #import "SinglePickerCell.h"
@@ -16,7 +16,7 @@
 #import "XLsn0wPickerSingler.h"
 #import "PGDatePickManager.h"
 
-@interface ReceiveFilterViewController ()<UITableViewDelegate, UITableViewDataSource, InputCellDelegate, SinglePickerCellDelegate, DoublePickerCellDelegate, XLsn0wPickerSinglerDelegate, PGDatePickerDelegate>
+@interface ReceiveRetrievalFilterViewController ()<UITableViewDelegate, UITableViewDataSource, InputCellDelegate, SinglePickerCellDelegate, DoublePickerCellDelegate, XLsn0wPickerSinglerDelegate, PGDatePickerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) SinglePickerCell *hjCell;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation ReceiveFilterViewController
+@implementation ReceiveRetrievalFilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -116,8 +116,8 @@
         [self.dict setObject:@"" forKey:@"标题"];           // 标题
         
         [self.dict setObject:@"" forKey:@"来文单位"];        // 来文单位
-        [self.dict setObject:@"" forKey:@"交办时间开始"];     // 交办时间(开始)
-        [self.dict setObject:@"" forKey:@"交办时间结束"];     // 交办时间(结束)
+        [self.dict setObject:@"" forKey:@"成文时间开始"];     //
+        [self.dict setObject:@"" forKey:@"成文时间结束"];     //
 
         [self.tableView reloadData];
     }]];
@@ -225,9 +225,9 @@
             [_doublePickerCell setSelectionStyle:UITableViewCellSelectionStyleNone];
             _doublePickerCell.delegate = self;
         }
-        _doublePickerCell.key = @"交办时间";
-        _doublePickerCell.beginTime = _dict[@"交办时间开始"];
-        _doublePickerCell.endTime = _dict[@"交办时间结束"];
+        _doublePickerCell.key = @"成文时间";
+        _doublePickerCell.beginTime = _dict[@"成文时间开始"];
+        _doublePickerCell.endTime = _dict[@"成文时间结束"];
         
         return _doublePickerCell;
     }
@@ -371,12 +371,12 @@
     }
     else if(self.selectType == HandlerBeginTime)
     {
-        self.dict[@"交办时间开始"] = formatTime;
+        self.dict[@"成文时间开始"] = formatTime;
         _doublePickerCell.beginTime = formatTime;
     }
     else
     {
-        self.dict[@"交办时间结束"] = formatTime;
+        self.dict[@"成文时间结束"] = formatTime;
         _doublePickerCell.endTime = formatTime;
     }
 }

@@ -1,32 +1,29 @@
 //
-//  ReceiveFilterViewController.m
+//  SendFilterViewController.m
 //  OA_IPAD
 //
 //  Created by wanve on 2018/7/30.
 //  Copyright © 2018年 icebartech. All rights reserved.
 //
 
-#import "ReceiveFilterViewController.h"
+#import "SendFilterViewController.h"
 #import "UIColor+color.h"
 #import "UIImage+image.h"
 #import "SinglePickerCell.h"
-#import "DoublePickerCell.h"
 #import "InputCell.h"
 #import <ReactiveObjC/ReactiveObjC.h>
-#import "XLsn0wPickerSingler.h"
 #import "PGDatePickManager.h"
+#import "XLsn0wPickerSingler.h"
 
-@interface ReceiveFilterViewController ()<UITableViewDelegate, UITableViewDataSource, InputCellDelegate, SinglePickerCellDelegate, DoublePickerCellDelegate, XLsn0wPickerSinglerDelegate, PGDatePickerDelegate>
+@interface SendFilterViewController ()<UITableViewDelegate, UITableViewDataSource, InputCellDelegate, SinglePickerCellDelegate, XLsn0wPickerSinglerDelegate, PGDatePickerDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) SinglePickerCell *hjCell;
 @property (strong, nonatomic) SinglePickerCell *whnCell;
-@property (strong, nonatomic) DoublePickerCell *doublePickerCell;
-@property (assign, nonatomic) SelectType selectType;
+@property (strong, nonatomic) SinglePickerCell *wzCell;
 
 @end
 
-@implementation ReceiveFilterViewController
+@implementation SendFilterViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -62,7 +59,6 @@
     
     [self.tableView registerClass:[InputCell class] forCellReuseIdentifier:NSStringFromClass([InputCell class])];
     [self.tableView registerClass:[SinglePickerCell class] forCellReuseIdentifier:NSStringFromClass([SinglePickerCell class])];
-    [self.tableView registerClass:[DoublePickerCell class] forCellReuseIdentifier:NSStringFromClass([DoublePickerCell class])];
 }
 
 - (void)initBottomView
@@ -106,18 +102,14 @@
     [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         @strongify(self);
         
-        [self.dict setObject:@"" forKey:@"流水号"];          // 收文流水号
-        [self.dict setObject:@"" forKey:@"缓急"];           // 文件缓急
-        
         [self.dict setObject:@"" forKey:@"文号头"];         // 文号头
         [self.dict setObject:@"" forKey:@"文号年"];         // 文号年
         
-        [self.dict setObject:@"" forKey:@"文号数"];         // 文号数
+        [self.dict setObject:@"" forKey:@"文号字"];         //
         [self.dict setObject:@"" forKey:@"标题"];           // 标题
         
-        [self.dict setObject:@"" forKey:@"来文单位"];        // 来文单位
-        [self.dict setObject:@"" forKey:@"交办时间开始"];     // 交办时间(开始)
-        [self.dict setObject:@"" forKey:@"交办时间结束"];     // 交办时间(结束)
+        [self.dict setObject:@"" forKey:@"文种"];
+        [self.dict setObject:@"" forKey:@"拟稿人"];
 
         [self.tableView reloadData];
     }]];
@@ -143,31 +135,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if(indexPath.row < 2)
-    {
-        InputCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([InputCell class])];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        cell.delegate = self;
-        
-        if(indexPath.row == 0)
-        {
-            cell.key = @"流水号";
-            cell.value = _dict[@"流水号"];
-        }
-        else
-        {
-            cell.key = @"文号头";
-            cell.value = _dict[@"文号头"];
-        }
-
-        return cell;
-    }
-    else if(indexPath.row == 2) // 文号年
+    if(indexPath.row == 1)
     {
         if(_whnCell == nil)
         {
@@ -180,56 +153,56 @@
         
         return _whnCell;
     }
-    if(indexPath.row > 2 && indexPath.row < 6)
+    else if(indexPath.row == 4)
+    {
+        if(_wzCell == nil)
+        {
+            _wzCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SinglePickerCell class])];
+            [_wzCell setSelectionStyle:UITableViewCellSelectionStyleNone];
+            _wzCell.delegate = self;
+        }
+        _wzCell.key = @"文种";
+        _wzCell.value = _dict[@"文种"];
+        
+        return _wzCell;
+    }
+    else
     {
         InputCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([InputCell class])];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         cell.delegate = self;
         
-        if(indexPath.row == 3)
+        if(indexPath.row == 0)
         {
-            cell.key = @"文号数";
-            cell.value = _dict[@"文号数"];
+            cell.key = @"文号头";
+            cell.value = _dict[@"文号头"];
         }
-        else if(indexPath.row == 4)
+        else if(indexPath.row == 2)
+        {
+            cell.key = @"文号字";
+            cell.value = _dict[@"文号字"];
+        }
+        else if(indexPath.row == 3)
         {
             cell.key = @"标题";
             cell.value = _dict[@"标题"];
         }
         else
         {
-            cell.key = @"来文单位";
-            cell.value = _dict[@"来文单位"];
+            cell.key = @"拟稿人";
+            cell.value = _dict[@"拟稿人"];
+        }
+        
+        if(indexPath.row == 5)
+        {
+            cell.isHiddenLine = YES;
+        }
+        else
+        {
+            cell.isHiddenLine = NO;
         }
         
         return cell;
-    }
-    else if(indexPath.row == 6) // 缓急
-    {
-        if(_hjCell == nil)
-        {
-            _hjCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([SinglePickerCell class])];
-            [_hjCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            _hjCell.delegate = self;
-        }
-        _hjCell.key = @"缓急";
-        _hjCell.value = _dict[@"缓急"];
-        
-        return _hjCell;
-    }
-    else
-    {
-        if(_doublePickerCell == nil)
-        {
-            _doublePickerCell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DoublePickerCell class])];
-            [_doublePickerCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-            _doublePickerCell.delegate = self;
-        }
-        _doublePickerCell.key = @"交办时间";
-        _doublePickerCell.beginTime = _dict[@"交办时间开始"];
-        _doublePickerCell.endTime = _dict[@"交办时间结束"];
-        
-        return _doublePickerCell;
     }
 }
 
@@ -250,59 +223,18 @@
     self.dict[valueOfKey] = value;
 }
 
-#pragma mark -  DoublePickerCellDelegate
-
-- (void)didDoublePickerCellBtnClicked:(NSInteger)tag
-{
-    if(tag == 0)
-    {
-        self.selectType = HandlerBeginTime;
-    }
-    else
-    {
-        self.selectType = HandlerEndTime;
-    }
-    
-    PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
-    PGDatePicker *datePicker = datePickManager.datePicker;
-    datePicker.delegate = self;
-    datePicker.datePickerMode = PGDatePickerModeDate;
-    [self presentViewController:datePickManager animated:false completion:nil];
-
-    //设置半透明的背景颜色
-    datePickManager.isShadeBackgroud = true;
-    //设置线条的颜色
-    datePicker.lineBackgroundColor = LineColor;
-    //设置选中行的字体颜色
-    datePicker.textColorOfSelectedRow = [UIColor blackColor];
-    //设置取消按钮的字体颜色
-    datePickManager.cancelButtonTextColor = GrayColor;
-    //设置取消按钮的字
-    datePickManager.cancelButtonText = @"取消";
-    //设置取消按钮的字体大小
-    datePickManager.cancelButtonFont = [UIFont boldSystemFontOfSize:20];
-    //设置确定按钮的字体颜色
-    datePickManager.confirmButtonTextColor = [UIColor colorWithHex:0x3D98FF];
-    //设置确定按钮的字
-    datePickManager.confirmButtonText = @"确定";
-    //设置确定按钮的字体大小
-    datePickManager.confirmButtonFont = [UIFont boldSystemFontOfSize:20];
-}
-
 #pragma mark - SinglePickerCellDelegate
 
 - (void)didSinglePickerCellBtnClicked:(NSString *)valueOfKey
 {
-    if([valueOfKey isEqualToString:@"缓急"])
+    if([valueOfKey isEqualToString:@"文种"])
     {
-        NSArray *arr = @[@"不选择", @"普件", @"平件", @"急件", @"特急"];
+        NSArray *arr = @[@"不选择", @"通知", @"函", @"报告", @"会议纪要"];
         XLsn0wPickerSingler *singler = [[XLsn0wPickerSingler alloc] initWithArrayData:arr unitTitle:@"" xlsn0wDelegate:self];
         [singler show];
     }
     else
     {
-        self.selectType = WHN;
-        
         PGDatePickManager *datePickManager = [[PGDatePickManager alloc]init];
         PGDatePicker *datePicker = datePickManager.datePicker;
         datePicker.delegate = self;
@@ -336,49 +268,22 @@
 {
     if([selectedTitle isEqualToString:@"不选择"])
     {
-        self.dict[@"缓急"] = @"";
+        self.dict[@"文种"] = @"";
     }
     else
     {
-        self.dict[@"缓急"] = selectedTitle;
+        self.dict[@"文种"] = selectedTitle;
     }
-    _hjCell.value = selectedTitle;
+    _wzCell.value = selectedTitle;
 }
 
 #pragma mark - PGDatePickerDelegate
 
 - (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents
 {
-    NSString *formatTime = [NSString stringWithFormat:@"%ld-%ld-%ld", dateComponents.year, dateComponents.month, dateComponents.day];
-    if(dateComponents.month < 10)
-    {
-        formatTime = [NSString stringWithFormat:@"%ld-0%ld-%ld", dateComponents.year, dateComponents.month, dateComponents.day];
-    }
-    if(dateComponents.day < 10)
-    {
-        formatTime = [NSString stringWithFormat:@"%ld-%ld-0%ld", dateComponents.year, dateComponents.month, dateComponents.day];
-    }
-    if(dateComponents.month < 10 && dateComponents.day < 10)
-    {
-        formatTime = [NSString stringWithFormat:@"%ld-0%ld-0%ld", dateComponents.year, dateComponents.month, dateComponents.day];
-    }
-    
-    if(self.selectType == WHN)
-    {
-        NSString *value = [NSString stringWithFormat:@"%ld", dateComponents.year];
-        self.dict[@"文号年"] = value;
-        _whnCell.value = value;
-    }
-    else if(self.selectType == HandlerBeginTime)
-    {
-        self.dict[@"交办时间开始"] = formatTime;
-        _doublePickerCell.beginTime = formatTime;
-    }
-    else
-    {
-        self.dict[@"交办时间结束"] = formatTime;
-        _doublePickerCell.endTime = formatTime;
-    }
+    NSString *value = [NSString stringWithFormat:@"%ld", dateComponents.year];
+    self.dict[@"文号年"] = value;
+    _whnCell.value = value;
 }
 
 #pragma mark - lazy load

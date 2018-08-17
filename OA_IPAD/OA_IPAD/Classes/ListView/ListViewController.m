@@ -227,11 +227,16 @@
     } fromViewController:self];
 }
 
-- (void)showSearchController:(id)sender {
-    TransactionSearchResultsViewController *vc = [TransactionSearchResultsViewController new];
-    vc.viewModel = self.viewModel;
-    vc.title = self.title;
-    [self.navigationController pushViewController:vc animated:NO];
+- (void)showSearchController:(id)sender
+{
+    if([self.title isEqualToString:@"发文检索"])
+    {
+        [self.navigationController pushViewController:[NSClassFromString(@"SendRetrievalSearchViewController") new] animated:YES];
+    }
+    else
+    {
+        [self.navigationController pushViewController:[NSClassFromString(@"ReceiveRetrievalSearchViewController") new] animated:YES];
+    }
 }
 
 - (void)userDidHandleTask:(NSNotification *)notification {
