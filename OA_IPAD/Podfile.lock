@@ -38,7 +38,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - MJExtension
   - MJRefresh
-  - PGPickerView (~> 1.2.6)
+  - PGPickerView
   - ReactiveObjC
   - SDAutoLayout (~> 2.2.0)
   - SVProgressHUD (~> 2.2.5)
@@ -78,6 +78,6 @@ SPEC CHECKSUMS:
   WMPageController: 0c7624d2b48e4f1ab92371688cf6744ed701575d
   YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
 
-PODFILE CHECKSUM: e98429d685c96ff93dd16479d727d703654bb153
+PODFILE CHECKSUM: 7dd5a40acadac77d1fca9d3d947b003d2e60b18c
 
 COCOAPODS: 1.5.0

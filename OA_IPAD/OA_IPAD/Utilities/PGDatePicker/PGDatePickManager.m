@@ -76,7 +76,7 @@
     if (self.style == PGDatePickManagerStyle1) {
         CGRect contentViewFrame = self.contentView.frame;
         contentViewFrame.origin.y = self.view.bounds.size.height;
-        [UIView animateWithDuration:0.33 animations:^{
+        [UIView animateWithDuration:0.25 animations:^{
             self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
             self.contentView.frame = contentViewFrame;
         }completion:^(BOOL finished) {
@@ -120,7 +120,7 @@
     self.headerView.frame = headerViewFrame;
     self.datePicker.frame = datePickerFrame;
     self.headerView.backgroundColor = self.headerViewBackgroundColor;
-    [UIView animateWithDuration:0.33 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         if (self.isShadeBackgroud) {
             self.dismissView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
         }

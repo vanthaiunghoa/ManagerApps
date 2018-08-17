@@ -1382,7 +1382,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (UIColor *)lineBackgroundColor {
     if (!_lineBackgroundColor) {
-        _lineBackgroundColor = [UIColor pg_colorWithHexString:@"#3D98FF"];
+        _lineBackgroundColor = [UIColor pg_colorWithHexString:@"#69BDFF"];
     }
     return _lineBackgroundColor;
 }
@@ -1396,21 +1396,21 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (UIColor *)textColorOfSelectedRow {
     if (!_textColorOfSelectedRow) {
-        _textColorOfSelectedRow = [UIColor pg_colorWithHexString:@"#3D98FF"];
+        _textColorOfSelectedRow = [UIColor pg_colorWithHexString:@"#69BDFF"];
     }
     return _textColorOfSelectedRow;
 }
 
 - (UIFont *)textFontOfSelectedRow {
     if (!_textFontOfSelectedRow) {
-        _textFontOfSelectedRow = [UIFont systemFontOfSize:18];
+        _textFontOfSelectedRow = [UIFont systemFontOfSize:17];
     }
     return _textFontOfSelectedRow;
 }
 
 - (UIFont *)textFontOfOtherRow {
     if (!_textFontOfOtherRow) {
-        _textFontOfOtherRow = [UIFont systemFontOfSize:18];
+        _textFontOfOtherRow = [UIFont systemFontOfSize:17];
     }
     return _textFontOfOtherRow;
 }
@@ -1424,7 +1424,7 @@ static NSString *const reuseIdentifier = @"PGDatePickerView";
 
 - (UIColor *)middleTextColor {
     if (!_middleTextColor) {
-        _middleTextColor = [UIColor pg_colorWithHexString:@"#3D98FF"];
+        _middleTextColor = [UIColor pg_colorWithHexString:@"#69BDFF"];
     }
     return _middleTextColor;
 }

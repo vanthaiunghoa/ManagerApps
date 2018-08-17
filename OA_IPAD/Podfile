@@ -17,7 +17,7 @@ def share_pod
     pod 'SVProgressHUD', '~> 2.2.5'
     pod 'SDAutoLayout', '~> 2.2.0'
     pod 'WMPageController', '~> 2.5.2'
-    pod 'PGPickerView', '~> 1.2.6'
+    pod 'PGPickerView'
 	    
 end
 

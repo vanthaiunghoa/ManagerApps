@@ -276,7 +276,7 @@
     //设置半透明的背景颜色
     datePickManager.isShadeBackgroud = true;
     //设置线条的颜色
-    datePicker.lineBackgroundColor = LineColor;
+    datePicker.lineBackgroundColor = [UIColor lightGrayColor];
     //设置选中行的字体颜色
     datePicker.textColorOfSelectedRow = [UIColor blackColor];
     //设置取消按钮的字体颜色
@@ -360,7 +360,7 @@
         //设置半透明的背景颜色
         datePickManager.isShadeBackgroud = true;
         //设置线条的颜色
-        datePicker.lineBackgroundColor = LineColor;
+        datePicker.lineBackgroundColor = [UIColor lightGrayColor];
         //设置选中行的字体颜色
         datePicker.textColorOfSelectedRow = [UIColor blackColor];
         //设置取消按钮的字体颜色
@@ -397,23 +397,23 @@
 
 - (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents
 {
-    NSString *formatTime = [NSString stringWithFormat:@"%ld-%ld-%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+    NSString *formatTime = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     if(dateComponents.month < 10)
     {
-        formatTime = [NSString stringWithFormat:@"%ld-0%ld-%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+        formatTime = [NSString stringWithFormat:@"%ld-0%ld-%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     }
     if(dateComponents.day < 10)
     {
-        formatTime = [NSString stringWithFormat:@"%ld-%ld-0%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+        formatTime = [NSString stringWithFormat:@"%ld-%ld-0%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     }
     if(dateComponents.month < 10 && dateComponents.day < 10)
     {
-        formatTime = [NSString stringWithFormat:@"%ld-0%ld-0%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+        formatTime = [NSString stringWithFormat:@"%ld-0%ld-0%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     }
     
     if(self.selectType == WHN)
     {
-        NSString *value = [NSString stringWithFormat:@"%ld", dateComponents.year];
+        NSString *value = [NSString stringWithFormat:@"%ld", (long)dateComponents.year];
         self.dict[@"文号年"] = value;
         _whnCell.value = value;
     }

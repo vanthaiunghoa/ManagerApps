@@ -276,7 +276,7 @@
     //设置半透明的背景颜色
     datePickManager.isShadeBackgroud = true;
     //设置线条的颜色
-    datePicker.lineBackgroundColor = LineColor;
+    datePicker.lineBackgroundColor = [UIColor lightGrayColor];
     //设置选中行的字体颜色
     datePicker.textColorOfSelectedRow = [UIColor blackColor];
     //设置取消按钮的字体颜色
@@ -360,7 +360,7 @@
         //设置半透明的背景颜色
         datePickManager.isShadeBackgroud = true;
         //设置线条的颜色
-        datePicker.lineBackgroundColor = LineColor;
+        datePicker.lineBackgroundColor = [UIColor lightGrayColor];
         //设置选中行的字体颜色
         datePicker.textColorOfSelectedRow = [UIColor blackColor];
         //设置取消按钮的字体颜色

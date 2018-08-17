@@ -69,7 +69,7 @@
     self.textColorOfSelectedRow = [UIColor blackColor];
     self.textColorOfOtherRow = [UIColor lightGrayColor];
     self.isHiddenMiddleText = true;
-    self.lineHeight = 0.5;
+    self.lineHeight = 1;
     self.verticalLineWidth = 0.5;
     self.verticalLineBackgroundColor = self.lineBackgroundColor;
 }
@@ -175,7 +175,7 @@
         
         CGFloat downLineHeight = [self downLineHeightForComponent:i];
         CGFloat downLinePosY = CGRectGetMaxY(upLine.frame) + rowHeight;
-        UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(i * lineWidth, downLinePosY, lineWidth, downLineHeight)];
+        UIView *downLine = [[UIView alloc]initWithFrame:CGRectMake(i * lineWidth, downLinePosY - 3, lineWidth, downLineHeight)];
         downLine.backgroundColor = self.lineBackgroundColor;
         [self addSubview:downLine];
         [downLines addObject:downLine];

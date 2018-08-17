@@ -26,7 +26,7 @@
  */
 #define STWeakSelf __weak typeof(self) weakSelf = self;
 
-static CGFloat const PickerViewHeight = 400;
+static CGFloat const PickerViewHeight = 380;
 //static CGFloat const PickerViewLabelWeight = [UIScreen mainScreen].bounds.size.width;
 
 @interface XLsn0wPickerSingler () <UIPickerViewDataSource, UIPickerViewDelegate>
@@ -107,14 +107,6 @@ static CGFloat const PickerViewHeight = 400;
 
 - (UIView *)pickerView:(UIPickerView *)pickerView viewForRow:(NSInteger)row forComponent:(NSInteger)component reusingView:(nullable UIView *)view
 {
-    for(UIView *singleLine in pickerView.subviews)
-    {
-        if (singleLine.frame.size.height < 1)
-        {
-            singleLine.backgroundColor = LineColor;
-        }
-    }
-    
     UILabel *label = [[UILabel alloc]init];
     [label setFont:[UIFont systemFontOfSize:18]];
     [label setText:self.arrayData[row]];
@@ -148,7 +140,7 @@ static CGFloat const PickerViewHeight = 400;
     
     CGRect framePicker =  self.pickerView.frame;
     framePicker.origin.y -= PickerViewHeight;
-    [UIView animateWithDuration:0.33 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         [self.layer setOpacity:1];
         self.toolbar.frame = frameTool;
         self.pickerView.frame = framePicker;
@@ -163,7 +155,7 @@ static CGFloat const PickerViewHeight = 400;
     
     CGRect framePicker =  self.pickerView.frame;
     framePicker.origin.y += PickerViewHeight;
-    [UIView animateWithDuration:0.33 animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         [self.layer setOpacity:0];
         self.toolbar.frame = frameTool;
         self.pickerView.frame = framePicker;
