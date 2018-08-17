@@ -39,6 +39,7 @@
     
     [self initTableView];
     [self initHeaderView];
+    [self addLeftButton];
     [self addRightButton];
     [self loadData];
 }
@@ -89,6 +90,29 @@
 //    [headerView addSubview:self.labAddress];
 }
 
+- (void)addLeftButton
+{
+    UIButton *btnBack = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnBack setTitle:@"返回" forState:UIControlStateNormal];
+    [btnBack setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [btnBack.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [btnBack setImage:[UIImage imageNamed:@"arrow-back"] forState:UIControlStateNormal];
+    [btnBack sizeToFit];
+    btnBack.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -10);
+    [btnBack addTarget:self action:@selector(backClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithCustomView:btnBack];
+    
+    UIButton *btnMain = [UIButton buttonWithType:UIButtonTypeSystem];
+    [btnMain setTintColor:[UIColor whiteColor]];
+    [btnMain setTitle:@"  首页  " forState:0];
+    [btnMain.titleLabel setFont:[UIFont systemFontOfSize:22]];
+    [btnMain sizeToFit];
+    [btnMain addTarget:self action:@selector(mainClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *main = [[UIBarButtonItem alloc] initWithCustomView:btnMain];
+    
+    [self.navigationItem setLeftBarButtonItems:@[back, main] animated:YES];
+}
+
 - (void)addRightButton
 {
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -101,6 +125,22 @@
 }
 
 #pragma mark -clicked
+
+- (void)backClicked:(UIButton *)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)mainClicked:(UIButton *)sender
+{
+    for (UIViewController *controller in self.navigationController.viewControllers)
+    {
+        if ([controller isKindOfClass:[NSClassFromString(@"MainViewController") class]])
+        {
+            [self.navigationController popToViewController:controller animated:YES];
+        }
+    }
+}
 
 - (void)otherClicked:(UIButton *)sender
 {
