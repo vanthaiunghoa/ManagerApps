@@ -11,13 +11,15 @@
 #import "TransactionSearchResultsViewController.h"
 #import "QuickHandleView.h"
 #import <MJRefresh/MJRefresh.h>
+#import "ReceiveRetrievalFilterViewController.h"
+#import "SendRetrievalFilterViewController.h"
 
-
-@interface ListViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate, ReceiveHandlerCellDelegate>
+@interface ListViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate, ReceiveHandlerCellDelegate, SendRetrievalFilterViewControllerDelegate, ReceiveRetrievalFilterViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *selectedModel;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, strong) NSMutableDictionary *dict;
 
 @end
 
@@ -131,7 +133,52 @@
         self.viewModel.listItems = [NSMutableArray arrayWithCapacity:10];
     }
     
-    NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:  @{@"PageSize": @10, @"PageNum": @(self.currentPage)}];
+    NSDictionary *params = nil;
+    if([self.title isEqualToString:@"发文检索"])
+    {
+        params = [NSMutableDictionary dictionaryWithDictionary:@{@"PageSize" : @10,
+                                                               @"PageNum" : @(self.currentPage),
+                                                               @"ifFF" : @"",               // 是否封发
+                                                               @"FWH" : @"",                // 发文号
+                                                               @"WHT" : self.dict[@"文号头"],              // 文号头
+                                                               @"WHN" : self.dict[@"文号年"],              // 文号年
+                                                               @"WHZ" : self.dict[@"文号字"],              // 文号字
+                                                               @"BT" : self.dict[@"标题"],               // 标题
+                                                               @"ZTC" : @"",                               // 主题词
+                                                               @"WZ" : self.dict[@"文种"],            // 文种
+                                                               @"XXGKCatalog" : @"",                       // 信息公开类目
+                                                               @"NGR" : self.dict[@"拟稿人"],
+                                                               @"ZSDW" : @"",                              // 主送单位
+                                                               @"ZBKS" : @"",                         // 主办科室
+                                                               @"QFR" : @"",                              // 签发人
+                                                               @"GJQK" : @"",                         // 归档情况
+                                                               @"QFDateStart" : self.dict[@"签发日期起"],
+                                                               @"QFDateEnd" : self.dict[@"签发日期止"]}];
+    }
+    else
+    {
+        params = [NSMutableDictionary dictionaryWithDictionary:@{@"PageSize" : @10,
+                                                                 @"PageNum" : @(self.currentPage),
+                                                                 @"SWBH" : self.dict[@"流水号"],             // 收文流水号
+                                                                 @"HJ" : self.dict[@"缓急"],                // 文件缓急
+                                                                 @"WHT" : self.dict[@"文号头"],              // 文号头
+                                                                 @"WHN" : self.dict[@"文号年"],              // 文号年
+                                                                 @"WHS" : self.dict[@"文号数"],              // 文号数
+                                                                 @"Title" : self.dict[@"标题"],              // 标题
+                                                                 @"ZTC" : @"",                               // 主题词
+                                                                 @"LWDW" : self.dict[@"来文单位"],            // 来文单位
+                                                                 @"LWDWLB" : @"",                            // 来文单位类别编号
+                                                                 @"MJ" : @"",                                // 文件密级
+                                                                 @"WZ" : @"",                                // 文种
+                                                                 @"GLML" : @"",                              // 归类目录
+                                                                 @"RecKSName" : @"",                         // 主办科室名
+                                                                 @"ZSDW" : @"",                              // 主送单位
+                                                                 @"BJInfo" : @"",                            // 办结情况
+                                                                 @"GDInfo" : @"",                            // 归档情况
+                                                                 @"CWTime_S" : self.dict[@"成文时间开始"],     // 成文时间(开始)
+                                                                 @"CWTime_E" : self.dict[@"成文时间结束"]}];   // 成文时间(结束)
+    }
+
     
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"数据加载中..."];
@@ -169,6 +216,26 @@
          [self.tableView.mj_header endRefreshing];
          [self.tableView.mj_footer endRefreshing];
      }];
+}
+
+#pragma mark - ReceiveRetrievalFilterViewControllerDelegate
+
+- (void)receiveRetrievalFilterViewController:(ReceiveRetrievalFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
+{
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    self.dict = [dict mutableCopy];
+    [self.tableView.mj_header beginRefreshing];
+}
+
+#pragma mark - SendRetrievalFilterViewControllerDelegate
+
+- (void)sendRetrievalFilterViewController:(SendRetrievalFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
+{
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    self.dict = [dict mutableCopy];
+    [self.tableView.mj_header beginRefreshing];
 }
 
 #pragma mark - ReceiveRetrievalCellDelegate
@@ -231,11 +298,18 @@
 {
     if([self.title isEqualToString:@"发文检索"])
     {
-        [self.navigationController pushViewController:[NSClassFromString(@"SendRetrievalSearchViewController") new] animated:YES];
+        SendRetrievalFilterViewController *vc = [[SendRetrievalFilterViewController alloc] init];
+        vc.dict = [self.dict mutableCopy];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
+
     }
     else
     {
-        [self.navigationController pushViewController:[NSClassFromString(@"ReceiveRetrievalSearchViewController") new] animated:YES];
+        ReceiveRetrievalFilterViewController *vc = [[ReceiveRetrievalFilterViewController alloc] init];
+        vc.dict = [self.dict mutableCopy];
+        vc.delegate = self;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -364,5 +438,47 @@
     }
     return _selectedModel;
 }
+
+- (NSMutableDictionary *)dict
+{
+    if(_dict == nil)
+    {
+        _dict = [NSMutableDictionary dictionaryWithCapacity:9];
+        
+        if([self.title isEqualToString:@"发文检索"])
+        {
+            //向词典中动态添加数据
+            [_dict setObject:@"" forKey:@"文种"];
+            [_dict setObject:@"" forKey:@"拟稿人"];
+            
+            [_dict setObject:@"" forKey:@"文号头"];         // 文号头
+            [_dict setObject:@"" forKey:@"文号年"];         // 文号年
+            
+            [_dict setObject:@"" forKey:@"文号字"];         // 文号字
+            [_dict setObject:@"" forKey:@"标题"];           // 标题
+            
+            [_dict setObject:@"" forKey:@"签发日期起"];     // 交办时间(开始)
+            [_dict setObject:@"" forKey:@"签发日期止"];     // 交办时间(结束)
+        }
+        else
+        {
+            [_dict setObject:@"" forKey:@"流水号"];          // 收文流水号
+            [_dict setObject:@"" forKey:@"缓急"];           // 文件缓急
+            
+            [_dict setObject:@"" forKey:@"文号头"];         // 文号头
+            [_dict setObject:@"" forKey:@"文号年"];         // 文号年
+            
+            [_dict setObject:@"" forKey:@"文号数"];         // 文号数
+            [_dict setObject:@"" forKey:@"标题"];           // 标题
+            
+            [_dict setObject:@"" forKey:@"来文单位"];        // 来文单位
+            [_dict setObject:@"" forKey:@"成文时间开始"];     //
+            [_dict setObject:@"" forKey:@"成文时间结束"];     //
+        }
+    }
+    
+    return _dict;
+}
+
 
 @end

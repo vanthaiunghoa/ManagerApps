@@ -64,7 +64,10 @@
 - (void)setValue:(NSString *)value
 {
     _value = value;
-    self.textField.text = value;
+    if(![value isEqualToString:@""])
+    {
+        self.textField.text = value;
+    }
 }
 
 - (void)setKey:(NSString *)key

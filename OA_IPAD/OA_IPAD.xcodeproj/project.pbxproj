@@ -238,9 +238,7 @@
 		E8E09DCA210E9EC800EAE7B3 /* SelectCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DC9210E9EC800EAE7B3 /* SelectCell.m */; };
 		E8E09DCD210EBE8C00EAE7B3 /* SelectHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8E09DCB210EBE8C00EAE7B3 /* SelectHeaderView.m */; };
 		E8FD55362125733B00E2EB23 /* SendRetrievalFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD55322125733A00E2EB23 /* SendRetrievalFilterViewController.m */; };
-		E8FD55372125733B00E2EB23 /* SendRetrievalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD55352125733A00E2EB23 /* SendRetrievalSearchViewController.m */; };
 		E8FD553D2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD553A2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m */; };
-		E8FD553E2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8FD553B2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -689,12 +687,8 @@
 		E8E09DCB210EBE8C00EAE7B3 /* SelectHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectHeaderView.m; sourceTree = "<group>"; };
 		E8E09DCC210EBE8C00EAE7B3 /* SelectHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectHeaderView.h; sourceTree = "<group>"; };
 		E8FD55322125733A00E2EB23 /* SendRetrievalFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendRetrievalFilterViewController.m; sourceTree = "<group>"; };
-		E8FD55332125733A00E2EB23 /* SendRetrievalSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendRetrievalSearchViewController.h; sourceTree = "<group>"; };
 		E8FD55342125733A00E2EB23 /* SendRetrievalFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SendRetrievalFilterViewController.h; sourceTree = "<group>"; };
-		E8FD55352125733A00E2EB23 /* SendRetrievalSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SendRetrievalSearchViewController.m; sourceTree = "<group>"; };
-		E8FD55392125813700E2EB23 /* ReceiveRetrievalSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveRetrievalSearchViewController.h; sourceTree = "<group>"; };
 		E8FD553A2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveRetrievalFilterViewController.m; sourceTree = "<group>"; };
-		E8FD553B2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReceiveRetrievalSearchViewController.m; sourceTree = "<group>"; };
 		E8FD553C2125813700E2EB23 /* ReceiveRetrievalFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReceiveRetrievalFilterViewController.h; sourceTree = "<group>"; };
 		EE10E21744962831981905B1 /* Pods-OA_IPAD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OA_IPAD.release.xcconfig"; path = "Pods/Target Support Files/Pods-OA_IPAD/Pods-OA_IPAD.release.xcconfig"; sourceTree = "<group>"; };
 		FC5A324B42CD15DE351C5773 /* Pods-RequestTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RequestTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RequestTests/Pods-RequestTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -1951,8 +1945,6 @@
 		E8FD55312125733A00E2EB23 /* SendRetrievalSearchView */ = {
 			isa = PBXGroup;
 			children = (
-				E8FD55332125733A00E2EB23 /* SendRetrievalSearchViewController.h */,
-				E8FD55352125733A00E2EB23 /* SendRetrievalSearchViewController.m */,
 				E8FD55342125733A00E2EB23 /* SendRetrievalFilterViewController.h */,
 				E8FD55322125733A00E2EB23 /* SendRetrievalFilterViewController.m */,
 			);
@@ -1962,8 +1954,6 @@
 		E8FD55382125813700E2EB23 /* ReceiveRetrievalSearchView */ = {
 			isa = PBXGroup;
 			children = (
-				E8FD55392125813700E2EB23 /* ReceiveRetrievalSearchViewController.h */,
-				E8FD553B2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m */,
 				E8FD553C2125813700E2EB23 /* ReceiveRetrievalFilterViewController.h */,
 				E8FD553A2125813700E2EB23 /* ReceiveRetrievalFilterViewController.m */,
 			);
@@ -2266,7 +2256,6 @@
 				E83F3DBE2114001C0039BE58 /* ReceiveDistributeViewController.m in Sources */,
 				E847F001210AA9A600A47EDE /* SendRecordHeaderView.m in Sources */,
 				E85328102109A7BF00439E79 /* AttachmentCell.m in Sources */,
-				E8FD55372125733B00E2EB23 /* SendRetrievalSearchViewController.m in Sources */,
 				CBDBAF362082253D00E6B29E /* UserInfoCell.m in Sources */,
 				E853280C2109A7BF00439E79 /* HeaderView.m in Sources */,
 				E86BFC9C2122B7BA00D39BBD /* ReceiveSearchViewController.m in Sources */,
@@ -2342,7 +2331,6 @@
 				CB6305A92077892700BB9228 /* SendFileHandleViewModel.m in Sources */,
 				CB018128206BD490003B53F7 /* ReceiveTransactionService.m in Sources */,
 				E8430BAC212678AF008C5399 /* PGDatePicker+DateHourMinute.m in Sources */,
-				E8FD553E2125813700E2EB23 /* ReceiveRetrievalSearchViewController.m in Sources */,
 				CBDBAF272082227B00E6B29E /* UserInfo.m in Sources */,
 				E8E09DCA210E9EC800EAE7B3 /* SelectCell.m in Sources */,
 				CB01810120675755003B53F7 /* MainViewController.m in Sources */,

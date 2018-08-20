@@ -397,23 +397,23 @@
 
 - (void)datePicker:(PGDatePicker *)datePicker didSelectDate:(NSDateComponents *)dateComponents
 {
-    NSString *formatTime = [NSString stringWithFormat:@"%ld-%ld-%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+    NSString *formatTime = [NSString stringWithFormat:@"%ld-%ld-%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     if(dateComponents.month < 10)
     {
-        formatTime = [NSString stringWithFormat:@"%ld-0%ld-%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+        formatTime = [NSString stringWithFormat:@"%ld-0%ld-%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     }
     if(dateComponents.day < 10)
     {
-        formatTime = [NSString stringWithFormat:@"%ld-%ld-0%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+        formatTime = [NSString stringWithFormat:@"%ld-%ld-0%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     }
     if(dateComponents.month < 10 && dateComponents.day < 10)
     {
-        formatTime = [NSString stringWithFormat:@"%ld-0%ld-0%ld", dateComponents.year, dateComponents.month, dateComponents.day];
+        formatTime = [NSString stringWithFormat:@"%ld-0%ld-0%ld", (long)dateComponents.year, (long)dateComponents.month, (long)dateComponents.day];
     }
     
     if(self.selectType == WHN)
     {
-        NSString *value = [NSString stringWithFormat:@"%ld", dateComponents.year];
+        NSString *value = [NSString stringWithFormat:@"%ld", (long)dateComponents.year];
         self.dict[@"文号年"] = value;
         _whnCell.value = value;
     }
@@ -441,6 +441,5 @@
     
     return _hjArr;
 }
-
 
 @end

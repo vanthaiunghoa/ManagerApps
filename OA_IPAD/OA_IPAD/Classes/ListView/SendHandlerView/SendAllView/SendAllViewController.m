@@ -7,26 +7,49 @@
 #import "MBProgressHUD+LCL.h"
 #import <MJRefresh/MJRefresh.h>
 #import "SendFileListViewModel.h"
+#import "ModelManager.h"
 
 @interface SendAllViewController ()<UITableViewDelegate, UITableViewDataSource, SendHandlerCellDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) BOOL isRefresh;
 
 @end
 
 @implementation SendAllViewController
 
-- (void)dealloc {
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"%@ dealloc ♻️", NSStringFromClass(self.class));
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:@"ReloadSendHandlerData" object:nil];
+    
+    self.isRefresh = YES;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.view.backgroundColor = ViewColor;
     [self initTableView];
+}
+
+- (void)refresh
+{
+    self.isRefresh = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if(self.isRefresh)
+    {
+        self.isRefresh = NO;
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 
 - (void)initTableView
@@ -65,9 +88,18 @@
         self.currentPage = 1;
         self.viewModel.listItems = [NSMutableArray arrayWithCapacity:10];
     }
-
-    NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:  @{@"PageSize": @10, @"PageNum": @(self.currentPage), @"SearchType":@"All"}];
     
+    NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:@{@"PageSize" : @10,
+                                                                           @"PageNum" : @(self.currentPage),
+                                                                           @"SearchType" : @"All",
+                                                                           @"FWState" : @"",                          // 发文状态
+                                                                           @"WHT" : [ModelManager sharedModelManager].dict[@"文号头"],   // 文号头
+                                                                           @"WHN" : [ModelManager sharedModelManager].dict[@"文号年"],    // 文号年
+                                                                           @"WHZ" : [ModelManager sharedModelManager].dict[@"文号字"],    // 文号字
+                                                                           @"BT" : [ModelManager sharedModelManager].dict[@"标题"],       // 标题
+                                                                           @"WZ" : [ModelManager sharedModelManager].dict[@"文种"],
+                                                                           @"NGR" : [ModelManager sharedModelManager].dict[@"拟稿人"],            //
+                                                                           @"ZTC" : @""}];
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"数据加载中..."];
     @weakify(self);

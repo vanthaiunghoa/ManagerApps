@@ -132,7 +132,7 @@
 {
     if(sender.tag == 0)
     {
-        [_delegate controller:self didConfirmFilter:_dict];
+        [_delegate receiveRetrievalFilterViewController:self didConfirmFilter:_dict];
     }
     else
     {

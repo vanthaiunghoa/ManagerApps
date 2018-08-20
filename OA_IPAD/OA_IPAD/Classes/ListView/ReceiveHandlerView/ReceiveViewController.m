@@ -3,10 +3,11 @@
 #import "ReceiveWaitingViewController.h"
 #import "ReceiveDoneViewController.h"
 #import "ReceiveAllViewController.h"
-#import "ReceiveSearchViewController.h"
+#import "ReceiveFilterViewController.h"
 #import "UIColor+color.h"
+#import "ModelManager.h"
 
-@interface ReceiveViewController ()
+@interface ReceiveViewController ()<ReceiveFilterViewControllerDelegate>
 
 
 @end
@@ -16,6 +17,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[ModelManager sharedModelManager] setReceiveDictNull];
+    [ModelManager sharedModelManager].isRefresh = NO;
+    
     self.title = @"收文办理";
     [self addSearchButton];
 }
@@ -36,8 +40,23 @@
 
 - (void)showSearchController:(id)sender
 {
-    ReceiveSearchViewController *vc = [ReceiveSearchViewController new];
+    ReceiveFilterViewController *vc = [[ReceiveFilterViewController alloc] init];
+    vc.dict = [[ModelManager sharedModelManager].receiveDict mutableCopy];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - ReceiveFilterViewControllerDelegate
+
+- (void)controller:(ReceiveFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
+{
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    [ModelManager sharedModelManager].receiveDict = [dict mutableCopy];
+    self.selectIndex = 0;
+    
+    [ModelManager sharedModelManager].isRefresh = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadReceiveHandlerData" object:@"Y"];
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {

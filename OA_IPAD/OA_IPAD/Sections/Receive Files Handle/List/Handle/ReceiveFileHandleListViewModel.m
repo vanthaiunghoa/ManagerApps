@@ -69,8 +69,17 @@
 }
 
 // 点击标题下一步
-- (UIViewController *)touchTitleNextViewControllerWithIndex:(NSInteger)index {
-    ReceiveFileHandleListModel *model = [self.listItems objectAtIndex:index];
+- (UIViewController *)touchTitleNextViewControllerWithIndex:(NSInteger)index
+{
+    ReceiveFileHandleListModel *model = nil;
+    if(self.isSearch)
+    {
+        model = [self.searchItems objectAtIndex:index];
+    }
+    else
+    {
+        model = [self.listItems objectAtIndex:index];
+    }
     FilePresentationViewController *next = [[FilePresentationViewController alloc] initWithViewModel:[ReceiveFilePresentationViewModel new] mainGuid:model.MGUID whereGUID:model.WhereGUID];
     next.title = @"收文办理";
     return next;
@@ -89,7 +98,15 @@
     vc.menuViewStyle = WMMenuViewStyleLine;
     vc.automaticallyCalculatesItemWidths = YES;
    
-    ReceiveFileHandleListModel *model = [self.listItems objectAtIndex:index];
+    ReceiveFileHandleListModel *model = nil;
+    if(self.isSearch)
+    {
+        model = [self.searchItems objectAtIndex:index];
+    }
+    else
+    {
+        model = [self.listItems objectAtIndex:index];
+    }
     [ModelManager sharedModelManager].model = model;
     
     return vc;

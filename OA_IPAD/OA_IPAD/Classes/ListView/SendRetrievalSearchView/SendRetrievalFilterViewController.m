@@ -18,6 +18,7 @@
 #import "RequestManager.h"
 #import "FileTypeModel.h"
 #import <MJExtension/MJExtension.h>
+#import "ReceiveRetrievalFilterViewController.h"
 
 @interface SendRetrievalFilterViewController ()<UITableViewDelegate, UITableViewDataSource, InputCellDelegate, SinglePickerCellDelegate, DoublePickerCellDelegate, XLsn0wPickerSinglerDelegate, PGDatePickerDelegate>
 
@@ -131,7 +132,7 @@
 {
     if(sender.tag == 0)
     {
-        [_delegate controller:self didConfirmFilter:_dict];
+        [_delegate sendRetrievalFilterViewController:self didConfirmFilter:_dict];
     }
     else
     {

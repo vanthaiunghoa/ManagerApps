@@ -49,7 +49,16 @@
             @weakify(self);
             return [responseSignal map:^id _Nullable(id  _Nullable value) {
                 @strongify(self);
-                [self.listItems addObjectsFromArray:value];
+                
+                if(self.isSearch)
+                {
+                    [self.searchItems addObjectsFromArray:value];
+                }
+                else
+                {
+                    [self.listItems addObjectsFromArray:value];
+                }
+                
                 self.requestListCommand = nil; //允许下一个任务执行
                 return value;
             }];
@@ -83,13 +92,24 @@
 }
 
 @synthesize models = _models;
-- (NSArray<id<ListCellDataSource>> *)models {
+- (NSArray<id<ListCellDataSource>> *)models
+{
+    if(self.isSearch)
+    {
+        return self.searchItems;
+    }
     return self.listItems;
 }
 
-- (void)setModels:(NSArray<id<ListCellDataSource>> *)models {
+- (void)setModels:(NSArray<id<ListCellDataSource>> *)models
+{
+    if(self.isSearch)
+    {
+        self.searchItems = [NSMutableArray arrayWithArray:models];
+    }
     self.listItems = [NSMutableArray arrayWithArray:models];
 }
+
 - (BOOL)shouldShowQuickHandleButton {
     return NO;
 }

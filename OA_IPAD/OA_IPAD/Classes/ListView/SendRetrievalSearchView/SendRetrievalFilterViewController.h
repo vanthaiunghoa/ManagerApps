@@ -8,16 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSUInteger, SelectType) {
-    WHN,
-    HandlerBeginTime,
-    HandlerEndTime,
-};
-
 @class SendRetrievalFilterViewController;
 @protocol SendRetrievalFilterViewControllerDelegate<NSObject>
 
-- (void)controller:(SendRetrievalFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict;
+- (void)sendRetrievalFilterViewController:(SendRetrievalFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict;
 
 @end
 

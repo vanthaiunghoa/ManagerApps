@@ -22,7 +22,7 @@
 
 @property (strong, nonatomic) RACCommand *requestListCommand;
 @property (strong, nonatomic) NSMutableArray *listItems;
-//@property (strong, nonatomic) NSMutableArray *searchItems; //🔍搜索结果
+@property (strong, nonatomic) NSMutableArray *searchItems; //🔍搜索结果
 @property (nonatomic) NSInteger totalPage;
 @property (nonatomic, assign) BOOL isSearch;
 

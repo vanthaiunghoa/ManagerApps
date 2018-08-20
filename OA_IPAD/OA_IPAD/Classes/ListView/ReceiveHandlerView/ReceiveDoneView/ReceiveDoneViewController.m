@@ -9,6 +9,7 @@
 #import "QuickHandleView.h"
 #import <MJRefresh/MJRefresh.h>
 #import "ReceiveFileHandleListViewModel.h"
+#import "ModelManager.h"
 
 @interface ReceiveDoneViewController ()<UITableViewDelegate, UITableViewDataSource, ReceiveHandlerCellDelegate>
 
@@ -33,6 +34,17 @@
     self.view.backgroundColor = ViewColor;
     [self initTableView];
     [self initBottomView];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if([ModelManager sharedModelManager].isRefresh)
+    {
+        [ModelManager sharedModelManager].isRefresh = NO;
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadReceiveHandlerData" object:@"N"];
+    }
 }
 
 - (void)initTableView

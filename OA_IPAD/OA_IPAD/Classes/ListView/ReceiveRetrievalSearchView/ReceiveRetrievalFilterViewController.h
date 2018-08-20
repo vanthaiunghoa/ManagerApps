@@ -17,7 +17,7 @@ typedef NS_ENUM(NSUInteger, SelectType) {
 @class ReceiveRetrievalFilterViewController;
 @protocol ReceiveRetrievalFilterViewControllerDelegate<NSObject>
 
-- (void)controller:(ReceiveRetrievalFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict;
+- (void)receiveRetrievalFilterViewController:(ReceiveRetrievalFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict;
 
 @end
 

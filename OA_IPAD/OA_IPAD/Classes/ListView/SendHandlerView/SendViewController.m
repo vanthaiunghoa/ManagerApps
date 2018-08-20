@@ -3,10 +3,11 @@
 #import "SendWaitingViewController.h"
 #import "SendPrewViewController.h"
 #import "SendAllViewController.h"
-#import "SendSearchViewController.h"
+#import "SendFilterViewController.h"
 #import "UIColor+color.h"
+#import "ModelManager.h"
 
-@interface SendViewController ()
+@interface SendViewController ()<SendFilterViewControllerDelegate>
 
 
 @end
@@ -16,6 +17,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[ModelManager sharedModelManager] setDictNull];
+    
     self.title = @"发文办理";
     [self addSearchButton];
 }
@@ -36,8 +40,21 @@
 
 - (void)showSearchController:(id)sender
 {
-    SendSearchViewController *vc = [SendSearchViewController new];
+    SendFilterViewController *vc = [[SendFilterViewController alloc] init];
+    vc.dict = [[ModelManager sharedModelManager].dict mutableCopy];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - SendFilterViewControllerDelegate
+
+- (void)controller:(SendFilterViewController *)controller didConfirmFilter:(NSMutableDictionary *)dict
+{
+    [controller.navigationController popViewControllerAnimated:YES];
+    
+    [ModelManager sharedModelManager].dict = [dict mutableCopy];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"ReloadSendHandlerData" object:nil];
 }
 
 - (NSInteger)numbersOfChildControllersInPageController:(WMPageController *)pageController {

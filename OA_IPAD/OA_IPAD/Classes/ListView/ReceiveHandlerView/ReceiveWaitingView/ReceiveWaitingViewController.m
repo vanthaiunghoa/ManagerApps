@@ -8,12 +8,15 @@
 #import "QuickHandleView.h"
 #import <MJRefresh/MJRefresh.h>
 #import "ReceiveFileHandleListViewModel.h"
+#import "ModelManager.h"
 
 @interface ReceiveWaitingViewController ()<UITableViewDelegate, UITableViewDataSource, ReceiveHandlerCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *selectedModel;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, assign) NSInteger currentPage;
+@property (nonatomic, assign) NSInteger searchPage;
+@property (nonatomic, assign) BOOL isRefresh;
 
 @end
 
@@ -21,17 +24,51 @@
 
 #pragma mark - view controller life cycle
 
-- (void)dealloc {
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     NSLog(@"%@ dealloc ♻️", NSStringFromClass(self.class));
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh:) name:@"ReloadReceiveHandlerData" object:nil];
+    
+    self.isRefresh = YES;
     self.automaticallyAdjustsScrollViewInsets = YES;
     self.view.backgroundColor = ViewColor;
     [self initTableView];
     [self initBottomView];
+}
+
+- (void)refresh:(NSNotification *)noti
+{
+    if([noti.object isEqualToString:@"Y"])
+    {
+        self.viewModel.isSearch = YES;
+    }
+    else
+    {
+        self.viewModel.isSearch = NO;
+    }
+    self.isRefresh = YES;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if(self.isRefresh)
+    {
+        if([self.selectedModel count])
+        {
+            [self.selectedModel removeAllObjects];
+        }
+        
+        self.isRefresh = NO;
+        [self.tableView.mj_header beginRefreshing];
+    }
 }
 
 - (void)initTableView
@@ -80,11 +117,43 @@
 {
     if(refresh)
     {
-        self.currentPage = 1;
-        self.viewModel.listItems = [NSMutableArray arrayWithCapacity:10];
+        if(self.viewModel.isSearch)
+        {
+            self.searchPage = 1;
+            self.viewModel.searchItems = [NSMutableArray arrayWithCapacity:10];
+        }
+        else
+        {
+            self.currentPage = 1;
+            self.viewModel.listItems = [NSMutableArray arrayWithCapacity:10];
+        }
     }
     
-    NSDictionary *params = [NSMutableDictionary dictionaryWithDictionary:  @{@"PageSize": @10, @"PageNum": @(self.currentPage), @"BLState":@"0"}];
+    NSDictionary *params = nil;
+    if(self.viewModel.isSearch)
+    {
+        params = [NSMutableDictionary dictionaryWithDictionary:@{@"PageSize" : @10,
+                                                               @"PageNum" : @(self.searchPage),
+                                                               @"SWBH" : [ModelManager sharedModelManager].receiveDict[@"流水号"],             // 收文流水号
+                                                               @"HJ" : [ModelManager sharedModelManager].receiveDict[@"缓急"],                // 文件缓急
+                                                               @"WHT" : [ModelManager sharedModelManager].receiveDict[@"文号头"],              // 文号头
+                                                               @"WHN" : [ModelManager sharedModelManager].receiveDict[@"文号年"],              // 文号年
+                                                               @"WHS" : [ModelManager sharedModelManager].receiveDict[@"文号数"],              // 文号数
+                                                               @"Title" : [ModelManager sharedModelManager].receiveDict[@"标题"],              // 标题
+                                                               @"ZTC" : @"",                               // 主题词
+                                                               @"LWDW" : [ModelManager sharedModelManager].receiveDict[@"来文单位"],            // 来文单位
+                                                               @"LWDWLB" : @"",                            // 来文单位类别编号
+                                                               @"MJ" : @"",                                // 文件密级
+                                                               @"WZ" : @"",                                // 文种
+                                                               @"GLML" : @"",                              // 归类目录
+                                                               @"RecKSName" : @"",                         // 主办科室名
+                                                               @"JBTime_S" : [ModelManager sharedModelManager].receiveDict[@"交办时间开始"],     // 交办时间(开始)
+                                                               @"JBTime_E" : [ModelManager sharedModelManager].receiveDict[@"交办时间结束"]}];   // 交办时间(结束)
+    }
+    else
+    {
+        params = [NSMutableDictionary dictionaryWithDictionary:  @{@"PageSize": @10, @"PageNum": @(self.currentPage), @"BLState":@"0"}];
+    }
     
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"数据加载中..."];

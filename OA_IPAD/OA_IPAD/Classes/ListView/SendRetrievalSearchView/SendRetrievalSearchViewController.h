@@ -1,5 +1,0 @@
-
-@interface SendRetrievalSearchViewController : UIViewController
-
-
-@end
