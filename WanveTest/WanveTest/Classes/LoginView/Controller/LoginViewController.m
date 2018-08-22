@@ -269,7 +269,7 @@
     {
         self.view.userInteractionEnabled = YES;
         NSString *mes = [NSString stringWithFormat:@"VPN：未知错误，错误码：%ld", message.code];
-        [SVProgressHUD showInfoWithStatus:mes];
+//        [SVProgressHUD showInfoWithStatus:mes];
     }
 }
 
@@ -441,7 +441,7 @@
 //                url 编码
                 urlStr  =  [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
                 
-//                NSString *urlStr = @"http://121.15.203.82:9210/DMS_Phone/index.aspx";
+//                NSString *urlStr = @"http://19.104.11.135/?n=1&furl=http://sljoa.dg/wan_data/abc.docx";
 
                 SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:urlStr]];
                 [self.navigationController pushViewController:webViewController animated:YES];

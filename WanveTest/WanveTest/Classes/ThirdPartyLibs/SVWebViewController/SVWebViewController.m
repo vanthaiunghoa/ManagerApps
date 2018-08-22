@@ -92,20 +92,20 @@
     
     [super viewWillAppear:animated];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.navigationController setToolbarHidden:NO animated:animated];
-    }
-    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self.navigationController setToolbarHidden:YES animated:animated];
-    }
+//    }
+//    else if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        [self.navigationController setToolbarHidden:YES animated:animated];
+//    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         [self.navigationController setToolbarHidden:YES animated:animated];
-    }
+//    }
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -205,31 +205,32 @@
     UIBarButtonItem *fixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     UIBarButtonItem *flexibleSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        CGFloat toolbarWidth = 250.0f;
-        fixedSpace.width = 35.0f;
-        
-        NSArray *items = [NSArray arrayWithObjects:
-                          fixedSpace,
-//                          refreshStopBarButtonItem,
-                          self.moreBarButtonItem,
-                          fixedSpace,
-                          self.backBarButtonItem,
-                          fixedSpace,
-                          self.forwardBarButtonItem,
-                          fixedSpace,
-                          self.homeBarButtonItem,
-//                          self.actionBarButtonItem,
-                          nil];
-        
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, toolbarWidth, 44.0f)];
-        toolbar.items = items;
-        toolbar.barStyle = self.navigationController.navigationBar.barStyle;
-        toolbar.tintColor = self.navigationController.navigationBar.tintColor;
-        self.navigationItem.rightBarButtonItems = items.reverseObjectEnumerator.allObjects;
-    }
-    
-    else {
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+//        CGFloat toolbarWidth = 250.0f;
+//        fixedSpace.width = 35.0f;
+//
+//        NSArray *items = [NSArray arrayWithObjects:
+//                          fixedSpace,
+////                          refreshStopBarButtonItem,
+//                          self.moreBarButtonItem,
+//                          fixedSpace,
+//                          self.backBarButtonItem,
+//                          fixedSpace,
+//                          self.forwardBarButtonItem,
+//                          fixedSpace,
+//                          self.homeBarButtonItem,
+////                          self.actionBarButtonItem,
+//                          nil];
+//
+//        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0.0f, 0.0f, toolbarWidth, 44.0f)];
+//        toolbar.items = items;
+//        toolbar.barStyle = self.navigationController.navigationBar.barStyle;
+//        toolbar.tintColor = self.navigationController.navigationBar.tintColor;
+//        self.navigationItem.rightBarButtonItems = items.reverseObjectEnumerator.allObjects;
+//    }
+//
+//    else
+    {
         NSArray *items = [NSArray arrayWithObjects:
                           fixedSpace,
                           self.backBarButtonItem,
@@ -317,10 +318,10 @@
     NSArray *menuItems =
     @[
       
-      [KxMenuItem menuItem:@"通讯录"
-                     image:nil
-                    target:self
-                    action:@selector(addressClicked:)],
+//      [KxMenuItem menuItem:@"通讯录"
+//                     image:nil
+//                    target:self
+//                    action:@selector(addressClicked:)],
       
       [KxMenuItem menuItem:@"切换账号"
                      image:nil
@@ -341,27 +342,41 @@
     }
     
     CGFloat x;
-    if(SCREEN_WIDTH == 414)
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        x = SCREEN_WIDTH - 175;
-    }
-    else if(SCREEN_WIDTH == 375)
-    {
-        x = SCREEN_WIDTH - 165;
+        x = SCREEN_WIDTH - 292;
     }
     else
     {
-        x = SCREEN_WIDTH - 147;
+        if(SCREEN_WIDTH == 414)
+        {
+            x = SCREEN_WIDTH - 175;
+        }
+        else if(SCREEN_WIDTH == 375)
+        {
+            x = SCREEN_WIDTH - 165;
+        }
+        else
+        {
+            x = SCREEN_WIDTH - 147;
+        }
     }
     
     CGFloat y;
-    if(IS_IPHONEX)
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
     {
-        y = SCREEN_HEIGHT - 85;
+        y = SCREEN_HEIGHT - 50;
     }
     else
     {
-        y = SCREEN_HEIGHT - 50;
+        if(IS_IPHONEX)
+        {
+            y = SCREEN_HEIGHT - 85;
+        }
+        else
+        {
+            y = SCREEN_HEIGHT - 50;
+        }
     }
     
     CGRect frame = CGRectMake(x, y, 44, 44);

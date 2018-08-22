@@ -8,6 +8,7 @@
 
 #import "DetailCell.h"
 #import "AddressModel.h"
+#import "UIImage+image.h"
 
 @implementation DetailCell
 {
@@ -27,7 +28,7 @@
 - (void)setup
 {
     UIButton *call = [UIButton buttonWithType:UIButtonTypeCustom];
-    [call setImage:[UIImage imageNamed:@"call"] forState:UIControlStateNormal];
+    [call setImage:[UIImage imageWithName:@"call"] forState:UIControlStateNormal];
     [call addTarget:self action:@selector(callClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:call];
     
@@ -59,7 +60,7 @@
     }];
     
     _message = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_message setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+    [_message setImage:[UIImage imageWithName:@"message"] forState:UIControlStateNormal];
     [_message addTarget:self action:@selector(messageClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:_message];
     

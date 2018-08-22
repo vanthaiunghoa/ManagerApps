@@ -8,6 +8,7 @@
 
 #import "AddressCell.h"
 #import "AddressModel.h"
+#import "UIImage+image.h"
 
 @implementation AddressCell
 {
@@ -25,7 +26,7 @@
 - (void)setup
 {
     UIImageView *arrow = [UIImageView new];
-    arrow.image = [UIImage imageNamed:@"arrow-right-black"];
+    arrow.image = [UIImage imageWithName:@"arrow-right-black"];
     [self.contentView addSubview:arrow];
     
     [arrow makeConstraints:^(MASConstraintMaker *make) {

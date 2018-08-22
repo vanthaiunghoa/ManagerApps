@@ -24,10 +24,11 @@
     if (!self) return nil;
     
     UIImageView *bkg_top = [UIImageView new];
-    bkg_top.image = [UIImage imageNamed:@"vpn_top"];
+    bkg_top.image = [UIImage imageWithName:@"vpn_top"];
     [self addSubview:bkg_top];
     [bkg_top makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.right.equalTo(self);
+        make.height.equalTo(@(H(271)));
     }];
     
     UILabel *titleLab = [UILabel new];
@@ -37,10 +38,10 @@
     titleLab.textColor = [UIColor colorWithHexString:@"#FAF90B"];
     titleLab.font = [UIFont systemFontOfSize:34];
     titleLab.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:titleLab];
+    [bkg_top addSubview:titleLab];
     [titleLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(self).with.offset(H(106));
+        make.centerX.equalTo(bkg_top.centerX);
+        make.top.equalTo(bkg_top.top).offset(H(106));
     }];
     
     UILabel *welcomeCNLab = [UILabel new];
@@ -48,9 +49,9 @@
     welcomeCNLab.textColor = [UIColor whiteColor];
     welcomeCNLab.font = [UIFont systemFontOfSize:22];
     welcomeCNLab.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:welcomeCNLab];
+    [bkg_top addSubview:welcomeCNLab];
     [welcomeCNLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+        make.centerX.equalTo(bkg_top.centerX);
         make.top.equalTo(titleLab.bottom).offset(H(35));
     }];
 
@@ -59,9 +60,9 @@
     welcomeENLab.textColor = [UIColor whiteColor];
     welcomeENLab.font = [UIFont systemFontOfSize:14];
     welcomeENLab.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:welcomeENLab];
+    [bkg_top addSubview:welcomeENLab];
     [welcomeENLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+        make.centerX.equalTo(bkg_top.centerX);
         make.top.equalTo(welcomeCNLab.bottom).offset(H(6));
     }];
     
@@ -69,7 +70,7 @@
     line.backgroundColor = [UIColor colorWithHexString:@"#406CBA"];
     [self addSubview:line];
     [line makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(bkg_top.bottom).with.offset(0);
+        make.top.equalTo(bkg_top.bottom);
         make.left.right.equalTo(self);
         make.height.equalTo(@(H(0.5)));
     }];
@@ -78,14 +79,14 @@
     [self.getPassword setTitle:@"获取动态密码" forState:UIControlStateNormal];
     [self.getPassword addTarget:self action:@selector(getPasswordClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.getPassword.layer setMasksToBounds:YES];
-    [self.getPassword.layer setCornerRadius:W(20)];
+    [self.getPassword.layer setCornerRadius:H(20)];
     [self.getPassword setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     self.getPassword.titleLabel.font = [UIFont systemFontOfSize:18];
     [self.getPassword setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3399FE"]] forState:UIControlStateNormal];
     [self addSubview:self.getPassword];
     [self.getPassword makeConstraints:^(MASConstraintMaker *make) {
         //        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(line.bottom).with.offset(H(20));
+        make.top.equalTo(line.bottom).offset(H(20));
         make.left.equalTo(self).offset(@(W(22.5)));
         make.right.equalTo(self).offset(@(W(-22.5)));
         make.height.equalTo(@(H(40)));
@@ -101,18 +102,18 @@
     }];
 
     UIImageView *userIcon = [UIImageView new];
-    userIcon.image = [UIImage imageNamed:@"vpn_user"];
+    userIcon.image = [UIImage imageWithName:@"vpn_user"];
     [usernameBkg addSubview:userIcon];
     [userIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(usernameBkg.centerY);
         make.left.equalTo(@(W(22.5)));
-        make.width.height.equalTo(@(W(20)));
+        make.width.height.equalTo(@20);
     }];
 
     self.accountTextField = [UITextField new];
     self.accountTextField.placeholder = @"请输入vpn账号";
     self.accountTextField.textColor = [UIColor blackColor];
-    self.accountTextField.font = [UIFont systemFontOfSize:18];
+    self.accountTextField.font = [UIFont systemFontOfSize:15];
     self.accountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.accountTextField.clearsOnBeginEditing = NO;
     self.accountTextField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -144,18 +145,18 @@
     }];
 
     UIImageView *passwordIcon = [UIImageView new];
-    passwordIcon.image = [UIImage imageNamed:@"vpn_password"];
+    passwordIcon.image = [UIImage imageWithName:@"vpn_password"];
     [passwordBkg addSubview:passwordIcon];
     [passwordIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(passwordBkg.mas_centerY);
-        make.width.height.equalTo(@(W(20)));
+        make.width.height.equalTo(@20);
         make.left.equalTo(@(W(22.5)));
     }];
 
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"请输入vpn密码";
     self.passwordTextField.textColor = [UIColor blackColor];
-    self.passwordTextField.font = [UIFont systemFontOfSize:18];
+    self.passwordTextField.font = [UIFont systemFontOfSize:15];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTextField.clearsOnBeginEditing = NO;
     self.passwordTextField.secureTextEntry = YES;
@@ -181,7 +182,7 @@
     UILabel *useLab = [UILabel new];
     useLab.text = @"启用";
     useLab.textColor = [UIColor blackColor];
-    useLab.font = [UIFont systemFontOfSize:18];
+    useLab.font = [UIFont systemFontOfSize:14];
     [self addSubview:useLab];
     [useLab makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(W(22.5)));
@@ -191,9 +192,9 @@
     self.useBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.useBtn setTitle:@"是" forState:UIControlStateNormal];
     [self.useBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.useBtn setImage:[UIImage imageNamed:@"unuse"] forState:UIControlStateNormal];
-    [self.useBtn setImage:[UIImage imageNamed:@"use"] forState:UIControlStateSelected];
-    self.useBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+    [self.useBtn setImage:[UIImage imageWithName:@"unuse"] forState:UIControlStateNormal];
+    [self.useBtn setImage:[UIImage imageWithName:@"use"] forState:UIControlStateSelected];
+    self.useBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.useBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.useBtn addTarget:self action:@selector(useClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.useBtn];
@@ -205,9 +206,9 @@
     self.unuseBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self.unuseBtn setTitle:@"否" forState:UIControlStateNormal];
     [self.unuseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [self.unuseBtn setImage:[UIImage imageNamed:@"unuse"] forState:UIControlStateNormal];
-    [self.unuseBtn setImage:[UIImage imageNamed:@"use"] forState:UIControlStateSelected];
-    self.unuseBtn.titleLabel.font=[UIFont systemFontOfSize:18];
+    [self.unuseBtn setImage:[UIImage imageWithName:@"unuse"] forState:UIControlStateNormal];
+    [self.unuseBtn setImage:[UIImage imageWithName:@"use"] forState:UIControlStateSelected];
+    self.unuseBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.unuseBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.unuseBtn addTarget:self action:@selector(unuseClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.unuseBtn];
@@ -220,7 +221,7 @@
     [loginBtn setTitle:@"返 回" forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(backClick:) forControlEvents:UIControlEventTouchUpInside];
     [loginBtn.layer setMasksToBounds:YES];
-    [loginBtn.layer setCornerRadius:W(20)];
+    [loginBtn.layer setCornerRadius:H(20)];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3399FE"]] forState:UIControlStateNormal];

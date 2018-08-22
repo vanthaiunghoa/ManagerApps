@@ -8,6 +8,7 @@
 
 #import "BaseNavigationController.h"
 #import "UIColor+color.h"
+#import "UIImage+image.h"
 
 // 判断是否为iOS7
 #define iOS7 ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
@@ -42,7 +43,7 @@
 //    } else { // 非iOS7
 //        navBarBg = @"NavBar";
 //    }
-//    [navBar setBackgroundImage:[UIImage imageNamed:navBarBg] forBarMetrics:UIBarMetricsDefault];
+//    [navBar setBackgroundImage:[UIImage imageWithName:navBarBg] forBarMetrics:UIBarMetricsDefault];
 
     navBar.barTintColor = [UIColor colorWithHexString:@"#3FA6CF"];
 
@@ -65,8 +66,8 @@
         //        [btn setTitle:@"返回" forState:UIControlStateNormal];
         //        [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         //        [btn setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-        [btn setImage:[UIImage imageNamed:@"arrow_back_white"] forState:UIControlStateNormal];
-        //        [btn setImage:[UIImage imageNamed:@"navigationButtonReturnClick"] forState:UIControlStateHighlighted];
+        [btn setImage:[UIImage imageWithName:@"arrow_back_white"] forState:UIControlStateNormal];
+        //        [btn setImage:[UIImage imageWithName:@"navigationButtonReturnClick"] forState:UIControlStateHighlighted];
         
         [btn sizeToFit];
         // 让按钮内部的所有内容左对齐

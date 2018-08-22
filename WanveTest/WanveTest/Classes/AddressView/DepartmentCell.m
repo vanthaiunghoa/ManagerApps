@@ -8,6 +8,7 @@
 
 #import "DepartmentCell.h"
 #import "AddressModel.h"
+#import "UIImage+image.h"
 
 @implementation DepartmentCell
 {
@@ -25,7 +26,7 @@
 - (void)setup
 {
     UIImageView *logo = [UIImageView new];
-    logo.image = [UIImage imageNamed:@"user-logo"];
+    logo.image = [UIImage imageWithName:@"user-logo"];
     [self.contentView addSubview:logo];
     
     [logo makeConstraints:^(MASConstraintMaker *make) {
@@ -35,7 +36,7 @@
     }];
     
     UIImageView *arrow = [UIImageView new];
-    arrow.image = [UIImage imageNamed:@"arrow-right-black"];
+    arrow.image = [UIImage imageWithName:@"arrow-right-black"];
     [self.contentView addSubview:arrow];
     
     [arrow makeConstraints:^(MASConstraintMaker *make) {
