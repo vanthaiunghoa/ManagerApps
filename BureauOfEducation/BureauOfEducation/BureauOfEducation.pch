@@ -1,0 +1,52 @@
+//
+//  BureauOfEducation.pch
+//  BureauOfEducation
+//
+//  Created by wanve on 2017/11/20.
+//  Copyright © 2017年 wanve. All rights reserved.
+//
+
+#ifndef BureauOfEducation_pch
+#define BureauOfEducation_pch
+
+#define IS_IPHONEX  ([[UIScreen mainScreen] bounds].size.height == 812.f)
+#define TOP_HEIGHT  ((IS_IPHONEX)?88:64)
+//屏幕的区域
+#define  SCREEN_BOUNDS [UIScreen mainScreen].bounds
+//屏幕的高度
+#define SCREEN_HEIGHT   MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+//屏幕的宽度
+#define SCREEN_WIDTH    MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)
+
+//px转pt大小
+//基于宽度
+#define k1(px)        px/375.f
+#define W(px)       k1(px)*SCREEN_WIDTH
+//基于高度
+#define k2(px)        px/667.f
+#define H(px)       k2(px)*SCREEN_HEIGHT
+
+//字体
+#define FONT_SIZE(px)     sqrt(W(px)*H(px))
+
+#ifdef DEBUG
+#define PLog(...) NSLog(@"%s(第%d行) %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define PLog(...)
+#endif
+
+//define this constant if you want to use Masonry without the 'mas_' prefix
+#define MAS_SHORTHAND
+
+//define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+
+#import "Masonry.h"
+#import "SVProgressHUD.h"
+#import "AFNetworking.h"
+#import "MJExtension.h"
+#import "MJRefresh.h"
+#import "IQKeyboardManager.h"
+
+
+#endif /* BureauOfEducation_pch */

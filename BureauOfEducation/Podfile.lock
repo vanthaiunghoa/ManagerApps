@@ -1,0 +1,58 @@
+PODS:
+  - AFNetworking (3.2.0):
+    - AFNetworking/NSURLSession (= 3.2.0)
+    - AFNetworking/Reachability (= 3.2.0)
+    - AFNetworking/Security (= 3.2.0)
+    - AFNetworking/Serialization (= 3.2.0)
+    - AFNetworking/UIKit (= 3.2.0)
+  - AFNetworking/NSURLSession (3.2.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.0)
+  - AFNetworking/Security (3.2.0)
+  - AFNetworking/Serialization (3.2.0)
+  - AFNetworking/UIKit (3.2.0):
+    - AFNetworking/NSURLSession
+  - IQKeyboardManager (6.0.2)
+  - Masonry (1.1.0)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - skpsmtpmessage (0.0.1)
+  - SVProgressHUD (2.2.5)
+  - WebViewJavascriptBridge (6.0.3)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.2.0)
+  - IQKeyboardManager
+  - Masonry
+  - MJExtension
+  - MJRefresh
+  - skpsmtpmessage
+  - SVProgressHUD
+  - WebViewJavascriptBridge (~> 6.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - IQKeyboardManager
+    - Masonry
+    - MJExtension
+    - MJRefresh
+    - skpsmtpmessage
+    - SVProgressHUD
+    - WebViewJavascriptBridge
+
+SPEC CHECKSUMS:
+  AFNetworking: 8ac6017b94ea105479f7776e5288e48ae9c59bb4
+  IQKeyboardManager: c49d59e358aeeffaa0280aa305093c2b194d2607
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  skpsmtpmessage: f6e913380c784dd8d4a9f83c8790a302445a5e05
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
+
+PODFILE CHECKSUM: 43711b749abcc6669c1a8edfc79e98a48ca5b86b
+
+COCOAPODS: 1.5.0
