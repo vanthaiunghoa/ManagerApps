@@ -29,6 +29,15 @@
 //字体
 #define FONT_SIZE(px)     sqrt(W(px)*H(px))
 
+/** iPhone iPad 的判断 */
+#define IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
+// 状态栏(statusbar)
+#define StatusbarHeight  [[UIApplication sharedApplication] statusBarFrame].size.height
+// 导航栏（navigationbar）
+#define NavigationHegiht    self.navigationController.navigationBar.frame.size.height
+
 #ifdef DEBUG
 #define PLog(...) NSLog(@"%s(第%d行) %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
 #else

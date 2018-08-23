@@ -8,6 +8,7 @@
 
 #import "DetailCell.h"
 #import "AddressModel.h"
+#import "UIImage+image.h"
 
 @implementation DetailCell
 {
