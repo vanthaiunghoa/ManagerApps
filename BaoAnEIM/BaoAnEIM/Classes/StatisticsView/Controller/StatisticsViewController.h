@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface StatisticsViewController : UIViewController <UIWebViewDelegate>
+@interface StatisticsViewController : UIViewController <WKNavigationDelegate>
 
 @end

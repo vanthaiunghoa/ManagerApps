@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface HomeViewController : UIViewController <UIWebViewDelegate>
+@interface HomeViewController : UIViewController <WKNavigationDelegate>
 
 @end

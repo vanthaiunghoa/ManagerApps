@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *sessionId;
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *openType;
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) WKWebView *wkwebView;
 
 @end
 
@@ -30,6 +30,7 @@
     self.openType = @"pro_oicinfo";
     [self setupNavBtn];
     
+    self.automaticallyAdjustsScrollViewInsets = YES;
     [self loginWebService];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadHomeViewAgain" object:nil];
 }
@@ -197,7 +198,7 @@
             tmpUrl = [tmpUrl stringByAppendingString:@"&OpenType="];
             self.url = [tmpUrl stringByAppendingString:self.openType];
             PLog(@"url == %@", self.url);
-            [self initWebView];
+            [self initWKWebView];
         }
         else if([self.content isEqualToString:@"1001"])
         {
@@ -246,21 +247,24 @@
     PLog(@"error == %@", validationError.userInfo);
 }
 
-- (void)initWebView
+- (void)initWKWebView
 {
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    if(self.webView == nil)
+    if(self.wkwebView == nil)
     {
-        self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:self.webView];
+        CGFloat statusBarH = [[UIApplication sharedApplication] statusBarFrame].size.height;
+        CGFloat navigationBarH = self.navigationController.navigationBar.frame.size.height;
+        CGFloat tabBarH = self.tabBarController.tabBar.bounds.size.height;
+
+        WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH)];
+        webView.navigationDelegate = self;
+        [self.view addSubview:webView];
+        self.wkwebView = webView;
     }
     
     if(_bridge == nil)
     {
         [WebViewJavascriptBridge enableLogging];
-        
-        _bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
+        _bridge = [WebViewJavascriptBridge bridgeForWebView:self.wkwebView];
         [_bridge setWebViewDelegate:self];
         
         [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
@@ -271,8 +275,10 @@
         [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
     }
     
-    [self loadWebView:self.webView];
+    [self loadWKWebView:self.wkwebView];
 }
+
+#pragma mark - webView delegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     NSLog(@"webViewDidStartLoad");
@@ -289,11 +295,20 @@
     }];
 }
 
-- (void)loadWebView:(UIWebView*)webView
+#pragma mark - wkwebView delegate
+
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(WKNavigation *)navigation {
+    NSLog(@"webViewDidStartLoad");
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSLog(@"webViewDidFinishLoad");
+}
+
+- (void)loadWKWebView:(WKWebView *)webView
 {
     NSURL *url = [NSURL URLWithString:self.url];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    [webView loadRequest:request];
+    [webView loadRequest:[NSURLRequest requestWithURL:url]];
 }
 
 @end

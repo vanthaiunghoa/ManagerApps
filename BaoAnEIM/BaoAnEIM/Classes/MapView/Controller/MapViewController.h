@@ -1,5 +1,6 @@
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface MapViewController : UIViewController <UIWebViewDelegate>
+@interface MapViewController : UIViewController <WKNavigationDelegate>
 
 @end

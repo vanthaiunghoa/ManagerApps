@@ -22,6 +22,7 @@
 - (void)loadWebView
 {
     _webview = [[UIWebView alloc]initWithFrame:CGRectMake(0, TOP_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TOP_HEIGHT - 49)];
+    _webview.scrollView.bounces = NO;
     NSString  *urlStr = @"https://www.baidu.com";
     //url 编码
 //    urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
