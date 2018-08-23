@@ -66,37 +66,47 @@
         make.top.equalTo(welcomeCNLab.bottom).offset(H(6));
     }];
     
-    UIView *line = [UIView new];
-    line.backgroundColor = [UIColor colorWithHexString:@"#406CBA"];
-    [self addSubview:line];
-    [line makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(bkg_top.bottom);
-        make.left.right.equalTo(self);
-        make.height.equalTo(@(H(0.5)));
-    }];
+//    UIView *line = [UIView new];
+//    line.backgroundColor = [UIColor colorWithHexString:@"#406CBA"];
+//    [self addSubview:line];
+//    [line makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(bkg_top.bottom);
+//        make.left.right.equalTo(self);
+//        make.height.equalTo(@(H(0.5)));
+//    }];
     
-    self.getPassword = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.getPassword setTitle:@"获取动态密码" forState:UIControlStateNormal];
-    [self.getPassword addTarget:self action:@selector(getPasswordClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.getPassword.layer setMasksToBounds:YES];
-    [self.getPassword.layer setCornerRadius:H(20)];
-    [self.getPassword setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    self.getPassword.titleLabel.font = [UIFont systemFontOfSize:18];
-    [self.getPassword setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3399FE"]] forState:UIControlStateNormal];
-    [self addSubview:self.getPassword];
-    [self.getPassword makeConstraints:^(MASConstraintMaker *make) {
-        //        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(line.bottom).offset(H(20));
-        make.left.equalTo(self).offset(@(W(22.5)));
-        make.right.equalTo(self).offset(@(W(-22.5)));
-        make.height.equalTo(@(H(40)));
-    }];
+    if(IS_IPHONE)
+    {
+        self.getPassword = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.getPassword setTitle:@"获取动态密码" forState:UIControlStateNormal];
+        [self.getPassword addTarget:self action:@selector(getPasswordClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.getPassword.layer setMasksToBounds:YES];
+        [self.getPassword.layer setCornerRadius:H(20)];
+        [self.getPassword setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        self.getPassword.titleLabel.font = [UIFont systemFontOfSize:18];
+        [self.getPassword setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3399FE"]] forState:UIControlStateNormal];
+        [self addSubview:self.getPassword];
+        [self.getPassword makeConstraints:^(MASConstraintMaker *make) {
+            //        make.centerX.equalTo(self.centerX);
+            make.top.equalTo(bkg_top.bottom).offset(H(20));
+            make.left.equalTo(self).offset(@(W(22.5)));
+            make.right.equalTo(self).offset(@(W(-22.5)));
+            make.height.equalTo(@(H(40)));
+        }];
+    }
     
     UIView *usernameBkg = [UIView new];
     usernameBkg.backgroundColor = [UIColor whiteColor];
     [self addSubview:usernameBkg];
     [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.getPassword.bottom).with.offset(H(20));
+        if(IS_IPHONE)
+        {
+            make.top.equalTo(self.getPassword.bottom).with.offset(H(20));
+        }
+        else
+        {
+            make.top.equalTo(bkg_top.bottom);
+        }
         make.left.right.equalTo(self);
         make.height.equalTo(@(H(60)));
     }];
@@ -170,14 +180,14 @@
         make.left.right.width.height.equalTo(self.accountTextField);
     }];
     
-    UIView *line2 = [UIView new];
-    line2.backgroundColor = [UIColor colorWithHexString:@"#999"];
-    [self addSubview:line2];
-    [line2 makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(passwordBkg.bottom).with.offset(0);
-        make.left.right.equalTo(self);
-        make.height.equalTo(@(H(0.5)));
-    }];
+//    UIView *line2 = [UIView new];
+//    line2.backgroundColor = [UIColor colorWithHexString:@"#999"];
+//    [self addSubview:line2];
+//    [line2 makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(passwordBkg.bottom).with.offset(0);
+//        make.left.right.equalTo(self);
+//        make.height.equalTo(@(H(0.5)));
+//    }];
     
     UILabel *useLab = [UILabel new];
     useLab.text = @"启用";
@@ -186,7 +196,7 @@
     [self addSubview:useLab];
     [useLab makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(W(22.5)));
-        make.top.equalTo(line2.bottom).with.offset(H(20));
+        make.top.equalTo(passwordBkg.bottom).with.offset(H(20));
     }];
 
     self.useBtn = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -1543,7 +1543,6 @@
 			baseConfigurationReference = 1E02C9521BECFAA8A3E6D927 /* Pods-WanveTest.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: He Zhuliang (D54H5C3EM9)";
 				DEVELOPMENT_TEAM = AV2Z93XPA2;
 				ENABLE_BITCODE = NO;
@@ -1569,7 +1568,6 @@
 			baseConfigurationReference = ED3A171B3E14B3E52B57A372 /* Pods-WanveTest.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = AV2Z93XPA2;
 				ENABLE_BITCODE = NO;

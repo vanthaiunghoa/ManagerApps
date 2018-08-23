@@ -72,13 +72,13 @@
         
     }
     
-    
     //没有符合要求的,有啥就用啥
-    NSString *path1 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@@1x",name] ofType:extension];
     
-    if (path1) {
+    NSString *path3 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@@3x",name] ofType:extension];
+    
+    if (path3) {
         
-        return [UIImage imageWithContentsOfFile:path1];
+        return [UIImage imageWithContentsOfFile:path3];
     }
     
     NSString *path2 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@@2x",name] ofType:extension];
@@ -88,14 +88,13 @@
         return [UIImage imageWithContentsOfFile:path2];
     }
     
-    NSString *path3 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@@3x",name] ofType:extension];
+    NSString *path1 = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@@1x",name] ofType:extension];
     
-    if (path3) {
+    if (path1) {
         
-        return [UIImage imageWithContentsOfFile:path3];
+        return [UIImage imageWithContentsOfFile:path1];
     }
-    
-    
+
     NSString *path = [[NSBundle mainBundle] pathForResource:name ofType:extension];
     
     if (path) {
