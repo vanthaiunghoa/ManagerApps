@@ -1,20 +1,18 @@
 #import "HomeViewController.h"
-#import "WebViewJavascriptBridge.h"
+#import "HomeCell.h"
 #import "NSString+extension.h"
 #import "UrlManager.h"
 #import "UIImage+image.h"
 #import "UserManager.h"
 #import "UserModel.h"
 #import "KxMenu.h"
+#import "UIColor+color.h"
+#import "CommonPickerView.h"
 
-@interface HomeViewController ()<NSXMLParserDelegate>
+@interface HomeViewController ()<UITableViewDelegate, UITableViewDataSource, CommonPickerViewDelegate>
 
-@property WebViewJavascriptBridge* bridge;
-@property (nonatomic, strong) NSString *content;
-@property (nonatomic, strong) NSString *sessionId;
-@property (nonatomic, strong) NSString *url;
-@property (nonatomic, strong) NSString *openType;
-@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UITextField *textField;
 
 @end
 
@@ -23,34 +21,270 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.navigationItem.title = TITLE;
-    [self setTitle];
+    self.navigationItem.title = TITLE;
+    self.view.backgroundColor = ViewColor;
+    self.automaticallyAdjustsScrollViewInsets = NO;
+//    [self setTitle];
     
     // 盐田
-    self.openType = @"pro_oicinfo";
+//    self.openType = @"pro_oicinfo";
     [self setupNavBtn];
+    [self initView];
     
-    [self loginWebService];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadHomeViewAgain" object:nil];
+//    [self loginWebService];
+}
+
+- (void)initView
+{
+    UIView *bkgView = [[UIView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT, SCREEN_WIDTH, 118)];
+    [self.view addSubview:bkgView];
+    bkgView.backgroundColor = [UIColor whiteColor];
+    
+    CGFloat x = 10;
+    CGFloat y = 10;
+    CGFloat margin = 20;
+    CGFloat btnW = (SCREEN_WIDTH - 2.0*x - margin)/2.0;
+    
+    NSArray *arr = @[@"选择科室", @"选择进度"];
+    for(int i = 0; i < arr.count; ++i)
+    {
+        UIButton *btn = [UIButton  buttonWithType:UIButtonTypeCustom];
+        [bkgView addSubview:btn];
+        btn.backgroundColor = [UIColor colorWithRGB:233 green:233 blue:233];
+        btn.tag = i;
+        btn.frame = CGRectMake(x, y, btnW, 44);
+        
+        [btn addTarget:self action:@selector(selectClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        UILabel *lab = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, btnW - 25, 44)];
+        [btn addSubview:lab];
+        lab.text = arr[i];
+        lab.font = [UIFont systemFontOfSize:16];
+        lab.textColor = [UIColor blackColor];
+        
+        UIView *right = [[UIView alloc] initWithFrame:CGRectMake(btnW - 15, 0, 15, 44)];
+        [btn addSubview:right];
+        right.backgroundColor = [UIColor colorWithRGB:181 green:181 blue:181];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(2.5, 17, 10, 10)];
+        [right addSubview:imageView];
+        imageView.image = [UIImage imageNamed:@"small-arrow-down"];
+        
+        x += btnW + margin;
+    }
+    
+    y += 54;
+    x = 10;
+    UIView *textFieldBkg = [[UIView alloc] initWithFrame:CGRectMake(x, y, SCREEN_WIDTH - 2.0*x, 44)];
+    [bkgView addSubview:textFieldBkg];
+    textFieldBkg.backgroundColor = ViewColor;
+
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(10, 0, SCREEN_WIDTH - 2.0*x - 64, 44)];
+    [textFieldBkg addSubview:textField];
+    textField.placeholder = @"输入检索条件";
+    textField.textColor = [UIColor grayColor];
+    textField.font = [UIFont systemFontOfSize:16];
+    textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    self.textField = textField;
+
+    UIButton *btnSearch = [[UIButton alloc] initWithFrame:CGRectMake(SCREEN_WIDTH - 2.0*x - 44, 0, 44, 44)];
+    [textFieldBkg addSubview:btnSearch];
+    [btnSearch setBackgroundColor:[UIColor colorWithRGB:245 green:245 blue:245]];
+    [btnSearch setImage:[UIImage imageNamed:@"search"] forState:UIControlStateNormal];
+
+    [btnSearch addTarget:self action:@selector(searchClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGFloat topHeight = IS_IPHONEX ? 88 : 64;
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, TOP_HEIGHT + 118, SCREEN_WIDTH, SCREEN_HEIGHT - self.navigationController.toolbar.frame.size.height - 118 - topHeight)];
+    [self.view addSubview:self.tableView];
+    [self.tableView setDelegate:self];
+    [self.tableView setDataSource:self];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.tableView.backgroundColor = ViewColor;
+    
+    [self.tableView registerClass:[HomeCell class] forCellReuseIdentifier:NSStringFromClass([HomeCell class])];
 }
 
 - (void)setTitle
 {
-    NSString *title = TITLE;
-    UILabel *labTitle = [UILabel new];
-    [labTitle setText:title];
-    [labTitle setFont:[UIFont systemFontOfSize:16]];
-    self.navigationItem.titleView = labTitle;
+//    NSString *title = TITLE;
+//    UILabel *labTitle = [UILabel new];
+//    [labTitle setText:title];
+//    [labTitle setFont:[UIFont systemFontOfSize:16]];
+//    self.navigationItem.titleView = labTitle;
 }
 
-- (void)handleNotification
+#pragma mark - click
+
+- (void)selectClicked:(UIButton *)sender
 {
-    [self loginWebService];
+    NSArray *arr = @[@"测试1", @"测试2", @"测试3", @"测试4"];
+    
+    CommonPickerView *pickerView = [[CommonPickerView alloc] initWithArrayData:arr xlsn0wDelegate:self];
+    [pickerView show];
 }
 
-- (void)dealloc
+- (void)searchClicked:(UIButton *)sender
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LoadHomeViewAgain" object:nil];
+    PLog(@"search == %@", self.textField.text);
+}
+
+#pragma mark - CommonPickerViewDelegate
+
+- (void)pickerSingler:(CommonPickerView *)pickerSingler selectedTitle:(NSString *)selectedTitle selectedRow:(NSInteger)selectedRow
+{
+
+}
+
+#pragma mark - 示例代码
+#pragma mark UITableView + 下拉刷新 默认
+- (void)refresh
+{
+//    //    __weak __typeof(self) weakSelf = self;
+//
+//    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+//    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        //        [weakSelf loadNewData];
+//        _page = 1;
+//        [self download:_page];
+//    }];
+//
+//    // 马上进入刷新状态
+//    [self.tableView.mj_header beginRefreshing];
+}
+
+#pragma mark UITableView + 上拉刷新 默认
+- (void)loadMore
+{
+//    [self refresh];
+//
+//    __weak __typeof(self) weakSelf = self;
+//
+//    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+//    self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//        [weakSelf loadMoreData];
+//    }];
+}
+
+#pragma mark - 数据处理相关
+#pragma mark 下拉刷新数据
+- (void)loadNewData
+{
+//    // 1.添加假数据
+//    //    for (int i = 0; i<5; i++) {
+//    //        [self.data insertObject:MJRandomData atIndex:0];
+//    //    }
+//
+//    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+//    __weak UITableView *tableView = self.tableView;
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        // 刷新表格
+//        [tableView reloadData];
+//
+//        // 拿到当前的下拉刷新控件，结束刷新状态
+//        [tableView.mj_header endRefreshing];
+//    });
+}
+
+- (void)download:(NSInteger)page
+{
+//    self.view.userInteractionEnabled = NO;
+//    [SVProgressHUD showWithStatus:@"数据加载中，请稍等..."];
+//
+//    //1.创建一个请求管理者
+//    //AFHTTPRequestOperationManager内部封装了URLSession
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//
+//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/plain",nil];
+//    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+//    //    [manager.requestSerializer setValue:@"application/x-www-form-urlencoded; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+//
+//    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+//    // 2.发送请求
+//
+//    //    NSString *str = [NSString stringWithFormat:@"{\"ActiveCode\":\"%@\"}", userModel.activeCode];
+//    //    NSString *receive = @"收文";
+//    NSString *str = [NSString stringWithFormat:@"{\"ActiveCode\":\"%@\",\"PageSize\":\"10\",\"PageNum\":\"%zd\",\"BLSate\":\"ALL\"}", userModel.activeCode, self.page];
+//    NSDictionary *dict = @{
+//                           @"Action":@"GetSWHandleList_BLState",
+//                           @"jsonRequest":str
+//                           };
+//    PLog(@"dict == %@", dict);
+//
+//    NSString *url = @"http://202.104.110.143:8009/oasystem/Handlers/DMS_FileMan_Handler.ashx?";
+//
+//    [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+//        self.view.userInteractionEnabled = YES;
+//        [SVProgressHUD dismiss];
+//        // 转码
+//        NSStringEncoding gbkEncoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+//        NSString* utf8Str = [[NSString alloc] initWithBytes:[responseObject bytes] length:[responseObject length] encoding:gbkEncoding];
+//        PLog(@"utf8Str == %@", utf8Str);
+//        NSData *data = [utf8Str dataUsingEncoding:NSUTF8StringEncoding];
+//        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+//
+//        NSNumber *isSuccess = dict[@"IsSuccess"];
+//        PLog(@"isSuccess == %@", isSuccess);
+//        NSNumber *num = [NSNumber numberWithInt:1];
+//        if([isSuccess isEqualToNumber:num])
+//        {
+//            if(1 == self.page)
+//            {
+//                _modelsArray = [ReceiveModel mj_objectArrayWithKeyValuesArray:dict[@"Datas"]];
+//            }
+//            else
+//            {
+//                NSMutableArray *tmp = [ReceiveModel mj_objectArrayWithKeyValuesArray:dict[@"Datas"]];
+//                [_modelsArray addObject:tmp];
+//            }
+//        }
+//        else
+//        {
+//            NSString *mes = dict[@"Status"];
+//            [SVProgressHUD showErrorWithStatus:mes];
+//        }
+//
+//        [self.tableView reloadData];
+//        if(1 == _page)
+//        {
+//            [self.tableView.mj_header endRefreshing];
+//        }
+//        else
+//        {
+//            [self.tableView.mj_footer endRefreshing];
+//        }
+//    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+//        self.view.userInteractionEnabled = YES;
+//        PLog(@"请求失败--%@",error);
+//        [SVProgressHUD showInfoWithStatus:@"网络异常"];
+//    }];
+}
+
+#pragma mark 上拉加载更多数据
+- (void)loadMoreData
+{
+//    ++_page;
+//    [self download:_page];
+}
+
+#pragma mark 加载最后一份数据
+- (void)loadLastData
+{
+//    // 1.添加假数据
+//    //    for (int i = 0; i<5; i++) {
+//    //        [self.data addObject:MJRandomData];
+//    //    }
+//
+//    // 2.模拟2秒后刷新表格UI（真实开发中，可以移除这段gcd代码）
+//    __weak UITableView *tableView = self.tableView;
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(MJDuration * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        // 刷新表格
+//        [tableView reloadData];
+//
+//        // 拿到当前的上拉刷新控件，变为没有更多数据的状态
+//        [tableView.mj_footer endRefreshingWithNoMoreData];
+//    });
 }
 
 #pragma mark - nav item
@@ -114,186 +348,48 @@
     }
 }
 
-- (void)loginWebService
+#pragma mark - tableView Delegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    self.view.userInteractionEnabled = NO;
-    [SVProgressHUD showWithStatus:@"验证中，请稍等..."];
-    
-    NSString *password = [[UrlManager sharedUrlManager] getPassword];
-    password = [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    password = [NSString urlEncode:password];
-    PLog(@"password == %@", password);
-    
-    UserModel *model = [[UserManager sharedUserManager] getUserModel];
-    
-    NSString *soapMsg = [NSString stringWithFormat:
-                          @"<?xml version=\"1.0\" encoding=\"utf-8\" ?>"
-                          "<REQUEST>"
-                          "<USER>%@</USER>"
-                          "<PASSWORD>%@</PASSWORD>"
-                          "<SP_ID>%@</SP_ID>"
-                          "</REQUEST>", model.username, password, [[UrlManager sharedUrlManager] getSPID]];
-    PLog(@"soapMsg == %@", soapMsg);
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.responseSerializer = [AFXMLParserResponseSerializer serializer];
-    // 设置请求超时时间
-    manager.requestSerializer.timeoutInterval = 60;
-    // 返回NSData
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    // 设置请求头，也可以不设置
-    [manager.requestSerializer setValue:@"application/soap+xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [manager.requestSerializer setValue:[NSString stringWithFormat:@"%zd", soapMsg.length] forHTTPHeaderField:@"Content-Length"];
-    // 设置HTTPBody
-    [manager.requestSerializer setQueryStringSerializationWithBlock:^NSString *(NSURLRequest *request, NSDictionary *parameters, NSError *__autoreleasing *error)
-     {
-         return soapMsg;
-     }];
-
-    [manager POST:[[UrlManager sharedUrlManager] getSingleUrl] parameters:soapMsg success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
-        [SVProgressHUD dismiss];
-        self.view.userInteractionEnabled = YES;
-        // 把返回的二进制数据转为字符串
-        NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-        PLog(@"result == %@", result);
-        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:responseObject];
-        [parser setDelegate:self];
-        [parser parse];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        PLog(@"error == @%", error.userInfo);
-        self.view.userInteractionEnabled = YES;
-        [SVProgressHUD showInfoWithStatus:@"网络异常"];
-    }];
+    return 10;
 }
 
-#pragma mark - NSXMLParserDelegate
-// 1.开始解析XML文件
--(void)parserDidStartDocument:(NSXMLParser *)parser{
-    PLog(@"开始解析XML文件");
-}
-
-// 2.解析XML文件中所有的元素
--(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict{
-    //    PLog(@"解析XML文件中所有的元素:elementName:%@,attributeDict:%@",elementName,attributeDict);
-    //    if ([elementName isEqualToString:@"CheckUserLoginResult"]) {
-    //        // MJExtension 解析数据
-    //        Model *model = [Model mj_objectWithKeyValues:attributeDict];
-    //        [self.dataArrM addObject:model];
-    //    }
-}
-
-// 3.XML文件中每一个元素解析完成
-- (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(nullable NSString *)namespaceURI qualifiedName:(nullable NSString *)qName
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //    PLog(@"XML文件中每一个元素解析完成:elementName:%@, qName:%@",elementName, qName);
-    
-    if ([elementName isEqualToString:@"RESP_CODE"])
-    {
-        if([self.content isEqualToString:@"0000"])
-        {
-            NSString *tmpUrl = [[UrlManager sharedUrlManager] getWebUrl];
-            tmpUrl = [tmpUrl stringByAppendingString:@"&SessionId="];
-            tmpUrl = [tmpUrl stringByAppendingString:self.sessionId];
-            tmpUrl = [tmpUrl stringByAppendingString:@"&OpenType="];
-            self.url = [tmpUrl stringByAppendingString:self.openType];
-            PLog(@"url == %@", self.url);
-            [self initWebView];
-        }
-        else if([self.content isEqualToString:@"1001"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"非法交易类型"];
-        }
-        else if([self.content isEqualToString:@"1002"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"非法接入账号"];
-        }
-        else if([self.content isEqualToString:@"1003"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"接入密码错误"];
-        }
-        else if([self.content isEqualToString:@"1004"])
-        {
-            [SVProgressHUD showErrorWithStatus:@"登录用户无效"];
-        }
-        else
-        {
-            [SVProgressHUD showErrorWithStatus:@"系统内部错误"];
-        }
-    }
-    
-    if([elementName isEqualToString:@"WEBSESSION"])
-    {
-        self.sessionId = self.content;
-    }
+    HomeCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([HomeCell class])];
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    MeetingsInfo *info = self.otherMeetings[indexPath.row];
+    cell.flowName = @"hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试hello测试测试测试";
+
+//    if(indexPath.row == self.otherMeetings.count - 1)
+//    {
+//        cell.isHiddenLine = YES;
+//    }
+//    else
+//    {
+//        cell.isHiddenLine = NO;
+//    }
+
+    return cell;
 }
 
-// 读取标签之间的文本
-- (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.content = string;
+    return 80;
 }
 
-
-// 4.XML所有元素解析完毕
--(void)parserDidEndDocument:(NSXMLParser *)parser
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    PLog(@"解析完毕");
+//    MeetingsInfo *other = self.otherMeetings[indexPath.row];
+//    MeetingViewController *vc = [[MeetingViewController alloc] init];
+//    vc.identifier = other.MM_SNID;
+//    [self.navigationController pushViewController:vc animated:YES];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:[NSClassFromString(@"IndexViewController") new] animated:YES];
+//    self.hidesBottomBarWhenPushed = NO;
 }
 
-// 解析出现错误时调用
-- (void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
-{
-    PLog(@"error == %@", validationError.userInfo);
-}
-
-- (void)initWebView
-{
-//    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    if(self.webView == nil)
-    {
-        self.webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
-        [self.view addSubview:self.webView];
-    }
-    
-    if(_bridge == nil)
-    {
-        [WebViewJavascriptBridge enableLogging];
-        
-        _bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
-        [_bridge setWebViewDelegate:self];
-        
-        [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
-            NSLog(@"testObjcCallback called: %@", data);
-            responseCallback(@"Response from testObjcCallback");
-        }];
-        
-        [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
-    }
-    
-    [self loadWebView:self.webView];
-}
-
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidStartLoad");
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidFinishLoad");
-}
-
-- (void)callHandler:(id)sender {
-    id data = @{ @"greetingFromObjC": @"Hi there, JS!" };
-    [_bridge callHandler:@"testJavascriptHandler" data:data responseCallback:^(id response) {
-        NSLog(@"testJavascriptHandler responded: %@", response);
-    }];
-}
-
-- (void)loadWebView:(UIWebView*)webView
-{
-    NSURL *url = [NSURL URLWithString:self.url];
-    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
-    [webView loadRequest:request];
-}
 
 @end

@@ -16,4 +16,6 @@
 // 给定一个最原始的图片名称生成一个原始的图片
 + (instancetype)imageWithOriginalImageName:(NSString *)imageName;
 
++ (UIImage *)imageWithName:(NSString *)name;
+
 @end

@@ -21,30 +21,28 @@
     if (!self) return nil;
     
     UIImageView *bkg = [UIImageView new];
-//    bkg.image = [UIImage imageNamed:@"login_bkg"]; // 大图耗内存
-    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login_bkg"];
-    bkg.image = [UIImage imageWithContentsOfFile:path];
+    bkg.image = [UIImage imageWithName:@"login_bkg"]; // 大图耗内存
     [self addSubview:bkg];
-    [bkg makeConstraints:^(MASConstraintMaker *make) {
+    [bkg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.right.equalTo(self);
     }];
     
     UIImageView *logoIcon = [UIImageView new];
-//    logoIcon.image = [UIImage imageNamed:@"logo_company"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-yt"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-ns"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-ft"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-lhgwj"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-szswjt"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-bjfdzy"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-bjtyfdc"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-sshgcj"];
-    logoIcon.image = [UIImage imageNamed:@"logo-luqiao"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-szgws"];
+//    logoIcon.image = [UIImage imageWithName:@"logo_company"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-qzzb"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-yt"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-ns"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-ft"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-lhgwj"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-szswjt"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-bjfdzy"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-bjtyfdc"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-sshgcj"];
+    logoIcon.image = [UIImage imageWithName:@"logo-luqiao"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-szgws"];
     [self addSubview:logoIcon];
-    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+    [logoIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
         make.top.equalTo(@(H(68)));
         // 勤智资本
 //        make.width.equalTo(@(W(171)));
@@ -73,7 +71,7 @@
 //        make.width.equalTo(@(W(120)));
 //        make.height.equalTo(@(H(60)));
         // 东莞市路桥公司
-        make.width.height.equalTo(@60);
+        make.width.height.equalTo(@(H(60)));
     }];
     
     UILabel *company = [UILabel new];
@@ -91,12 +89,12 @@
 //    company.text = @"深圳市建筑工务署";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
-    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:26];
+    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:FONT_SIZE(26)];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
-    [company makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(logoIcon.bottom).offset(H(11));
+    [company mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(logoIcon.mas_bottom).offset(H(11));
         make.left.right.equalTo(self);
     }];
     
@@ -110,9 +108,9 @@
     titleLab.font = [UIFont systemFontOfSize:22];
     titleLab.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLab];
-    [titleLab makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(company.bottom).with.offset(H(12.5));
+    [titleLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(company.mas_bottom).with.offset(H(12.5));
         make.left.right.equalTo(self);
     }];
 
@@ -122,7 +120,7 @@
 //    titleLabEN.font = [UIFont systemFontOfSize:24];
 //    titleLabEN.textAlignment = NSTextAlignmentCenter;
 //    [self addSubview:titleLabEN];
-//    [titleLabEN makeConstraints:^(MASConstraintMaker *make) {
+//    [titleLabEN mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.centerX.equalTo(self.centerX);
 //        make.top.equalTo(titleLab.bottom).with.offset(H(7.5));
 //        make.left.right.equalTo(self);
@@ -133,28 +131,28 @@
     usernameBkg.layer.cornerRadius = 5;
     usernameBkg.clipsToBounds = YES;
     [self addSubview:usernameBkg];
-    [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+    [usernameBkg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
 //        make.top.equalTo(titleLabEN.bottom).with.offset(H(31));
-        make.top.equalTo(titleLab.bottom).with.offset(H(31));
+        make.top.equalTo(titleLab.mas_bottom).with.offset(H(31));
         make.left.equalTo(self).offset(H(30));
         make.right.equalTo(self).offset(H(-30));
         make.height.equalTo(@(H(40)));
     }];
     
     UIImageView *userIcon = [UIImageView new];
-    userIcon.image = [UIImage imageNamed:@"user"];
+    userIcon.image = [UIImage imageWithName:@"user"];
     [usernameBkg addSubview:userIcon];
-    [userIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(usernameBkg.centerY);
+    [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(usernameBkg.mas_centerY);
         make.left.equalTo(@(W(12)));
-        make.width.height.equalTo(@(W(18)));
+        make.width.height.equalTo(@18);
     }];
     
     self.usernameTextField = [UITextField new];
     self.usernameTextField.placeholder = @"请输入用户名";
     self.usernameTextField.textColor = [UIColor blackColor];
-    self.usernameTextField.font = [UIFont systemFontOfSize:18];
+    self.usernameTextField.font = [UIFont systemFontOfSize:15];
     self.usernameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.usernameTextField.clearsOnBeginEditing = NO;
     self.usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -162,10 +160,10 @@
     self.usernameTextField.returnKeyType =UIReturnKeyNext;
     self.usernameTextField.delegate = self;
     [usernameBkg addSubview:self.usernameTextField];
-    [self.usernameTextField makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(userIcon.right).with.offset(W(12));
+    [self.usernameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(userIcon.mas_right).with.offset(W(12));
         make.top.bottom.equalTo(usernameBkg);
-        make.right.equalTo(usernameBkg.right).offset(W(-12));
+        make.right.equalTo(usernameBkg.mas_right).offset(W(-12));
     }];
     
     UIView *passwordBkg = [UIView new];
@@ -173,25 +171,25 @@
     passwordBkg.layer.cornerRadius = 5;
     passwordBkg.clipsToBounds = YES;
     [self addSubview:passwordBkg];
-    [passwordBkg makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(usernameBkg.left);
-        make.top.equalTo(usernameBkg.bottom).with.offset(H(20));
+    [passwordBkg mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(usernameBkg.mas_left);
+        make.top.equalTo(usernameBkg.mas_bottom).with.offset(H(20));
         make.width.height.equalTo(usernameBkg);
     }];
     
     UIImageView *passwordIcon = [UIImageView new];
-    passwordIcon.image = [UIImage imageNamed:@"password"];
+    passwordIcon.image = [UIImage imageWithName:@"password"];
     [passwordBkg addSubview:passwordIcon];
-    [passwordIcon makeConstraints:^(MASConstraintMaker *make) {
+    [passwordIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(passwordBkg.mas_centerY);
-        make.width.height.equalTo(@(W(18)));
+        make.width.height.equalTo(@18);
         make.left.equalTo(@(W(12)));
     }];
     
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"请输入密码";
     self.passwordTextField.textColor = [UIColor blackColor];
-    self.passwordTextField.font = [UIFont systemFontOfSize:18];
+    self.passwordTextField.font = [UIFont systemFontOfSize:15];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.clearsOnBeginEditing = YES;
@@ -200,7 +198,7 @@
     self.passwordTextField.autocapitalizationType = UITextAutocapitalizationTypeNone;
     self.passwordTextField.delegate = self;
     [passwordBkg addSubview:self.passwordTextField];
-    [self.passwordTextField makeConstraints:^(MASConstraintMaker *make) {
+    [self.passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.equalTo(@0);
         make.left.right.width.height.equalTo(self.usernameTextField);
     }];
@@ -208,29 +206,29 @@
     self.accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.accountBtn setTitle:@"记住账号" forState:UIControlStateNormal];
     [self.accountBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.accountBtn setImage:[UIImage imageNamed:@"remember_unselected"] forState:UIControlStateNormal];
-    [self.accountBtn setImage:[UIImage imageNamed:@"remember_selected"] forState:UIControlStateSelected];
-    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:17];
+    [self.accountBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
+    [self.accountBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
+    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.accountBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.accountBtn addTarget:self action:@selector(accountClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.accountBtn];
-    [self.accountBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(passwordBkg.left);
-        make.top.equalTo(passwordBkg.bottom).with.offset(H(20));
+    [self.accountBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(passwordBkg.mas_left);
+        make.top.equalTo(passwordBkg.mas_bottom).with.offset(H(20));
     }];
     
     self.autoLoginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self.autoLoginBtn setTitle:@"自动登录" forState:UIControlStateNormal];
     [self.autoLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember_unselected"] forState:UIControlStateNormal];
-    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember_selected"] forState:UIControlStateSelected];
-    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:17];
+    [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
+    [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
+    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.autoLoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.autoLoginBtn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.autoLoginBtn];
-    [self.autoLoginBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(self.accountBtn.centerY);
-        make.right.equalTo(passwordBkg.right);
+    [self.autoLoginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.accountBtn.mas_centerY);
+        make.right.equalTo(passwordBkg.mas_right);
     }];
     
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -239,13 +237,13 @@
     [loginBtn.layer setMasksToBounds:YES];
     [loginBtn.layer setCornerRadius:5.0];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    loginBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+    loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3ECE89"]] forState:UIControlStateNormal];
     [self addSubview:loginBtn];
-    [loginBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
+    [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
         make.width.height.equalTo(passwordBkg);
-        make.top.equalTo(self.autoLoginBtn.bottom).with.offset(H(20));
+        make.top.equalTo(self.autoLoginBtn.mas_bottom).with.offset(H(20));
     }];
 
     return self;
