@@ -27,7 +27,7 @@
     [self setTitle];
     
     [self setupNavBtn];
-    self.openType = @"zszx_nbzl";
+    self.openType = @"zszx_bzgf";
     [self loginWebService];
 }
 
@@ -159,11 +159,11 @@
 {
     NSArray *menuItems =
     @[
-      
-      [KxMenuItem menuItem:@"内部资料"
-                     image:nil
-                    target:self
-                    action:@selector(infoClicked:)],
+//      路桥去掉
+//      [KxMenuItem menuItem:@"内部资料"
+//                     image:nil
+//                    target:self
+//                    action:@selector(infoClicked:)],
       
       [KxMenuItem menuItem:@"图书期刊"
                      image:nil
@@ -174,8 +174,8 @@
                      image:nil
                     target:self
                     action:@selector(formClicked:)],
-      
-      [KxMenuItem menuItem:@"单位规章"
+      // 单位规章（除路桥外）
+      [KxMenuItem menuItem:@"企业规章"
                      image:nil
                     target:self
                     action:@selector(rulesClicked:)],

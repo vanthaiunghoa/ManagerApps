@@ -27,7 +27,8 @@
 //    self.navigationItem.title = TITLE;
     [self setTitle];
     
-    [self setupNavBtn];
+    // 路桥去掉
+//    [self setupNavBtn];
     self.openType = @"baidumap";
     // 勤智资本
 //    self.openType = @"capital_index";

@@ -21,27 +21,27 @@
     if (!self) return nil;
     
     UIImageView *bkg = [UIImageView new];
-//    bkg.image = [UIImage imageNamed:@"login_bkg"]; // 大图耗内存
-    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login_bkg"];
-    bkg.image = [UIImage imageWithContentsOfFile:path];
+    bkg.image = [UIImage imageWithName:@"login_bkg"]; // 大图耗内存
+//    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login_bkg"];
+//    bkg.image = [UIImage imageWithContentsOfFile:path];
     [self addSubview:bkg];
     [bkg makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.right.equalTo(self);
     }];
     
     UIImageView *logoIcon = [UIImageView new];
-//    logoIcon.image = [UIImage imageNamed:@"logo_company"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-yt"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-ns"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-ft"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-lhgwj"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-szswjt"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-bjfdzy"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-bjtyfdc"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-sshgcj"];
-    logoIcon.image = [UIImage imageNamed:@"logo-luqiao"];
-//    logoIcon.image = [UIImage imageNamed:@"logo-szgws"];
+//    logoIcon.image = [UIImage imageWithName:@"logo_company"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-qzzb"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-yt"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-ns"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-ft"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-lhgwj"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-szswjt"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-bjfdzy"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-bjtyfdc"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-sshgcj"];
+    logoIcon.image = [UIImage imageWithName:@"logo-luqiao"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-szgws"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
@@ -73,7 +73,7 @@
 //        make.width.equalTo(@(W(120)));
 //        make.height.equalTo(@(H(60)));
         // 东莞市路桥公司
-        make.width.height.equalTo(@60);
+        make.width.height.equalTo(@(H(60)));
     }];
     
     UILabel *company = [UILabel new];
@@ -91,7 +91,7 @@
 //    company.text = @"深圳市建筑工务署";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
-    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:26];
+    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:FONT_SIZE(26)];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
     [company makeConstraints:^(MASConstraintMaker *make) {
@@ -143,18 +143,18 @@
     }];
     
     UIImageView *userIcon = [UIImageView new];
-    userIcon.image = [UIImage imageNamed:@"user"];
+    userIcon.image = [UIImage imageWithName:@"user"];
     [usernameBkg addSubview:userIcon];
     [userIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(usernameBkg.centerY);
         make.left.equalTo(@(W(12)));
-        make.width.height.equalTo(@(W(18)));
+        make.width.height.equalTo(@18);
     }];
     
     self.usernameTextField = [UITextField new];
     self.usernameTextField.placeholder = @"请输入用户名";
     self.usernameTextField.textColor = [UIColor blackColor];
-    self.usernameTextField.font = [UIFont systemFontOfSize:18];
+    self.usernameTextField.font = [UIFont systemFontOfSize:15];
     self.usernameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.usernameTextField.clearsOnBeginEditing = NO;
     self.usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -180,18 +180,18 @@
     }];
     
     UIImageView *passwordIcon = [UIImageView new];
-    passwordIcon.image = [UIImage imageNamed:@"password"];
+    passwordIcon.image = [UIImage imageWithName:@"password"];
     [passwordBkg addSubview:passwordIcon];
     [passwordIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(passwordBkg.mas_centerY);
-        make.width.height.equalTo(@(W(18)));
+        make.width.height.equalTo(@18);
         make.left.equalTo(@(W(12)));
     }];
     
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"请输入密码";
     self.passwordTextField.textColor = [UIColor blackColor];
-    self.passwordTextField.font = [UIFont systemFontOfSize:18];
+    self.passwordTextField.font = [UIFont systemFontOfSize:15];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.clearsOnBeginEditing = YES;
@@ -208,9 +208,9 @@
     self.accountBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.accountBtn setTitle:@"记住账号" forState:UIControlStateNormal];
     [self.accountBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.accountBtn setImage:[UIImage imageNamed:@"remember_unselected"] forState:UIControlStateNormal];
-    [self.accountBtn setImage:[UIImage imageNamed:@"remember_selected"] forState:UIControlStateSelected];
-    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:17];
+    [self.accountBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
+    [self.accountBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
+    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.accountBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.accountBtn addTarget:self action:@selector(accountClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.accountBtn];
@@ -222,9 +222,9 @@
     self.autoLoginBtn=[UIButton buttonWithType:UIButtonTypeCustom];
     [self.autoLoginBtn setTitle:@"自动登录" forState:UIControlStateNormal];
     [self.autoLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember_unselected"] forState:UIControlStateNormal];
-    [self.autoLoginBtn setImage:[UIImage imageNamed:@"remember_selected"] forState:UIControlStateSelected];
-    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:17];
+    [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
+    [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
+    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     self.autoLoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.autoLoginBtn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.autoLoginBtn];
@@ -239,7 +239,7 @@
     [loginBtn.layer setMasksToBounds:YES];
     [loginBtn.layer setCornerRadius:5.0];
     [loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    loginBtn.titleLabel.font = [UIFont systemFontOfSize:20];
+    loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithHexString:@"#3ECE89"]] forState:UIControlStateNormal];
     [self addSubview:loginBtn];
     [loginBtn makeConstraints:^(MASConstraintMaker *make) {
@@ -323,8 +323,42 @@
         [SVProgressHUD showInfoWithStatus:@"请输入密码"];
         return NO;
     }
+    // 南山
+//    if(![self isValidPasswordString:password])
+//    {
+//        [SVProgressHUD showInfoWithStatus:@"密码强度不够，请到后台更改！"];
+//        return NO;
+//    }
     
     return YES;
+}
+
+
+- (BOOL)isValidPasswordString:(NSString *)password
+{
+    BOOL result = NO;
+    if ([password length] >= 7){
+        //数字条件
+        NSRegularExpression *tNumRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[0-9]" options:NSRegularExpressionCaseInsensitive error:nil];
+        
+        //符合数字条件的有几个
+        NSUInteger tNumMatchCount = [tNumRegularExpression numberOfMatchesInString:password
+                                                                           options:NSMatchingReportProgress
+                                                                             range:NSMakeRange(0, password.length)];
+        
+        //英文字条件
+        NSRegularExpression *tLetterRegularExpression = [NSRegularExpression regularExpressionWithPattern:@"[A-Za-z]" options:NSRegularExpressionCaseInsensitive error:nil];
+        
+        //符合英文字条件的有几个
+        NSUInteger tLetterMatchCount = [tLetterRegularExpression numberOfMatchesInString:password
+                                                                                 options:NSMatchingReportProgress
+                                                                                   range:NSMakeRange(0, password.length)];
+        
+        if(tNumMatchCount >= 1 && tLetterMatchCount >= 1){
+            result = YES;
+        }
+    }
+    return result;
 }
 
 - (void)vpnSettingClick:(UIButton *)sender
