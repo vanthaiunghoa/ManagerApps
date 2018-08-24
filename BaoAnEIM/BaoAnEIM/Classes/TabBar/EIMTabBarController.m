@@ -4,6 +4,9 @@
 #import "UserModel.h"
 #import "UserManager.h"
 #import "HomeViewController.h"
+#import "MapViewController.h"
+#import "StatisticsViewController.h"
+#import "CenterViewController.h"
 
 #define EIMClassKey   @"rootVCClassString"
 #define EIMTitleKey   @"title"
@@ -77,13 +80,28 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     BaseNavigationController *nav =(BaseNavigationController *)viewController;
-    HomeViewController *home = nav.viewControllers.firstObject;
+    HomeViewController *vc = nav.viewControllers.firstObject;
     
-    if(home)
+    if(vc)
     {
-        if([home isKindOfClass:[HomeViewController class]])
+        if([vc isKindOfClass:[HomeViewController class]])
         {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadHomeViewAgain" object:nil];
+        }
+        
+        if([vc isKindOfClass:[MapViewController class]])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadMapViewAgain" object:nil];
+        }
+
+        if([vc isKindOfClass:[StatisticsViewController class]])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadStatisticsViewAgain" object:nil];
+        }
+
+        if([vc isKindOfClass:[CenterViewController class]])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"LoadCenterViewAgain" object:nil];
         }
     }
 }

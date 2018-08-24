@@ -287,8 +287,8 @@
 		E877B83D1FFF5A730091587B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E877B83E1FFF5A730091587B /* CenterViewController.m */,
 				E877B83F1FFF5A730091587B /* CenterViewController.h */,
+				E877B83E1FFF5A730091587B /* CenterViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -304,8 +304,8 @@
 		E877B8411FFF5A730091587B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E877B8421FFF5A730091587B /* WebViewController.m */,
 				E877B8431FFF5A730091587B /* WebViewController.h */,
+				E877B8421FFF5A730091587B /* WebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -390,8 +390,8 @@
 		E877B85E1FFF5A730091587B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E877B85F1FFF5A730091587B /* HomeViewController.m */,
 				E877B8601FFF5A730091587B /* HomeViewController.h */,
+				E877B85F1FFF5A730091587B /* HomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -416,8 +416,8 @@
 		E877B8651FFF5A730091587B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E877B8661FFF5A730091587B /* MapViewController.m */,
 				E877B8671FFF5A730091587B /* MapViewController.h */,
+				E877B8661FFF5A730091587B /* MapViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

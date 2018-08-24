@@ -30,6 +30,7 @@
     [self setupNavBtn];
     self.openType = @"tjbb_hztj";
     [self loginWebService];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadStatisticsViewAgain" object:nil];
 }
 
 - (void)setTitle
@@ -39,6 +40,17 @@
     [labTitle setText:title];
     [labTitle setFont:[UIFont systemFontOfSize:16]];
     self.navigationItem.titleView = labTitle;
+}
+
+- (void)handleNotification
+{
+    self.openType = @"tjbb_hztj";
+    [self loginWebService];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"LoadStatisticsViewAgain" object:nil];
 }
 
 - (void)loginWebService
@@ -370,6 +382,21 @@
 
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"webViewDidFinishLoad");
+}
+
+// 处理拨打电话以及Url跳转等等
+- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
+    NSURL *URL = navigationAction.request.URL;
+    NSString *scheme = [URL scheme];
+    if ([scheme isEqualToString:@"tel"]) {
+        NSString *resourceSpecifier = [URL resourceSpecifier];
+        NSString *callPhone = [NSString stringWithFormat:@"telprompt://%@", resourceSpecifier];
+        /// 防止iOS 10及其之后，拨打电话系统弹出框延迟出现
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:callPhone]];
+        });
+    }
+    decisionHandler(WKNavigationActionPolicyAllow);
 }
 
 - (void)loadWKWebView:(WKWebView *)webView
