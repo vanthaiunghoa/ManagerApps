@@ -353,6 +353,12 @@
         
         WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH)];
         webView.navigationDelegate = self;
+        
+        if(@available(iOS 11.0, *))
+        {
+            webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+        }
+
         [self.view addSubview:webView];
         self.wkwebView = webView;
     }
