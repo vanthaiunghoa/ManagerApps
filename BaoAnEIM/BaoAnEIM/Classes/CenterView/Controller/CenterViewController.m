@@ -56,7 +56,7 @@
 - (void)loginWebService
 {
     self.view.userInteractionEnabled = NO;
-    [SVProgressHUD showWithStatus:@"验证中，请稍等..."];
+    [SVProgressHUD showWithStatus:@"加载中，请稍等..."];
     
     NSString *password = [[UrlManager sharedUrlManager] getPassword];
     password = [password stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -341,6 +341,7 @@
         
         WKWebView *webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH)];
         webView.navigationDelegate = self;
+        webView.UIDelegate = self;
         
         if(@available(iOS 11.0, *))
         {
@@ -391,6 +392,32 @@
         });
     }
     decisionHandler(WKNavigationActionPolicyAllow);
+}
+
+#pragma mark - WKUIDelegate
+
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL))completionHandler{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"提示" message:message?:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(NO);
+    }])];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"确认" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(YES);
+    }])];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * _Nullable))completionHandler{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:prompt message:@"" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.text = defaultText;
+    }];
+    [alertController addAction:([UIAlertAction actionWithTitle:@"完成" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        completionHandler(alertController.textFields[0].text?:@"");
+    }])];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)loadWKWebView:(WKWebView *)webView

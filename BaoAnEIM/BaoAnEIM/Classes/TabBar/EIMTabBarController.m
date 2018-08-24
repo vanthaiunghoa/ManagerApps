@@ -80,7 +80,7 @@
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     BaseNavigationController *nav =(BaseNavigationController *)viewController;
-    HomeViewController *vc = nav.viewControllers.firstObject;
+    UIViewController *vc = nav.viewControllers.firstObject;
     
     if(vc)
     {
