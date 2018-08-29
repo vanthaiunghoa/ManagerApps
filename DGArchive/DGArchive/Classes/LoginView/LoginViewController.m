@@ -295,6 +295,14 @@
             if([status isEqualToString:@"y"])
             {
                 [SVProgressHUD dismiss];
+                
+                UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+                userModel.username = self.username;
+                userModel.password = self.password;
+                userModel.isLogout = NO;
+                [[UserManager sharedUserManager] saveUserModel:userModel];
+                
+                [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
             }
             else
             {

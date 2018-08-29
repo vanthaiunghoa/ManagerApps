@@ -31,13 +31,15 @@
         make.height.equalTo(@(H(250)));
     }];
     
+    CGFloat w = 296.0/192.0 * H(96);
+    
     UIImageView *logoIcon = [UIImageView new];
     logoIcon.image = [UIImage imageNamed:@"logo"];
     [topView addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
         make.bottom.equalTo(topView.bottom).offset(-H(100));
-        make.width.equalTo(@(W(148)));
+        make.width.equalTo(w);
         make.height.equalTo(@(H(96)));
     }];
     
@@ -54,26 +56,27 @@
     [self addSubview:userView];
     userView.backgroundColor = [UIColor clearColor];
     [userView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.left).offset(30);
-        make.right.equalTo(self.right).offset(-30);
+        make.left.equalTo(self.left).offset(W(30));
+        make.right.equalTo(self.right).offset(W(-30));
         make.top.equalTo(topView.bottom).offset(H(15));
         make.height.equalTo(@(H(50)));
     }];
     
+    CGFloat h = 35.0/34.0 * 16;
     UIImageView *user = [UIImageView new];
     user.image = [UIImage imageNamed:@"user"];
     [userView addSubview:user];
     [user makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.equalTo(userView.centerY);
-        make.left.equalTo(userView.left).offset(20);
-        make.width.equalTo(@(W(17)));
-        make.height.equalTo(@(H(17.5)));
+        make.left.equalTo(userView.left).offset(W(20));
+        make.width.equalTo(@17);
+        make.height.equalTo(h);
     }];
 
     self.usernameTextField = [UITextField new];
     self.usernameTextField.textColor = [UIColor blackColor];
     self.usernameTextField.placeholder = @"手机号码/用户名";
-    self.usernameTextField.font = [UIFont systemFontOfSize:20];
+    self.usernameTextField.font = [UIFont systemFontOfSize:18];
     self.usernameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.usernameTextField.clearsOnBeginEditing = NO;
     self.usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -83,7 +86,7 @@
     [userView addSubview:self.usernameTextField];
     [self.usernameTextField makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.right.equalTo(userView);
-        make.left.equalTo(userView.left).offset(55);
+        make.left.equalTo(user.right).offset(W(20));
     }];
     
     UIView *line = [UIView new];
@@ -99,26 +102,28 @@
     [self addSubview:passwordView];
     passwordView.backgroundColor = [UIColor clearColor];
     [passwordView makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.left).offset(30);
-        make.right.equalTo(self.right).offset(-30);
+        make.left.equalTo(self.left).offset(W(30));
+        make.right.equalTo(self.right).offset(W(-30));
         make.top.equalTo(line.bottom).offset(H(15));
         make.height.equalTo(@(H(50)));
     }];
     
+    h = 34.0/29.0 * 16;
     UIImageView *password = [UIImageView new];
     password.image = [UIImage imageNamed:@"password"];
     [passwordView addSubview:password];
     [password makeConstraints:^(MASConstraintMaker *make) {
+        
         make.centerY.equalTo(passwordView.centerY);
-        make.left.equalTo(passwordView.left).offset(20);
-        make.width.equalTo(@(W(14.5)));
-        make.height.equalTo(@(H(17)));
+        make.left.equalTo(passwordView.left).offset(W(20));
+        make.width.equalTo(@17);
+        make.height.equalTo(h);
     }];
     
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"密码";
     self.passwordTextField.textColor = [UIColor blackColor];
-    self.passwordTextField.font = [UIFont systemFontOfSize:20];
+    self.passwordTextField.font = [UIFont systemFontOfSize:18];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.clearsOnBeginEditing = YES;
@@ -129,7 +134,7 @@
     [passwordView addSubview:self.passwordTextField];
     [self.passwordTextField makeConstraints:^(MASConstraintMaker *make) {
         make.top.bottom.right.equalTo(passwordView);
-        make.left.equalTo(passwordView.left).offset(55);
+        make.left.equalTo(password.right).offset(W(20));
     }];
     
     UIView *line2 = [UIView new];
@@ -152,8 +157,8 @@
     [self addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(line2.mas_bottom).offset(H(30));
-        make.left.equalTo(self.left).offset(30);
-        make.right.equalTo(self.right).offset(-30);
+        make.left.equalTo(self.left).offset(W(30));
+        make.right.equalTo(self.right).offset(W(-30));
         make.height.equalTo(@(H(50)));
     }];
     
@@ -170,9 +175,7 @@
     [self addSubview:btnRegister];
     [btnRegister mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(loginBtn.bottom).offset(H(15));
-        make.left.equalTo(self.left).offset(30);
-        make.right.equalTo(self.right).offset(-30);
-        make.height.equalTo(@(H(50)));
+        make.left.right.height.equalTo(loginBtn);
     }];
 
 //    UIButton *vpnBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -196,8 +199,8 @@
     [lab setTextAlignment:NSTextAlignmentCenter];
     [lab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
-        make.bottom.equalTo(self.bottom).offset(-33);
-        make.height.equalTo(@20);
+        make.bottom.equalTo(self.bottom).offset(H(-33));
+//        make.height.equalTo(@20);
     }];
 
     return self;

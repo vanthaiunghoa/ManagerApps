@@ -41,7 +41,7 @@ NSInteger const serializationErrorCode = 3202;
 - (void)_configureHTTPRequest
 {
     self.logInfo = YES;
-    [self configureHTTPRequestWithBaseURL:@"http://192.168.0.55:9999/archivesApp/"];
+    [self configureHTTPRequestWithBaseURL:@"http://192.168.0.60:9998/archivesApp/"];
 }
 
 - (void)configureHTTPRequestWithBaseURL:(NSString *)baseURLString

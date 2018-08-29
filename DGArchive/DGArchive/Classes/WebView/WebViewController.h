@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
-@interface WebViewController : UIViewController<WKNavigationDelegate>
+@interface WebViewController : UIViewController<WKNavigationDelegate, WKUIDelegate, UIWebViewDelegate>
 
 @end
