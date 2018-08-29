@@ -348,6 +348,7 @@
         WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH)];
         webView.navigationDelegate = self;
         webView.UIDelegate = self;
+        webView.scrollView.bounces = NO;
         
         if(@available(iOS 11.0, *))
         {
