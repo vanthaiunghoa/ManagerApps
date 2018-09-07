@@ -21,7 +21,7 @@
     self.navigationItem.title = @"深圳市建筑工务署";
     self.openType = @"baidumap";
     
-    [self loginWebService];
+//    [self loginWebService];
 }
 
 - (void)loginWebService

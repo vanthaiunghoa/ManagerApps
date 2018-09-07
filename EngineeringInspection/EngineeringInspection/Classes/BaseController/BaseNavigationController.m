@@ -63,7 +63,7 @@
         // 让按钮内部的所有内容左对齐
         //        btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
         
-        //设置内边距，让按钮靠近屏幕边缘
+        // 设置内边距，让按钮靠近屏幕边缘
         //        btn.contentEdgeInsets = UIEdgeInsetsMake(0, -10, 0, 0);
         [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
         

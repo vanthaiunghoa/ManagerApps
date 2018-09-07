@@ -45,13 +45,13 @@
 
 - (void)didLoginWithUserName:(NSString *)username AndPassWord:(NSString *)password
 {
-    self.username = username;
-    self.password = password;
-//    [self login];
-    [self loginWebService];
+//    self.username = username;
+//    self.password = password;
+////    [self login];
+//    [self loginWebService];
     
 //    [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
-//    [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"EIMTabBarController") new];
+    [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"EIMTabBarController") new];
 }
 
 -(void)login

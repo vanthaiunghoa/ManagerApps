@@ -36,31 +36,31 @@
     [self.window makeKeyAndVisible];
     
     // 到期时间:2017-12-20
-    NSString *copyRight = @"SxD/phFsuhBWZSmMVtSjKZmm/c/3zSMrkV2Bbj5tznSkEVZmTwJv0wwMmH/+p6wLiUHbjadYueX9v51H9GgnjUhmNW1xPkB++KQqSv/VKLDsR8V6RvNmv0xyTLOrQoGzAT81iKFYb1SZ/Zera1cjGwQSq79AcI/N/6DgBIfpnlwiEiP2am/4w4+38lfUELaNFry8HbpbpTqV4sqXN1WpeJ7CHHwcDBnMVj8djMthFaapMFm/i6swvGEQ2JoygFU3CQHU1ScyOebPLnpsDlQDzFl6PdtDy57kFV+RWJq+MePx6aD2yiupr6ji7hzsE6/QbaqCDCtTDTe1U1UGNQSK3L4KSzPvnels6ZNbT7bd4+uVWEbHWAH22+t7LdPt+jENkzZtnNzztENURpEKuLOcS89+ejXAkO7Uf1YSlJfm5PCSgCNRP4FpYjl8hG/IVrYXg+4ZXoWKUbJ3lGm6U3gyeOW8fXpxdRHfEuWC1PB9ruQ=";
-    // 检测授权码的有效期
-    NSUInteger expireDateDays = [iAppOffice checkCopyRight:copyRight];
-    if (expireDateDays > 0) {
-        // 注册APP
-        [iAppOffice registerApp:copyRight wpsKey:nil];
-        // 设置端口
-        [iAppOffice setPort:3122];
-        // 设置调试模式
-#ifdef DEBUG
-        [[iAppOffice sharedInstance] setDebugMode:YES];
-#else
-        [[iAppOffice sharedInstance] setDebugMode:NO];
-#endif
-        // 打印授权结果和授权信息
-        NSLog(@"AppDelegate: <-[application:didFinishLaunchingWithOptions:] 授权结果：[%d]", [iAppOffice sharedInstance].isAuthorized);
-        for (NSString *key in [iAppOffice sharedInstance].authorizedInfo.allKeys) {
-            
-            NSLog(@"   %@ = %@", key, [[iAppOffice sharedInstance].authorizedInfo objectForKey:key]);
-        }
-        NSLog(@"}>");
-        //注册通知
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWPSDocumentNotification:) name:@"WPSDocumentNotification" object:nil];
-    }
-    
+//    NSString *copyRight = @"SxD/phFsuhBWZSmMVtSjKZmm/c/3zSMrkV2Bbj5tznSkEVZmTwJv0wwMmH/+p6wLiUHbjadYueX9v51H9GgnjUhmNW1xPkB++KQqSv/VKLDsR8V6RvNmv0xyTLOrQoGzAT81iKFYb1SZ/Zera1cjGwQSq79AcI/N/6DgBIfpnlwiEiP2am/4w4+38lfUELaNFry8HbpbpTqV4sqXN1WpeJ7CHHwcDBnMVj8djMthFaapMFm/i6swvGEQ2JoygFU3CQHU1ScyOebPLnpsDlQDzFl6PdtDy57kFV+RWJq+MePx6aD2yiupr6ji7hzsE6/QbaqCDCtTDTe1U1UGNQSK3L4KSzPvnels6ZNbT7bd4+uVWEbHWAH22+t7LdPt+jENkzZtnNzztENURpEKuLOcS89+ejXAkO7Uf1YSlJfm5PCSgCNRP4FpYjl8hG/IVrYXg+4ZXoWKUbJ3lGm6U3gyeOW8fXpxdRHfEuWC1PB9ruQ=";
+//    // 检测授权码的有效期
+//    NSUInteger expireDateDays = [iAppOffice checkCopyRight:copyRight];
+//    if (expireDateDays > 0) {
+//        // 注册APP
+//        [iAppOffice registerApp:copyRight wpsKey:nil];
+//        // 设置端口
+//        [iAppOffice setPort:3122];
+//        // 设置调试模式
+//#ifdef DEBUG
+//        [[iAppOffice sharedInstance] setDebugMode:YES];
+//#else
+//        [[iAppOffice sharedInstance] setDebugMode:NO];
+//#endif
+//        // 打印授权结果和授权信息
+//        NSLog(@"AppDelegate: <-[application:didFinishLaunchingWithOptions:] 授权结果：[%d]", [iAppOffice sharedInstance].isAuthorized);
+//        for (NSString *key in [iAppOffice sharedInstance].authorizedInfo.allKeys) {
+//
+//            NSLog(@"   %@ = %@", key, [[iAppOffice sharedInstance].authorizedInfo objectForKey:key]);
+//        }
+//        NSLog(@"}>");
+//        //注册通知
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWPSDocumentNotification:) name:@"WPSDocumentNotification" object:nil];
+//    }
+//
     return YES;
 }
 

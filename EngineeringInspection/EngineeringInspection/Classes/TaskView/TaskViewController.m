@@ -186,7 +186,7 @@
      {
          return soapMsg;
      }];
-
+    
     [manager POST:[[UrlManager sharedUrlManager] getSingleUrl] parameters:soapMsg success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         self.view.userInteractionEnabled = YES;

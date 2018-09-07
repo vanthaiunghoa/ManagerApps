@@ -9,6 +9,8 @@
 #import "UIFont+runtime.h"
 #import <objc/runtime.h>
 
+#define MyUIScreen 375
+
 @implementation UIFont (runtime)
 
 + (void)load {
@@ -23,10 +25,14 @@
 + (UIFont *)adjustFont:(CGFloat)fontSize {
     UIFont *newFont = nil;
     
-    CGFloat w = fontSize/375.f * [UIScreen mainScreen].bounds.size.width;
-    CGFloat h = fontSize/667.f * [UIScreen mainScreen].bounds.size.height;
-    
-    newFont = [UIFont adjustFont:sqrt(w*h)];
+    if(IS_IPAD)
+    {
+        newFont = [UIFont adjustFont:fontSize * 1.8];
+    }
+    else
+    {
+        newFont = [UIFont adjustFont:fontSize * [UIScreen mainScreen].bounds.size.width/MyUIScreen];
+    }
     
     return newFont;
 }

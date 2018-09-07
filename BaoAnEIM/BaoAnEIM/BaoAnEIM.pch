@@ -48,6 +48,9 @@
 #define PLog(...)
 #endif
 
+#define IS_IPAD   (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+#define IS_IPHONE (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+
 //define this constant if you want to use Masonry without the 'mas_' prefix
 #define MAS_SHORTHAND
 
