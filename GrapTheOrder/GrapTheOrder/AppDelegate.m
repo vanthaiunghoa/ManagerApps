@@ -429,7 +429,7 @@ didReceiveLocalNotification:(UILocalNotification *)notification {
 }
 
 #ifdef NSFoundationVersionNumber_iOS_9_x_Max
-#pragma mark- JPUSHRegisterDelegate
+#pragma mark- JPUSHRegistersDelegate
 - (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
     NSDictionary * userInfo = notification.request.content.userInfo;
     

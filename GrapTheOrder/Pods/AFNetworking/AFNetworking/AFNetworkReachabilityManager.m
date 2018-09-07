@@ -119,6 +119,23 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     dispatch_once(&onceToken, ^{
         _sharedManager = [self manager];
     });
+    
+//    static AFNetworkReachabilityManager*_sharedManager =nil;
+//
+//    static dispatch_once_t onceToken;
+//
+//    dispatch_once(&onceToken, ^{
+//
+//        struct sockaddr_in6 address;
+//
+//        bzero(&address,sizeof(address));
+//
+//        address.sin6_len=sizeof(address);
+//
+//        address.sin6_family=AF_INET6;
+//
+//        _sharedManager = [self managerForAddress:&address];
+//    });
 
     return _sharedManager;
 }
@@ -138,9 +155,18 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     AFNetworkReachabilityManager *manager = [[self alloc] initWithReachability:reachability];
 
     CFRelease(reachability);
-    
+
     return manager;
 }
+
+//+ (instancetype)managerForAddress:(const struct sockaddr_in6 *)address {
+//    SCNetworkReachabilityRef reachability =SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault, (const struct sockaddr *)address);
+//    AFNetworkReachabilityManager *manager = [[self alloc]initWithReachability:reachability];
+//
+//    CFRelease(reachability);
+//
+//    return manager;
+//}
 
 + (instancetype)manager
 {
@@ -156,6 +182,22 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {
     address.sin_family = AF_INET;
 #endif
     return [self managerForAddress:&address];
+    
+//    if (NSFoundationVersionNumber >= NSFoundationVersionNumber_iOS_9_0) {
+//        struct sockaddr_in6 address;
+//        bzero(&address, sizeof(address));
+//        address.sin6_len = sizeof(address);
+//        address.sin6_family = AF_INET6;
+//
+//        return [self managerForAddress:&address];
+//    } else {
+//        struct sockaddr_in address;
+//        bzero(&address, sizeof(address));
+//        address.sin_len = sizeof(address);
+//        address.sin_family = AF_INET;
+//
+//        return [self managerForAddress:&address];
+//    }
 }
 
 - (instancetype)initWithReachability:(SCNetworkReachabilityRef)reachability {
