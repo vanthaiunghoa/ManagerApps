@@ -41,7 +41,7 @@ NSInteger const serializationErrorCode = 3202;
 - (void)_configureHTTPRequest
 {
     self.logInfo = YES;
-    [self configureHTTPRequestWithBaseURL:@"http://192.168.0.60:9998/archivesApp/"];
+    [self configureHTTPRequestWithBaseURL:@"http://daj.dg.gov.cn/archivesApp/"];
 }
 
 - (void)configureHTTPRequestWithBaseURL:(NSString *)baseURLString
@@ -52,7 +52,6 @@ NSInteger const serializationErrorCode = 3202;
     [responseSerializer custom];
     _afManager.responseSerializer = responseSerializer;
 }
-
 
 - (NSURLSessionDataTask *)requestWithAction:(NSString *)action
                                appendingURL:(NSString *)appendingURL

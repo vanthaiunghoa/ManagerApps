@@ -6,6 +6,7 @@
 
 - (void)didLoginWithUserName:(NSString *)username AndPassWord:(NSString *)password;
 - (void)didClickVPNSettingBtn;
+- (void)didClickRegister;
 
 @end
 

@@ -106,6 +106,17 @@
     }
 }
 
+- (void)didClickRegister
+{
+    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+    userModel.isRegister = YES;
+    userModel.isLogout = NO;
+    [[UserManager sharedUserManager] saveUserModel:userModel];
+    
+    self.isLoadOnceData = YES;
+    [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
+}
+
 - (void)loginVPN
 {
 //    NSString *host = [NSString string];
@@ -296,9 +307,11 @@
             {
                 [SVProgressHUD dismiss];
                 
+                self.isLoadOnceData = YES;
                 UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
                 userModel.username = self.username;
                 userModel.password = self.password;
+                userModel.isRegister = NO;
                 userModel.isLogout = NO;
                 [[UserManager sharedUserManager] saveUserModel:userModel];
                 

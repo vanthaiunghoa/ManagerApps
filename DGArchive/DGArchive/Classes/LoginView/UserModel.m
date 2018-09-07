@@ -15,6 +15,7 @@
     [aCoder encodeBool:_isRememberUsername forKey:@"isRememberUsername"];
     [aCoder encodeBool:_isAutoLogin forKey:@"isAutoLogin"];
     [aCoder encodeBool:_isVPNLogin forKey:@"isVPNLogin"];
+    [aCoder encodeBool:_isRegister forKey:@"isRegister"];
 }
     
 //解档的时候调用：告诉系统哪个属性要解档，如何归解
@@ -32,6 +33,7 @@
         _isRememberUsername = [aDecoder decodeBoolForKey:@"isRememberUsername"];
         _isVPNLogin = [aDecoder decodeBoolForKey:@"isVPNLogin"];
         _isAutoLogin = [aDecoder decodeBoolForKey:@"isAutoLogin"];
+        _isRegister = [aDecoder decodeBoolForKey:@"isRegister"];
     }
         
     return self;

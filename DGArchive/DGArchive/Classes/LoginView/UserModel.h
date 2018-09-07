@@ -13,4 +13,6 @@
 @property (nonatomic, assign) BOOL isAutoLogin;
 @property (nonatomic, assign) BOOL isVPNLogin;
 
+@property (nonatomic, assign) BOOL isRegister;
+
 @end

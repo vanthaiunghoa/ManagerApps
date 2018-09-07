@@ -113,7 +113,6 @@
     password.image = [UIImage imageNamed:@"password"];
     [passwordView addSubview:password];
     [password makeConstraints:^(MASConstraintMaker *make) {
-        
         make.centerY.equalTo(passwordView.centerY);
         make.left.equalTo(passwordView.left).offset(W(20));
         make.width.equalTo(@17);
@@ -193,7 +192,7 @@
 //
     UILabel *lab = [UILabel new];
     [self addSubview:lab];
-    [lab setText:@"万维博通信息技术有限公司"];
+    [lab setText:@"东莞市档案馆"];
     [lab setTextColor:[UIColor colorWithRGB:69 green:124 blue:228]];
     [lab setFont:[UIFont systemFontOfSize:14]];
     [lab setTextAlignment:NSTextAlignmentCenter];
@@ -276,7 +275,7 @@
 
 - (void)registerClick:(UIButton *)sender
 {
-    
+    [_delegate didClickRegister];
 }
 
 - (BOOL)isValid
@@ -310,17 +309,17 @@
     self.usernameTextField.text = userModel.username;
     self.passwordTextField.text = userModel.password;
     
-    if(0 == self.usernameTextField.text.length)
-    {
-        [self.usernameTextField becomeFirstResponder];
-    }
-    else
-    {
-        if(0 == self.passwordTextField.text.length)
-        {
-            [self.passwordTextField becomeFirstResponder];
-        }
-    }
+//    if(0 == self.usernameTextField.text.length)
+//    {
+//        [self.usernameTextField becomeFirstResponder];
+//    }
+//    else
+//    {
+//        if(0 == self.passwordTextField.text.length)
+//        {
+//            [self.passwordTextField becomeFirstResponder];
+//        }
+//    }
 }
 
 #pragma mark - UITextFieldDelegate
