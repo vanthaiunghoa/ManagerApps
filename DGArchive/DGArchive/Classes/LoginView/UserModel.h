@@ -1,5 +1,11 @@
 #import <Foundation/Foundation.h>
 
+typedef NS_ENUM(NSUInteger, Type) {
+    Normal,
+    Register,
+    ForgetPassword,
+};
+
 @interface UserModel : NSObject<NSCoding>
 
 @property (nonatomic, strong) NSString *username;
@@ -14,5 +20,6 @@
 @property (nonatomic, assign) BOOL isVPNLogin;
 
 @property (nonatomic, assign) BOOL isRegister;
+@property (nonatomic, assign) Type type;
 
 @end

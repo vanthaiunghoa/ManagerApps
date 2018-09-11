@@ -123,7 +123,7 @@
     self.accountTextField = [UITextField new];
     self.accountTextField.placeholder = @"请输入vpn账号";
     self.accountTextField.textColor = [UIColor blackColor];
-    self.accountTextField.font = [UIFont systemFontOfSize:15];
+    self.accountTextField.font = [UIFont systemFontOfSize:16];
     self.accountTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.accountTextField.clearsOnBeginEditing = NO;
     self.accountTextField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -166,7 +166,7 @@
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"请输入vpn密码";
     self.passwordTextField.textColor = [UIColor blackColor];
-    self.passwordTextField.font = [UIFont systemFontOfSize:15];
+    self.passwordTextField.font = [UIFont systemFontOfSize:16];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTextField.clearsOnBeginEditing = NO;
     self.passwordTextField.secureTextEntry = YES;
@@ -192,7 +192,7 @@
     UILabel *useLab = [UILabel new];
     useLab.text = @"启用";
     useLab.textColor = [UIColor blackColor];
-    useLab.font = [UIFont systemFontOfSize:14];
+    useLab.font = [UIFont systemFontOfSize:15];
     [self addSubview:useLab];
     [useLab makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(@(W(22.5)));
@@ -204,7 +204,7 @@
     [self.useBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.useBtn setImage:[UIImage imageWithName:@"unuse"] forState:UIControlStateNormal];
     [self.useBtn setImage:[UIImage imageWithName:@"use"] forState:UIControlStateSelected];
-    self.useBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    self.useBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     self.useBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.useBtn addTarget:self action:@selector(useClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.useBtn];
@@ -218,7 +218,7 @@
     [self.unuseBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self.unuseBtn setImage:[UIImage imageWithName:@"unuse"] forState:UIControlStateNormal];
     [self.unuseBtn setImage:[UIImage imageWithName:@"use"] forState:UIControlStateSelected];
-    self.unuseBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    self.unuseBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     self.unuseBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.unuseBtn addTarget:self action:@selector(unuseClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.unuseBtn];

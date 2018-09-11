@@ -16,6 +16,8 @@
     [aCoder encodeBool:_isAutoLogin forKey:@"isAutoLogin"];
     [aCoder encodeBool:_isVPNLogin forKey:@"isVPNLogin"];
     [aCoder encodeBool:_isRegister forKey:@"isRegister"];
+    
+    [aCoder encodeInt:_type forKey:@"type"];
 }
     
 //解档的时候调用：告诉系统哪个属性要解档，如何归解
@@ -34,6 +36,8 @@
         _isVPNLogin = [aDecoder decodeBoolForKey:@"isVPNLogin"];
         _isAutoLogin = [aDecoder decodeBoolForKey:@"isAutoLogin"];
         _isRegister = [aDecoder decodeBoolForKey:@"isRegister"];
+        
+        _type = [aDecoder decodeIntForKey:@"type"];
     }
         
     return self;

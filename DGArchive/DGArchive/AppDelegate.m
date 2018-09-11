@@ -199,6 +199,7 @@
         userModel.isVPNLogin = NO;
         userModel.isLogout = NO;
         userModel.isRegister = NO;
+        userModel.type = Normal;
         [[UserManager sharedUserManager] saveUserModel:userModel];
     }
 }

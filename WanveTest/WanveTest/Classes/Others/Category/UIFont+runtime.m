@@ -27,7 +27,7 @@
     
     if(IS_IPAD)
     {
-        newFont = [UIFont adjustFont:fontSize * 1.8];
+        newFont = [UIFont adjustFont:fontSize * 1.6];
     }
     else
     {

@@ -31,24 +31,24 @@
 //        make.top.left.bottom.right.equalTo(self);
 //    }];
     
-    UIImageView *logoIcon = [UIImageView new];
-//    // 勤智资本
-//    logoIcon.image = [UIImage imageWithName:@"logo-qzzb"];
-    logoIcon.image = [UIImage imageWithName:@"logo_company"];
-    [self addSubview:logoIcon];
-    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(@(H(85)));
-        make.width.equalTo(@(W(129)));
-        make.height.equalTo(@(H(44)));
-    }];
+//    UIImageView *logoIcon = [UIImageView new];
+////    // 勤智资本
+////    logoIcon.image = [UIImage imageWithName:@"logo-qzzb"];
+//    logoIcon.image = [UIImage imageWithName:@"logo_company"];
+//    [self addSubview:logoIcon];
+//    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.centerX);
+//        make.top.equalTo(@(H(85)));
+//        make.width.equalTo(@(W(129)));
+//        make.height.equalTo(@(H(44)));
+//    }];
 
     UILabel *company = [UILabel new];
 //    company.text = @"东莞市科学技术局";
-//    company.text = @"东莞市水务局";
+    company.text = @"东莞市水务局";
 //    company.text = @"流转系统";
 //    company.text = @"滨海湾新区管委会";
-    company.text = @"万维博通";
+//    company.text = @"万维博通";
 //    company.text = @"塘厦镇人民政府";
 //    company.text = @"东莞市规划局文件流转系统";
 //    company.text = @"中共东莞市委统战部";
@@ -59,16 +59,16 @@
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
     [company makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(@(H(130)));
+        make.top.equalTo(@(H(130)));
         make.centerX.equalTo(self.centerX);
-        make.top.equalTo(logoIcon.bottom).offset(H(10));
+//        make.top.equalTo(logoIcon.bottom).offset(H(10));
         make.left.right.equalTo(self);
     }];
     
     UILabel *titleLab = [UILabel new];
-    // 滨海湾
-//    titleLab.text = @"智慧办公系统";
-    titleLab.text = @"智慧政务管理平台";
+    // 滨海湾  水务局
+    titleLab.text = @"智慧办公系统";
+//    titleLab.text = @"智慧政务管理平台";
 //    titleLab.text = @"投资数据管理平台";
 //    titleLab.text = @"智慧政务平台";
     titleLab.textColor = [UIColor whiteColor];
@@ -109,7 +109,7 @@
     self.usernameTextField = [UITextField new];
     self.usernameTextField.placeholder = @"请输入用户名";
     self.usernameTextField.textColor = [UIColor blackColor];
-    self.usernameTextField.font = [UIFont systemFontOfSize:15];
+    self.usernameTextField.font = [UIFont systemFontOfSize:16];
     self.usernameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.usernameTextField.clearsOnBeginEditing = NO;
     self.usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -147,7 +147,7 @@
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"请输入密码";
     self.passwordTextField.textColor = [UIColor blackColor];
-    self.passwordTextField.font = [UIFont systemFontOfSize:15];
+    self.passwordTextField.font = [UIFont systemFontOfSize:16];
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.clearsOnBeginEditing = NO;
     self.passwordTextField.returnKeyType = UIReturnKeyGo;
@@ -179,7 +179,7 @@
     [self.accountBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.accountBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
     [self.accountBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
-    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     self.accountBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.accountBtn addTarget:self action:@selector(accountClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.accountBtn];
@@ -193,7 +193,7 @@
     [self.autoLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
     [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
-    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     self.autoLoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.autoLoginBtn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.autoLoginBtn];
@@ -221,7 +221,7 @@
     [vpnBtn setTitle:@"VPN设置" forState:UIControlStateNormal];
     [vpnBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [vpnBtn setImage:[UIImage imageWithName:@"setting"] forState:UIControlStateNormal];
-    vpnBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    vpnBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     vpnBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [vpnBtn addTarget:self action:@selector(vpnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:vpnBtn];

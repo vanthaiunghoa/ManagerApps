@@ -72,7 +72,7 @@
     [super viewDidAppear:animated];
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
     
-    if(userModel.isAutoLogin)
+    if(![userModel.username isEqualToString:@""] && ![userModel.password isEqualToString:@""])
     {
         [self didLoginWithUserName:userModel.username AndPassWord:userModel.password];
     }
@@ -109,7 +109,18 @@
 - (void)didClickRegister
 {
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    userModel.isRegister = YES;
+    userModel.type = Register;
+    userModel.isLogout = NO;
+    [[UserManager sharedUserManager] saveUserModel:userModel];
+    
+    self.isLoadOnceData = YES;
+    [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
+}
+
+- (void)didClickForget
+{
+    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+    userModel.type = ForgetPassword;
     userModel.isLogout = NO;
     [[UserManager sharedUserManager] saveUserModel:userModel];
     
@@ -311,7 +322,7 @@
                 UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
                 userModel.username = self.username;
                 userModel.password = self.password;
-                userModel.isRegister = NO;
+                userModel.type = Normal;
                 userModel.isLogout = NO;
                 [[UserManager sharedUserManager] saveUserModel:userModel];
                 

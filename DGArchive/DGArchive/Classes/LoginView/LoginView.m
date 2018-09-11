@@ -145,6 +145,20 @@
         make.height.equalTo(@1);
     }];
     
+    UIButton *forget = [UIButton buttonWithType:UIButtonTypeCustom];
+    [forget setTitle:@"忘记密码？" forState:UIControlStateNormal];
+    forget.titleLabel.font = [UIFont systemFontOfSize:14];
+    [forget setTitleColor:[UIColor colorWithRGB:69 green:124 blue:228] forState:UIControlStateNormal];
+    forget.titleLabel.textAlignment = NSTextAlignmentRight;
+    [forget addTarget:self action:@selector(forgetClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self addSubview:forget];
+    [forget mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(line2.mas_bottom).offset(H(5));
+        make.right.equalTo(self.right).offset(W(-30));
+//        make.width.equalTo(@100);
+        make.height.equalTo(@(H(40)));
+    }];
+    
     UIButton *loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [loginBtn setTitle:@"登    录" forState:UIControlStateNormal];
     [loginBtn addTarget:self action:@selector(loginClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -155,7 +169,7 @@
     [loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:69 green:124 blue:228]] forState:UIControlStateNormal];
     [self addSubview:loginBtn];
     [loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(line2.mas_bottom).offset(H(30));
+        make.top.equalTo(forget.mas_bottom).offset(H(5));
         make.left.equalTo(self.left).offset(W(30));
         make.right.equalTo(self.right).offset(W(-30));
         make.height.equalTo(@(H(50)));
@@ -271,6 +285,11 @@
     {
         [_delegate didLoginWithUserName:self.usernameTextField.text AndPassWord:self.passwordTextField.text];
     }
+}
+
+- (void)forgetClick:(UIButton *)sender
+{
+    [_delegate didClickForget];
 }
 
 - (void)registerClick:(UIButton *)sender

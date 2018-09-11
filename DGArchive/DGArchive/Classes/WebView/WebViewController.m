@@ -77,14 +77,19 @@
 {
     NSURLRequest *request = nil;
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    if(userModel.isRegister)
+    if(userModel.type == Register)
     {
         request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://daj.dg.gov.cn/archApp/#/register"]];
 //        request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.47:8080/archApp/#/register"]];
     }
-    else
+    else if(userModel.type == Normal)
     {
         request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://daj.dg.gov.cn/archApp/#/index/home"]];
+    }
+    else
+    {
+        request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://daj.dg.gov.cn/archApp/#/passwordReset"]];
+//        request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"http://192.168.0.13:8080/archApp/#/passwordReset"]];
     }
     [webView loadRequest:request];
 }
