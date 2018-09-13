@@ -53,6 +53,10 @@
     [self.view addSubview:webView];
     self.webView = webView;
     
+    UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(goBack)];
+    [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [webView addGestureRecognizer:recognizer];
+    
     [WebViewJavascriptBridge enableLogging];
     _bridge = [WebViewJavascriptBridge bridgeForWebView:self.webView];
     [_bridge setWebViewDelegate:self];
@@ -61,6 +65,14 @@
     [self printLog];
     
     [self loadWebView:self.webView];
+}
+
+- (void)goBack
+{
+    if(self.webView.canGoBack)
+    {
+        [self.webView goBack];
+    }
 }
 
 #pragma mark - UIWebViewDelegate
