@@ -342,8 +342,8 @@
 		E8925FCE1FF39B560078C1DB /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				E8925FCF1FF39B560078C1DB /* KxMenu.m */,
 				E8925FD01FF39B560078C1DB /* KxMenu.h */,
+				E8925FCF1FF39B560078C1DB /* KxMenu.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";

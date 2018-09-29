@@ -28,7 +28,9 @@
     
     self.automaticallyAdjustsScrollViewInsets = YES;
     [self setupNavBtn];
-    self.openType = @"tjbb_hztj";
+//    self.openType = @"tjbb_hztj";
+    // 东莞路桥
+    self.openType = @"tjbb_tzsyqk";
     [self loginWebService];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadStatisticsViewAgain" object:nil];
 }
@@ -44,7 +46,9 @@
 
 - (void)handleNotification
 {
-    self.openType = @"tjbb_hztj";
+//    self.openType = @"tjbb_hztj";
+    // 路桥
+    self.openType = @"tjbb_tzsyqk";
     [self loginWebService];
 }
 
@@ -221,7 +225,9 @@
 
 - (void)statisticsClicked:(id)sender
 {
-    self.openType = @"tjbb_hztj";
+//    self.openType = @"tjbb_hztj";
+    // 路桥
+    self.openType = @"tjbb_tzsyqk";
     [self loginWebService];
 }
 

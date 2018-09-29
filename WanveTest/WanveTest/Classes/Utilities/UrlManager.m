@@ -30,7 +30,7 @@ static id _instance;
 - (NSString *)getBaseUrl
 {
     //  水务局
-    return @"http://19.104.11.182:80/DMS_Phone";
+//    return @"http://19.104.11.182:80/DMS_Phone";
     
     // 科技局
 //    return @"http://kjjoa.dg/DMS_Phone";
@@ -52,7 +52,9 @@ static id _instance;
     // 中共东莞市委统战部
 //    return @"http://19.104.9.73/DMS_Phone";
     // 广东省渔政总队东莞支队
-//    return @"http://19.104.189.38/DMS_Phone";
+    return @"http://19.104.39.4/DMS_Phone";
+    // 招商创新办
+//    return @"http://19.104.39.10/DMS_Phone";
 }
 
 - (NSString *)getLoginUrl

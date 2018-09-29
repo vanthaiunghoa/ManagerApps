@@ -215,7 +215,6 @@
             [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"EIMTabBarController") new];
             
             // 勤智资本
-            
 //            [self.navigationController pushViewController:[NSClassFromString(@"MapViewController") new] animated:YES];
         }
         else if([self.value isEqualToString:@"fail"])

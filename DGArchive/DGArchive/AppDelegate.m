@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "BaseNavigationController.h"
 #import "LoginViewController.h"
+#import "WebViewController.h"
 #import "UserModel.h"
 #import "UserManager.h"
 #import "UrlManager.h"
@@ -43,7 +44,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    LoginViewController *vc = [LoginViewController new];
+//    LoginViewController *vc = [LoginViewController new];
+    WebViewController *vc = [WebViewController new];
     BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

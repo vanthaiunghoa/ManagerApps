@@ -31,7 +31,7 @@
     
     UIImageView *logoIcon = [UIImageView new];
 //    logoIcon.image = [UIImage imageWithName:@"logo_company"];
-//    logoIcon.image = [UIImage imageWithName:@"logo-qzzb"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-yt"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-ns"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-ft"];
@@ -42,6 +42,7 @@
 //    logoIcon.image = [UIImage imageWithName:@"logo-sshgcj"];
     logoIcon.image = [UIImage imageWithName:@"logo-luqiao"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-szgws"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-wanve"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
@@ -52,7 +53,7 @@
         // 盐田
 //        make.width.equalTo(@(W(94)));
 //        make.height.equalTo(@(H(63)));
-//        // 南山
+//         南山
 //        make.width.height.equalTo(@60);
         // 福田
 //        make.width.equalTo(@(W(60)));
@@ -74,6 +75,9 @@
 //        make.height.equalTo(@(H(60)));
         // 东莞市路桥公司
         make.width.height.equalTo(@(H(60)));
+        // 万维
+//        make.width.equalTo(@(W(116.4)));
+//        make.height.equalTo(@(H(60)));
     }];
     
     UILabel *company = [UILabel new];
@@ -87,8 +91,9 @@
 //    company.text = @"北京房地置业";
 //    company.text = @"北京天运房地产";
 //    company.text = @"松山湖工程管理局";
-    company.text = @"东莞市路桥公司";
+    company.text = @"东莞路桥投资";
 //    company.text = @"深圳市建筑工务署";
+//    company.text = @"万维博通";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
     company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:FONT_SIZE(26)];
@@ -106,6 +111,8 @@
     titleLab.text = @"智慧工务平台";
     // 深圳市建筑工务署
 //    titleLab.text = @"工程档案数据管理平台";
+    // 万维
+//    titleLab.text = @"投资数据管理平台";
     titleLab.textColor = [UIColor whiteColor];
     titleLab.font = [UIFont systemFontOfSize:22];
     titleLab.textAlignment = NSTextAlignmentCenter;
@@ -135,6 +142,7 @@
     [self addSubview:usernameBkg];
     [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
+//        make.top.equalTo(company.bottom).with.offset(H(31));
 //        make.top.equalTo(titleLabEN.bottom).with.offset(H(31));
         make.top.equalTo(titleLab.bottom).with.offset(H(31));
         make.left.equalTo(self).offset(H(30));
@@ -154,7 +162,7 @@
     self.usernameTextField = [UITextField new];
     self.usernameTextField.placeholder = @"请输入用户名";
     self.usernameTextField.textColor = [UIColor blackColor];
-    self.usernameTextField.font = [UIFont systemFontOfSize:15];
+    self.usernameTextField.font = [UIFont systemFontOfSize:16];
     self.usernameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.usernameTextField.clearsOnBeginEditing = NO;
     self.usernameTextField.autocorrectionType = UITextAutocorrectionTypeNo;
@@ -191,7 +199,7 @@
     self.passwordTextField = [UITextField new];
     self.passwordTextField.placeholder = @"请输入密码";
     self.passwordTextField.textColor = [UIColor blackColor];
-    self.passwordTextField.font = [UIFont systemFontOfSize:15];
+    self.passwordTextField.font = [UIFont systemFontOfSize:16];
     self.passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     self.passwordTextField.secureTextEntry = YES;
     self.passwordTextField.clearsOnBeginEditing = YES;
@@ -210,7 +218,7 @@
     [self.accountBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.accountBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
     [self.accountBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
-    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    self.accountBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     self.accountBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.accountBtn addTarget:self action:@selector(accountClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.accountBtn];
@@ -224,7 +232,7 @@
     [self.autoLoginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_unselected"] forState:UIControlStateNormal];
     [self.autoLoginBtn setImage:[UIImage imageWithName:@"remember_selected"] forState:UIControlStateSelected];
-    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    self.autoLoginBtn.titleLabel.font=[UIFont systemFontOfSize:15];
     self.autoLoginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
     [self.autoLoginBtn addTarget:self action:@selector(autoLoginClick:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.autoLoginBtn];

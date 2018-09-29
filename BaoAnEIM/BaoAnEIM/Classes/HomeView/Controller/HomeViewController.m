@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSString *url;
 @property (nonatomic, strong) NSString *openType;
 @property (nonatomic, strong) WKWebView *wkwebView;
+@property (nonatomic, strong) UIWebView *webView;
 
 @end
 
@@ -199,6 +200,7 @@
             self.url = [tmpUrl stringByAppendingString:self.openType];
             PLog(@"url == %@", self.url);
             [self initWKWebView];
+//            [self initWebView];
         }
         else if([self.content isEqualToString:@"1001"])
         {
@@ -284,6 +286,46 @@
     }
     
     [self loadWKWebView:self.wkwebView];
+}
+
+- (void)initWebView
+{
+    //    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    if (_bridge) { return; }
+    
+    UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:webView];
+    
+    [WebViewJavascriptBridge enableLogging];
+    
+    _bridge = [WebViewJavascriptBridge bridgeForWebView:webView];
+    [_bridge setWebViewDelegate:self];
+    
+    [_bridge registerHandler:@"testObjcCallback" handler:^(id data, WVJBResponseCallback responseCallback) {
+        NSLog(@"testObjcCallback called: %@", data);
+        responseCallback(@"Response from testObjcCallback");
+    }];
+    
+    [_bridge callHandler:@"testJavascriptHandler" data:@{ @"foo":@"before ready" }];
+    
+    //    [self renderButtons:webView];
+    [self loadWebView:webView];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    NSLog(@"webViewDidStartLoad");
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    NSLog(@"webViewDidFinishLoad");
+}
+
+- (void)loadWebView:(UIWebView*)webView
+{
+    NSURL *url = [NSURL URLWithString:self.url];
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
+    [webView loadRequest:request];
 }
 
 #pragma mark - wkwebView delegate

@@ -200,7 +200,7 @@ typedef enum {
     const CGFloat heightHalf = contentSize.height * 0.5f;
     
     const CGFloat kMargin = 5.f;
-    
+
     if (heightPlusArrow < (outerHeight - rectY1)) {
     
         _arrowDirection = KxMenuViewArrowDirectionUp;

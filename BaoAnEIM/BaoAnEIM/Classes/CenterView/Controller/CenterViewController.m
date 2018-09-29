@@ -187,7 +187,7 @@
                      image:nil
                     target:self
                     action:@selector(formClicked:)],
-      // 单位规章（除路桥外）
+      // 单位规章（路桥  企业规章）
       [KxMenuItem menuItem:@"企业规章"
                      image:nil
                     target:self

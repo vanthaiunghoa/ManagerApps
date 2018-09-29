@@ -6,6 +6,7 @@
 #import "UrlManager.h"
 #import "UserManager.h"
 #import "UserModel.h"
+#import <UINavigationController+FDFullscreenPopGesture.h>
 
 @interface MapViewController ()<NSXMLParserDelegate>
 
@@ -33,6 +34,7 @@
     self.openType = @"baidumap";
     // 勤智资本
 //    self.openType = @"capital_index";
+    self.fd_interactivePopDisabled = YES;
     [self loginWebService];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadMapViewAgain" object:nil];
 }
@@ -112,7 +114,7 @@
 - (void)setupNavBtn
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"logout"] style:UIBarButtonItemStylePlain target:self action:@selector(logoutClicked:)];
-    
+//
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
     // 勤智资本
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"home-page"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
