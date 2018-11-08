@@ -44,8 +44,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
     
-//    LoginViewController *vc = [LoginViewController new];
-    WebViewController *vc = [WebViewController new];
+    LoginViewController *vc = [LoginViewController new];
+//    WebViewController *vc = [WebViewController new];
     BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];

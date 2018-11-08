@@ -29,10 +29,10 @@
     [self setTitle];
     
     self.automaticallyAdjustsScrollViewInsets = YES;
-    // 路桥去掉
-//    [self setupNavBtn];
+    
+    [self setupNavBtn];
     self.openType = @"baidumap";
-    // 勤智资本
+    // 勤智资本  万维投资
 //    self.openType = @"capital_index";
     self.fd_interactivePopDisabled = YES;
     [self loginWebService];
@@ -43,6 +43,9 @@
 {
     NSString *title = TITLE;
     UILabel *labTitle = [UILabel new];
+    // 勤智资本  万维博通投资
+//    [labTitle setTextColor:[UIColor whiteColor]];
+
     [labTitle setText:title];
     [labTitle setFont:[UIFont systemFontOfSize:16]];
     self.navigationItem.titleView = labTitle;
@@ -114,13 +117,54 @@
 - (void)setupNavBtn
 {
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"logout"] style:UIBarButtonItemStylePlain target:self action:@selector(logoutClicked:)];
-//
+
+    // 路桥去掉
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"menu"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
-    // 勤智资本
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"home-page"] style:UIBarButtonItemStylePlain target:self action:@selector(moreClicked:)];
+    
+//
+//    // 勤智资本 万维
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"white-logout"] style:UIBarButtonItemStylePlain target:self action:@selector(logout:)];
+//
+//    // 勤智资本 万维
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageWithOriginalImageName:@"home"] style:UIBarButtonItemStylePlain target:self action:@selector(homeClicked:)];
+//
 }
 
 #pragma mark - clicked
+
+- (void)homeClicked:(UIButton *)sender
+{
+    // 勤智资本  万维
+    [self loginWebService];
+}
+
+- (void)logout:(UIButton *)sender
+{
+    NSArray *menuItems =
+    @[
+      
+      [KxMenuItem menuItem:@"切换账号"
+                     image:nil
+                    target:self
+                    action:@selector(switchClicked:)],
+      
+      [KxMenuItem menuItem:@"退出"
+                     image:nil
+                    target:self
+                    action:@selector(exitClicked:)],
+      ];
+    
+    for(KxMenuItem *item in menuItems)
+    {
+        item.alignment = NSTextAlignmentCenter;
+    }
+    
+    CGRect frame = CGRectMake(SCREEN_WIDTH - 50, TOP_HEIGHT - 44, 44, 44);
+    
+    [KxMenu showMenuInView:self.view
+                  fromRect:frame
+                 menuItems:menuItems];
+}
 
 - (void)logoutClicked:(UIButton *)sender
 {
@@ -153,7 +197,7 @@
 - (void)switchClicked:(id)sender
 {
     [[UserManager sharedUserManager] logout];
-    // 勤智资本
+    // 勤智资本 万维
 //    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
 //    userModel.isLogout = YES;
 //    userModel.isAutoLogin = NO;
@@ -185,9 +229,6 @@
 
 - (void)moreClicked:(UIButton *)sender
 {
-    // 勤智资本
-//    [self loginWebService];
-    
     NSArray *menuItems =
     @[
 
@@ -347,7 +388,18 @@
         CGFloat navigationBarH = self.navigationController.navigationBar.frame.size.height;
         CGFloat tabBarH = self.tabBarController.tabBar.bounds.size.height;
         
-        WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH)];
+        WKWebViewConfiguration *config = [WKWebViewConfiguration new];
+        //初始化偏好设置属性：preferences
+        config.preferences = [WKPreferences new];
+        //The minimum font size in points default is 0;
+        config.preferences.minimumFontSize = 10;
+        //是否支持JavaScript
+        config.preferences.javaScriptEnabled = YES;
+        //不通过用户交互，是否可以打开窗口
+        config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+        config.allowsInlineMediaPlayback = YES;
+        
+        WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH) configuration:config];
         webView.navigationDelegate = self;
         webView.UIDelegate = self;
         webView.scrollView.bounces = NO;

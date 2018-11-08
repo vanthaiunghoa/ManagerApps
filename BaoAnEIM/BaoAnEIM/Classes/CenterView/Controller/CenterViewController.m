@@ -37,6 +37,7 @@
 {
     NSString *title = TITLE;
     UILabel *labTitle = [UILabel new];
+
     [labTitle setText:title];
     [labTitle setFont:[UIFont systemFontOfSize:16]];
     self.navigationItem.titleView = labTitle;
@@ -173,10 +174,10 @@
     NSArray *menuItems =
     @[
 //      路桥去掉
-//      [KxMenuItem menuItem:@"内部资料"
-//                     image:nil
-//                    target:self
-//                    action:@selector(infoClicked:)],
+      [KxMenuItem menuItem:@"内部资料"
+                     image:nil
+                    target:self
+                    action:@selector(infoClicked:)],
       
       [KxMenuItem menuItem:@"图书期刊"
                      image:nil
@@ -188,7 +189,7 @@
                     target:self
                     action:@selector(formClicked:)],
       // 单位规章（路桥  企业规章）
-      [KxMenuItem menuItem:@"企业规章"
+      [KxMenuItem menuItem:@"单位规章"
                      image:nil
                     target:self
                     action:@selector(rulesClicked:)],

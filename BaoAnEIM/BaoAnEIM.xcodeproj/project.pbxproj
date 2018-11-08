@@ -439,8 +439,8 @@
 		E877B8691FFF5A730091587B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				E877B86A1FFF5A730091587B /* LoginViewController.m */,
 				E877B86B1FFF5A730091587B /* LoginViewController.h */,
+				E877B86A1FFF5A730091587B /* LoginViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -897,10 +897,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.luqiao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.ythsj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "005ee214-893c-44d2-86cb-b6434181a554";
-				PROVISIONING_PROFILE_SPECIFIER = "luqiao-dev";
+				PROVISIONING_PROFILE = "4db927e3-2f87-4259-aa32-f069033122b3";
+				PROVISIONING_PROFILE_SPECIFIER = "ythsj-dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -919,10 +919,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.luqiao;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.ythsj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "50de0bd0-81a2-437c-acd5-3684de39a615";
-				PROVISIONING_PROFILE_SPECIFIER = "luqiao-dis";
+				PROVISIONING_PROFILE = "84672f2d-e4c8-4194-a071-61542688ba1b";
+				PROVISIONING_PROFILE_SPECIFIER = "ythsj-dis";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

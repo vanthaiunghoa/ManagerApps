@@ -66,23 +66,24 @@
         make.left.right.equalTo(self);
     }];
     
-//    UILabel *titleLab = [UILabel new];
-//    // 滨海湾  水务局
+    UILabel *titleLab = [UILabel new];
+    // 滨海湾  水务局
 //    titleLab.text = @"智慧办公系统";
-////    titleLab.text = @"智慧政务管理平台";
-////    titleLab.text = @"投资数据管理平台";
-////    titleLab.text = @"智慧政务平台";
-//    titleLab.textColor = [UIColor whiteColor];
-//    titleLab.font = [UIFont systemFontOfSize:22];
-//    titleLab.textAlignment = NSTextAlignmentCenter;
-//    [self addSubview:titleLab];
-//    [titleLab makeConstraints:^(MASConstraintMaker *make) {
-////        make.centerX.equalTo(logoIcon.centerX);
-//        make.centerX.equalTo(company.centerX);
-//        make.top.equalTo(company.bottom).with.offset(H(15));
-////        make.top.equalTo(logoIcon.bottom).with.offset(H(15));
-//        make.left.right.equalTo(self);
-//    }];
+    // 渔政支队
+    titleLab.text = @"智慧政务管理平台";
+//    titleLab.text = @"投资数据管理平台";
+//    titleLab.text = @"智慧政务平台";
+    titleLab.textColor = [UIColor whiteColor];
+    titleLab.font = [UIFont systemFontOfSize:22];
+    titleLab.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:titleLab];
+    [titleLab makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(logoIcon.centerX);
+        make.centerX.equalTo(company.centerX);
+        make.top.equalTo(company.bottom).with.offset(H(15));
+//        make.top.equalTo(logoIcon.bottom).with.offset(H(15));
+        make.left.right.equalTo(self);
+    }];
     
     UIView *usernameBkg = [UIView new];
     usernameBkg.backgroundColor = [UIColor whiteColor];
@@ -91,8 +92,8 @@
     [self addSubview:usernameBkg];
     [usernameBkg makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
-//        make.top.equalTo(titleLab.bottom).with.offset(H(40));
-        make.top.equalTo(company.bottom).with.offset(H(40));
+        make.top.equalTo(titleLab.bottom).with.offset(H(40));
+//        make.top.equalTo(company.bottom).with.offset(H(40));
         make.left.equalTo(self).offset(H(30));
         make.right.equalTo(self).offset(H(-30));
         make.height.equalTo(@(H(40)));

@@ -83,7 +83,7 @@
     [manager POST:[[UrlManager sharedUrlManager] getSingleUrl] parameters:soapMsg success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         self.view.userInteractionEnabled = YES;
-        // 把返回的二进制数据转为字符串
+        // 把返回的二进制数据转为字符串                                                                          
         NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         PLog(@"result == %@", result);
         NSXMLParser *parser = [[NSXMLParser alloc] initWithData:responseObject];
@@ -278,7 +278,7 @@
 
 - (void)initWebView
 {
-    //    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    //        [self.navigationController setNavigationBarHidden:YES animated:YES];
     
     if (_bridge) { return; }
     

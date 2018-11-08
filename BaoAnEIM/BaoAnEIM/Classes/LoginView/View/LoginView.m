@@ -30,9 +30,10 @@
     }];
     
     UIImageView *logoIcon = [UIImageView new];
+    // 宝安工务局
 //    logoIcon.image = [UIImage imageWithName:@"logo_company"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
-//    logoIcon.image = [UIImage imageWithName:@"logo-yt"];
+    logoIcon.image = [UIImage imageWithName:@"logo-yt"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-ns"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-ft"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-lhgwj"];
@@ -40,19 +41,23 @@
 //    logoIcon.image = [UIImage imageWithName:@"logo-bjfdzy"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-bjtyfdc"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-sshgcj"];
-    logoIcon.image = [UIImage imageWithName:@"logo-luqiao"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-luqiao"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-szgws"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-wanve"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
         make.top.equalTo(@(H(68)));
+        // 宝安工务局
+//        make.width.equalTo(@(W(87)));
+//        make.height.equalTo(@(H(60)));
+
         // 勤智资本
 //        make.width.equalTo(@(W(171)));
 //        make.height.equalTo(@(H(54)));
         // 盐田
-//        make.width.equalTo(@(W(94)));
-//        make.height.equalTo(@(H(63)));
+        make.width.equalTo(@(W(94)));
+        make.height.equalTo(@(H(63)));
 //         南山
 //        make.width.height.equalTo(@60);
         // 福田
@@ -74,16 +79,16 @@
 //        make.width.equalTo(@(W(120)));
 //        make.height.equalTo(@(H(60)));
         // 东莞市路桥公司
-        make.width.height.equalTo(@(H(60)));
+//        make.width.height.equalTo(@(H(60)));
         // 万维
 //        make.width.equalTo(@(W(116.4)));
 //        make.height.equalTo(@(H(60)));
     }];
     
     UILabel *company = [UILabel new];
-//    company.text = @"深圳市宝安区建筑工务局";
-//    company.text = @"投资数据管理平台";
-//    company.text = @"盐田环水局";
+//    company.text = @"宝安区建筑工务局";
+//    company.text = @"勤智资本";
+    company.text = @"盐田环水局";
 //    company.text = @"南山工务局";
 //    company.text = @"福田环水局";
 //    company.text = @"龙华工务局";
@@ -91,7 +96,7 @@
 //    company.text = @"北京房地置业";
 //    company.text = @"北京天运房地产";
 //    company.text = @"松山湖工程管理局";
-    company.text = @"东莞路桥投资";
+//    company.text = @"东莞路桥投资";
 //    company.text = @"深圳市建筑工务署";
 //    company.text = @"万维博通";
     company.textColor = [UIColor whiteColor];
@@ -106,12 +111,14 @@
     }];
     
     UILabel *titleLab = [UILabel new];
-//    titleLab.text = @"工程数据管理平台";
+    // 保安工务局
+//    titleLab.text = @"智慧工程信息化管理平台";
+    titleLab.text = @"工程数据管理平台";
     // 东莞市路桥公司
-    titleLab.text = @"智慧工务平台";
+//    titleLab.text = @"智慧工务平台";
     // 深圳市建筑工务署
 //    titleLab.text = @"工程档案数据管理平台";
-    // 万维
+    // 万维  勤智资本
 //    titleLab.text = @"投资数据管理平台";
     titleLab.textColor = [UIColor whiteColor];
     titleLab.font = [UIFont systemFontOfSize:22];
@@ -123,6 +130,7 @@
         make.left.right.equalTo(self);
     }];
 
+    // 宝安
 //    UILabel *titleLabEN = [UILabel new];
 //    titleLabEN.text = @"（ EIM ）";
 //    titleLabEN.textColor = [UIColor whiteColor];

@@ -1,0 +1,57 @@
+//
+//  PigOnPalm.pch
+//  PigOnPalm
+//
+//  Created by wanve on 2017/11/20.
+//  Copyright © 2017年 wanve. All rights reserved.
+//
+
+#ifndef PigOnPalm_pch
+#define PigOnPalm_pch
+
+#define IS_IPHONEX  ([[UIScreen mainScreen] bounds].size.height == 812.f)
+#define TOP_HEIGHT  ((IS_IPHONEX)?88:64)
+//屏幕的区域
+#define  SCREEN_BOUNDS [UIScreen mainScreen].bounds
+//屏幕的高度
+#define SCREEN_HEIGHT  [UIScreen mainScreen].bounds.size.height
+//屏幕的宽度
+#define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
+#define kTipAlert(_S_, ...)     [[[UIAlertView alloc] initWithTitle:@"提示" message:[NSString stringWithFormat:(_S_), ##__VA_ARGS__] delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil] show]
+
+// 通知
+#define LoadWebViewAgain @"LoadWebViewAgain"
+
+
+//适配
+//基于宽度
+#define k1(pt)        pt/375.f
+#define W(pt)       k1(pt)*SCREEN_WIDTH
+//基于高度
+#define k2(pt)        pt/667.f
+#define H(pt)       k2(pt)*SCREEN_HEIGHT
+
+//字体
+#define FONT_SIZE(pt)     sqrt(W(pt)*H(pt))
+
+#ifdef DEBUG
+#define PLog(...) NSLog(@"%s(第%d行) %@", __PRETTY_FUNCTION__, __LINE__, [NSString stringWithFormat:__VA_ARGS__])
+#else
+#define PLog(...)
+#endif
+
+//define this constant if you want to use Masonry without the 'mas_' prefix
+#define MAS_SHORTHAND
+
+//define this constant if you want to enable auto-boxing for default syntax
+#define MAS_SHORTHAND_GLOBALS
+
+#import "Masonry.h"
+#import "SVProgressHUD.h"
+#import "AFNetworking.h"
+#import "MJExtension.h"
+#import "IQKeyboardManager.h"
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "MJRefresh.h"
+
+#endif /* PigOnPalm_pch */

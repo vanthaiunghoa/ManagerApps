@@ -40,6 +40,7 @@
 {
     NSString *title = TITLE;
     UILabel *labTitle = [UILabel new];
+
     [labTitle setText:title];
     [labTitle setFont:[UIFont systemFontOfSize:16]];
     self.navigationItem.titleView = labTitle;
@@ -256,8 +257,19 @@
         CGFloat statusBarH = [[UIApplication sharedApplication] statusBarFrame].size.height;
         CGFloat navigationBarH = self.navigationController.navigationBar.frame.size.height;
         CGFloat tabBarH = self.tabBarController.tabBar.bounds.size.height;
+        
+        WKWebViewConfiguration *config = [WKWebViewConfiguration new];
+        //初始化偏好设置属性：preferences
+        config.preferences = [WKPreferences new];
+        //The minimum font size in points default is 0;
+        config.preferences.minimumFontSize = 10;
+        //是否支持JavaScript
+        config.preferences.javaScriptEnabled = YES;
+        //不通过用户交互，是否可以打开窗口
+        config.preferences.javaScriptCanOpenWindowsAutomatically = NO;
+        config.allowsInlineMediaPlayback = YES;
 
-        WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH)];
+        WKWebView* webView = [[NSClassFromString(@"WKWebView") alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - statusBarH - navigationBarH - tabBarH) configuration:config];
         webView.navigationDelegate = self;
         webView.UIDelegate = self;
         webView.scrollView.bounces = NO;

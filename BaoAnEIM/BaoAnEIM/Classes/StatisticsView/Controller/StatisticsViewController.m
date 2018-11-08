@@ -28,9 +28,9 @@
     
     self.automaticallyAdjustsScrollViewInsets = YES;
     [self setupNavBtn];
-//    self.openType = @"tjbb_hztj";
+    self.openType = @"tjbb_hztj";
     // 东莞路桥
-    self.openType = @"tjbb_tzsyqk";
+//    self.openType = @"tjbb_tzsyqk";
     [self loginWebService];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleNotification) name:@"LoadStatisticsViewAgain" object:nil];
 }
@@ -39,6 +39,7 @@
 {
     NSString *title = TITLE;
     UILabel *labTitle = [UILabel new];
+
     [labTitle setText:title];
     [labTitle setFont:[UIFont systemFontOfSize:16]];
     self.navigationItem.titleView = labTitle;
@@ -46,9 +47,9 @@
 
 - (void)handleNotification
 {
-//    self.openType = @"tjbb_hztj";
+    self.openType = @"tjbb_hztj";
     // 路桥
-    self.openType = @"tjbb_tzsyqk";
+//    self.openType = @"tjbb_tzsyqk";
     [self loginWebService];
 }
 
@@ -225,9 +226,9 @@
 
 - (void)statisticsClicked:(id)sender
 {
-//    self.openType = @"tjbb_hztj";
+    self.openType = @"tjbb_hztj";
     // 路桥
-    self.openType = @"tjbb_tzsyqk";
+//    self.openType = @"tjbb_tzsyqk";
     [self loginWebService];
 }
 

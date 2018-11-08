@@ -212,9 +212,11 @@
             userModel.status = self.value;
             userModel.isLogout = NO;
             [[UserManager sharedUserManager] saveUserModel:userModel];
+            
+            
             [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"EIMTabBarController") new];
             
-            // 勤智资本
+            // 勤智资本 万维
 //            [self.navigationController pushViewController:[NSClassFromString(@"MapViewController") new] animated:YES];
         }
         else if([self.value isEqualToString:@"fail"])

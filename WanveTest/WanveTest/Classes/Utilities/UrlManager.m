@@ -43,7 +43,7 @@ static id _instance;
     // 智慧政务
 //    return @"http://121.15.203.82:9210/DMS_Phone";
     // 塘厦
-//    return @"http://19.108.192.125/DMS_Phone";
+    return @"http://19.108.192.125/DMS_Phone";
     // 规划局
 //    return @"http://19.104.9.125/DMS_Phone";
     
@@ -52,9 +52,12 @@ static id _instance;
     // 中共东莞市委统战部
 //    return @"http://19.104.9.73/DMS_Phone";
     // 广东省渔政总队东莞支队
-    return @"http://19.104.39.4/DMS_Phone";
+//    return @"http://19.104.39.4/DMS_Phone";
     // 招商创新办
 //    return @"http://19.104.39.10/DMS_Phone";
+    
+    // 测试
+//    return @"http://172.30.12.1/DMS_Phone";
 }
 
 - (NSString *)getLoginUrl

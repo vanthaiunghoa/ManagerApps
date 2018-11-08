@@ -19,8 +19,8 @@
 #define SCREEN_WIDTH   [UIScreen mainScreen].bounds.size.width
 
 //#define TITLE @"深圳市宝安区建筑工务局"
-//#define TITLE @"勤智资本"
-//#define TITLE @"盐田环水局工程数据管理平台"
+//#define TITLE @"勤智资本投资数据管理平台"
+#define TITLE @"盐田环水局工程数据管理平台"
 //#define TITLE @"南山工务局"
 //#define TITLE @"福田环水局工程数据管理平台"
 //#define TITLE @"龙华工务局工程数据管理平台"
@@ -28,7 +28,7 @@
 //#define TITLE @"北京房地置业工程数据管理平台"
 //#define TITLE @"北京天运房地产工程数据管理平台";
 //#define TITLE @"松山湖工程管理局工程数据管理平台";
-#define TITLE @"东莞路桥投资智慧工务平台"
+//#define TITLE @"东莞路桥投资智慧工务平台"
 //#define TITLE @"深圳市建筑工务署工程档案数据管理平台"
 //#define TITLE @"万维博通投资数据管理平台"
 

@@ -1,0 +1,118 @@
+PODS:
+  - AFNetworking (3.2.1):
+    - AFNetworking/NSURLSession (= 3.2.1)
+    - AFNetworking/Reachability (= 3.2.1)
+    - AFNetworking/Security (= 3.2.1)
+    - AFNetworking/Serialization (= 3.2.1)
+    - AFNetworking/UIKit (= 3.2.1)
+  - AFNetworking/NSURLSession (3.2.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.2.1)
+  - AFNetworking/Security (3.2.1)
+  - AFNetworking/Serialization (3.2.1)
+  - AFNetworking/UIKit (3.2.1):
+    - AFNetworking/NSURLSession
+  - Alipay_SDK_iOS (15.2.0.1)
+  - ApplePay_SDK (2.6.3.1)
+  - BlocksKit (2.2.5):
+    - BlocksKit/All (= 2.2.5)
+  - BlocksKit/All (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+    - BlocksKit/MessageUI
+    - BlocksKit/UIKit
+  - BlocksKit/Core (2.2.5)
+  - BlocksKit/DynamicDelegate (2.2.5)
+  - BlocksKit/MessageUI (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - BlocksKit/UIKit (2.2.5):
+    - BlocksKit/Core
+    - BlocksKit/DynamicDelegate
+  - FDFullscreenPopGesture (1.1)
+  - IQKeyboardManager (6.2.0)
+  - JCore (1.2.2)
+  - JPush (3.0.9):
+    - JCore (~> 1.2.0)
+  - LeoPayManager (1.0.0):
+    - Alipay_SDK_iOS
+    - ApplePay_SDK
+    - UnionPay_SDK_iOS
+    - WeChat_SDK_iOS
+  - Masonry (1.1.0)
+  - MJExtension (3.0.15.1)
+  - MJRefresh (3.1.15.7)
+  - ReactiveCocoa (2.5):
+    - ReactiveCocoa/UI (= 2.5)
+  - ReactiveCocoa/Core (2.5):
+    - ReactiveCocoa/no-arc
+  - ReactiveCocoa/no-arc (2.5)
+  - ReactiveCocoa/UI (2.5):
+    - ReactiveCocoa/Core
+  - SVProgressHUD (2.2.5)
+  - UnionPay_SDK_iOS (3.0.0.2)
+  - WebViewJavascriptBridge (6.0.3)
+  - WeChat_SDK_iOS (1.7.5.3)
+  - YYText (1.0.7)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.2.0)
+  - BlocksKit (~> 2.2.5)
+  - FDFullscreenPopGesture (= 1.1)
+  - IQKeyboardManager
+  - JPush (~> 3.0.9)
+  - LeoPayManager (~> 1.0.0)
+  - Masonry
+  - MJExtension
+  - MJRefresh
+  - ReactiveCocoa (~> 2.5)
+  - SVProgressHUD
+  - WebViewJavascriptBridge (~> 6.0)
+  - YYText (~> 1.0.7)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - Alipay_SDK_iOS
+    - ApplePay_SDK
+    - BlocksKit
+    - FDFullscreenPopGesture
+    - IQKeyboardManager
+    - JCore
+    - JPush
+    - LeoPayManager
+    - Masonry
+    - MJExtension
+    - MJRefresh
+    - ReactiveCocoa
+    - SVProgressHUD
+    - UnionPay_SDK_iOS
+    - WebViewJavascriptBridge
+    - WeChat_SDK_iOS
+    - YYText
+
+SPEC CHECKSUMS:
+  AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
+  Alipay_SDK_iOS: ae708b2c97779b51d812021e34f61b1ddf77ade0
+  ApplePay_SDK: 1c8f6012fa0b12e73bd03659869d12ab1936c6bd
+  BlocksKit: 7f422b971407001178d181a43b99014ea2591fe6
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
+  IQKeyboardManager: 6194101620b73af5e67900b8f89707a99de0b804
+  JCore: f14c0549968a63c22e246a4875aa9d428446f373
+  JPush: 48041e8c5ad2ef9b48709eb0888af9640b36e9b0
+  LeoPayManager: 6fa2158da01fa9808ca3d2467f2950105fc08fac
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJExtension: 19bc33ce2eee2d319760f5622562cf581a6ff756
+  MJRefresh: 697f8ec75ebdbe9207767bb682cf0f51b0d8a41f
+  ReactiveCocoa: e2db045570aa97c695e7aa97c2bcab222ae51f4a
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  UnionPay_SDK_iOS: c7ea6fa2127bda61309f866a49d9ab4ac5ff2961
+  WebViewJavascriptBridge: 7f5bc4d3581e672e8f32bd0f812d54bc69bb8e29
+  WeChat_SDK_iOS: 7a9e224f68c41f456787aeb3ed77f10bb4447d12
+  YYText: 5c461d709e24d55a182d1441c41dc639a18a4849
+
+PODFILE CHECKSUM: 5ab79c613c7071cf2f564106efbc4cbfcc87dac7
+
+COCOAPODS: 1.5.0
