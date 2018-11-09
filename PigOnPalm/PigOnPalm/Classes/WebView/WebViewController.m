@@ -53,6 +53,21 @@
     
     [self.view addSubview:_webView];
     
+    // 避免WebView最下方出现黑线
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.opaque = NO;
+    
+    // 去掉webView的滚动条
+    for (UIView *subView in [_webView subviews])
+    {
+        if ([subView isKindOfClass:[UIScrollView class]])
+        {
+            // 不显示竖直的滚动条
+            [(UIScrollView *)subView setShowsVerticalScrollIndicator:NO];
+        }
+    }
+
+    
     UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
     longPressed.delegate = self;
     [_webView addGestureRecognizer:longPressed];
@@ -856,17 +871,17 @@
     [webView loadRequest:request];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    
-    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
-    {
-        statusBar.backgroundColor = [UIColor clearColor];
-    }
-    
-    return UIStatusBarStyleLightContent;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//
+//    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
+//    {
+//        statusBar.backgroundColor = [UIColor whiteColor];
+//    }
+//
+//    return UIStatusBarStyleLightContent;
+//}
 
 #pragma mark - savePictrue
 

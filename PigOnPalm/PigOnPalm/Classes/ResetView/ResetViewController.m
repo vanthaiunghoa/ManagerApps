@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"修改密码";
+    self.title = @"找回密码";
     self.view.backgroundColor = [UIColor whiteColor];
 }
 

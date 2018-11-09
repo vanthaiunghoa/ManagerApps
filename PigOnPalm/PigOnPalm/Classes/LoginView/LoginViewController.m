@@ -54,24 +54,24 @@
     [super viewDidAppear:animated];
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
 
-//    if(userModel.isAutoLogin)
-//    {
-//        userModel.isAutoLogin = NO;
-//        [self didLoginWithUserName:userModel.username AndPassWord:userModel.password];
-//    }
-//    else
-//    {
-//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//        NSString *isOpenWebView = [defaults objectForKey:@"isOpenWebView"];
-//        if([isOpenWebView isEqualToString:@"YES"])
-//        {
-//            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//            [defaults setObject:@"NO" forKey:@"isOpenWebView"];
-//
-//            UIViewController *vc = [NSClassFromString(@"WebDetailViewController") new];
-//            [self.navigationController pushViewController:vc animated:YES];
-//        }
-//    }
+    if(userModel.isAutoLogin)
+    {
+        userModel.isAutoLogin = NO;
+        [self didLoginWithUserName:userModel.username AndPassWord:userModel.password];
+    }
+    else
+    {
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *isOpenWebView = [defaults objectForKey:@"isOpenWebView"];
+        if([isOpenWebView isEqualToString:@"YES"])
+        {
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:@"NO" forKey:@"isOpenWebView"];
+
+            UIViewController *vc = [NSClassFromString(@"WebDetailViewController") new];
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+    }
 }
 
 #pragma mark - LoginViewDelegate
@@ -171,7 +171,7 @@
                  }
             } seq:[self getRandomNumber:0 to:RAND_MAX]];
             
-            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
+//            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
 //            [self.navigationController pushViewController:vc animated:YES];
             [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"WebViewController") new];
         }

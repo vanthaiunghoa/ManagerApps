@@ -160,7 +160,7 @@
     }];
 
     self.btnRegister = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.btnRegister setTitle:@"确认修改" forState:UIControlStateNormal];
+    [self.btnRegister setTitle:@"确认找回" forState:UIControlStateNormal];
     [self.btnRegister addTarget:self action:@selector(registerClick:) forControlEvents:UIControlEventTouchUpInside];
     [self.btnRegister.layer setMasksToBounds:YES];
     [self.btnRegister.layer setCornerRadius:h/2.0];
