@@ -34,10 +34,10 @@
     usernameBkg.clipsToBounds = YES;
     [self addSubview:usernameBkg];
     [usernameBkg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.top).offset(150);
-        make.left.equalTo(self).offset(padding);
-        make.right.equalTo(self).offset(-padding);
-        make.height.equalTo(h);
+        make.top.mas_equalTo(self.mas_top).offset(150);
+        make.left.mas_equalTo(self).offset(padding);
+        make.right.mas_equalTo(self).offset(-padding);
+        make.height.mas_equalTo(h);
     }];
     
     CGFloat imgW = 18;
@@ -47,10 +47,10 @@
     userIcon.image = [UIImage imageNamed:@"user"];
     [usernameBkg addSubview:userIcon];
     [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(usernameBkg.mas_centerY);
-        make.left.equalTo(@30);
-        make.width.equalTo(imgW);
-        make.height.equalTo(imgH);
+        make.centerY.mas_equalTo(usernameBkg.mas_centerY);
+        make.left.mas_equalTo(@30);
+        make.width.mas_equalTo(imgW);
+        make.height.mas_equalTo(imgH);
     }];
     
     self.usernameTextField = [UITextField new];
@@ -66,9 +66,9 @@
     [usernameBkg addSubview:self.usernameTextField];
     
     [self.usernameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(userIcon.mas_right).with.offset(15);
-        make.top.bottom.equalTo(usernameBkg);
-        make.right.equalTo(usernameBkg.mas_right).offset(-30);
+        make.left.mas_equalTo(userIcon.mas_right).with.offset(15);
+        make.top.bottom.mas_equalTo(usernameBkg);
+        make.right.mas_equalTo(usernameBkg.mas_right).offset(-30);
     }];
     
     UIView *codeBkg = [UIView new];
@@ -79,9 +79,9 @@
     codeBkg.clipsToBounds = YES;
     [self addSubview:codeBkg];
     [codeBkg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(usernameBkg.mas_left);
-        make.top.equalTo(usernameBkg.mas_bottom).with.offset(15);
-        make.width.height.equalTo(usernameBkg);
+        make.left.mas_equalTo(usernameBkg.mas_left);
+        make.top.mas_equalTo(usernameBkg.mas_bottom).with.offset(15);
+        make.width.height.mas_equalTo(usernameBkg);
     }];
     
     UIButton *btnCode = [UIButton new];
@@ -90,10 +90,10 @@
     [btnCode setTitleColor:[UIColor colorWithRGB:243 green:147 blue:49] forState:UIControlStateNormal];
     btnCode.titleLabel.font = [UIFont systemFontOfSize:16];
     [self addSubview:btnCode];
-    [btnCode makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(codeBkg);
-        make.right.equalTo(codeBkg.right).offset(-30);
-        make.width.equalTo(@150);
+    [btnCode mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.mas_equalTo(codeBkg);
+        make.right.mas_equalTo(codeBkg.mas_right).offset(-30);
+        make.width.mas_equalTo(@150);
     }];
     [btnCode addTarget:self action:@selector(getCodeClick:) forControlEvents:UIControlEventTouchUpInside];
     self.btnCode = btnCode;
@@ -112,9 +112,9 @@
     [codeBkg addSubview:self.codeTextField];
     
     [self.codeTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(@0);
-        make.left.equalTo(codeBkg.left).offset(30);
-        make.right.equalTo(btnCode.left);
+        make.top.bottom.mas_equalTo(@0);
+        make.left.mas_equalTo(codeBkg.mas_left).offset(30);
+        make.right.mas_equalTo(btnCode.mas_left);
     }];
     
     UIView *passwordBkg = [UIView new];
@@ -125,9 +125,9 @@
     passwordBkg.clipsToBounds = YES;
     [self addSubview:passwordBkg];
     [passwordBkg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(usernameBkg.mas_left);
-        make.top.equalTo(codeBkg.mas_bottom).with.offset(15);
-        make.width.height.equalTo(usernameBkg);
+        make.left.mas_equalTo(usernameBkg.mas_left);
+        make.top.mas_equalTo(codeBkg.mas_bottom).with.offset(15);
+        make.width.height.mas_equalTo(usernameBkg);
     }];
     
     imgH = 35/29.0 * imgW;
@@ -136,10 +136,10 @@
     passwordIcon.image = [UIImage imageNamed:@"password"];
     [passwordBkg addSubview:passwordIcon];
     [passwordIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(passwordBkg.mas_centerY);
-        make.left.equalTo(userIcon);
-        make.width.equalTo(imgW);
-        make.height.equalTo(imgH);
+        make.centerY.mas_equalTo(passwordBkg.mas_centerY);
+        make.left.mas_equalTo(userIcon);
+        make.width.mas_equalTo(imgW);
+        make.height.mas_equalTo(imgH);
     }];
     
     self.passwordTextField = [UITextField new];
@@ -155,8 +155,8 @@
     [passwordBkg addSubview:self.passwordTextField];
     
     [self.passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(@0);
-        make.left.right.equalTo(self.usernameTextField);
+        make.top.bottom.mas_equalTo(@0);
+        make.left.right.mas_equalTo(self.usernameTextField);
     }];
 
     self.btnRegister = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -168,9 +168,9 @@
     self.btnRegister.titleLabel.font = [UIFont systemFontOfSize:18];
     [self.btnRegister setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:243 green:147 blue:49]] forState:UIControlStateNormal];
     [self addSubview:self.btnRegister];
-    [self.btnRegister makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(passwordBkg.bottom).offset(44);
-        make.left.right.height.equalTo(passwordBkg);
+    [self.btnRegister mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(passwordBkg.mas_bottom).offset(44);
+        make.left.right.height.mas_equalTo(passwordBkg);
     }];
     
     RAC(self.btnRegister, enabled) = [RACSignal

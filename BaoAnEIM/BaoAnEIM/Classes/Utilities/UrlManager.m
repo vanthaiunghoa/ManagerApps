@@ -36,7 +36,7 @@ static id _instance;
     // 勤智资本
 //    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
     // 盐田
-    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
+//    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
     // 南山
 //    return @"8PDuOH1Qql6d0t3CpZGKjmZv3cVzOviVfg+TRCIeJ2wt54AO0hBUcJk49db2CFY2QOOMyv2ih0E=";
 //     福田
@@ -55,8 +55,10 @@ static id _instance;
 //    return @"tKB1F69J4TiAVCrC6SRNGiMnDqVMEJGQ2QdFlvMnpUhyBsjP/BDuILz16j4A1q3JO1YFUlt7Fm0=";
     // 深圳市建筑工务署
 //    return @"jSR1XXg886K4S0P79d4yZ+5Y1U/7PtdhzAvTqnlTkSEKqq7N14zS0hocyct0ZfqI74Gq1I+Orok=";
-    // 万维   
+//     万维
 //    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
+    // 光明新区
+    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
 }
 
 - (NSString *)getSPID
@@ -76,7 +78,7 @@ static id _instance;
 //     保安工务局
 //    return @"http://gcjg.baoan.gov.cn:9250";
     // 盐田
-    return @"http://134.175.118.134:9130";
+//    return @"http://134.175.118.134:9130";
     // 南山
 //    return @"http://183.62.232.185:8011";
     // 福田
@@ -97,6 +99,9 @@ static id _instance;
 //    return @"http://202.104.110.143:8001";
     // 万维
 //    return @"http://134.175.118.134:9120";
+    // 光明新区
+    return @"http://134.175.118.134:9876";
+
 }
 
 - (NSString *)getLoginUrl

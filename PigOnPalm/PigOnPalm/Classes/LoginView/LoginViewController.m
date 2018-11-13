@@ -173,7 +173,10 @@
             
 //            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
 //            [self.navigationController pushViewController:vc animated:YES];
-            [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"WebViewController") new];
+            
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[NSClassFromString(@"WebViewController") new]];
+
+            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         }
         else
         {

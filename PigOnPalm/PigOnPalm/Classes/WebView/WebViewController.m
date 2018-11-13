@@ -10,6 +10,7 @@
 #import "UserManager.h"
 #import "BaseNavigationController.h"
 #import "LoginViewController.h"
+#import "ShareView.h"
 
 @interface WebViewController()<UIGestureRecognizerDelegate, NSURLSessionDelegate>
 
@@ -30,25 +31,77 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+//    self.fd_prefersNavigationBarHidden = NO;
+    self.fd_interactivePopDisabled = YES;
     
     //设置状态栏颜色
-    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
-    statusBarView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:statusBarView];
+//    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+//    statusBarView.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:statusBarView];
 //    _printDatas = [NSMutableArray array];
 //    [NSTimer scheduledTimerWithTimeInterval:(float)0.02 target:self selector:@selector(sendDataTimer:) userInfo:nil repeats:YES];
+    [self addNaviButton];
+}
+
+- (void)addNaviButton
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setImage:[UIImage imageNamed:@"arrow_back_black"] forState:UIControlStateNormal];
+    [btn sizeToFit];
+    [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    
+    UIButton *btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnShare setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [btnShare sizeToFit];
+    [btnShare addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnShare];
+}
+
+- (void)back
+{
+    if(self.webView.canGoBack)
+    {
+        [self.webView goBack];
+    }
+}
+
+#pragma mark - share
+
+- (void)share
+{
+    NSMutableArray *titarray = [NSMutableArray arrayWithObjects:@"QQ",@"微信",@"朋友圈",@"推荐下载", nil];
+    NSMutableArray *picarray = [NSMutableArray arrayWithObjects:@"qq",@"wechat",@"friend",@"download", nil];
+    ShareView *shareView = [[ShareView alloc]initWithTitleArray:titarray picarray:picarray];
+    [shareView selectedWithIndex:^(NSInteger index,id shareType) {
+        NSLog(@"你选择的index ＝＝ %ld",(long)index);
+        NSLog(@"要分享到的平台");
+    }];
+    
+    [shareView CLBtnBlock:^(UIButton *btn) {
+        NSLog(@"你点了选择/取消按钮");
+    }];
+    
+    [shareView show];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//    [self.navigationController setNavigationBarHidden:YES];
 //    self.manager.delegate = self;
 //    [self.manager cancelScan];
     
     if (_bridge) { return; }
     
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20)];
+    CGFloat statusBarH = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    CGFloat navigationBarH = self.navigationController.navigationBar.frame.size.height;
+
+    
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - navigationBarH - statusBarH)];
     _webView.scrollView.bounces = NO;
     
     [self.view addSubview:_webView];
@@ -113,7 +166,7 @@
     self.testView = [UIImageView new];
     self.testView.backgroundColor = [UIColor redColor];
     [self.view insertSubview:self.testView aboveSubview:webView];
-    [self.testView makeConstraints:^(MASConstraintMaker *make) {
+    [self.testView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(100);
         make.left.equalTo(self.view).offset(100);
         make.width.height.equalTo(@200);
@@ -862,6 +915,8 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     PLog(@"webViewDidFinishLoad");
+    self.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    PLog(@"title == %@", self.title);
 }
 
 - (void)loadWebView:(UIWebView*)webView

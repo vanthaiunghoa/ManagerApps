@@ -33,7 +33,7 @@
     // 宝安工务局
 //    logoIcon.image = [UIImage imageWithName:@"logo_company"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-qzzb"];
-    logoIcon.image = [UIImage imageWithName:@"logo-yt"];
+//    logoIcon.image = [UIImage imageWithName:@"logo-yt"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-ns"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-ft"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-lhgwj"];
@@ -44,6 +44,7 @@
 //    logoIcon.image = [UIImage imageWithName:@"logo-luqiao"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-szgws"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-wanve"];
+    logoIcon.image = [UIImage imageNamed:@"logo-gm"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
@@ -56,8 +57,8 @@
 //        make.width.equalTo(@(W(171)));
 //        make.height.equalTo(@(H(54)));
         // 盐田
-        make.width.equalTo(@(W(94)));
-        make.height.equalTo(@(H(63)));
+//        make.width.equalTo(@(W(94)));
+//        make.height.equalTo(@(H(63)));
 //         南山
 //        make.width.height.equalTo(@60);
         // 福田
@@ -79,7 +80,7 @@
 //        make.width.equalTo(@(W(120)));
 //        make.height.equalTo(@(H(60)));
         // 东莞市路桥公司
-//        make.width.height.equalTo(@(H(60)));
+        make.width.height.equalTo(@(H(60)));
         // 万维
 //        make.width.equalTo(@(W(116.4)));
 //        make.height.equalTo(@(H(60)));
@@ -88,7 +89,7 @@
     UILabel *company = [UILabel new];
 //    company.text = @"宝安区建筑工务局";
 //    company.text = @"勤智资本";
-    company.text = @"盐田环水局";
+//    company.text = @"盐田环水局";
 //    company.text = @"南山工务局";
 //    company.text = @"福田环水局";
 //    company.text = @"龙华工务局";
@@ -99,6 +100,7 @@
 //    company.text = @"东莞路桥投资";
 //    company.text = @"深圳市建筑工务署";
 //    company.text = @"万维博通";
+    company.text = @"深圳市光明新区工务局";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
     company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:FONT_SIZE(26)];

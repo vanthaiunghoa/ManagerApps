@@ -366,8 +366,8 @@
 		E877B8551FFF5A730091587B /* BaseController */ = {
 			isa = PBXGroup;
 			children = (
-				E877B8561FFF5A730091587B /* BaseNavigationController.m */,
 				E877B8571FFF5A730091587B /* BaseNavigationController.h */,
+				E877B8561FFF5A730091587B /* BaseNavigationController.m */,
 			);
 			path = BaseController;
 			sourceTree = "<group>";
@@ -897,10 +897,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.ythsj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.gmxq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "4db927e3-2f87-4259-aa32-f069033122b3";
-				PROVISIONING_PROFILE_SPECIFIER = "ythsj-dev";
+				PROVISIONING_PROFILE = "2cb442c0-e356-4ef5-9de8-c6e97b87a212";
+				PROVISIONING_PROFILE_SPECIFIER = "gmxq-dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -919,10 +919,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.ythsj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.gmxq;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "84672f2d-e4c8-4194-a071-61542688ba1b";
-				PROVISIONING_PROFILE_SPECIFIER = "ythsj-dis";
+				PROVISIONING_PROFILE = "24dba99f-fec0-46b5-9fa5-0aed5cd7878e";
+				PROVISIONING_PROFILE_SPECIFIER = "gmxq-dis";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
