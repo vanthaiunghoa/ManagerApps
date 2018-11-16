@@ -11,6 +11,7 @@
 #import "BaseNavigationController.h"
 #import "LoginViewController.h"
 #import "ShareView.h"
+#import "OpenShareHeader.h"
 
 @interface WebViewController()<UIGestureRecognizerDelegate, NSURLSessionDelegate>
 
@@ -40,18 +41,34 @@
 //    [self.view addSubview:statusBarView];
 //    _printDatas = [NSMutableArray array];
 //    [NSTimer scheduledTimerWithTimeInterval:(float)0.02 target:self selector:@selector(sendDataTimer:) userInfo:nil repeats:YES];
-    [self addNaviButton];
+//    [self addLeftButton];
+    [self addRightButton];
 }
 
-- (void)addNaviButton
+- (void)addLeftButton
 {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setImage:[UIImage imageNamed:@"arrow_back_black"] forState:UIControlStateNormal];
-    [btn sizeToFit];
-    [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    
+    if(self.webView.canGoBack)
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setImage:[UIImage imageNamed:@"arrow_back_black"] forState:UIControlStateNormal];
+        [btn sizeToFit];
+        [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+    else
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
+        [btn sizeToFit];
+        [btn addTarget:self action:@selector(logoutCall) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+}
+
+- (void)addRightButton
+{
     UIButton *btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
     [btnShare setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [btnShare sizeToFit];
@@ -68,23 +85,131 @@
     }
 }
 
+- (void)logoutCall
+{
+    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+    userModel.username = @"";
+    userModel.password = @"";
+    userModel.isAutoLogin = NO;
+    userModel.isLogout = YES;
+    [[UserManager sharedUserManager] saveUserModel:userModel];
+    
+    [self cleanCacheAndCookie];
+    //            [self.navigationController popViewControllerAnimated:YES];
+    LoginViewController *vc = [LoginViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
+    [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+}
+
 #pragma mark - share
 
 - (void)share
 {
-    NSMutableArray *titarray = [NSMutableArray arrayWithObjects:@"QQ",@"微信",@"朋友圈",@"推荐下载", nil];
-    NSMutableArray *picarray = [NSMutableArray arrayWithObjects:@"qq",@"wechat",@"friend",@"download", nil];
+    NSMutableArray *titarray = [NSMutableArray arrayWithObjects:@"微信",@"朋友圈",@"推荐下载", nil];
+    NSMutableArray *picarray = [NSMutableArray arrayWithObjects:@"wechat",@"friend",@"download", nil];
     ShareView *shareView = [[ShareView alloc]initWithTitleArray:titarray picarray:picarray];
+    
+    @weakify(self);
     [shareView selectedWithIndex:^(NSInteger index,id shareType) {
-        NSLog(@"你选择的index ＝＝ %ld",(long)index);
-        NSLog(@"要分享到的平台");
+        @strongify(self);
+        switch (index) {
+            case 0:
+                [self wechatShare];
+                break;
+            case 1:
+                [self friendShare];
+                break;
+            case 2:
+                [self downloadShare];
+                break;
+                
+            default:
+                break;
+        }
     }];
     
     [shareView CLBtnBlock:^(UIButton *btn) {
-        NSLog(@"你点了选择/取消按钮");
+        PLog(@"你点了选择/取消按钮");
     }];
     
     [shareView show];
+}
+
+- (void)qqShare
+{
+    id data = @{ @"qq": @"qqShare" };
+    [_bridge callHandler:@"qqShare" data:data responseCallback:^(id response) {
+        NSLog(@"testJavascriptHandler responded: %@", response);
+    }];
+}
+
+- (void)wechatShare
+{
+    id data = @{ @"wechat": @"wechatShare" };
+    [_bridge callHandler:@"getAppShareInfo" data:data responseCallback:^(id response) {
+        NSString *shareLink = response[@"shareLink"];
+        NSString *shareImgUrl = response[@"shareImgUrl"];
+        NSString *shareDesc = response[@"shareDesc"];
+        NSString *shareTitle = response[@"shareTitle"];
+        
+        OSMessage *msg = [[OSMessage alloc]init];
+        msg.title = shareTitle;
+        msg.desc = shareDesc;
+        msg.link = shareLink;
+        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
+
+        [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
+            PLog(@"微信分享到会话成功：\n%@",message);
+        } Fail:^(OSMessage *message, NSError *error) {
+            PLog(@"微信分享到会话失败：\n%@\n%@",error,message);
+        }];
+    }];
+}
+
+- (void)friendShare
+{
+    id data = @{ @"friend": @"friendShare" };
+    [_bridge callHandler:@"getAppShareInfo" data:data responseCallback:^(id response) {
+        NSString *shareLink = response[@"shareLink"];
+        NSString *shareImgUrl = response[@"shareImgUrl"];
+        NSString *shareDesc = response[@"shareDesc"];
+        NSString *shareTitle = response[@"shareTitle"];
+        
+        OSMessage *msg = [[OSMessage alloc]init];
+        msg.title = shareTitle;
+        msg.desc = shareDesc;
+        msg.link = shareLink;
+        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
+
+        [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
+            PLog(@"微信分享到朋友圈成功：\n%@",message);
+        } Fail:^(OSMessage *message, NSError *error) {
+            PLog(@"微信分享到朋友圈失败：\n%@\n%@",error,message);
+        }];
+    }];
+}
+
+- (void)downloadShare
+{
+    id data = @{ @"download": @"downloadShare" };
+    [_bridge callHandler:@"getAppDownloadInfo" data:data responseCallback:^(id response) {
+//        NSString *shareLink = response[@"shareLink"];
+//        NSString *shareImgUrl = response[@"shareImgUrl"];
+//        NSString *shareDesc = response[@"shareDesc"];
+//        NSString *shareTitle = response[@"shareTitle"];
+//
+//        OSMessage *msg = [[OSMessage alloc]init];
+//        msg.title = shareTitle;
+//        msg.desc = shareDesc;
+//        msg.link = shareLink;
+//        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
+//
+//        [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
+//            PLog(@"微信分享到朋友圈成功：\n%@",message);
+//        } Fail:^(OSMessage *message, NSError *error) {
+//            PLog(@"微信分享到朋友圈失败：\n%@\n%@",error,message);
+//        }];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -133,6 +258,7 @@
 //    [self printFeeList];
 //    [self printQrcode];
 //    [self bindQrcodeOrder];
+    
     [self logout];
     [self callPhone];
 //    [self renderButtons:webView];
@@ -438,19 +564,19 @@
 
         switch (respCode) {
             case 0:
-                NSLog(@"支付成功");
+                PLog(@"支付成功");
                 [SVProgressHUD showInfoWithStatus:@"支付成功"];
                 break;
             case -1:
-                NSLog(@"支付失败");
+                PLog(@"支付失败");
                 [SVProgressHUD showInfoWithStatus:@"支付失败"];
                 break;
             case -2:
-                NSLog(@"支付取消");
+                PLog(@"支付取消");
                 [SVProgressHUD showInfoWithStatus:@"支付取消"];
                 break;
             case -99:
-                NSLog(@"未知错误");
+                PLog(@"未知错误");
                 [SVProgressHUD showInfoWithStatus:@"未知错误"];
                 break;
             default:
@@ -476,7 +602,7 @@
 - (void)sendDataTimer:(NSTimer *)timer
 {
     //发送打印数据
-    //NSLog(@"send data timer");
+    //PLog(@"send data timer");
     
     if ([_printDatas count] > 0)
     {
@@ -497,18 +623,7 @@
         PLog(@"logout == %@", data);
         if(data)
         {
-            UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-            userModel.username = @"";
-            userModel.password = @"";
-            userModel.isAutoLogin = NO;
-            userModel.isLogout = YES;
-            [[UserManager sharedUserManager] saveUserModel:userModel];
-            
-            [self cleanCacheAndCookie];
-//            [self.navigationController popViewControllerAnimated:YES];
-            LoginViewController *vc = [LoginViewController new];
-            BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
-            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+            [self logoutCall];
         }
     }];
 }
@@ -762,7 +877,7 @@
 
 - (void)printData:(NSData *)dataPrinted
 {
-    NSLog(@"print data:%lu", (unsigned long)[dataPrinted length]);
+    PLog(@"print data:%lu", (unsigned long)[dataPrinted length]);
     //    aa++;
 //#define MAX_CHARACTERISTIC_VALUE_SIZE 20
     NSData  *data    = nil;
@@ -772,7 +887,7 @@
     NSUInteger cellMin;
     NSUInteger cellLen;
     
-    NSLog(@"print data:%@", dataPrinted);
+    PLog(@"print data:%@", dataPrinted);
     
     
     strLength = [dataPrinted length];
@@ -788,11 +903,11 @@
             cellLen = MAX_CHARACTERISTIC_VALUE_SIZE;
         }
         
-        NSLog(@"print:%lu,%lu,%lu,%lu", (unsigned long)strLength,(unsigned long)cellCount, (unsigned long)cellMin, (unsigned long)cellLen);
+        PLog(@"print:%lu,%lu,%lu,%lu", (unsigned long)strLength,(unsigned long)cellCount, (unsigned long)cellMin, (unsigned long)cellLen);
         NSRange rang = NSMakeRange(cellMin, cellLen);
         
         data = [dataPrinted subdataWithRange:rang];
-        NSLog(@"print:%@", data);
+        PLog(@"print:%@", data);
         //        if (aa>3) {
         
         //        }else{
@@ -917,6 +1032,8 @@
     PLog(@"webViewDidFinishLoad");
     self.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     PLog(@"title == %@", self.title);
+    
+    [self addLeftButton];
 }
 
 - (void)loadWebView:(UIWebView*)webView

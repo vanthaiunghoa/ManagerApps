@@ -17,6 +17,7 @@
 #import "WebDetailViewController.h"
 #import <LeoPayManager/LeoPayManager.h>
 #import "WebViewController.h"
+#import "OpenShareHeader.h"
 
 //极光
 #define JPUSHAPPKEY             @"5a299e87ba081dc8af784561"
@@ -45,6 +46,7 @@
 {
     // 微信支付
 //    [LeoPayManager wechatRegisterAppWithAppId:@"WeChat_appId" description:@"description"];
+    [OpenShare connectWeixinWithAppId:@"wxdcdfad1bcb0a8e97"];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setObject:@"NO" forKey:@"isOpenWebView"];
