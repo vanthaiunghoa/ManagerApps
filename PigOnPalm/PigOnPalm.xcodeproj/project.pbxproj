@@ -291,9 +291,9 @@
 				E82BAF60219AB3C600A87659 /* UserModel.m */,
 				E82BAF62219AB3C600A87659 /* UserModel.h */,
 				E82BAF76219AB3C600A87659 /* LoginView.h */,
-				E82BAF77219AB3C600A87659 /* LoginViewController.m */,
 				E82BAF78219AB3C600A87659 /* LoginView.m */,
 				E82BAF79219AB3C600A87659 /* LoginViewController.h */,
+				E82BAF77219AB3C600A87659 /* LoginViewController.m */,
 			);
 			path = LoginView;
 			sourceTree = "<group>";

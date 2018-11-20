@@ -58,7 +58,10 @@ static id _instance;
 //     万维
 //    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
     // 光明新区
-    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
+//    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
+    // 东江区工务局
+    return @"vJo06/qsLDN1UvbshDmf6nLwNciVtZ4/cUW8JTQv32V+Y9Mh3hjCoOAL9zF8YnjL0EW4c/gQE/U=";
+
 }
 
 - (NSString *)getSPID
@@ -100,7 +103,9 @@ static id _instance;
     // 万维
 //    return @"http://134.175.118.134:9120";
     // 光明新区
-    return @"http://134.175.118.134:9876";
+//    return @"http://134.175.118.134:9876";
+    // 东江区工务局
+    return @"http://47.107.91.155:8080";
 
 }
 
@@ -110,7 +115,7 @@ static id _instance;
 //    return [NSString stringWithFormat:@"%@/EIM_PIC/WebService/WebService.asmx", [self getBaseUrl]];
 
 //    return [NSString stringWithFormat:@"%@/wan_mpda_pic//WebService/WebService.asmx", [self getBaseUrl]];
-    // 勤智资本 盐田
+    // 勤智资本 盐田  东江区工务局
     return [NSString stringWithFormat:@"%@/WAN_MPDA_PIC//WebService/WebService.asmx", [self getBaseUrl]];
     // 万维
 //        return [NSString stringWithFormat:@"%@/WAN_TZ_PIC//WebService/WebService.asmx", [self getBaseUrl]];

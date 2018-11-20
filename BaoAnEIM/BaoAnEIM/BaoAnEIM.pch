@@ -31,7 +31,8 @@
 //#define TITLE @"东莞路桥投资智慧工务平台"
 //#define TITLE @"深圳市建筑工务署工程档案数据管理平台"
 //#define TITLE @"万维博通投资数据管理平台"
-#define TITLE @"光明新区工务局工程数据管理平台"
+//#define TITLE @"光明新区工务局工程数据管理平台"
+#define TITLE @"东江区建筑工务局工程数据管理平台"
 
 //适配
 //基于宽度

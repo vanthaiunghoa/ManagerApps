@@ -44,7 +44,8 @@
 //    logoIcon.image = [UIImage imageWithName:@"logo-luqiao"];
 //    logoIcon.image = [UIImage imageWithName:@"logo-szgws"];
 //    logoIcon.image = [UIImage imageNamed:@"logo-wanve"];
-    logoIcon.image = [UIImage imageNamed:@"logo-gm"];
+//    logoIcon.image = [UIImage imageNamed:@"logo-gm"];
+    logoIcon.image = [UIImage imageNamed:@"logo-jdq"];
     [self addSubview:logoIcon];
     [logoIcon makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.centerX);
@@ -100,7 +101,8 @@
 //    company.text = @"东莞路桥投资";
 //    company.text = @"深圳市建筑工务署";
 //    company.text = @"万维博通";
-    company.text = @"深圳市光明新区工务局";
+//    company.text = @"深圳市光明新区工务局";
+    company.text = @"东江区建筑工务局";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:24];
     company.font = [UIFont fontWithName:@"STHeitiTC-Medium"size:FONT_SIZE(26)];

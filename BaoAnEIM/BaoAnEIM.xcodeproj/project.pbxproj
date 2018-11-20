@@ -897,10 +897,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.gmxq;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.djgwj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2cb442c0-e356-4ef5-9de8-c6e97b87a212";
-				PROVISIONING_PROFILE_SPECIFIER = "gmxq-dev";
+				PROVISIONING_PROFILE = "91175c0c-723e-41d0-88ee-119a60fd2fe6";
+				PROVISIONING_PROFILE_SPECIFIER = "djgwj-dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -919,10 +919,10 @@
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.gmxq;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.djgwj;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "24dba99f-fec0-46b5-9fa5-0aed5cd7878e";
-				PROVISIONING_PROFILE_SPECIFIER = "gmxq-dis";
+				PROVISIONING_PROFILE = "42b7e410-190b-4ebf-8240-9645201b9295";
+				PROVISIONING_PROFILE_SPECIFIER = "djgwj-dis";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

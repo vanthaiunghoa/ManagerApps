@@ -59,9 +59,9 @@
     else
     {
         UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
-        [btn sizeToFit];
-        [btn addTarget:self action:@selector(logoutCall) forControlEvents:UIControlEventTouchUpInside];
+//        [btn setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
+//        [btn sizeToFit];
+//        [btn addTarget:self action:@selector(logoutCall) forControlEvents:UIControlEventTouchUpInside];
         
         self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     }
@@ -88,8 +88,8 @@
 - (void)logoutCall
 {
     UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-    userModel.username = @"";
-    userModel.password = @"";
+//    userModel.username = @"";
+//    userModel.password = @"";
     userModel.isAutoLogin = NO;
     userModel.isLogout = YES;
     [[UserManager sharedUserManager] saveUserModel:userModel];
