@@ -58,12 +58,14 @@
     
     [self keyboardInit];
     [self progressHUDInit];
-    [self initJPush:launchOptions];
+//    [self initJPush:launchOptions];
     [self userModelInit];
+    
+    
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
-    
+
     LoginViewController *vc = [LoginViewController new];
     BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
     self.window.rootViewController = nav;
@@ -176,9 +178,10 @@
     //2.发送请求
     NSDictionary *dict = @{
                            @"j_username":username,
-                           @"j_password":password
+                           @"j_password":password,
+                           @"vway":@"vp"
                            };
-    NSString *url = @"http://xin.xinkozi.com:8088/xds/j_spring_security_check";
+    NSString *url = @"http://handpig.com/pakTest/j_spring_security_check";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         [SVProgressHUD dismiss];
         PLog(@"请求成功--responseObject == %@", [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding]);

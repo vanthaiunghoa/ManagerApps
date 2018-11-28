@@ -16,6 +16,7 @@
 @property (nonatomic, weak) id<LoginViewDelegate> delegate;
 
 - (void)reloadData;
+- (void)bindUserNamePassword;
 
 @end
 

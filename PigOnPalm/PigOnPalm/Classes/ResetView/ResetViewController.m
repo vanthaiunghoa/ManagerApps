@@ -54,7 +54,7 @@
                            @"vcode":code,
                            @"pwd":password
                            };
-    NSString *url = @"http://handpig.com/pakTest/api/findPwd.do";
+    NSString *url = @"http://handpig.com/pak/api/findPwd.do";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD dismiss];
@@ -105,7 +105,7 @@
                            @"phone":num,
                            @"op":@"fpwd"
                            };
-    NSString *url = @"http://handpig.com/pakTest/api/sendVcode.do";
+    NSString *url = @"http://handpig.com/pak/api/sendVcode.do";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         //        self.view.userInteractionEnabled = YES;
         //        [SVProgressHUD dismiss];

@@ -21,12 +21,22 @@
     self = [super init];
     if (!self) return nil;
     
+//    UIImageView *bkg = [UIImageView new];
+//    bkg.image = [UIImage imageNamed:@"login_bkg"]; // 大图耗内存
+//    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"login_bkg"];
+//    bkg.image = [UIImage imageWithContentsOfFile:path];
+//    bkg.backgroundColor = [UIColor colorWithHexString:@"#1296db"];
+//    [self addSubview:bkg];
+//    [bkg makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.left.bottom.right.mas_equalTo(self);
+//    }];
+    
     UIImageView *logoIcon = [UIImageView new];
     logoIcon.image = [UIImage imageNamed:@"logo"];
     [self addSubview:logoIcon];
-    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(self.top).offset(100);
+    [logoIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.mas_equalTo(self.mas_centerX);
+        make.top.mas_equalTo(self.mas_top).offset(100);
         make.width.equalTo(@(178/132.0 * 80));
         make.height.equalTo(@80);
     }];
@@ -36,11 +46,11 @@
     labName.font = [UIFont systemFontOfSize:18];
     labName.textAlignment = NSTextAlignmentCenter;
     [self addSubview:labName];
-    [labName makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.centerX);
-        make.top.equalTo(logoIcon.bottom).offset(0);
-        make.left.right.equalTo(self);
-        make.height.equalTo(@40);
+    [labName mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.mas_equalTo(self.centerX);
+        make.top.mas_equalTo(logoIcon.mas_bottom).offset(0);
+        make.left.right.mas_equalTo(self);
+        make.height.mas_equalTo(@40);
     }];
     
     int padding = 40;
@@ -54,10 +64,10 @@
     usernameBkg.clipsToBounds = YES;
     [self addSubview:usernameBkg];
     [usernameBkg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(labName.mas_bottom).with.offset(50);
-        make.left.equalTo(self).offset(padding);
-        make.right.equalTo(self).offset(-padding);
-        make.height.equalTo(h);
+        make.top.mas_equalTo(labName.mas_bottom).with.offset(50);
+        make.left.mas_equalTo(self).offset(padding);
+        make.right.mas_equalTo(self).offset(-padding);
+        make.height.mas_equalTo(h);
     }];
     
     CGFloat imgW = 18;
@@ -67,10 +77,10 @@
     userIcon.image = [UIImage imageNamed:@"user"];
     [usernameBkg addSubview:userIcon];
     [userIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(usernameBkg.mas_centerY);
-        make.left.equalTo(@30);
-        make.width.equalTo(imgW);
-        make.height.equalTo(imgH);
+        make.centerY.mas_equalTo(usernameBkg.mas_centerY);
+        make.left.mas_equalTo(@30);
+        make.width.mas_equalTo(imgW);
+        make.height.mas_equalTo(imgH);
     }];
     
     self.usernameTextField = [UITextField new];
@@ -87,14 +97,16 @@
     self.usernameTextField.delegate = self;
     [usernameBkg addSubview:self.usernameTextField];
     
+    [self.usernameTextField addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    
 //    UIButton *clean = [self.usernameTextField valueForKey:@"_clearButton"]; //key是固定的
 //    [clean setImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
     //    [clean setImage:[UIImage imageNamed:@"clear"] forState:UIControlStateHighlighted];
     
     [self.usernameTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(userIcon.mas_right).with.offset(15);
-        make.top.bottom.equalTo(usernameBkg);
-        make.right.equalTo(usernameBkg.mas_right).offset(-30);
+        make.left.mas_equalTo(userIcon.mas_right).with.offset(15);
+        make.top.bottom.mas_equalTo(usernameBkg);
+        make.right.mas_equalTo(usernameBkg.mas_right).offset(-30);
     }];
     
     UIView *passwordBkg = [UIView new];
@@ -105,9 +117,9 @@
     passwordBkg.clipsToBounds = YES;
     [self addSubview:passwordBkg];
     [passwordBkg mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(usernameBkg.mas_left);
-        make.top.equalTo(usernameBkg.mas_bottom).with.offset(15);
-        make.width.height.equalTo(usernameBkg);
+        make.left.mas_equalTo(usernameBkg.mas_left);
+        make.top.mas_equalTo(usernameBkg.mas_bottom).with.offset(15);
+        make.width.height.mas_equalTo(usernameBkg);
     }];
     
     imgH = 35/29.0 * imgW;
@@ -116,10 +128,10 @@
     passwordIcon.image = [UIImage imageNamed:@"password"];
     [passwordBkg addSubview:passwordIcon];
     [passwordIcon mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.equalTo(passwordBkg.mas_centerY);
-        make.left.equalTo(userIcon);
-        make.width.equalTo(imgW);
-        make.height.equalTo(imgH);
+        make.centerY.mas_equalTo(passwordBkg.mas_centerY);
+        make.left.mas_equalTo(userIcon);
+        make.width.mas_equalTo(imgW);
+        make.height.mas_equalTo(imgH);
     }];
     
     self.passwordTextField = [UITextField new];
@@ -137,6 +149,8 @@
     self.passwordTextField.delegate = self;
     [passwordBkg addSubview:self.passwordTextField];
     
+    [self.passwordTextField addTarget:self action:@selector(textChange) forControlEvents:UIControlEventEditingChanged];
+    
 //    UIButton *cleanPassword = [self.passwordTextField valueForKey:@"_clearButton"]; //key是固定的
 //    [cleanPassword setImage:[UIImage imageNamed:@"clear"] forState:UIControlStateNormal];
     
@@ -147,15 +161,15 @@
     //    self.eyeBtn.selected = NO;
     //    [passwordBkg addSubview:self.eyeBtn];
     //    [self.eyeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-    //        make.right.equalTo(@(-12));
-    //        make.width.equalTo(@30);
-    //        make.height.equalTo(@18);
-    //        make.centerY.equalTo(passwordBkg.mas_centerY);
+    //        make.right.mas_equalTo(@(-12));
+    //        make.width.mas_equalTo(@30);
+    //        make.height.mas_equalTo(@18);
+    //        make.centerY.mas_equalTo(passwordBkg.mas_centerY);
     //    }];
     
     [self.passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.equalTo(@0);
-        make.left.right.equalTo(self.usernameTextField);
+        make.top.bottom.mas_equalTo(@0);
+        make.left.right.mas_equalTo(self.usernameTextField);
     }];
 
     UIButton *btnForgotPassword = [UIButton new];
@@ -164,11 +178,11 @@
     [btnForgotPassword setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     btnForgotPassword.titleLabel.font = [UIFont systemFontOfSize:12];
     [self addSubview:btnForgotPassword];
-    [btnForgotPassword makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(passwordBkg.bottom);
-        make.right.equalTo(passwordBkg.right);
-        make.width.equalTo(@68);
-        make.height.equalTo(@44);
+    [btnForgotPassword mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(passwordBkg.mas_bottom);
+        make.right.mas_equalTo(passwordBkg.mas_right);
+        make.width.mas_equalTo(@68);
+        make.height.mas_equalTo(@44);
     }];
     
     [btnForgotPassword addTarget:self action:@selector(forgotPasswordClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -181,9 +195,9 @@
     self.loginBtn.titleLabel.font = [UIFont systemFontOfSize:18];
     [self.loginBtn setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:108 green:189 blue:117]] forState:UIControlStateNormal];
     [self addSubview:self.loginBtn];
-    [self.loginBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(btnForgotPassword.bottom);
-        make.left.right.height.equalTo(passwordBkg);
+    [self.loginBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(btnForgotPassword.mas_bottom);
+        make.left.right.height.mas_equalTo(passwordBkg);
     }];
     
     padding = SCREEN_WIDTH/2.0;
@@ -194,11 +208,11 @@
     labAccount.textColor = [UIColor lightGrayColor];
     labAccount.textAlignment = NSTextAlignmentRight;
     [self addSubview:labAccount];
-    [labAccount makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.loginBtn.bottom).offset(H(10));
-        make.right.equalTo(self.right).offset(@(-padding));
-        make.width.equalTo(@90);
-        make.height.equalTo(@44);
+    [labAccount mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.loginBtn.mas_bottom).offset(H(10));
+        make.right.mas_equalTo(self.mas_right).offset(-padding);
+        make.width.mas_equalTo(@90);
+        make.height.mas_equalTo(@44);
     }];
     
     UIButton *btnRegister = [UIButton new];
@@ -207,22 +221,14 @@
     btnRegister.titleLabel.font = [UIFont systemFontOfSize:12];
     [btnRegister.titleLabel setTextAlignment:NSTextAlignmentLeft];
     [self addSubview:btnRegister];
-    [btnRegister makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.loginBtn.bottom).offset(H(10));
-        make.left.equalTo(self.left).offset(@(padding));
-        make.width.equalTo(@55);
-        make.height.equalTo(@44);
+    [btnRegister mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.loginBtn.mas_bottom).offset(H(10));
+        make.left.mas_equalTo(self.mas_left).offset(padding);
+        make.width.mas_equalTo(@55);
+        make.height.mas_equalTo(@44);
     }];
 
     [btnRegister addTarget:self action:@selector(registerClick:) forControlEvents:UIControlEventTouchUpInside];
-    
-    RAC(self.loginBtn, enabled) = [RACSignal
-                                   combineLatest:@[self.usernameTextField.rac_textSignal,
-                                                   self.passwordTextField.rac_textSignal
-                                                   ]
-                                   reduce:^(NSString *account, NSString *password){
-                                       return @(account.length > 0 && password.length > 0);
-                                   }];
     
     return self;
 }
@@ -279,17 +285,19 @@
     self.usernameTextField.text = userModel.username;
     self.passwordTextField.text = userModel.password;
     
-//    if(0 == self.usernameTextField.text.length)
-//    {
-//        [self.usernameTextField becomeFirstResponder];
-//    }
-//    else
-//    {
-//        if(0 == self.passwordTextField.text.length)
-//        {
-//            [self.passwordTextField becomeFirstResponder];
-//        }
-//    }
+    [self textChange];
+}
+
+- (void)textChange
+{
+    if(self.usernameTextField.text.length > 0 && self.passwordTextField.text.length > 0)
+    {
+        self.loginBtn.enabled = YES;
+    }
+    else
+    {
+        self.loginBtn.enabled = NO;
+    }
 }
 
 #pragma mark - UITextFieldDelegate

@@ -8,96 +8,102 @@
 
 /* Begin PBXBuildFile section */
 		1B6B221F7911486AFE8F0043 /* libPods-TheFutureOfManure.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BB70105B5C3CB514806494B6 /* libPods-TheFutureOfManure.a */; };
+		E87A3EC521AE6AD000C10EFA /* ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E8321AE6AD000C10EFA /* ShareView.m */; };
+		E87A3EC621AE6AD000C10EFA /* SingleView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E8621AE6AD000C10EFA /* SingleView.m */; };
+		E87A3EC721AE6AD000C10EFA /* APOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E8821AE6AD000C10EFA /* APOrderInfo.m */; };
+		E87A3EC821AE6AD000C10EFA /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E8A21AE6AD000C10EFA /* WebViewController.m */; };
+		E87A3EC921AE6AD000C10EFA /* PrintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E8D21AE6AD000C10EFA /* PrintModel.m */; };
+		E87A3ECA21AE6AD000C10EFA /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E8F21AE6AD000C10EFA /* WebDetailViewController.m */; };
+		E87A3ECB21AE6AD000C10EFA /* UIColor+color.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E9221AE6AD000C10EFA /* UIColor+color.m */; };
+		E87A3ECC21AE6AD000C10EFA /* UIBarButtonItem+common.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E9321AE6AD000C10EFA /* UIBarButtonItem+common.m */; };
+		E87A3ECD21AE6AD000C10EFA /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E9521AE6AD000C10EFA /* UIImage+image.m */; };
+		E87A3ECE21AE6AD000C10EFA /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E9621AE6AD000C10EFA /* UIFont+runtime.m */; };
+		E87A3ECF21AE6AD000C10EFA /* UIImage+Color.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E9A21AE6AD000C10EFA /* UIImage+Color.m */; };
+		E87A3ED021AE6AD000C10EFA /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3E9D21AE6AD000C10EFA /* TopViewController.m */; };
+		E87A3ED121AE6AD000C10EFA /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EA021AE6AD000C10EFA /* BaseNavigationController.m */; };
+		E87A3ED221AE6AD000C10EFA /* ResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EA521AE6AD000C10EFA /* ResetViewController.m */; };
+		E87A3ED321AE6AD000C10EFA /* ResetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EA621AE6AD000C10EFA /* ResetView.m */; };
+		E87A3ED421AE6AD000C10EFA /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EA821AE6AD000C10EFA /* UserManager.m */; };
+		E87A3ED521AE6AD000C10EFA /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EAA21AE6AD000C10EFA /* Helper.m */; };
+		E87A3ED621AE6AD000C10EFA /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EAE21AE6AD000C10EFA /* RegisterViewController.m */; };
+		E87A3ED721AE6AD000C10EFA /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EAF21AE6AD000C10EFA /* RegisterView.m */; };
+		E87A3ED821AE6AD000C10EFA /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EB221AE6AD000C10EFA /* QRCodeView.m */; };
+		E87A3ED921AE6AD000C10EFA /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EB321AE6AD000C10EFA /* QRCodeViewController.m */; };
+		E87A3EDA21AE6AD000C10EFA /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EB821AE6AD000C10EFA /* BluetoothViewController.m */; };
+		E87A3EDB21AE6AD000C10EFA /* HHBluetoothPrinterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EBA21AE6AD000C10EFA /* HHBluetoothPrinterManager.m */; };
+		E87A3EDC21AE6AD000C10EFA /* HHPrinterFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EBD21AE6AD000C10EFA /* HHPrinterFormat.m */; };
+		E87A3EDD21AE6AD000C10EFA /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EC021AE6AD000C10EFA /* LoginViewController.m */; };
+		E87A3EDE21AE6AD000C10EFA /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EC121AE6AD000C10EFA /* UserModel.m */; };
+		E87A3EDF21AE6AD000C10EFA /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E87A3EC221AE6AD000C10EFA /* LoginView.m */; };
 		E8D4C881218FE51600353B1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8D4C880218FE51600353B1F /* Assets.xcassets */; };
 		E8D4C887218FE51600353B1F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C886218FE51600353B1F /* main.m */; };
 		E8D4C8D0218FF29C00353B1F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C88E218FF29B00353B1F /* AppDelegate.m */; };
-		E8D4C8D1218FF29C00353B1F /* APOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C891218FF29B00353B1F /* APOrderInfo.m */; };
-		E8D4C8D2218FF29C00353B1F /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C893218FF29B00353B1F /* WebViewController.m */; };
-		E8D4C8D3218FF29C00353B1F /* PrintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C896218FF29B00353B1F /* PrintModel.m */; };
-		E8D4C8D4218FF29C00353B1F /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C898218FF29B00353B1F /* WebDetailViewController.m */; };
-		E8D4C8D5218FF29C00353B1F /* UIColor+color.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C89B218FF29B00353B1F /* UIColor+color.m */; };
-		E8D4C8D6218FF29C00353B1F /* UIBarButtonItem+common.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C89C218FF29B00353B1F /* UIBarButtonItem+common.m */; };
-		E8D4C8D7218FF29C00353B1F /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C89D218FF29B00353B1F /* UIImage+image.m */; };
-		E8D4C8D8218FF29C00353B1F /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C89E218FF29B00353B1F /* UIFont+runtime.m */; };
-		E8D4C8D9218FF29C00353B1F /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8A4218FF29B00353B1F /* TopViewController.m */; };
-		E8D4C8DA218FF29C00353B1F /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8A7218FF29B00353B1F /* BaseNavigationController.m */; };
-		E8D4C8DB218FF29C00353B1F /* HHBluetoothPrinterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8AA218FF29B00353B1F /* HHBluetoothPrinterManager.m */; };
-		E8D4C8DC218FF29C00353B1F /* HHPrinterFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8AD218FF29B00353B1F /* HHPrinterFormat.m */; };
-		E8D4C8DD218FF29C00353B1F /* ResetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8B1218FF29B00353B1F /* ResetViewController.m */; };
-		E8D4C8DE218FF29C00353B1F /* ResetView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8B2218FF29B00353B1F /* ResetView.m */; };
-		E8D4C8DF218FF29C00353B1F /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8B4218FF29B00353B1F /* UserManager.m */; };
-		E8D4C8E0218FF29C00353B1F /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8B6218FF29B00353B1F /* Helper.m */; };
-		E8D4C8E1218FF29C00353B1F /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8BA218FF29B00353B1F /* RegisterViewController.m */; };
-		E8D4C8E2218FF29C00353B1F /* RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8BB218FF29B00353B1F /* RegisterView.m */; };
-		E8D4C8E3218FF29C00353B1F /* QRCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8BE218FF29B00353B1F /* QRCodeView.m */; };
-		E8D4C8E4218FF29C00353B1F /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8BF218FF29B00353B1F /* QRCodeViewController.m */; };
-		E8D4C8E5218FF29C00353B1F /* BluetoothViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8C4218FF29B00353B1F /* BluetoothViewController.m */; };
-		E8D4C8E6218FF29C00353B1F /* UIImage+Bitmap.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8C7218FF29B00353B1F /* UIImage+Bitmap.m */; };
-		E8D4C8E7218FF29C00353B1F /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8CA218FF29B00353B1F /* LoginViewController.m */; };
-		E8D4C8E8218FF29C00353B1F /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8CB218FF29B00353B1F /* UserModel.m */; };
-		E8D4C8E9218FF29C00353B1F /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4C8CC218FF29B00353B1F /* LoginView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		327835348491F2A59F2712ED /* Pods-TheFutureOfManure.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFutureOfManure.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheFutureOfManure/Pods-TheFutureOfManure.release.xcconfig"; sourceTree = "<group>"; };
 		960B5E96EB12C4C50EF3FF1C /* Pods-TheFutureOfManure.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheFutureOfManure.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheFutureOfManure/Pods-TheFutureOfManure.debug.xcconfig"; sourceTree = "<group>"; };
 		BB70105B5C3CB514806494B6 /* libPods-TheFutureOfManure.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TheFutureOfManure.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E87A3E8321AE6AD000C10EFA /* ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareView.m; sourceTree = "<group>"; };
+		E87A3E8421AE6AD000C10EFA /* SingleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleView.h; sourceTree = "<group>"; };
+		E87A3E8521AE6AD000C10EFA /* ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareView.h; sourceTree = "<group>"; };
+		E87A3E8621AE6AD000C10EFA /* SingleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleView.m; sourceTree = "<group>"; };
+		E87A3E8821AE6AD000C10EFA /* APOrderInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APOrderInfo.m; sourceTree = "<group>"; };
+		E87A3E8921AE6AD000C10EFA /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
+		E87A3E8A21AE6AD000C10EFA /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		E87A3E8B21AE6AD000C10EFA /* PrintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintModel.h; sourceTree = "<group>"; };
+		E87A3E8C21AE6AD000C10EFA /* APOrderInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APOrderInfo.h; sourceTree = "<group>"; };
+		E87A3E8D21AE6AD000C10EFA /* PrintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintModel.m; sourceTree = "<group>"; };
+		E87A3E8E21AE6AD000C10EFA /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		E87A3E8F21AE6AD000C10EFA /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
+		E87A3E9221AE6AD000C10EFA /* UIColor+color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+color.m"; sourceTree = "<group>"; };
+		E87A3E9321AE6AD000C10EFA /* UIBarButtonItem+common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+common.m"; sourceTree = "<group>"; };
+		E87A3E9421AE6AD000C10EFA /* UIImage+Color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Color.h"; sourceTree = "<group>"; };
+		E87A3E9521AE6AD000C10EFA /* UIImage+image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
+		E87A3E9621AE6AD000C10EFA /* UIFont+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+runtime.m"; sourceTree = "<group>"; };
+		E87A3E9721AE6AD000C10EFA /* UIBarButtonItem+common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+common.h"; sourceTree = "<group>"; };
+		E87A3E9821AE6AD000C10EFA /* UIColor+color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+color.h"; sourceTree = "<group>"; };
+		E87A3E9921AE6AD000C10EFA /* UIImage+image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
+		E87A3E9A21AE6AD000C10EFA /* UIImage+Color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Color.m"; sourceTree = "<group>"; };
+		E87A3E9B21AE6AD000C10EFA /* UIFont+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+runtime.h"; sourceTree = "<group>"; };
+		E87A3E9D21AE6AD000C10EFA /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
+		E87A3E9E21AE6AD000C10EFA /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
+		E87A3EA021AE6AD000C10EFA /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		E87A3EA121AE6AD000C10EFA /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		E87A3EA321AE6AD000C10EFA /* ResetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetViewController.h; sourceTree = "<group>"; };
+		E87A3EA421AE6AD000C10EFA /* ResetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetView.h; sourceTree = "<group>"; };
+		E87A3EA521AE6AD000C10EFA /* ResetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetViewController.m; sourceTree = "<group>"; };
+		E87A3EA621AE6AD000C10EFA /* ResetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetView.m; sourceTree = "<group>"; };
+		E87A3EA821AE6AD000C10EFA /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
+		E87A3EA921AE6AD000C10EFA /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
+		E87A3EAA21AE6AD000C10EFA /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
+		E87A3EAB21AE6AD000C10EFA /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
+		E87A3EAD21AE6AD000C10EFA /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
+		E87A3EAE21AE6AD000C10EFA /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		E87A3EAF21AE6AD000C10EFA /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
+		E87A3EB021AE6AD000C10EFA /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		E87A3EB221AE6AD000C10EFA /* QRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
+		E87A3EB321AE6AD000C10EFA /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
+		E87A3EB421AE6AD000C10EFA /* QRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
+		E87A3EB521AE6AD000C10EFA /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
+		E87A3EB721AE6AD000C10EFA /* BluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothViewController.h; sourceTree = "<group>"; };
+		E87A3EB821AE6AD000C10EFA /* BluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
+		E87A3EBA21AE6AD000C10EFA /* HHBluetoothPrinterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHBluetoothPrinterManager.m; sourceTree = "<group>"; };
+		E87A3EBB21AE6AD000C10EFA /* HHPrinterFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPrinterFormat.h; sourceTree = "<group>"; };
+		E87A3EBC21AE6AD000C10EFA /* HHBluetoothPrinterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHBluetoothPrinterManager.h; sourceTree = "<group>"; };
+		E87A3EBD21AE6AD000C10EFA /* HHPrinterFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPrinterFormat.m; sourceTree = "<group>"; };
+		E87A3EBF21AE6AD000C10EFA /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		E87A3EC021AE6AD000C10EFA /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E87A3EC121AE6AD000C10EFA /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		E87A3EC221AE6AD000C10EFA /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		E87A3EC321AE6AD000C10EFA /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E87A3EC421AE6AD000C10EFA /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		E8D4C874218FE51600353B1F /* TheFutureOfManure.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheFutureOfManure.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8D4C880218FE51600353B1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E8D4C885218FE51600353B1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8D4C886218FE51600353B1F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E8D4C88D218FF29B00353B1F /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E8D4C88E218FF29B00353B1F /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E8D4C891218FF29B00353B1F /* APOrderInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APOrderInfo.m; sourceTree = "<group>"; };
-		E8D4C892218FF29B00353B1F /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
-		E8D4C893218FF29B00353B1F /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
-		E8D4C894218FF29B00353B1F /* PrintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintModel.h; sourceTree = "<group>"; };
-		E8D4C895218FF29B00353B1F /* APOrderInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APOrderInfo.h; sourceTree = "<group>"; };
-		E8D4C896218FF29B00353B1F /* PrintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintModel.m; sourceTree = "<group>"; };
-		E8D4C897218FF29B00353B1F /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		E8D4C898218FF29B00353B1F /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
-		E8D4C89B218FF29B00353B1F /* UIColor+color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+color.m"; sourceTree = "<group>"; };
-		E8D4C89C218FF29B00353B1F /* UIBarButtonItem+common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+common.m"; sourceTree = "<group>"; };
-		E8D4C89D218FF29B00353B1F /* UIImage+image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
-		E8D4C89E218FF29B00353B1F /* UIFont+runtime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIFont+runtime.m"; sourceTree = "<group>"; };
-		E8D4C89F218FF29B00353B1F /* UIBarButtonItem+common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+common.h"; sourceTree = "<group>"; };
-		E8D4C8A0218FF29B00353B1F /* UIColor+color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+color.h"; sourceTree = "<group>"; };
-		E8D4C8A1218FF29B00353B1F /* UIImage+image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
-		E8D4C8A2218FF29B00353B1F /* UIFont+runtime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIFont+runtime.h"; sourceTree = "<group>"; };
-		E8D4C8A4218FF29B00353B1F /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
-		E8D4C8A5218FF29B00353B1F /* TopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopViewController.h; sourceTree = "<group>"; };
-		E8D4C8A7218FF29B00353B1F /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		E8D4C8A8218FF29B00353B1F /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
-		E8D4C8AA218FF29B00353B1F /* HHBluetoothPrinterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHBluetoothPrinterManager.m; sourceTree = "<group>"; };
-		E8D4C8AB218FF29B00353B1F /* HHPrinterFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHPrinterFormat.h; sourceTree = "<group>"; };
-		E8D4C8AC218FF29B00353B1F /* HHBluetoothPrinterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HHBluetoothPrinterManager.h; sourceTree = "<group>"; };
-		E8D4C8AD218FF29B00353B1F /* HHPrinterFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HHPrinterFormat.m; sourceTree = "<group>"; };
-		E8D4C8AF218FF29B00353B1F /* ResetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetViewController.h; sourceTree = "<group>"; };
-		E8D4C8B0218FF29B00353B1F /* ResetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetView.h; sourceTree = "<group>"; };
-		E8D4C8B1218FF29B00353B1F /* ResetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetViewController.m; sourceTree = "<group>"; };
-		E8D4C8B2218FF29B00353B1F /* ResetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetView.m; sourceTree = "<group>"; };
-		E8D4C8B4218FF29B00353B1F /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
-		E8D4C8B5218FF29B00353B1F /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
-		E8D4C8B6218FF29B00353B1F /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
-		E8D4C8B7218FF29B00353B1F /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
-		E8D4C8B9218FF29B00353B1F /* RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterView.h; sourceTree = "<group>"; };
-		E8D4C8BA218FF29B00353B1F /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		E8D4C8BB218FF29B00353B1F /* RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterView.m; sourceTree = "<group>"; };
-		E8D4C8BC218FF29B00353B1F /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		E8D4C8BE218FF29B00353B1F /* QRCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeView.m; sourceTree = "<group>"; };
-		E8D4C8BF218FF29B00353B1F /* QRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeViewController.m; sourceTree = "<group>"; };
-		E8D4C8C0218FF29B00353B1F /* QRCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeView.h; sourceTree = "<group>"; };
-		E8D4C8C1218FF29B00353B1F /* QRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeViewController.h; sourceTree = "<group>"; };
-		E8D4C8C3218FF29B00353B1F /* BluetoothViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothViewController.h; sourceTree = "<group>"; };
-		E8D4C8C4218FF29B00353B1F /* BluetoothViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothViewController.m; sourceTree = "<group>"; };
-		E8D4C8C6218FF29B00353B1F /* UIImage+Bitmap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Bitmap.h"; sourceTree = "<group>"; };
-		E8D4C8C7218FF29B00353B1F /* UIImage+Bitmap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Bitmap.m"; sourceTree = "<group>"; };
-		E8D4C8C9218FF29B00353B1F /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
-		E8D4C8CA218FF29B00353B1F /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		E8D4C8CB218FF29B00353B1F /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		E8D4C8CC218FF29B00353B1F /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
-		E8D4C8CD218FF29B00353B1F /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
-		E8D4C8CE218FF29B00353B1F /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		E8D4C8CF218FF29B00353B1F /* TheFutureOfManure.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheFutureOfManure.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -130,6 +136,171 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E87A3E8121AE6AD000C10EFA /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3E8221AE6AD000C10EFA /* ShareView */,
+				E87A3E8721AE6AD000C10EFA /* WebView */,
+				E87A3E9021AE6AD000C10EFA /* Others */,
+				E87A3E9F21AE6AD000C10EFA /* BaseController */,
+				E87A3EA221AE6AD000C10EFA /* ResetView */,
+				E87A3EA721AE6AD000C10EFA /* Utilities */,
+				E87A3EAC21AE6AD000C10EFA /* RegisterView */,
+				E87A3EB121AE6AD000C10EFA /* QRCodeView */,
+				E87A3EB621AE6AD000C10EFA /* BluetoothView */,
+				E87A3EB921AE6AD000C10EFA /* HLPrinter */,
+				E87A3EBE21AE6AD000C10EFA /* LoginView */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		E87A3E8221AE6AD000C10EFA /* ShareView */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3E8321AE6AD000C10EFA /* ShareView.m */,
+				E87A3E8421AE6AD000C10EFA /* SingleView.h */,
+				E87A3E8521AE6AD000C10EFA /* ShareView.h */,
+				E87A3E8621AE6AD000C10EFA /* SingleView.m */,
+			);
+			path = ShareView;
+			sourceTree = "<group>";
+		};
+		E87A3E8721AE6AD000C10EFA /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3E8821AE6AD000C10EFA /* APOrderInfo.m */,
+				E87A3E8921AE6AD000C10EFA /* WebDetailViewController.h */,
+				E87A3E8A21AE6AD000C10EFA /* WebViewController.m */,
+				E87A3E8B21AE6AD000C10EFA /* PrintModel.h */,
+				E87A3E8C21AE6AD000C10EFA /* APOrderInfo.h */,
+				E87A3E8D21AE6AD000C10EFA /* PrintModel.m */,
+				E87A3E8E21AE6AD000C10EFA /* WebViewController.h */,
+				E87A3E8F21AE6AD000C10EFA /* WebDetailViewController.m */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
+		E87A3E9021AE6AD000C10EFA /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3E9121AE6AD000C10EFA /* Category */,
+				E87A3E9C21AE6AD000C10EFA /* Public */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		E87A3E9121AE6AD000C10EFA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3E9221AE6AD000C10EFA /* UIColor+color.m */,
+				E87A3E9321AE6AD000C10EFA /* UIBarButtonItem+common.m */,
+				E87A3E9421AE6AD000C10EFA /* UIImage+Color.h */,
+				E87A3E9521AE6AD000C10EFA /* UIImage+image.m */,
+				E87A3E9621AE6AD000C10EFA /* UIFont+runtime.m */,
+				E87A3E9721AE6AD000C10EFA /* UIBarButtonItem+common.h */,
+				E87A3E9821AE6AD000C10EFA /* UIColor+color.h */,
+				E87A3E9921AE6AD000C10EFA /* UIImage+image.h */,
+				E87A3E9A21AE6AD000C10EFA /* UIImage+Color.m */,
+				E87A3E9B21AE6AD000C10EFA /* UIFont+runtime.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		E87A3E9C21AE6AD000C10EFA /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3E9D21AE6AD000C10EFA /* TopViewController.m */,
+				E87A3E9E21AE6AD000C10EFA /* TopViewController.h */,
+			);
+			path = Public;
+			sourceTree = "<group>";
+		};
+		E87A3E9F21AE6AD000C10EFA /* BaseController */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EA021AE6AD000C10EFA /* BaseNavigationController.m */,
+				E87A3EA121AE6AD000C10EFA /* BaseNavigationController.h */,
+			);
+			path = BaseController;
+			sourceTree = "<group>";
+		};
+		E87A3EA221AE6AD000C10EFA /* ResetView */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EA321AE6AD000C10EFA /* ResetViewController.h */,
+				E87A3EA421AE6AD000C10EFA /* ResetView.h */,
+				E87A3EA521AE6AD000C10EFA /* ResetViewController.m */,
+				E87A3EA621AE6AD000C10EFA /* ResetView.m */,
+			);
+			path = ResetView;
+			sourceTree = "<group>";
+		};
+		E87A3EA721AE6AD000C10EFA /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EA821AE6AD000C10EFA /* UserManager.m */,
+				E87A3EA921AE6AD000C10EFA /* Helper.h */,
+				E87A3EAA21AE6AD000C10EFA /* Helper.m */,
+				E87A3EAB21AE6AD000C10EFA /* UserManager.h */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E87A3EAC21AE6AD000C10EFA /* RegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EAD21AE6AD000C10EFA /* RegisterView.h */,
+				E87A3EAE21AE6AD000C10EFA /* RegisterViewController.m */,
+				E87A3EAF21AE6AD000C10EFA /* RegisterView.m */,
+				E87A3EB021AE6AD000C10EFA /* RegisterViewController.h */,
+			);
+			path = RegisterView;
+			sourceTree = "<group>";
+		};
+		E87A3EB121AE6AD000C10EFA /* QRCodeView */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EB221AE6AD000C10EFA /* QRCodeView.m */,
+				E87A3EB321AE6AD000C10EFA /* QRCodeViewController.m */,
+				E87A3EB421AE6AD000C10EFA /* QRCodeView.h */,
+				E87A3EB521AE6AD000C10EFA /* QRCodeViewController.h */,
+			);
+			path = QRCodeView;
+			sourceTree = "<group>";
+		};
+		E87A3EB621AE6AD000C10EFA /* BluetoothView */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EB721AE6AD000C10EFA /* BluetoothViewController.h */,
+				E87A3EB821AE6AD000C10EFA /* BluetoothViewController.m */,
+			);
+			path = BluetoothView;
+			sourceTree = "<group>";
+		};
+		E87A3EB921AE6AD000C10EFA /* HLPrinter */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EBA21AE6AD000C10EFA /* HHBluetoothPrinterManager.m */,
+				E87A3EBB21AE6AD000C10EFA /* HHPrinterFormat.h */,
+				E87A3EBC21AE6AD000C10EFA /* HHBluetoothPrinterManager.h */,
+				E87A3EBD21AE6AD000C10EFA /* HHPrinterFormat.m */,
+			);
+			path = HLPrinter;
+			sourceTree = "<group>";
+		};
+		E87A3EBE21AE6AD000C10EFA /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				E87A3EBF21AE6AD000C10EFA /* LoginView.h */,
+				E87A3EC021AE6AD000C10EFA /* LoginViewController.m */,
+				E87A3EC121AE6AD000C10EFA /* UserModel.m */,
+				E87A3EC221AE6AD000C10EFA /* LoginView.m */,
+				E87A3EC321AE6AD000C10EFA /* LoginViewController.h */,
+				E87A3EC421AE6AD000C10EFA /* UserModel.h */,
+			);
+			path = LoginView;
+			sourceTree = "<group>";
+		};
 		E8D4C86B218FE51600353B1F = {
 			isa = PBXGroup;
 			children = (
@@ -154,173 +325,12 @@
 				E8D4C88D218FF29B00353B1F /* AppDelegate.h */,
 				E8D4C88E218FF29B00353B1F /* AppDelegate.m */,
 				E8D4C8CF218FF29B00353B1F /* TheFutureOfManure.pch */,
+				E87A3E8121AE6AD000C10EFA /* Classes */,
 				E8D4C880218FE51600353B1F /* Assets.xcassets */,
-				E8D4C88F218FF29B00353B1F /* Classes */,
 				E8D4C885218FE51600353B1F /* Info.plist */,
 				E8D4C886218FE51600353B1F /* main.m */,
 			);
 			path = TheFutureOfManure;
-			sourceTree = "<group>";
-		};
-		E8D4C88F218FF29B00353B1F /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C890218FF29B00353B1F /* WebView */,
-				E8D4C899218FF29B00353B1F /* Others */,
-				E8D4C8A6218FF29B00353B1F /* BaseController */,
-				E8D4C8A9218FF29B00353B1F /* Print */,
-				E8D4C8AE218FF29B00353B1F /* ResetView */,
-				E8D4C8B3218FF29B00353B1F /* Utilities */,
-				E8D4C8B8218FF29B00353B1F /* RegisterView */,
-				E8D4C8BD218FF29B00353B1F /* QRCodeView */,
-				E8D4C8C2218FF29B00353B1F /* BluetoothView */,
-				E8D4C8C5218FF29B00353B1F /* HLPrinter */,
-				E8D4C8C8218FF29B00353B1F /* LoginView */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		E8D4C890218FF29B00353B1F /* WebView */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C891218FF29B00353B1F /* APOrderInfo.m */,
-				E8D4C892218FF29B00353B1F /* WebDetailViewController.h */,
-				E8D4C893218FF29B00353B1F /* WebViewController.m */,
-				E8D4C894218FF29B00353B1F /* PrintModel.h */,
-				E8D4C895218FF29B00353B1F /* APOrderInfo.h */,
-				E8D4C896218FF29B00353B1F /* PrintModel.m */,
-				E8D4C897218FF29B00353B1F /* WebViewController.h */,
-				E8D4C898218FF29B00353B1F /* WebDetailViewController.m */,
-			);
-			path = WebView;
-			sourceTree = "<group>";
-		};
-		E8D4C899218FF29B00353B1F /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C89A218FF29B00353B1F /* Category */,
-				E8D4C8A3218FF29B00353B1F /* Public */,
-			);
-			path = Others;
-			sourceTree = "<group>";
-		};
-		E8D4C89A218FF29B00353B1F /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C89B218FF29B00353B1F /* UIColor+color.m */,
-				E8D4C89C218FF29B00353B1F /* UIBarButtonItem+common.m */,
-				E8D4C89D218FF29B00353B1F /* UIImage+image.m */,
-				E8D4C89E218FF29B00353B1F /* UIFont+runtime.m */,
-				E8D4C89F218FF29B00353B1F /* UIBarButtonItem+common.h */,
-				E8D4C8A0218FF29B00353B1F /* UIColor+color.h */,
-				E8D4C8A1218FF29B00353B1F /* UIImage+image.h */,
-				E8D4C8A2218FF29B00353B1F /* UIFont+runtime.h */,
-			);
-			path = Category;
-			sourceTree = "<group>";
-		};
-		E8D4C8A3218FF29B00353B1F /* Public */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8A4218FF29B00353B1F /* TopViewController.m */,
-				E8D4C8A5218FF29B00353B1F /* TopViewController.h */,
-			);
-			path = Public;
-			sourceTree = "<group>";
-		};
-		E8D4C8A6218FF29B00353B1F /* BaseController */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8A7218FF29B00353B1F /* BaseNavigationController.m */,
-				E8D4C8A8218FF29B00353B1F /* BaseNavigationController.h */,
-			);
-			path = BaseController;
-			sourceTree = "<group>";
-		};
-		E8D4C8A9218FF29B00353B1F /* Print */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8AA218FF29B00353B1F /* HHBluetoothPrinterManager.m */,
-				E8D4C8AB218FF29B00353B1F /* HHPrinterFormat.h */,
-				E8D4C8AC218FF29B00353B1F /* HHBluetoothPrinterManager.h */,
-				E8D4C8AD218FF29B00353B1F /* HHPrinterFormat.m */,
-			);
-			path = Print;
-			sourceTree = "<group>";
-		};
-		E8D4C8AE218FF29B00353B1F /* ResetView */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8B0218FF29B00353B1F /* ResetView.h */,
-				E8D4C8B2218FF29B00353B1F /* ResetView.m */,
-				E8D4C8AF218FF29B00353B1F /* ResetViewController.h */,
-				E8D4C8B1218FF29B00353B1F /* ResetViewController.m */,
-			);
-			path = ResetView;
-			sourceTree = "<group>";
-		};
-		E8D4C8B3218FF29B00353B1F /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8B4218FF29B00353B1F /* UserManager.m */,
-				E8D4C8B5218FF29B00353B1F /* Helper.h */,
-				E8D4C8B6218FF29B00353B1F /* Helper.m */,
-				E8D4C8B7218FF29B00353B1F /* UserManager.h */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		E8D4C8B8218FF29B00353B1F /* RegisterView */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8B9218FF29B00353B1F /* RegisterView.h */,
-				E8D4C8BB218FF29B00353B1F /* RegisterView.m */,
-				E8D4C8BC218FF29B00353B1F /* RegisterViewController.h */,
-				E8D4C8BA218FF29B00353B1F /* RegisterViewController.m */,
-			);
-			path = RegisterView;
-			sourceTree = "<group>";
-		};
-		E8D4C8BD218FF29B00353B1F /* QRCodeView */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8BE218FF29B00353B1F /* QRCodeView.m */,
-				E8D4C8BF218FF29B00353B1F /* QRCodeViewController.m */,
-				E8D4C8C0218FF29B00353B1F /* QRCodeView.h */,
-				E8D4C8C1218FF29B00353B1F /* QRCodeViewController.h */,
-			);
-			path = QRCodeView;
-			sourceTree = "<group>";
-		};
-		E8D4C8C2218FF29B00353B1F /* BluetoothView */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8C3218FF29B00353B1F /* BluetoothViewController.h */,
-				E8D4C8C4218FF29B00353B1F /* BluetoothViewController.m */,
-			);
-			path = BluetoothView;
-			sourceTree = "<group>";
-		};
-		E8D4C8C5218FF29B00353B1F /* HLPrinter */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8C6218FF29B00353B1F /* UIImage+Bitmap.h */,
-				E8D4C8C7218FF29B00353B1F /* UIImage+Bitmap.m */,
-			);
-			path = HLPrinter;
-			sourceTree = "<group>";
-		};
-		E8D4C8C8218FF29B00353B1F /* LoginView */ = {
-			isa = PBXGroup;
-			children = (
-				E8D4C8C9218FF29B00353B1F /* LoginView.h */,
-				E8D4C8CC218FF29B00353B1F /* LoginView.m */,
-				E8D4C8CD218FF29B00353B1F /* LoginViewController.h */,
-				E8D4C8CA218FF29B00353B1F /* LoginViewController.m */,
-				E8D4C8CE218FF29B00353B1F /* UserModel.h */,
-				E8D4C8CB218FF29B00353B1F /* UserModel.m */,
-			);
-			path = LoginView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -356,7 +366,7 @@
 				TargetAttributes = {
 					E8D4C873218FE51600353B1F = {
 						CreatedOnToolsVersion = 9.0.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -439,33 +449,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8D4C8DF218FF29C00353B1F /* UserManager.m in Sources */,
+				E87A3EC621AE6AD000C10EFA /* SingleView.m in Sources */,
+				E87A3EDA21AE6AD000C10EFA /* BluetoothViewController.m in Sources */,
+				E87A3EDE21AE6AD000C10EFA /* UserModel.m in Sources */,
+				E87A3ECD21AE6AD000C10EFA /* UIImage+image.m in Sources */,
+				E87A3ED221AE6AD000C10EFA /* ResetViewController.m in Sources */,
+				E87A3EC821AE6AD000C10EFA /* WebViewController.m in Sources */,
+				E87A3EDD21AE6AD000C10EFA /* LoginViewController.m in Sources */,
+				E87A3ECE21AE6AD000C10EFA /* UIFont+runtime.m in Sources */,
+				E87A3EC921AE6AD000C10EFA /* PrintModel.m in Sources */,
+				E87A3ECB21AE6AD000C10EFA /* UIColor+color.m in Sources */,
 				E8D4C8D0218FF29C00353B1F /* AppDelegate.m in Sources */,
-				E8D4C8D3218FF29C00353B1F /* PrintModel.m in Sources */,
-				E8D4C8E9218FF29C00353B1F /* LoginView.m in Sources */,
-				E8D4C8D4218FF29C00353B1F /* WebDetailViewController.m in Sources */,
-				E8D4C8E7218FF29C00353B1F /* LoginViewController.m in Sources */,
-				E8D4C8E6218FF29C00353B1F /* UIImage+Bitmap.m in Sources */,
-				E8D4C8DC218FF29C00353B1F /* HHPrinterFormat.m in Sources */,
-				E8D4C8DE218FF29C00353B1F /* ResetView.m in Sources */,
-				E8D4C8E8218FF29C00353B1F /* UserModel.m in Sources */,
-				E8D4C8E5218FF29C00353B1F /* BluetoothViewController.m in Sources */,
-				E8D4C8D8218FF29C00353B1F /* UIFont+runtime.m in Sources */,
-				E8D4C8E0218FF29C00353B1F /* Helper.m in Sources */,
-				E8D4C8E1218FF29C00353B1F /* RegisterViewController.m in Sources */,
-				E8D4C8E2218FF29C00353B1F /* RegisterView.m in Sources */,
-				E8D4C8D5218FF29C00353B1F /* UIColor+color.m in Sources */,
-				E8D4C8E3218FF29C00353B1F /* QRCodeView.m in Sources */,
+				E87A3ECA21AE6AD000C10EFA /* WebDetailViewController.m in Sources */,
+				E87A3ED521AE6AD000C10EFA /* Helper.m in Sources */,
+				E87A3EC521AE6AD000C10EFA /* ShareView.m in Sources */,
+				E87A3ED421AE6AD000C10EFA /* UserManager.m in Sources */,
+				E87A3ECC21AE6AD000C10EFA /* UIBarButtonItem+common.m in Sources */,
+				E87A3ED021AE6AD000C10EFA /* TopViewController.m in Sources */,
 				E8D4C887218FE51600353B1F /* main.m in Sources */,
-				E8D4C8D6218FF29C00353B1F /* UIBarButtonItem+common.m in Sources */,
-				E8D4C8DD218FF29C00353B1F /* ResetViewController.m in Sources */,
-				E8D4C8D9218FF29C00353B1F /* TopViewController.m in Sources */,
-				E8D4C8DA218FF29C00353B1F /* BaseNavigationController.m in Sources */,
-				E8D4C8D1218FF29C00353B1F /* APOrderInfo.m in Sources */,
-				E8D4C8E4218FF29C00353B1F /* QRCodeViewController.m in Sources */,
-				E8D4C8DB218FF29C00353B1F /* HHBluetoothPrinterManager.m in Sources */,
-				E8D4C8D2218FF29C00353B1F /* WebViewController.m in Sources */,
-				E8D4C8D7218FF29C00353B1F /* UIImage+image.m in Sources */,
+				E87A3ED621AE6AD000C10EFA /* RegisterViewController.m in Sources */,
+				E87A3ED821AE6AD000C10EFA /* QRCodeView.m in Sources */,
+				E87A3EDF21AE6AD000C10EFA /* LoginView.m in Sources */,
+				E87A3ED321AE6AD000C10EFA /* ResetView.m in Sources */,
+				E87A3ED921AE6AD000C10EFA /* QRCodeViewController.m in Sources */,
+				E87A3EDB21AE6AD000C10EFA /* HHBluetoothPrinterManager.m in Sources */,
+				E87A3EC721AE6AD000C10EFA /* APOrderInfo.m in Sources */,
+				E87A3ECF21AE6AD000C10EFA /* UIImage+Color.m in Sources */,
+				E87A3ED121AE6AD000C10EFA /* BaseNavigationController.m in Sources */,
+				E87A3ED721AE6AD000C10EFA /* RegisterView.m in Sources */,
+				E87A3EDC21AE6AD000C10EFA /* HHPrinterFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,14 +594,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ZLW2JUDPMZ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TheFutureOfManure/TheFutureOfManure.pch;
 				INFOPLIST_FILE = TheFutureOfManure/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.TheFutureOfManure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.private.TheFutureOfManure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "88000042-a714-48be-9e24-49be10b70975";
+				PROVISIONING_PROFILE_SPECIFIER = "TheFutureOfManure-dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -600,14 +615,18 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = ZLW2JUDPMZ;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = TheFutureOfManure/TheFutureOfManure.pch;
 				INFOPLIST_FILE = TheFutureOfManure/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.TheFutureOfManure;
+				PRODUCT_BUNDLE_IDENTIFIER = com.private.TheFutureOfManure;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "64a3700e-2090-44cf-8324-4ff01b1b4332";
+				PROVISIONING_PROFILE_SPECIFIER = "TheFutureOfManure-dis";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

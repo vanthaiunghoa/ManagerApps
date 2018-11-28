@@ -43,7 +43,7 @@ static id _instance;
     // 智慧政务
 //    return @"http://121.15.203.82:9210/DMS_Phone";
     // 塘厦
-    return @"http://19.108.192.125/DMS_Phone";
+//    return @"http://19.108.192.125/DMS_Phone";
     // 规划局
 //    return @"http://19.104.9.125/DMS_Phone";
     
@@ -58,6 +58,8 @@ static id _instance;
     
     // 测试
 //    return @"http://172.30.12.1/DMS_Phone";
+    // 自动化办公
+    return @"http://221.4.134.50:8081/DMS_Phone";
 }
 
 - (NSString *)getLoginUrl

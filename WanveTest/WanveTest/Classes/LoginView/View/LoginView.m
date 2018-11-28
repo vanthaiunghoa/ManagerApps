@@ -31,17 +31,22 @@
 //        make.top.left.bottom.right.equalTo(self);
 //    }];
     
-//    UIImageView *logoIcon = [UIImageView new];
-////    // 勤智资本
-////    logoIcon.image = [UIImage imageWithName:@"logo-qzzb"];
+    UIImageView *logoIcon = [UIImageView new];
+//    // 勤智资本
+//    logoIcon.image = [UIImage imageWithName:@"logo-qzzb"];
 //    logoIcon.image = [UIImage imageWithName:@"logo_company"];
-//    [self addSubview:logoIcon];
-//    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
-//        make.centerX.equalTo(self.centerX);
-//        make.top.equalTo(@(H(85)));
+    // 自动办公
+    logoIcon.image = [UIImage imageNamed:@"logo-zdhoa"];
+    [self addSubview:logoIcon];
+    [logoIcon makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.centerX);
+        make.top.equalTo(@(H(85)));
 //        make.width.equalTo(@(W(129)));
 //        make.height.equalTo(@(H(44)));
-//    }];
+        // 自动化办公
+        make.width.equalTo(@(W(184/164.0 * 60)));
+        make.height.equalTo(@(H(60)));
+    }];
 
     UILabel *company = [UILabel new];
 //    company.text = @"东莞市科学技术局";
@@ -52,17 +57,19 @@
 //    company.text = @"塘厦镇人民政府";
 //    company.text = @"东莞市规划局文件流转系统";
 //    company.text = @"中共东莞市委统战部";
-    company.text = @"广东省渔政总队东莞支队";
+//    company.text = @"广东省渔政总队东莞支队";
 //    company.text = @"东莞市招商引资创新办公室";
+    // 自动化办公
+    company.text = @"东莞市交投集团";
     company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont systemFontOfSize:28];
     company.font = [UIFont systemFontOfSize:25];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
     [company makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(@(H(130)));
+//        make.top.equalTo(@(H(130)));
         make.centerX.equalTo(self.centerX);
-//        make.top.equalTo(logoIcon.bottom).offset(H(10));
+        make.top.equalTo(logoIcon.bottom).offset(H(10));
         make.left.right.equalTo(self);
     }];
     
@@ -70,9 +77,11 @@
     // 滨海湾  水务局
 //    titleLab.text = @"智慧办公系统";
     // 渔政支队
-    titleLab.text = @"智慧政务管理平台";
+//    titleLab.text = @"智慧政务管理平台";
 //    titleLab.text = @"投资数据管理平台";
 //    titleLab.text = @"智慧政务平台";
+    // 自动化办公
+    titleLab.text = @"移动办公系统";
     titleLab.textColor = [UIColor whiteColor];
     titleLab.font = [UIFont systemFontOfSize:22];
     titleLab.textAlignment = NSTextAlignmentCenter;
@@ -219,18 +228,19 @@
         make.top.equalTo(self.autoLoginBtn.bottom).with.offset(H(20));
     }];
     
-    UIButton *vpnBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [vpnBtn setTitle:@"VPN设置" forState:UIControlStateNormal];
-    [vpnBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [vpnBtn setImage:[UIImage imageWithName:@"setting"] forState:UIControlStateNormal];
-    vpnBtn.titleLabel.font=[UIFont systemFontOfSize:15];
-    vpnBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
-    [vpnBtn addTarget:self action:@selector(vpnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:vpnBtn];
-    [vpnBtn makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(loginBtn.bottom).offset(H(20));
-        make.right.equalTo(loginBtn.right);
-    }];
+    // 自动化去掉
+//    UIButton *vpnBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [vpnBtn setTitle:@"VPN设置" forState:UIControlStateNormal];
+//    [vpnBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [vpnBtn setImage:[UIImage imageWithName:@"setting"] forState:UIControlStateNormal];
+//    vpnBtn.titleLabel.font=[UIFont systemFontOfSize:15];
+//    vpnBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, W(-10));
+//    [vpnBtn addTarget:self action:@selector(vpnSettingClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [self addSubview:vpnBtn];
+//    [vpnBtn makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(loginBtn.bottom).offset(H(20));
+//        make.right.equalTo(loginBtn.right);
+//    }];
 
 
     return self;

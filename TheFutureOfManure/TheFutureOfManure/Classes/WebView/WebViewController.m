@@ -10,6 +10,8 @@
 #import "UserManager.h"
 #import "BaseNavigationController.h"
 #import "LoginViewController.h"
+#import "ShareView.h"
+#import "OpenShareHeader.h"
 
 @interface WebViewController()<UIGestureRecognizerDelegate, NSURLSessionDelegate>
 
@@ -30,28 +32,219 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+//    self.fd_prefersNavigationBarHidden = NO;
+    self.fd_interactivePopDisabled = YES;
     
     //设置状态栏颜色
-    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
-    statusBarView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:statusBarView];
+//    UIView *statusBarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 20)];
+//    statusBarView.backgroundColor = [UIColor whiteColor];
+//    [self.view addSubview:statusBarView];
 //    _printDatas = [NSMutableArray array];
 //    [NSTimer scheduledTimerWithTimeInterval:(float)0.02 target:self selector:@selector(sendDataTimer:) userInfo:nil repeats:YES];
+//    [self addLeftButton];
+    [self addRightButton];
+}
+
+- (void)addLeftButton
+{
+    if(self.webView.canGoBack)
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btn setImage:[UIImage imageNamed:@"arrow_back_black"] forState:UIControlStateNormal];
+        [btn sizeToFit];
+        [btn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+    else
+    {
+        UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//        [btn setImage:[UIImage imageNamed:@"logout"] forState:UIControlStateNormal];
+//        [btn sizeToFit];
+//        [btn addTarget:self action:@selector(logoutCall) forControlEvents:UIControlEventTouchUpInside];
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    }
+}
+
+- (void)addRightButton
+{
+    UIButton *btnShare = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btnShare setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
+    [btnShare sizeToFit];
+    [btnShare addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:btnShare];
+}
+
+- (void)back
+{
+    if(self.webView.canGoBack)
+    {
+        [self.webView goBack];
+    }
+}
+
+- (void)logoutCall
+{
+    UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
+//    userModel.username = @"";
+//    userModel.password = @"";
+    userModel.isAutoLogin = NO;
+    userModel.isLogout = YES;
+    [[UserManager sharedUserManager] saveUserModel:userModel];
+    
+    [self cleanCacheAndCookie];
+    //            [self.navigationController popViewControllerAnimated:YES];
+    LoginViewController *vc = [LoginViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
+    [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+}
+
+#pragma mark - share
+
+- (void)share
+{
+    NSMutableArray *titarray = [NSMutableArray arrayWithObjects:@"微信",@"朋友圈",@"推荐下载", nil];
+    NSMutableArray *picarray = [NSMutableArray arrayWithObjects:@"wechat",@"friend",@"download", nil];
+    ShareView *shareView = [[ShareView alloc]initWithTitleArray:titarray picarray:picarray];
+    
+    @weakify(self);
+    [shareView selectedWithIndex:^(NSInteger index,id shareType) {
+        @strongify(self);
+        switch (index) {
+            case 0:
+                [self wechatShare];
+                break;
+            case 1:
+                [self friendShare];
+                break;
+            case 2:
+                [self downloadShare];
+                break;
+                
+            default:
+                break;
+        }
+    }];
+    
+    [shareView CLBtnBlock:^(UIButton *btn) {
+        PLog(@"你点了选择/取消按钮");
+    }];
+    
+    [shareView show];
+}
+
+- (void)qqShare
+{
+    id data = @{ @"qq": @"qqShare" };
+    [_bridge callHandler:@"qqShare" data:data responseCallback:^(id response) {
+        NSLog(@"testJavascriptHandler responded: %@", response);
+    }];
+}
+
+- (void)wechatShare
+{
+    id data = @{ @"wechat": @"wechatShare" };
+    [_bridge callHandler:@"getAppShareInfo" data:data responseCallback:^(id response) {
+        NSString *shareLink = response[@"shareLink"];
+        NSString *shareImgUrl = response[@"shareImgUrl"];
+        NSString *shareDesc = response[@"shareDesc"];
+        NSString *shareTitle = response[@"shareTitle"];
+        
+        OSMessage *msg = [[OSMessage alloc]init];
+        msg.title = shareTitle;
+        msg.desc = shareDesc;
+        msg.link = shareLink;
+        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
+
+        [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
+            PLog(@"微信分享到会话成功：\n%@",message);
+        } Fail:^(OSMessage *message, NSError *error) {
+            PLog(@"微信分享到会话失败：\n%@\n%@",error,message);
+        }];
+    }];
+}
+
+- (void)friendShare
+{
+    id data = @{ @"friend": @"friendShare" };
+    [_bridge callHandler:@"getAppShareInfo" data:data responseCallback:^(id response) {
+        NSString *shareLink = response[@"shareLink"];
+        NSString *shareImgUrl = response[@"shareImgUrl"];
+        NSString *shareDesc = response[@"shareDesc"];
+        NSString *shareTitle = response[@"shareTitle"];
+        
+        OSMessage *msg = [[OSMessage alloc]init];
+        msg.title = shareTitle;
+        msg.desc = shareDesc;
+        msg.link = shareLink;
+        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
+
+        [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
+            PLog(@"微信分享到朋友圈成功：\n%@",message);
+        } Fail:^(OSMessage *message, NSError *error) {
+            PLog(@"微信分享到朋友圈失败：\n%@\n%@",error,message);
+        }];
+    }];
+}
+
+- (void)downloadShare
+{
+    id data = @{ @"download": @"downloadShare" };
+    [_bridge callHandler:@"getAppDownloadInfo" data:data responseCallback:^(id response) {
+        NSString *shareLink = response[@"shareLink"];
+        NSString *shareImgUrl = response[@"shareImgUrl"];
+        NSString *shareDesc = response[@"shareDesc"];
+        NSString *shareTitle = response[@"shareTitle"];
+        
+        OSMessage *msg = [[OSMessage alloc]init];
+        msg.title = shareTitle;
+        msg.desc = shareDesc;
+        msg.link = shareLink;
+        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
+        
+        [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
+            PLog(@"微信分享到会话成功：\n%@",message);
+        } Fail:^(OSMessage *message, NSError *error) {
+            PLog(@"微信分享到会话失败：\n%@\n%@",error,message);
+        }];
+    }];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+    self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+//    [self.navigationController setNavigationBarHidden:YES];
 //    self.manager.delegate = self;
 //    [self.manager cancelScan];
     
     if (_bridge) { return; }
     
-    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, SCREEN_HEIGHT-20)];
+    CGFloat statusBarH = [[UIApplication sharedApplication] statusBarFrame].size.height;
+    CGFloat navigationBarH = self.navigationController.navigationBar.frame.size.height;
+
+    
+    _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, statusBarH + navigationBarH, SCREEN_WIDTH, SCREEN_HEIGHT - navigationBarH - statusBarH)];
     _webView.scrollView.bounces = NO;
     
     [self.view addSubview:_webView];
+    
+    // 避免WebView最下方出现黑线
+    _webView.backgroundColor = [UIColor clearColor];
+    _webView.opaque = NO;
+    
+    // 去掉webView的滚动条
+    for (UIView *subView in [_webView subviews])
+    {
+        if ([subView isKindOfClass:[UIScrollView class]])
+        {
+            // 不显示竖直的滚动条
+            [(UIScrollView *)subView setShowsVerticalScrollIndicator:NO];
+        }
+    }
+
     
     UILongPressGestureRecognizer* longPressed = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressed:)];
     longPressed.delegate = self;
@@ -65,6 +258,7 @@
 //    [self printFeeList];
 //    [self printQrcode];
 //    [self bindQrcodeOrder];
+    
     [self logout];
     [self callPhone];
 //    [self renderButtons:webView];
@@ -98,7 +292,7 @@
     self.testView = [UIImageView new];
     self.testView.backgroundColor = [UIColor redColor];
     [self.view insertSubview:self.testView aboveSubview:webView];
-    [self.testView makeConstraints:^(MASConstraintMaker *make) {
+    [self.testView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view).offset(100);
         make.left.equalTo(self.view).offset(100);
         make.width.height.equalTo(@200);
@@ -131,11 +325,11 @@
         PLog(@"goPay == %@", data);
         if(data)
         {
-            NSString *custId = data[@"custId"];
-            NSString *ruleId = data[@"ruleId"];
-            NSString *couponId = data[@"couponId"];
+            NSString *userId = data[@"userId"];
+            NSString *amount = data[@"amount"];
+            NSString *type = data[@"payType"];
             
-            [self aliPay:custId ruleId:ruleId couponId:couponId];
+            [self aliPay:userId amount:amount type:type];
         }
     }];
 }
@@ -156,7 +350,7 @@
     }];
 }
 
-- (void)aliPay:(NSString *)custId ruleId:(NSString *)ruleId couponId:(NSString *)couponId
+- (void)aliPay:(NSString *)userId amount:(NSString *)amount type:(NSString *)type
 {
     self.view.userInteractionEnabled = NO;
     [SVProgressHUD showWithStatus:@"支付中，请稍等..."];
@@ -170,12 +364,11 @@
     
     //2.发送请求
     NSDictionary *dict = @{
-                           @"custId":custId,
-                           @"ruleId":ruleId,
-                           @"couponId":couponId,
-                           @"rechargeWay":@"aliPay"
+                           @"userId":userId,
+                           @"amount":amount,
+                           @"payType":type
                            };
-    NSString *url = @"http://xin.xinkozi.com:8088/xds/api/alipay/gateway.do";
+    NSString *url = @"http://handpig.com/pakTest/api/alipay/gateway.do";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         NSString *res = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
         PLog(@"请求成功--responseObject == %@", res);
@@ -365,25 +558,25 @@
 - (void)aliPay:(NSString *)order
 {
     LeoPayManager *manager = [LeoPayManager getInstance];
-    [manager aliPayOrder:order scheme:@"GrapTheOrder" respBlock:^(NSInteger respCode, NSString *respMsg) {
+    [manager aliPayOrder:order scheme:@"PigOnPalm" respBlock:^(NSInteger respCode, NSString *respMsg) {
         
         self.view.userInteractionEnabled = YES;
 
         switch (respCode) {
             case 0:
-                NSLog(@"支付成功");
+                PLog(@"支付成功");
                 [SVProgressHUD showInfoWithStatus:@"支付成功"];
                 break;
             case -1:
-                NSLog(@"支付失败");
+                PLog(@"支付失败");
                 [SVProgressHUD showInfoWithStatus:@"支付失败"];
                 break;
             case -2:
-                NSLog(@"支付取消");
+                PLog(@"支付取消");
                 [SVProgressHUD showInfoWithStatus:@"支付取消"];
                 break;
             case -99:
-                NSLog(@"未知错误");
+                PLog(@"未知错误");
                 [SVProgressHUD showInfoWithStatus:@"未知错误"];
                 break;
             default:
@@ -409,7 +602,7 @@
 - (void)sendDataTimer:(NSTimer *)timer
 {
     //发送打印数据
-    //NSLog(@"send data timer");
+    //PLog(@"send data timer");
     
     if ([_printDatas count] > 0)
     {
@@ -430,18 +623,7 @@
         PLog(@"logout == %@", data);
         if(data)
         {
-            UserModel *userModel = [[UserManager sharedUserManager] getUserModel];
-            userModel.username = @"";
-            userModel.password = @"";
-            userModel.isAutoLogin = NO;
-            userModel.isLogout = YES;
-            [[UserManager sharedUserManager] saveUserModel:userModel];
-            
-            [self cleanCacheAndCookie];
-//            [self.navigationController popViewControllerAnimated:YES];
-            LoginViewController *vc = [LoginViewController new];
-            BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:vc];
-            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
+            [self logoutCall];
         }
     }];
 }
@@ -695,7 +877,7 @@
 
 - (void)printData:(NSData *)dataPrinted
 {
-    NSLog(@"print data:%lu", (unsigned long)[dataPrinted length]);
+    PLog(@"print data:%lu", (unsigned long)[dataPrinted length]);
     //    aa++;
 //#define MAX_CHARACTERISTIC_VALUE_SIZE 20
     NSData  *data    = nil;
@@ -705,7 +887,7 @@
     NSUInteger cellMin;
     NSUInteger cellLen;
     
-    NSLog(@"print data:%@", dataPrinted);
+    PLog(@"print data:%@", dataPrinted);
     
     
     strLength = [dataPrinted length];
@@ -721,11 +903,11 @@
             cellLen = MAX_CHARACTERISTIC_VALUE_SIZE;
         }
         
-        NSLog(@"print:%lu,%lu,%lu,%lu", (unsigned long)strLength,(unsigned long)cellCount, (unsigned long)cellMin, (unsigned long)cellLen);
+        PLog(@"print:%lu,%lu,%lu,%lu", (unsigned long)strLength,(unsigned long)cellCount, (unsigned long)cellMin, (unsigned long)cellLen);
         NSRange rang = NSMakeRange(cellMin, cellLen);
         
         data = [dataPrinted subdataWithRange:rang];
-        NSLog(@"print:%@", data);
+        PLog(@"print:%@", data);
         //        if (aa>3) {
         
         //        }else{
@@ -848,26 +1030,30 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     PLog(@"webViewDidFinishLoad");
+    self.title = [self.webView stringByEvaluatingJavaScriptFromString:@"document.title"];
+    PLog(@"title == %@", self.title);
+    
+    [self addLeftButton];
 }
 
 - (void)loadWebView:(UIWebView*)webView
 {
-    NSURL* url = [NSURL URLWithString:@"http://xin.xinkozi.com:8088/xds/app/index.do"];
+    NSURL* url = [NSURL URLWithString:@"http://handpig.com/pak/wx/mark/basePage.do"];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle{
-    
-    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
-    
-    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
-    {
-        statusBar.backgroundColor = [UIColor cyanColor];
-    }
-    
-    return UIStatusBarStyleLightContent;
-}
+//- (UIStatusBarStyle)preferredStatusBarStyle{
+//
+//    UIView *statusBar = [[[UIApplication sharedApplication] valueForKey:@"statusBarWindow"] valueForKey:@"statusBar"];
+//
+//    if ([statusBar respondsToSelector:@selector(setBackgroundColor:)])
+//    {
+//        statusBar.backgroundColor = [UIColor whiteColor];
+//    }
+//
+//    return UIStatusBarStyleLightContent;
+//}
 
 #pragma mark - savePictrue
 

@@ -132,7 +132,7 @@
                            @"j_password":self.password,
                            @"vway":@"vp"
                            };
-    NSString *url = @"http://handpig.com/pakTest/j_spring_security_check";
+    NSString *url = @"http://handpig.com/pak/j_spring_security_check";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD dismiss];

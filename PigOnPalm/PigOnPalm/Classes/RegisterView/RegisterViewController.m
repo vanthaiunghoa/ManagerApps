@@ -54,7 +54,7 @@
                            @"vcode":code,
                            @"pwd":password
                            };
-    NSString *url = @"http://handpig.com/pakTest/api/registerAccount.do";
+    NSString *url = @"http://handpig.com/pak/api/registerAccount.do";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD dismiss];
@@ -105,7 +105,7 @@
                            @"j_password":password,
                            @"vway":@"vp"
                            };
-    NSString *url = @"http://handpig.com/pakTest/j_spring_security_check";
+    NSString *url = @"http://handpig.com/pak/j_spring_security_check";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD dismiss];
@@ -146,7 +146,7 @@
                            @"phone":num,
                            @"op":@"regt"
                            };
-    NSString *url = @"http://handpig.com/pakTest/api/sendVcode.do";
+    NSString *url = @"http://handpig.com/pak/api/sendVcode.do";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 //        self.view.userInteractionEnabled = YES;
 //        [SVProgressHUD dismiss];

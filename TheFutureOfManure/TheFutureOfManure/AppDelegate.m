@@ -56,7 +56,7 @@
     
     [self keyboardInit];
     [self progressHUDInit];
-    [self initJPush:launchOptions];
+//    [self initJPush:launchOptions];
     [self userModelInit];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

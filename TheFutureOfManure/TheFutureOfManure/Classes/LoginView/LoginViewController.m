@@ -16,10 +16,22 @@
 
 @implementation LoginViewController
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.fd_prefersNavigationBarHidden = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refresh) name:@"ReloadData" object:nil];
+}
+
+- (void)refresh
+{
+    [_loginView reloadData];
 }
 
 - (void)loadView
@@ -117,9 +129,10 @@
     //2.发送请求
     NSDictionary *dict = @{
                            @"j_username":self.username,
-                           @"j_password":self.password
+                           @"j_password":self.password,
+                           @"vway":@"vp"
                            };
-    NSString *url = @"http://xin.xinkozi.com:8088/xds/j_spring_security_check";
+    NSString *url = @"http://handpig.com/pak/j_spring_security_check";
     [manager POST:url parameters: dict success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
         [SVProgressHUD dismiss];
@@ -158,9 +171,12 @@
                  }
             } seq:[self getRandomNumber:0 to:RAND_MAX]];
             
-            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
+//            UIViewController *vc = [NSClassFromString(@"WebViewController") new];
 //            [self.navigationController pushViewController:vc animated:YES];
-            [UIApplication sharedApplication].keyWindow.rootViewController = [NSClassFromString(@"WebViewController") new];
+            
+            UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:[NSClassFromString(@"WebViewController") new]];
+
+            [UIApplication sharedApplication].keyWindow.rootViewController = nav;
         }
         else
         {

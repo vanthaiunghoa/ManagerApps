@@ -193,22 +193,22 @@
 {
     id data = @{ @"download": @"downloadShare" };
     [_bridge callHandler:@"getAppDownloadInfo" data:data responseCallback:^(id response) {
-//        NSString *shareLink = response[@"shareLink"];
-//        NSString *shareImgUrl = response[@"shareImgUrl"];
-//        NSString *shareDesc = response[@"shareDesc"];
-//        NSString *shareTitle = response[@"shareTitle"];
-//
-//        OSMessage *msg = [[OSMessage alloc]init];
-//        msg.title = shareTitle;
-//        msg.desc = shareDesc;
-//        msg.link = shareLink;
-//        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
-//
-//        [OpenShare shareToWeixinTimeline:msg Success:^(OSMessage *message) {
-//            PLog(@"微信分享到朋友圈成功：\n%@",message);
-//        } Fail:^(OSMessage *message, NSError *error) {
-//            PLog(@"微信分享到朋友圈失败：\n%@\n%@",error,message);
-//        }];
+        NSString *shareLink = response[@"shareLink"];
+        NSString *shareImgUrl = response[@"shareImgUrl"];
+        NSString *shareDesc = response[@"shareDesc"];
+        NSString *shareTitle = response[@"shareTitle"];
+        
+        OSMessage *msg = [[OSMessage alloc]init];
+        msg.title = shareTitle;
+        msg.desc = shareDesc;
+        msg.link = shareLink;
+        msg.image = [NSData dataWithContentsOfURL:[NSURL URLWithString:shareImgUrl]];
+        
+        [OpenShare shareToWeixinSession:msg Success:^(OSMessage *message) {
+            PLog(@"微信分享到会话成功：\n%@",message);
+        } Fail:^(OSMessage *message, NSError *error) {
+            PLog(@"微信分享到会话失败：\n%@\n%@",error,message);
+        }];
     }];
 }
 
@@ -1038,7 +1038,7 @@
 
 - (void)loadWebView:(UIWebView*)webView
 {
-    NSURL* url = [NSURL URLWithString:@"http://handpig.com/pakTest/wx/mark/basePage.do"];
+    NSURL* url = [NSURL URLWithString:@"http://handpig.com/pak/wx/mark/basePage.do"];
     NSURLRequest* request = [NSURLRequest requestWithURL:url];
     [webView loadRequest:request];
 }

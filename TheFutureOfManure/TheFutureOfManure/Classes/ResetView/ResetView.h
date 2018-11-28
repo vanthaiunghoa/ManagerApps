@@ -4,8 +4,8 @@
 
 @optional
 
-- (void)didRegisterWithUserName:(NSString *)username AndPassWord:(NSString *)password;
-- (void)didGetCode;
+- (void)didRegisterWithUserName:(NSString *)username code:(NSString *)code password:(NSString *)password;
+- (void)didGetCode:(NSString *)num;
 
 @end
 
@@ -14,6 +14,7 @@
 @property (nonatomic, weak) id<ResetViewDelegate> delegate;
 
 - (void)reloadData;
+- (void)countDown;
 
 @end
 
