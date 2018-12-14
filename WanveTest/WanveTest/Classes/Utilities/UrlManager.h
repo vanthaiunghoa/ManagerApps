@@ -6,5 +6,6 @@
 - (NSString *)getBaseUrl;
 - (NSString *)getLoginUrl;
 - (NSString *)getHomePageUrl;
+- (NSString *)getMD5Url;
 
 @end

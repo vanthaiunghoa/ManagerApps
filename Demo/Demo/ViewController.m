@@ -8,12 +8,15 @@
 
 #import "ViewController.h"
 #import <TencentLBS/TencentLBS.h>
+#import <AFNetworking.h>
+#import <SVProgressHUD.h>
 
 @interface ViewController ()<TencentLBSLocationManagerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (readwrite, nonatomic, strong) TencentLBSLocationManager *locationManager;
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) UILabel *labLocate;
+@property(nonatomic, strong) TencentLBSLocation *location;
 
 @end
 
@@ -39,6 +42,22 @@
     
     [btnPhoto addTarget:self action:@selector(photoCall:) forControlEvents:UIControlEventTouchUpInside];
     
+    UIButton *btnUpload = [[UIButton alloc]initWithFrame:CGRectMake(150, 50, 80, 50)];
+    [btnUpload setTitle:@"上传" forState:UIControlStateNormal];
+    btnUpload.backgroundColor = [UIColor redColor];
+    btnUpload.titleLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:btnUpload];
+    
+    [btnUpload addTarget:self action:@selector(uploadCall:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *btnVerify = [[UIButton alloc]initWithFrame:CGRectMake(250, 50, 80, 50)];
+    [btnVerify setTitle:@"识别" forState:UIControlStateNormal];
+    btnVerify.backgroundColor = [UIColor orangeColor];
+    btnVerify.titleLabel.textColor = [UIColor whiteColor];
+    [self.view addSubview:btnVerify];
+    
+    [btnVerify addTarget:self action:@selector(verifyCall:) forControlEvents:UIControlEventTouchUpInside];
+    
     UILabel *lab = [[UILabel alloc]initWithFrame:CGRectMake(10, 400, [UIScreen mainScreen].bounds.size.width - 20, 250)];
     [self.view addSubview:lab];
     lab.numberOfLines = 0;
@@ -46,6 +65,54 @@
     
     [self configLocationManager];
     [self startUpdatingLocation];
+}
+
+- (void)verifyCall:(UIButton *)sender
+{
+    [self presentViewController:[NSClassFromString(@"VerifyViewController") new] animated:YES completion:nil];
+}
+
+- (void)uploadCall:(UIButton *)sender
+{
+    [SVProgressHUD showWithStatus:@"上传中，请稍等..."];
+    
+    //1.创建一个请求管理者
+    //AFHTTPRequestOperationManager内部封装了URLSession
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    //    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/plain", @"text/html",nil];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    //2.发送请求
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    fmt.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"];
+    fmt.dateFormat = @"yyyy-MM-dd hh:mm:ss";
+    NSString *dateString = [fmt stringFromDate:self.location.location.timestamp];
+    
+    param[@"UserID"] = @"1";
+    param[@"UserName"] = @"1";
+    param[@"UserAccount"] = @"1";
+    param[@"DateTime"] = dateString;
+    param[@"Address"] = self.location.address;
+    param[@"Latitude"] = [NSString stringWithFormat:@"%f", self.location.location.coordinate.latitude];
+    param[@"Longitude"] = [NSString stringWithFormat:@"%f", self.location.location.coordinate.longitude];
+   
+    NSString *url = @"https://www.zhihuigongwu.com/Jelly/PunchRecord/Add";
+    
+    [manager POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        self.view.userInteractionEnabled = YES;
+        [SVProgressHUD showSuccessWithStatus:@"上传成功"];
+        NSLog(@"请求成功--%@",responseObject);
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"请求成功 dict--%@",dict);
+        
+        } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        self.view.userInteractionEnabled = YES;
+        NSLog(@"请求失败--%@",error);
+        [SVProgressHUD showInfoWithStatus:@"网络异常"];
+    }];
 }
 
 - (void)photoCall:(UIButton *)sender
@@ -127,6 +194,8 @@
     NSString *dateString = [fmt stringFromDate:location.location.timestamp];
     
     [self.labLocate setText:[NSString stringWithFormat:@"%@\n %@\n latitude:%f, longitude:%f\n horizontalAccuracy:%f \n verticalAccuracy:%f\n speed:%f\n course:%f\n altitude:%f\n timestamp:%@\n", location.name, location.address, location.location.coordinate.latitude, location.location.coordinate.longitude, location.location.horizontalAccuracy, location.location.verticalAccuracy, location.location.speed, location.location.course, location.location.altitude, dateString]];
+    
+    self.location = location;
 }
 
 

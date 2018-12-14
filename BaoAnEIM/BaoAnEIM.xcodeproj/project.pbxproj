@@ -518,7 +518,6 @@
 				E877B8021FFF53320091587B /* Sources */,
 				E877B8031FFF53320091587B /* Frameworks */,
 				E877B8041FFF53320091587B /* Resources */,
-				500F2B8B6E8603CAA93F2F29 /* [CP] Embed Pods Frameworks */,
 				15645BB5A2F358BCE3339D4B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -678,7 +677,8 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -701,21 +701,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		500F2B8B6E8603CAA93F2F29 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BaoAnEIM/Pods-BaoAnEIM-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -895,12 +880,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BaoAnEIM/BaoAnEIM.pch;
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.djgwj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.bjfd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "91175c0c-723e-41d0-88ee-119a60fd2fe6";
-				PROVISIONING_PROFILE_SPECIFIER = "djgwj-dev";
+				PROVISIONING_PROFILE = "6d66a590-b37d-4c2d-b9d4-b15c6c0c2e39";
+				PROVISIONING_PROFILE_SPECIFIER = "bjfd-dev";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -917,12 +902,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = BaoAnEIM/BaoAnEIM.pch;
 				INFOPLIST_FILE = BaoAnEIM/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.djgwj;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wanve.bjfd;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "42b7e410-190b-4ebf-8240-9645201b9295";
-				PROVISIONING_PROFILE_SPECIFIER = "djgwj-dis";
+				PROVISIONING_PROFILE = "e2f59267-93ba-43c9-ba08-49bb85aa98fa";
+				PROVISIONING_PROFILE_SPECIFIER = "bjfd-dis";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

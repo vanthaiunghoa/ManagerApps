@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
-@interface WebViewController : UIViewController<UIWebViewDelegate>
+@interface WebViewController : UIViewController<UIWebViewDelegate, WKNavigationDelegate, WKUIDelegate>
 
 @end

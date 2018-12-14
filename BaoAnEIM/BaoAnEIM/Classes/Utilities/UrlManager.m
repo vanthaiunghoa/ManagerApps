@@ -60,7 +60,9 @@ static id _instance;
     // 光明新区
 //    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
     // 东江区工务局
-    return @"vJo06/qsLDN1UvbshDmf6nLwNciVtZ4/cUW8JTQv32V+Y9Mh3hjCoOAL9zF8YnjL0EW4c/gQE/U=";
+//    return @"vJo06/qsLDN1UvbshDmf6nLwNciVtZ4/cUW8JTQv32V+Y9Mh3hjCoOAL9zF8YnjL0EW4c/gQE/U=";
+    // 北京房地集团
+    return @"ysmi8nF7R3L/64UB2oGK4Zo1sRZx8CJEQAxXXZD7pOp1WaQv2bc7qNcjbR5W5Ybc5twNwOzg+8I=";
 
 }
 
@@ -75,38 +77,39 @@ static id _instance;
 - (NSString *)getBaseUrl
 {
     // 内网
-//    return @"http://121.15.203.82:9210";
+//    return @"http://121.15.203.82:9210/wan_mpda_pic";
     // 勤智资本
-//    return @"http://134.175.118.134:9120";
+//    return @"http://134.175.118.134:9120/WAN_MPDA_PIC";
 //     保安工务局
-//    return @"http://gcjg.baoan.gov.cn:9250";
+//    return @"http://gcjg.baoan.gov.cn:9250/wan_mpda_pic";
     // 盐田
-//    return @"http://134.175.118.134:9130";
+//    return @"http://134.175.118.134:9130/WAN_MPDA_PIC";
     // 南山
-//    return @"http://183.62.232.185:8011";
+//    return @"http://183.62.232.185:8011/wan_mpda_pic";
     // 福田
-//    return @"http://183.62.232.185:8010";
+//    return @"http://183.62.232.185:8010/wan_mpda_pic";
     // 龙华工务局
-//    return @"http://121.15.203.82:9140";
+//    return @"http://121.15.203.82:9140/wan_mpda_pic";
     // 深圳水务集团
-//    return @"http://183.62.232.185:8005";
+//    return @"http://183.62.232.185:8005/wan_mpda_pic";
     // 北京房地置业
-//    return @"http://202.104.110.143:8006";
+//    return @"http://202.104.110.143:8006/wan_mpda_pic";
     // 北京天运房地产
-//    return @"http://121.15.203.82:9810";
+//    return @"http://121.15.203.82:9810/wan_mpda_pic";
     // 松山湖工程管理局
-//    return @"http://202.104.110.143:8008";
+//    return @"http://202.104.110.143:8008/wan_mpda_pic";
     // 东莞市路桥投资
-//    return @"http://120.86.117.106";
+//    return @"http://120.86.117.106/wan_mpda_pic";
     // 深圳市建筑工务署
-//    return @"http://202.104.110.143:8001";
+//    return @"http://202.104.110.143:8001/wan_mpda_pic";
     // 万维
-//    return @"http://134.175.118.134:9120";
+//    return @"http://134.175.118.134:9120/WAN_TZ_PIC";
     // 光明新区
-//    return @"http://134.175.118.134:9876";
+//    return @"http://134.175.118.134:9876/wan_mpda_pic";
     // 东江区工务局
-    return @"http://47.107.91.155:8080";
-
+//    return @"http://47.107.91.155:8080/WAN_MPDA_PIC";
+    // 北京房地集团
+    return @"http://134.175.118.134:9810/WAN_MPDA_PIC";
 }
 
 - (NSString *)getLoginUrl
@@ -114,29 +117,21 @@ static id _instance;
 //    return @"http://121.15.203.82:9210/EIM_PIC/WebService/WebService.asmx";
 //    return [NSString stringWithFormat:@"%@/EIM_PIC/WebService/WebService.asmx", [self getBaseUrl]];
 
-//    return [NSString stringWithFormat:@"%@/wan_mpda_pic//WebService/WebService.asmx", [self getBaseUrl]];
-    // 勤智资本 盐田  东江区工务局
-    return [NSString stringWithFormat:@"%@/WAN_MPDA_PIC//WebService/WebService.asmx", [self getBaseUrl]];
-    // 万维
-//        return [NSString stringWithFormat:@"%@/WAN_TZ_PIC//WebService/WebService.asmx", [self getBaseUrl]];
+    return [NSString stringWithFormat:@"%@//WebService/WebService.asmx", [self getBaseUrl]];
 }
 
 - (NSString *)getSingleUrl
 {
 //    return @"http://121.15.203.82:9120/EIM_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML";
     
-    return [NSString stringWithFormat:@"%@/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML", [self getBaseUrl]];
-    // 万维
-//    return [NSString stringWithFormat:@"%@/WAN_TZ_PIC/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML", [self getBaseUrl]];
+    return [NSString stringWithFormat:@"%@/Handlers/SingleSignOnHandler.ashx?Action=SingleSignOnByXML", [self getBaseUrl]];
 }
 
 - (NSString *)getWebUrl
 {
 //    return @"http://121.15.203.82:9120//WAN_MPDA_Pic/Handlers/SingleSignOnHandler.ashx?Action=Redirect";
     
-    return [NSString stringWithFormat:@"%@/WAN_MPDA_PIC/Handlers/SingleSignOnHandler.ashx?Action=Redirect", [self getBaseUrl]];
-    // 万维
-//    return [NSString stringWithFormat:@"%@/WAN_TZ_PIC/Handlers/SingleSignOnHandler.ashx?Action=Redirect", [self getBaseUrl]];
+    return [NSString stringWithFormat:@"%@/Handlers/SingleSignOnHandler.ashx?Action=Redirect", [self getBaseUrl]];
 }
 
 @end

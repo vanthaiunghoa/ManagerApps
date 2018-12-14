@@ -29,6 +29,9 @@
 		E85961341FFB603500224316 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E859611C1FFB603500224316 /* LoginViewController.m */; };
 		E85961351FFB603500224316 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E859611F1FFB603500224316 /* UserModel.m */; };
 		E85961361FFB603500224316 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E85961231FFB603500224316 /* LoginView.m */; };
+		E878CEC521C25D440001D4BC /* PrintModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E878CEC021C25D440001D4BC /* PrintModel.m */; };
+		E878CEC621C25D440001D4BC /* WebDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E878CEC221C25D440001D4BC /* WebDetailViewController.m */; };
+		E878CEC721C25D440001D4BC /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E878CEC421C25D440001D4BC /* WebViewController.m */; };
 		E8A89B361FFDB93500E2D459 /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B341FFDB93500E2D459 /* Helper.m */; };
 		E8A89B3A1FFDB94F00E2D459 /* TopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B381FFDB94F00E2D459 /* TopViewController.m */; };
 		E8A89B421FFDB96800E2D459 /* QRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A89B3D1FFDB96800E2D459 /* QRCodeViewController.m */; };
@@ -106,6 +109,12 @@
 		E85961231FFB603500224316 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
 		E85961371FFB612200224316 /* ATake.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ATake.pch; sourceTree = "<group>"; };
 		E85961381FFB65F900224316 /* ATake.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ATake.entitlements; sourceTree = "<group>"; };
+		E878CEBF21C25D430001D4BC /* PrintModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrintModel.h; sourceTree = "<group>"; };
+		E878CEC021C25D440001D4BC /* PrintModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrintModel.m; sourceTree = "<group>"; };
+		E878CEC121C25D440001D4BC /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		E878CEC221C25D440001D4BC /* WebDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebDetailViewController.m; sourceTree = "<group>"; };
+		E878CEC321C25D440001D4BC /* WebDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebDetailViewController.h; sourceTree = "<group>"; };
+		E878CEC421C25D440001D4BC /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		E8A89B341FFDB93500E2D459 /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		E8A89B351FFDB93500E2D459 /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		E8A89B381FFDB94F00E2D459 /* TopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopViewController.m; sourceTree = "<group>"; };
@@ -299,6 +308,12 @@
 		E85960F61FFB603500224316 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				E878CEBF21C25D430001D4BC /* PrintModel.h */,
+				E878CEC021C25D440001D4BC /* PrintModel.m */,
+				E878CEC321C25D440001D4BC /* WebDetailViewController.h */,
+				E878CEC221C25D440001D4BC /* WebDetailViewController.m */,
+				E878CEC121C25D440001D4BC /* WebViewController.h */,
+				E878CEC421C25D440001D4BC /* WebViewController.m */,
 				E8053AED200379E0007ED82F /* Model */,
 				E85960F71FFB603500224316 /* Controller */,
 			);
@@ -647,7 +662,10 @@
 				E8D0DCDD1FFCDB0C00669A1E /* WebDetailViewController.m in Sources */,
 				E8A89B3A1FFDB94F00E2D459 /* TopViewController.m in Sources */,
 				E8053AE7200367B8007ED82F /* HHPrinterFormat.m in Sources */,
+				E878CEC621C25D440001D4BC /* WebDetailViewController.m in Sources */,
 				E859612D1FFB603500224316 /* UIFont+runtime.m in Sources */,
+				E878CEC521C25D440001D4BC /* PrintModel.m in Sources */,
+				E878CEC721C25D440001D4BC /* WebViewController.m in Sources */,
 				E8A89B461FFDBA4100E2D459 /* UIBarButtonItem+common.m in Sources */,
 				E85961341FFB603500224316 /* LoginViewController.m in Sources */,
 				E8A89B361FFDB93500E2D459 /* Helper.m in Sources */,

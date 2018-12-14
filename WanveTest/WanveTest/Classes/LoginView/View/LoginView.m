@@ -44,8 +44,8 @@
 //        make.width.equalTo(@(W(129)));
 //        make.height.equalTo(@(H(44)));
         // 自动化办公
-        make.width.equalTo(@(W(184/164.0 * 60)));
-        make.height.equalTo(@(H(60)));
+        make.width.equalTo(@(W(65)));
+        make.height.equalTo(@(H(65)));
     }];
 
     UILabel *company = [UILabel new];
@@ -60,10 +60,12 @@
 //    company.text = @"广东省渔政总队东莞支队";
 //    company.text = @"东莞市招商引资创新办公室";
     // 自动化办公
-    company.text = @"东莞市交投集团";
-    company.textColor = [UIColor whiteColor];
+    company.text = @"东莞交投集团";
+    company.textColor = [UIColor colorWithRGB:249 green:248 blue:11];
+    
+//    company.textColor = [UIColor whiteColor];
 //    company.font = [UIFont systemFontOfSize:28];
-    company.font = [UIFont systemFontOfSize:25];
+    company.font = [UIFont boldSystemFontOfSize:32];
     company.textAlignment = NSTextAlignmentCenter;
     [self addSubview:company];
     [company makeConstraints:^(MASConstraintMaker *make) {
@@ -83,7 +85,7 @@
     // 自动化办公
     titleLab.text = @"移动办公系统";
     titleLab.textColor = [UIColor whiteColor];
-    titleLab.font = [UIFont systemFontOfSize:22];
+    titleLab.font = [UIFont systemFontOfSize:26];
     titleLab.textAlignment = NSTextAlignmentCenter;
     [self addSubview:titleLab];
     [titleLab makeConstraints:^(MASConstraintMaker *make) {
@@ -242,6 +244,19 @@
 //        make.right.equalTo(loginBtn.right);
 //    }];
 
+    
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    
+    UILabel *labVersion = [UILabel new];
+    labVersion.text = [NSString stringWithFormat:@"V%@", [infoDictionary objectForKey:@"CFBundleShortVersionString"]];
+    labVersion.textColor = [UIColor whiteColor];
+    labVersion.font = [UIFont systemFontOfSize:16];
+    labVersion.textAlignment = NSTextAlignmentRight;
+    [self addSubview:labVersion];
+    [labVersion makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.bottom).offset(-20);
+        make.right.equalTo(self.right).offset(-30);
+    }];
 
     return self;
 }

@@ -1,0 +1,6 @@
+framework module FaceVerifyIdPaaSLib {
+  umbrella header "FaceVerifyIdPaaSLib.h"
+
+  export *
+  module * { export * }
+}

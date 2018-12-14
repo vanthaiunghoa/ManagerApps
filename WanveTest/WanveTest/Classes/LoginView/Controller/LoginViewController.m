@@ -437,7 +437,9 @@
                 [[UserManager sharedUserManager] saveUserModel:userModel];
                 [SVProgressHUD dismiss];
                 
-                NSString *urlStr = [NSString stringWithFormat:@"%@/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\",From:\"%@\"}",[[UrlManager sharedUrlManager] getBaseUrl], self.username, self.password, @"APP"];
+//                NSString *urlStr = [NSString stringWithFormat:@"%@/Login/QuickLogin.aspx?cmd={UserID:\"%@\",UserPsw:\"%@\",From:\"%@\"}",[[UrlManager sharedUrlManager] getBaseUrl], self.username, self.password, @"APP"];
+                
+                NSString *urlStr = [NSString stringWithFormat:@"%@/Login/QuickLogin.aspx?UserID=%@&SysID=K7q/DW5GAsVjobMbiMkbI8hKOQn3kb7S1GTM2KaKiCY=&From=APP",[[UrlManager sharedUrlManager] getBaseUrl], self.username];
 //                url 编码
                 urlStr  =  [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
                 
@@ -445,6 +447,7 @@
 
                 SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:urlStr]];
                 [self.navigationController pushViewController:webViewController animated:YES];
+//                [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
             }
             else
             {

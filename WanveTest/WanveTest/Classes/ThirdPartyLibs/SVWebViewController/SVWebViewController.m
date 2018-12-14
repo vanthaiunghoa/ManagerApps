@@ -72,7 +72,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self updateToolbarItems];
+    // 自动化办公
+//    [self setupBottomView];
 }
 
 - (void)viewDidUnload {
@@ -127,6 +130,7 @@
         _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _webView.delegate = self;
         _webView.scalesPageToFit = YES;
+    
     }
     return _webView;
 }
@@ -196,6 +200,71 @@
 
 #pragma mark - Toolbar
 
+- (void)setupBottomView
+{
+    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 50)];
+    bottomView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:238/255.0 alpha:1];
+    [self.view addSubview:bottomView];
+    
+    CGFloat margin = (SCREEN_WIDTH - 100)/3.0;
+    CGFloat x = margin;
+    
+    for(int i = 0; i < 2; ++i)
+    {
+        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, 0, 50, 50)];
+        btn.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
+        [bottomView addSubview:btn];
+        btn.tag = i;
+        
+        [btn addTarget:self action:@selector(bottomCall:) forControlEvents:UIControlEventTouchUpInside];
+        x += 50 + margin;
+    }
+}
+
+- (void)bottomCall:(UIButton *)sender
+{
+    if(sender.tag == 0)
+    {
+        NSArray *menuItems =
+        @[
+          [KxMenuItem menuItem:@"切换账号"
+                         image:nil
+                        target:self
+                        action:@selector(switchClicked:)],
+          
+          [KxMenuItem menuItem:@"退出应用"
+                         image:nil
+                        target:self
+                        action:@selector(exitClicked:)],
+          ];
+        
+        for(KxMenuItem *item in menuItems)
+        {
+            item.alignment = NSTextAlignmentCenter;
+        }
+        
+        CGFloat y;
+        if(IS_IPHONEX)
+        {
+            y = SCREEN_HEIGHT - 85;
+        }
+        else
+        {
+            y = SCREEN_HEIGHT - 59;
+        }
+
+        CGRect frame = CGRectMake((SCREEN_WIDTH - 88)/3.0, y, 59, 59);
+        
+        [KxMenu showMenuInView:self.view
+                      fromRect:frame
+                     menuItems:menuItems];
+    }
+    else
+    {
+        [self homeTapped:nil];
+    }
+}
+
 - (void)updateToolbarItems {
     self.backBarButtonItem.enabled = self.self.webView.canGoBack;
     self.forwardBarButtonItem.enabled = self.self.webView.canGoForward;
@@ -230,19 +299,37 @@
 //    }
 //
 //    else
+    
+    // 通用
+//    {
+//        NSArray *items = [NSArray arrayWithObjects:
+//                          fixedSpace,
+//                          self.backBarButtonItem,
+//                          flexibleSpace,
+//                          self.forwardBarButtonItem,
+//                          flexibleSpace,
+////                          refreshStopBarButtonItem,
+//                          self.moreBarButtonItem,
+//                          flexibleSpace,
+//                          self.homeBarButtonItem,
+////                          self.actionBarButtonItem,
+//                          fixedSpace,
+//                          nil];
+//
+//        self.navigationController.toolbar.barStyle = self.navigationController.navigationBar.barStyle;
+//        self.navigationController.toolbar.tintColor = self.navigationController.navigationBar.tintColor;
+//        self.toolbarItems = items;
+//    }
+    
+    // 自动化
     {
         NSArray *items = [NSArray arrayWithObjects:
-                          fixedSpace,
-                          self.backBarButtonItem,
                           flexibleSpace,
-                          self.forwardBarButtonItem,
-                          flexibleSpace,
-//                          refreshStopBarButtonItem,
                           self.moreBarButtonItem,
                           flexibleSpace,
                           self.homeBarButtonItem,
-//                          self.actionBarButtonItem,
-                          fixedSpace,
+                          //                          self.actionBarButtonItem,
+                          flexibleSpace,
                           nil];
         
         self.navigationController.toolbar.barStyle = self.navigationController.navigationBar.barStyle;
@@ -255,6 +342,7 @@
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    // 通用
     [self updateToolbarItems];
     
     if ([self.delegate respondsToSelector:@selector(webViewDidStartLoad:)]) {
@@ -275,6 +363,7 @@
     if ([self.delegate respondsToSelector:@selector(webViewDidFinishLoad:)]) {
         [self.delegate webViewDidFinishLoad:webView];
     }
+
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error {
@@ -341,46 +430,61 @@
         item.alignment = NSTextAlignmentCenter;
     }
     
-    CGFloat x;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-    {
-        x = SCREEN_WIDTH - 292;
-    }
-    else
-    {
-        if(SCREEN_WIDTH == 414)
-        {
-            x = SCREEN_WIDTH - 175;
-        }
-        else if(SCREEN_WIDTH == 375)
-        {
-            x = SCREEN_WIDTH - 165;
-        }
-        else
-        {
-            x = SCREEN_WIDTH - 147;
-        }
-    }
+    // 通用
+//    CGFloat x;
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//    {
+//        x = SCREEN_WIDTH - 292;
+//    }
+//    else
+//    {
+//        if(SCREEN_WIDTH == 414)
+//        {
+//            x = SCREEN_WIDTH - 175;
+//        }
+//        else if(SCREEN_WIDTH == 375)
+//        {
+//            x = SCREEN_WIDTH - 165;
+//        }
+//        else
+//        {
+//            x = SCREEN_WIDTH - 147;
+//        }
+//    }
+//
+//    CGFloat y;
+//    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+//    {
+//        y = SCREEN_HEIGHT - 50;
+//    }
+//    else
+//    {
+//        if(IS_IPHONEX)
+//        {
+//            y = SCREEN_HEIGHT - 85;
+//        }
+//        else
+//        {
+//            y = SCREEN_HEIGHT - 50;
+//        }
+//    }
+    
+    // 自动化
+    CGFloat x = (SCREEN_WIDTH - 88)/3.0 + 5;
     
     CGFloat y;
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+
+    if(IS_IPHONEX)
+    {
+        y = SCREEN_HEIGHT - 85;
+    }
+    else
     {
         y = SCREEN_HEIGHT - 50;
     }
-    else
-    {
-        if(IS_IPHONEX)
-        {
-            y = SCREEN_HEIGHT - 85;
-        }
-        else
-        {
-            y = SCREEN_HEIGHT - 50;
-        }
-    }
-    
+
     CGRect frame = CGRectMake(x, y, 44, 44);
-    
+
     [KxMenu showMenuInView:self.view
                   fromRect:frame
                  menuItems:menuItems];

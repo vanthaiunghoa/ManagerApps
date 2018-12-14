@@ -4,6 +4,36 @@
 
 static id _instance;
 
+//  水务局
+//    static NSString *baseUrl = @"http://19.104.11.182:80";
+
+// 科技局
+//    static NSString *baseUrl = @"http://kjjoa.dg";
+// 农业局
+//    static NSString *baseUrl = @"http://nyj.dg";
+//    static NSString *baseUrl = @"http://19.104.9.233:80";
+// 滨海湾新区
+//    static NSString *baseUrl = @"http://19.111.48.16:80";
+
+// 智慧政务
+static NSString *baseUrl = @"http://47.107.91.155:8080";
+// 塘厦
+//    static NSString *baseUrl = @"http://19.108.192.125";
+// 规划局
+//    static NSString *baseUrl = @"http://19.104.9.125";
+
+// 中共东莞市委统战部
+//    static NSString *baseUrl = @"http://19.104.9.73";
+// 广东省渔政总队东莞支队
+//    static NSString *baseUrl = @"http://19.104.39.4";
+// 招商创新办
+//    static NSString *baseUrl = @"http://19.104.39.10";
+
+// 测试
+//    static NSString *baseUrl = @"http://172.27.35.1";
+// 交投 即 自动化办公
+//    static NSString *baseUrl = @"http://221.4.134.50:8081";
+
 + (instancetype)allocWithZone:(struct _NSZone *)zone
 {
     static dispatch_once_t onceToken;
@@ -29,37 +59,12 @@ static id _instance;
 
 - (NSString *)getBaseUrl
 {
-    //  水务局
-//    return @"http://19.104.11.182:80/DMS_Phone";
-    
-    // 科技局
-//    return @"http://kjjoa.dg/DMS_Phone";
-    // 农业局
-//    return @"http://nyj.dg/DMS_Phone";
-//    return @"http://19.104.9.233:80/DMS_Phone";
-    // 滨海湾新区
-//    return @"http://19.111.48.16:80/DMS_Phone";
-    
-    // 智慧政务
-//    return @"http://121.15.203.82:9210/DMS_Phone";
-    // 塘厦
-//    return @"http://19.108.192.125/DMS_Phone";
-    // 规划局
-//    return @"http://19.104.9.125/DMS_Phone";
-    
-    // 测试md5
-//    return @"http://121.15.203.82:9210/oasystem2018/";
-    // 中共东莞市委统战部
-//    return @"http://19.104.9.73/DMS_Phone";
-    // 广东省渔政总队东莞支队
-//    return @"http://19.104.39.4/DMS_Phone";
-    // 招商创新办
-//    return @"http://19.104.39.10/DMS_Phone";
-    
-    // 测试
-//    return @"http://172.30.12.1/DMS_Phone";
-    // 自动化办公
-    return @"http://221.4.134.50:8081/DMS_Phone";
+    return [NSString stringWithFormat:@"%@/DMS_Phone", baseUrl];
+}
+
+- (NSString *)getMD5Url
+{
+    return [NSString stringWithFormat:@"%@/oasystem2018/", baseUrl];
 }
 
 - (NSString *)getLoginUrl

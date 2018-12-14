@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B9AE1E133E100FB656D1610 /* libPods-Demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8C3CDEC936D083634429DB14 /* libPods-Demo.a */; };
 		E880E2B821AD33990086D644 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E880E2B721AD33990086D644 /* AppDelegate.m */; };
 		E880E2BB21AD33990086D644 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E880E2BA21AD33990086D644 /* ViewController.m */; };
 		E880E2BE21AD33990086D644 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E880E2BC21AD33990086D644 /* Main.storyboard */; };
@@ -15,9 +16,24 @@
 		E880E2C621AD33990086D644 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E880E2C521AD33990086D644 /* main.m */; };
 		E880E2CE21AD3A040086D644 /* TencentLBS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E880E2CD21AD3A040086D644 /* TencentLBS.framework */; };
 		E880E2D121AD3A3C0086D644 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = E880E2D021AD3A340086D644 /* libz.1.2.5.tbd */; };
+		E8F5B58E21BDF7E0004AD14C /* LivedetectfourController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5B57921BDF7E0004AD14C /* LivedetectfourController.m */; };
+		E8F5B58F21BDF7E0004AD14C /* Livedetectfour.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F5B57A21BDF7E0004AD14C /* Livedetectfour.xib */; };
+		E8F5B59021BDF7E0004AD14C /* Logger.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5B57D21BDF7E0004AD14C /* Logger.m */; };
+		E8F5B59121BDF7E0004AD14C /* FileSize.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5B57E21BDF7E0004AD14C /* FileSize.m */; };
+		E8F5B59221BDF7E0004AD14C /* Livegetfour.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F5B58321BDF7E0004AD14C /* Livegetfour.xib */; };
+		E8F5B59321BDF7E0004AD14C /* LivegetfourController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5B58421BDF7E0004AD14C /* LivegetfourController.m */; };
+		E8F5B59421BDF7E0004AD14C /* IdcardcompareController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5B58821BDF7E0004AD14C /* IdcardcompareController.m */; };
+		E8F5B59521BDF7E0004AD14C /* Idcardcompare.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F5B58921BDF7E0004AD14C /* Idcardcompare.xib */; };
+		E8F5B59621BDF7E0004AD14C /* IdcardlivedetectfourController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5B58B21BDF7E0004AD14C /* IdcardlivedetectfourController.m */; };
+		E8F5B59721BDF7E0004AD14C /* Idcardlivedetectfour.xib in Resources */ = {isa = PBXBuildFile; fileRef = E8F5B58C21BDF7E0004AD14C /* Idcardlivedetectfour.xib */; };
+		E8F5B59A21BDF8E1004AD14C /* VerifyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8F5B59921BDF8E0004AD14C /* VerifyViewController.m */; };
+		E8F5B5B421BE0775004AD14C /* FaceVerifyIdPaaSLib.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8F5B5B321BE0775004AD14C /* FaceVerifyIdPaaSLib.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0091F37A4A787CA70AA96260 /* Pods-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.debug.xcconfig"; sourceTree = "<group>"; };
+		8C3CDEC936D083634429DB14 /* libPods-Demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E0F4940F4136768EFCAECF3C /* Pods-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Demo/Pods-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		E880E2B321AD33990086D644 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E880E2B621AD33990086D644 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E880E2B721AD33990086D644 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,6 +46,26 @@
 		E880E2C521AD33990086D644 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E880E2CD21AD3A040086D644 /* TencentLBS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentLBS.framework; sourceTree = "<group>"; };
 		E880E2D021AD3A340086D644 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		E8F5B57921BDF7E0004AD14C /* LivedetectfourController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivedetectfourController.m; sourceTree = "<group>"; };
+		E8F5B57A21BDF7E0004AD14C /* Livedetectfour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Livedetectfour.xib; sourceTree = "<group>"; };
+		E8F5B57B21BDF7E0004AD14C /* LivedetectfourController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivedetectfourController.h; sourceTree = "<group>"; };
+		E8F5B57D21BDF7E0004AD14C /* Logger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Logger.m; sourceTree = "<group>"; };
+		E8F5B57E21BDF7E0004AD14C /* FileSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileSize.m; sourceTree = "<group>"; };
+		E8F5B57F21BDF7E0004AD14C /* Logger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Logger.h; sourceTree = "<group>"; };
+		E8F5B58021BDF7E0004AD14C /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		E8F5B58121BDF7E0004AD14C /* FileSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileSize.h; sourceTree = "<group>"; };
+		E8F5B58321BDF7E0004AD14C /* Livegetfour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Livegetfour.xib; sourceTree = "<group>"; };
+		E8F5B58421BDF7E0004AD14C /* LivegetfourController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LivegetfourController.m; sourceTree = "<group>"; };
+		E8F5B58521BDF7E0004AD14C /* LivegetfourController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LivegetfourController.h; sourceTree = "<group>"; };
+		E8F5B58721BDF7E0004AD14C /* IdcardcompareController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdcardcompareController.h; sourceTree = "<group>"; };
+		E8F5B58821BDF7E0004AD14C /* IdcardcompareController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdcardcompareController.m; sourceTree = "<group>"; };
+		E8F5B58921BDF7E0004AD14C /* Idcardcompare.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Idcardcompare.xib; sourceTree = "<group>"; };
+		E8F5B58B21BDF7E0004AD14C /* IdcardlivedetectfourController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IdcardlivedetectfourController.m; sourceTree = "<group>"; };
+		E8F5B58C21BDF7E0004AD14C /* Idcardlivedetectfour.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Idcardlivedetectfour.xib; sourceTree = "<group>"; };
+		E8F5B58D21BDF7E0004AD14C /* IdcardlivedetectfourController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IdcardlivedetectfourController.h; sourceTree = "<group>"; };
+		E8F5B59821BDF8E0004AD14C /* VerifyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyViewController.h; sourceTree = "<group>"; };
+		E8F5B59921BDF8E0004AD14C /* VerifyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyViewController.m; sourceTree = "<group>"; };
+		E8F5B5B321BE0775004AD14C /* FaceVerifyIdPaaSLib.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FaceVerifyIdPaaSLib.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,18 +75,30 @@
 			files = (
 				E880E2D121AD3A3C0086D644 /* libz.1.2.5.tbd in Frameworks */,
 				E880E2CE21AD3A040086D644 /* TencentLBS.framework in Frameworks */,
+				E8F5B5B421BE0775004AD14C /* FaceVerifyIdPaaSLib.framework in Frameworks */,
+				5B9AE1E133E100FB656D1610 /* libPods-Demo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		11C4BCDE540EB92FAA0E2E6C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				0091F37A4A787CA70AA96260 /* Pods-Demo.debug.xcconfig */,
+				E0F4940F4136768EFCAECF3C /* Pods-Demo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E880E2AA21AD33990086D644 = {
 			isa = PBXGroup;
 			children = (
 				E880E2B521AD33990086D644 /* Demo */,
 				E880E2B421AD33990086D644 /* Products */,
 				E880E2CF21AD3A340086D644 /* Frameworks */,
+				11C4BCDE540EB92FAA0E2E6C /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,6 +113,7 @@
 		E880E2B521AD33990086D644 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				E8F5B57721BDF7E0004AD14C /* FaceVerify */,
 				E880E2CC21AD3A040086D644 /* libs */,
 				E880E2B621AD33990086D644 /* AppDelegate.h */,
 				E880E2B721AD33990086D644 /* AppDelegate.m */,
@@ -82,6 +131,7 @@
 		E880E2CC21AD3A040086D644 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				E8F5B5B321BE0775004AD14C /* FaceVerifyIdPaaSLib.framework */,
 				E880E2CD21AD3A040086D644 /* TencentLBS.framework */,
 			);
 			path = libs;
@@ -91,8 +141,75 @@
 			isa = PBXGroup;
 			children = (
 				E880E2D021AD3A340086D644 /* libz.1.2.5.tbd */,
+				8C3CDEC936D083634429DB14 /* libPods-Demo.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E8F5B57721BDF7E0004AD14C /* FaceVerify */ = {
+			isa = PBXGroup;
+			children = (
+				E8F5B59821BDF8E0004AD14C /* VerifyViewController.h */,
+				E8F5B59921BDF8E0004AD14C /* VerifyViewController.m */,
+				E8F5B57821BDF7E0004AD14C /* Livedetectfour */,
+				E8F5B57C21BDF7E0004AD14C /* Utils */,
+				E8F5B58221BDF7E0004AD14C /* Livegetfour */,
+				E8F5B58621BDF7E0004AD14C /* Idcardcompare */,
+				E8F5B58A21BDF7E0004AD14C /* Idcardlivedetectfour */,
+			);
+			path = FaceVerify;
+			sourceTree = "<group>";
+		};
+		E8F5B57821BDF7E0004AD14C /* Livedetectfour */ = {
+			isa = PBXGroup;
+			children = (
+				E8F5B57921BDF7E0004AD14C /* LivedetectfourController.m */,
+				E8F5B57A21BDF7E0004AD14C /* Livedetectfour.xib */,
+				E8F5B57B21BDF7E0004AD14C /* LivedetectfourController.h */,
+			);
+			path = Livedetectfour;
+			sourceTree = "<group>";
+		};
+		E8F5B57C21BDF7E0004AD14C /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E8F5B57D21BDF7E0004AD14C /* Logger.m */,
+				E8F5B57E21BDF7E0004AD14C /* FileSize.m */,
+				E8F5B57F21BDF7E0004AD14C /* Logger.h */,
+				E8F5B58021BDF7E0004AD14C /* UserInfo.h */,
+				E8F5B58121BDF7E0004AD14C /* FileSize.h */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		E8F5B58221BDF7E0004AD14C /* Livegetfour */ = {
+			isa = PBXGroup;
+			children = (
+				E8F5B58321BDF7E0004AD14C /* Livegetfour.xib */,
+				E8F5B58421BDF7E0004AD14C /* LivegetfourController.m */,
+				E8F5B58521BDF7E0004AD14C /* LivegetfourController.h */,
+			);
+			path = Livegetfour;
+			sourceTree = "<group>";
+		};
+		E8F5B58621BDF7E0004AD14C /* Idcardcompare */ = {
+			isa = PBXGroup;
+			children = (
+				E8F5B58721BDF7E0004AD14C /* IdcardcompareController.h */,
+				E8F5B58821BDF7E0004AD14C /* IdcardcompareController.m */,
+				E8F5B58921BDF7E0004AD14C /* Idcardcompare.xib */,
+			);
+			path = Idcardcompare;
+			sourceTree = "<group>";
+		};
+		E8F5B58A21BDF7E0004AD14C /* Idcardlivedetectfour */ = {
+			isa = PBXGroup;
+			children = (
+				E8F5B58B21BDF7E0004AD14C /* IdcardlivedetectfourController.m */,
+				E8F5B58C21BDF7E0004AD14C /* Idcardlivedetectfour.xib */,
+				E8F5B58D21BDF7E0004AD14C /* IdcardlivedetectfourController.h */,
+			);
+			path = Idcardlivedetectfour;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,9 +219,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E880E2C921AD33990086D644 /* Build configuration list for PBXNativeTarget "Demo" */;
 			buildPhases = (
+				EEA03E084EDA35C634530B11 /* [CP] Check Pods Manifest.lock */,
 				E880E2AF21AD33990086D644 /* Sources */,
 				E880E2B021AD33990086D644 /* Frameworks */,
 				E880E2B121AD33990086D644 /* Resources */,
+				279C039BC1D91964913E5106 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -158,22 +277,76 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F5B58F21BDF7E0004AD14C /* Livedetectfour.xib in Resources */,
 				E880E2C321AD33990086D644 /* LaunchScreen.storyboard in Resources */,
 				E880E2C021AD33990086D644 /* Assets.xcassets in Resources */,
 				E880E2BE21AD33990086D644 /* Main.storyboard in Resources */,
+				E8F5B59721BDF7E0004AD14C /* Idcardlivedetectfour.xib in Resources */,
+				E8F5B59521BDF7E0004AD14C /* Idcardcompare.xib in Resources */,
+				E8F5B59221BDF7E0004AD14C /* Livegetfour.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		279C039BC1D91964913E5106 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-resources.sh",
+				"${PODS_ROOT}/IQKeyboardManager/IQKeyboardManager/Resources/IQKeyboardManager.bundle",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IQKeyboardManager.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Demo/Pods-Demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EEA03E084EDA35C634530B11 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Demo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E880E2AF21AD33990086D644 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F5B59621BDF7E0004AD14C /* IdcardlivedetectfourController.m in Sources */,
+				E8F5B59121BDF7E0004AD14C /* FileSize.m in Sources */,
 				E880E2BB21AD33990086D644 /* ViewController.m in Sources */,
 				E880E2C621AD33990086D644 /* main.m in Sources */,
+				E8F5B58E21BDF7E0004AD14C /* LivedetectfourController.m in Sources */,
 				E880E2B821AD33990086D644 /* AppDelegate.m in Sources */,
+				E8F5B59021BDF7E0004AD14C /* Logger.m in Sources */,
+				E8F5B59A21BDF8E1004AD14C /* VerifyViewController.m in Sources */,
+				E8F5B59421BDF7E0004AD14C /* IdcardcompareController.m in Sources */,
+				E8F5B59321BDF7E0004AD14C /* LivegetfourController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +478,7 @@
 		};
 		E880E2CA21AD33990086D644 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0091F37A4A787CA70AA96260 /* Pods-Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -321,11 +495,13 @@
 				PROVISIONING_PROFILE = "d8208cbf-c86b-4217-880c-ca7c8c7d9f41";
 				PROVISIONING_PROFILE_SPECIFIER = WanveTestDev;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Debug;
 		};
 		E880E2CB21AD33990086D644 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0F4940F4136768EFCAECF3C /* Pods-Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -343,6 +519,7 @@
 				PROVISIONING_PROFILE = "081e0c2f-3cda-48b9-a590-827f3c860cf6";
 				PROVISIONING_PROFILE_SPECIFIER = WanveTestDis;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "armv7 arm64";
 			};
 			name = Release;
 		};

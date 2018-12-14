@@ -32,13 +32,14 @@
 {
     PLog(@"screen_size == %@", NSStringFromCGSize([UIScreen mainScreen].bounds.size));
     
-//    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
-//    [application registerUserNotificationSettings:setting];
+    // 桌面图标数字
+    UIUserNotificationSettings *setting = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeBadge categories:nil];
+    [application registerUserNotificationSettings:setting];
     
     [self keyboardInit];
     [self progressHUDInit];
     [self userModelInit];
-//    [self createTimer];
+    [self createTimer];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.window.backgroundColor = [UIColor whiteColor];
@@ -65,7 +66,7 @@
     dispatch_source_set_event_handler(timer, ^{
         dispatch_async(dispatch_get_main_queue(), ^{
             PLog(@"定时器执行");
-            [self login];
+            [self getNum];
 //            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:i++];
         });
     });
@@ -74,7 +75,7 @@
     dispatch_resume(timer);
 }
 
--(void)login
+-(void)getNum
 {
     //1.创建一个请求管理者
     //AFHTTPRequestOperationManager内部封装了URLSession
@@ -88,14 +89,17 @@
     //2.发送请求
     NSMutableDictionary *param = [NSMutableDictionary dictionary];
     param[@"Action"] = @"GetPhoneAppNum";
-//    param[@"UserID"] = userModel.username;
-    param[@"UserID"] = @"cwq";
+    param[@"UserID"] = userModel.username;
+//    param[@"UserID"] = @"jtgly";
     param[@"Timestamp"] = [self currentTimeStr];
-    param[@"Signature"] = [self getMD5:@"cwq"];
     
-    PLog(@"md5 == %@", [self getMD5:@"cwq"]);
+    PLog(@"timeStr == %@", [self currentTimeStr]);
     
-    NSString *url = [NSString stringWithFormat:@"%@Handlers/DMS_Handler.ashx?", [[UrlManager sharedUrlManager] getBaseUrl]];
+    param[@"Signature"] = [self getMD5:userModel.username];
+    
+    PLog(@"md5 == %@", [self getMD5:userModel.username]);
+    
+    NSString *url = [NSString stringWithFormat:@"%@Handlers/DMS_Handler.ashx?", [[UrlManager sharedUrlManager] getMD5Url]];
     
     [manager POST:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         PLog(@"请求成功--%@",responseObject);
@@ -106,7 +110,9 @@
         if([result isEqualToNumber:num])
         {
             PLog(@"请求成功2--%@",responseObject);
-            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:(long)dict[@"HandlerNum"]];
+            NSNumber *count = dict[@"HandleCount"];
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:[count intValue]];
+//            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:1];
         }
         else
         {
@@ -122,16 +128,45 @@
 
 - (NSString *)getMD5:(NSString *)userID
 {
-    NSString *tmpStr = [NSString stringWithFormat:@"%@■%@■WanveDMSOA■%@", [self currentTimeStr], userID, [self currentTimeStr]];
+    NSString *tmpStr = [NSString stringWithFormat:@"%@%@WanveDMSOA%@", [self currentTimeStr], userID, [self currentTimeStr]];
     return [tmpStr md5];
 }
 
 - (NSString *)currentTimeStr
 {
-    NSDate* date = [NSDate dateWithTimeIntervalSinceNow:0];//获取当前时间0秒后的时间
-    NSTimeInterval time=[date timeIntervalSince1970]*1000;// *1000 是精确到毫秒，不乘就是精确到秒
-    NSString *timeString = [NSString stringWithFormat:@"%.0f", time];
-    return timeString;
+    NSDate *now = [NSDate date];
+    NSLog(@"now date is: %@", now);
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
+    
+    int year =(int) [dateComponent year];
+    int month = (int) [dateComponent month];
+    int day = (int) [dateComponent day];
+    int hour = (int) [dateComponent hour];
+    int minute = (int) [dateComponent minute];
+    int second = (int) [dateComponent second];
+    
+    NSString *monthStr = [self getFormatTimeStr:month];
+    NSString *dayStr = [self getFormatTimeStr:day];
+    NSString *hourStr = [self getFormatTimeStr:hour];
+    NSString *minuteStr = [self getFormatTimeStr:minute];
+    NSString *secondStr = [self getFormatTimeStr:second];
+    
+    return [NSString stringWithFormat:@"%d%@%@%@%@%@", year, monthStr, dayStr, hourStr, minuteStr, secondStr];
+}
+
+- (NSString *)getFormatTimeStr:(int )day
+{
+    if(day < 10)
+    {
+        return [NSString stringWithFormat:@"0%d", day];
+    }
+    else
+    {
+        return [NSString stringWithFormat:@"%d", day];
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {

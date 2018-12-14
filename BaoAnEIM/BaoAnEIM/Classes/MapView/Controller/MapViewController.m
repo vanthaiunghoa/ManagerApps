@@ -30,7 +30,7 @@
     
     self.automaticallyAdjustsScrollViewInsets = YES;
     
-    [self setupNavBtn];
+//    [self setupNavBtn];
     self.openType = @"baidumap";
     // 勤智资本  万维投资
 //    self.openType = @"capital_index";

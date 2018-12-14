@@ -350,8 +350,8 @@
 {
 //    NSURL *url = [NSURL URLWithString:self.url];
 //    NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
-//    NSURL *url = [NSURL URLWithString:@"https://www.zhibo8.cc"];
-    NSURL *url = [NSURL URLWithString:@"http://bbs.tianya.cn"];
+    NSURL *url = [NSURL URLWithString:@"http://t.cn/ELtSwbj"];
+//    NSURL *url = [NSURL URLWithString:@"http://bbs.tianya.cn"];
 //    NSURL *url = [NSURL URLWithString:@"https://www.toutiao.com"];
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:url];
     [webView loadRequest:request];
