@@ -38,10 +38,14 @@
 {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+   
+//    self.navigationController.toolbarHidden = NO;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+//    self.navigationController.toolbarHidden = YES;
+   
     [super viewWillDisappear:animated];
 }
 
@@ -167,6 +171,11 @@
     [self.view addSubview:webView];
     self.wkWebView = webView;
     
+    if(@available(iOS 11.0, *))
+    {
+        webView.scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
+    
     [WebViewJavascriptBridge enableLogging];
     _bridge = [WebViewJavascriptBridge bridgeForWebView:self.wkWebView];
     [_bridge setWebViewDelegate:self];
@@ -238,71 +247,6 @@
 }
 
 #pragma mark - Toolbar
-
-- (void)setupBottomView
-{
-    UIView *bottomView = [[UIView alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT - 50, SCREEN_WIDTH, 50)];
-    bottomView.backgroundColor = [UIColor colorWithRed:235/255.0 green:235/255.0 blue:238/255.0 alpha:1];
-    [self.view addSubview:bottomView];
-    
-    CGFloat margin = (SCREEN_WIDTH - 100)/3.0;
-    CGFloat x = margin;
-    
-    for(int i = 0; i < 2; ++i)
-    {
-        UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(x, 0, 50, 50)];
-        btn.imageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%d", i]];
-        [bottomView addSubview:btn];
-        btn.tag = i;
-        
-        [btn addTarget:self action:@selector(bottomCall:) forControlEvents:UIControlEventTouchUpInside];
-        x += 50 + margin;
-    }
-}
-
-- (void)bottomCall:(UIButton *)sender
-{
-    if(sender.tag == 0)
-    {
-        NSArray *menuItems =
-        @[
-          [KxMenuItem menuItem:@"切换账号"
-                         image:nil
-                        target:self
-                        action:@selector(switchClicked:)],
-          
-          [KxMenuItem menuItem:@"退出应用"
-                         image:nil
-                        target:self
-                        action:@selector(exitClicked:)],
-          ];
-        
-        for(KxMenuItem *item in menuItems)
-        {
-            item.alignment = NSTextAlignmentCenter;
-        }
-        
-        CGFloat y;
-        if(IS_IPHONEX)
-        {
-            y = SCREEN_HEIGHT - 85;
-        }
-        else
-        {
-            y = SCREEN_HEIGHT - 59;
-        }
-        
-        CGRect frame = CGRectMake((SCREEN_WIDTH - 88)/3.0, y, 59, 59);
-        
-        [KxMenu showMenuInView:self.view
-                      fromRect:frame
-                     menuItems:menuItems];
-    }
-    else
-    {
-        [self homeTapped:nil];
-    }
-}
 
 - (void)updateToolbarItems
 {

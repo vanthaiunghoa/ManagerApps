@@ -23,10 +23,7 @@
 		E809F0DB201716CB00016366 /* AddressDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0D8201716CA00016366 /* AddressDetailViewController.m */; };
 		E809F0DC201716CB00016366 /* DetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E809F0DA201716CB00016366 /* DetailCell.m */; };
 		E817C62F1FC5063400DEFA44 /* UIImage+image.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C62E1FC5063400DEFA44 /* UIImage+image.m */; };
-		E817C6321FC517A700DEFA44 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C6301FC517A700DEFA44 /* UserModel.m */; };
 		E817C6351FC517B600DEFA44 /* UserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C6341FC517B600DEFA44 /* UserManager.m */; };
-		E817C63E1FC5779B00DEFA44 /* VPNSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C6381FC5779A00DEFA44 /* VPNSettingViewController.m */; };
-		E817C63F1FC5779B00DEFA44 /* VPNSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E817C63C1FC5779A00DEFA44 /* VPNSettingView.m */; };
 		E819439A2105D199000358F1 /* NSString+md5.m in Sources */ = {isa = PBXBuildFile; fileRef = E81943992105D199000358F1 /* NSString+md5.m */; };
 		E822C65D1FC7C54000F5DFAF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E822C6101FC7C54000F5DFAF /* Localizable.strings */; };
 		E822C65E1FC7C54000F5DFAF /* Reader.pdf in Resources */ = {isa = PBXBuildFile; fileRef = E822C6141FC7C54000F5DFAF /* Reader.pdf */; };
@@ -90,10 +87,7 @@
 		E826A39A1FDE702B00356541 /* UIFont+runtime.m in Sources */ = {isa = PBXBuildFile; fileRef = E826A3991FDE702B00356541 /* UIFont+runtime.m */; };
 		E8466B211FC2664400EDA068 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B1A1FC2664400EDA068 /* AppDelegate.m */; };
 		E8466B241FC267C100EDA068 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B231FC267C100EDA068 /* BaseNavigationController.m */; };
-		E8466B271FC267CF00EDA068 /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B261FC267CF00EDA068 /* LoginView.m */; };
-		E8466B2A1FC267D800EDA068 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B281FC267D800EDA068 /* LoginViewController.m */; };
 		E8466B2E1FC26CA400EDA068 /* UIColor+color.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B2C1FC26CA400EDA068 /* UIColor+color.m */; };
-		E8466B361FC2C7D100EDA068 /* MJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8466B341FC2C7D100EDA068 /* MJTableViewController.m */; };
 		E8546CAC207D9573004175BC /* SVWebViewController.strings in Resources */ = {isa = PBXBuildFile; fileRef = E8546C8D207D9572004175BC /* SVWebViewController.strings */; };
 		E8546CAD207D9573004175BC /* SVModalWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8546C91207D9572004175BC /* SVModalWebViewController.m */; };
 		E8546CAE207D9573004175BC /* SVWebViewControllerActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = E8546C9A207D9572004175BC /* SVWebViewControllerActivity.m */; };
@@ -120,6 +114,13 @@
 		E873BFA61FB135B100C122AA /* WanveTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E873BFA51FB135B100C122AA /* WanveTestUITests.m */; };
 		E898CDF720186272005D27E2 /* DepartmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E898CDF420186271005D27E2 /* DepartmentCell.m */; };
 		E898CDF820186272005D27E2 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E898CDF520186272005D27E2 /* AddressCell.m */; };
+		E8A0C03F21C798C0004595CF /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C03921C798BF004595CF /* UserModel.m */; };
+		E8A0C04021C798C0004595CF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C03C21C798C0004595CF /* LoginViewController.m */; };
+		E8A0C04121C798C0004595CF /* LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C03E21C798C0004595CF /* LoginView.m */; };
+		E8A0C04621C798CD004595CF /* VPNSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C04221C798CD004595CF /* VPNSettingViewController.m */; };
+		E8A0C04721C798CD004595CF /* VPNSettingView.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C04321C798CD004595CF /* VPNSettingView.m */; };
+		E8A0C04A21C798D9004595CF /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C04921C798D9004595CF /* WebViewController.m */; };
+		E8A0C04D21C798F3004595CF /* MJTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C04B21C798F3004595CF /* MJTableViewController.m */; };
 		E8A15282212CEE990048239D /* password@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A15244212CEE980048239D /* password@3x.png */; };
 		E8A15283212CEE990048239D /* eye_close.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A15245212CEE980048239D /* eye_close.png */; };
 		E8A15284212CEE990048239D /* password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A15246212CEE980048239D /* password@2x.png */; };
@@ -179,7 +180,6 @@
 		E8A152BA212CEE9A0048239D /* arrow_back_white@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A1527F212CEE990048239D /* arrow_back_white@3x.png */; };
 		E8A152BB212CEE9A0048239D /* arrow_back_white@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A15280212CEE990048239D /* arrow_back_white@2x.png */; };
 		E8A152BC212CEE9A0048239D /* more@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E8A15281212CEE990048239D /* more@2x.png */; };
-		E8D9897B1FCBAF5A00272025 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D9897A1FCBAF5A00272025 /* WebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -220,14 +220,8 @@
 		E809F0DA201716CB00016366 /* DetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailCell.m; sourceTree = "<group>"; };
 		E817C62D1FC5063400DEFA44 /* UIImage+image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+image.h"; sourceTree = "<group>"; };
 		E817C62E1FC5063400DEFA44 /* UIImage+image.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+image.m"; sourceTree = "<group>"; };
-		E817C6301FC517A700DEFA44 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
-		E817C6311FC517A700DEFA44 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		E817C6331FC517B600DEFA44 /* UserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserManager.h; sourceTree = "<group>"; };
 		E817C6341FC517B600DEFA44 /* UserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserManager.m; sourceTree = "<group>"; };
-		E817C6381FC5779A00DEFA44 /* VPNSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPNSettingViewController.m; sourceTree = "<group>"; };
-		E817C6391FC5779A00DEFA44 /* VPNSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPNSettingViewController.h; sourceTree = "<group>"; };
-		E817C63C1FC5779A00DEFA44 /* VPNSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPNSettingView.m; sourceTree = "<group>"; };
-		E817C63D1FC5779A00DEFA44 /* VPNSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPNSettingView.h; sourceTree = "<group>"; };
 		E81943982105D199000358F1 /* NSString+md5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+md5.h"; sourceTree = "<group>"; };
 		E81943992105D199000358F1 /* NSString+md5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+md5.m"; sourceTree = "<group>"; };
 		E822C6111FC7C54000F5DFAF /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -319,15 +313,9 @@
 		E8466B1A1FC2664400EDA068 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		E8466B221FC267C100EDA068 /* BaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
 		E8466B231FC267C100EDA068 /* BaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
-		E8466B251FC267CE00EDA068 /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
-		E8466B261FC267CF00EDA068 /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
-		E8466B281FC267D800EDA068 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		E8466B291FC267D800EDA068 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		E8466B2C1FC26CA400EDA068 /* UIColor+color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+color.m"; sourceTree = "<group>"; };
 		E8466B2D1FC26CA400EDA068 /* UIColor+color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+color.h"; sourceTree = "<group>"; };
 		E8466B2F1FC26D5800EDA068 /* WanveTest.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WanveTest.pch; sourceTree = "<group>"; };
-		E8466B341FC2C7D100EDA068 /* MJTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTableViewController.m; sourceTree = "<group>"; };
-		E8466B351FC2C7D100EDA068 /* MJTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTableViewController.h; sourceTree = "<group>"; };
 		E8546C8E207D9572004175BC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
 		E8546C8F207D9572004175BC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SVWebViewController.strings"; sourceTree = "<group>"; };
 		E8546C90207D9572004175BC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/SVWebViewController.strings; sourceTree = "<group>"; };
@@ -378,6 +366,20 @@
 		E898CDF420186271005D27E2 /* DepartmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentCell.m; sourceTree = "<group>"; };
 		E898CDF520186272005D27E2 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
 		E898CDF620186272005D27E2 /* DepartmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentCell.h; sourceTree = "<group>"; };
+		E8A0C03921C798BF004595CF /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		E8A0C03A21C798C0004595CF /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		E8A0C03B21C798C0004595CF /* LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginView.h; sourceTree = "<group>"; };
+		E8A0C03C21C798C0004595CF /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		E8A0C03D21C798C0004595CF /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		E8A0C03E21C798C0004595CF /* LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginView.m; sourceTree = "<group>"; };
+		E8A0C04221C798CD004595CF /* VPNSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPNSettingViewController.m; sourceTree = "<group>"; };
+		E8A0C04321C798CD004595CF /* VPNSettingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VPNSettingView.m; sourceTree = "<group>"; };
+		E8A0C04421C798CD004595CF /* VPNSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPNSettingViewController.h; sourceTree = "<group>"; };
+		E8A0C04521C798CD004595CF /* VPNSettingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VPNSettingView.h; sourceTree = "<group>"; };
+		E8A0C04821C798D9004595CF /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		E8A0C04921C798D9004595CF /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
+		E8A0C04B21C798F3004595CF /* MJTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJTableViewController.m; sourceTree = "<group>"; };
+		E8A0C04C21C798F3004595CF /* MJTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJTableViewController.h; sourceTree = "<group>"; };
 		E8A15244212CEE980048239D /* password@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@3x.png"; sourceTree = "<group>"; };
 		E8A15245212CEE980048239D /* eye_close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye_close.png; sourceTree = "<group>"; };
 		E8A15246212CEE980048239D /* password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@2x.png"; sourceTree = "<group>"; };
@@ -437,8 +439,6 @@
 		E8A1527F212CEE990048239D /* arrow_back_white@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_back_white@3x.png"; sourceTree = "<group>"; };
 		E8A15280212CEE990048239D /* arrow_back_white@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "arrow_back_white@2x.png"; sourceTree = "<group>"; };
 		E8A15281212CEE990048239D /* more@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "more@2x.png"; sourceTree = "<group>"; };
-		E8D989791FCBAF5A00272025 /* WebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
-		E8D9897A1FCBAF5A00272025 /* WebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		ED3A171B3E14B3E52B57A372 /* Pods-WanveTest.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WanveTest.release.xcconfig"; path = "Pods/Target Support Files/Pods-WanveTest/Pods-WanveTest.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -550,36 +550,12 @@
 		E817C6361FC5779A00DEFA44 /* VPNSettingView */ = {
 			isa = PBXGroup;
 			children = (
-				E817C6371FC5779A00DEFA44 /* Controller */,
-				E817C63A1FC5779A00DEFA44 /* Model */,
-				E817C63B1FC5779A00DEFA44 /* View */,
+				E8A0C04521C798CD004595CF /* VPNSettingView.h */,
+				E8A0C04321C798CD004595CF /* VPNSettingView.m */,
+				E8A0C04421C798CD004595CF /* VPNSettingViewController.h */,
+				E8A0C04221C798CD004595CF /* VPNSettingViewController.m */,
 			);
 			path = VPNSettingView;
-			sourceTree = "<group>";
-		};
-		E817C6371FC5779A00DEFA44 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E817C6381FC5779A00DEFA44 /* VPNSettingViewController.m */,
-				E817C6391FC5779A00DEFA44 /* VPNSettingViewController.h */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		E817C63A1FC5779A00DEFA44 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		E817C63B1FC5779A00DEFA44 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E817C63D1FC5779A00DEFA44 /* VPNSettingView.h */,
-				E817C63C1FC5779A00DEFA44 /* VPNSettingView.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		E822C60E1FC7C54000F5DFAF /* Reader */ = {
@@ -747,38 +723,14 @@
 		E8466B1D1FC2664400EDA068 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
-				E8466B1E1FC2664400EDA068 /* Controller */,
-				E8466B1F1FC2664400EDA068 /* Model */,
-				E8466B201FC2664400EDA068 /* View */,
+				E8A0C03B21C798C0004595CF /* LoginView.h */,
+				E8A0C03E21C798C0004595CF /* LoginView.m */,
+				E8A0C03A21C798C0004595CF /* LoginViewController.h */,
+				E8A0C03C21C798C0004595CF /* LoginViewController.m */,
+				E8A0C03D21C798C0004595CF /* UserModel.h */,
+				E8A0C03921C798BF004595CF /* UserModel.m */,
 			);
 			path = LoginView;
-			sourceTree = "<group>";
-		};
-		E8466B1E1FC2664400EDA068 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E8466B291FC267D800EDA068 /* LoginViewController.h */,
-				E8466B281FC267D800EDA068 /* LoginViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		E8466B1F1FC2664400EDA068 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				E817C6311FC517A700DEFA44 /* UserModel.h */,
-				E817C6301FC517A700DEFA44 /* UserModel.m */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		E8466B201FC2664400EDA068 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				E8466B251FC267CE00EDA068 /* LoginView.h */,
-				E8466B261FC267CF00EDA068 /* LoginView.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		E8466B2B1FC26CA400EDA068 /* Category */ = {
@@ -799,34 +751,10 @@
 		E8466B301FC2C4F800EDA068 /* MJTableView */ = {
 			isa = PBXGroup;
 			children = (
-				E8466B311FC2C4F800EDA068 /* Controller */,
-				E8466B321FC2C4F800EDA068 /* Model */,
-				E8466B331FC2C4F800EDA068 /* View */,
+				E8A0C04C21C798F3004595CF /* MJTableViewController.h */,
+				E8A0C04B21C798F3004595CF /* MJTableViewController.m */,
 			);
 			path = MJTableView;
-			sourceTree = "<group>";
-		};
-		E8466B311FC2C4F800EDA068 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E8466B351FC2C7D100EDA068 /* MJTableViewController.h */,
-				E8466B341FC2C7D100EDA068 /* MJTableViewController.m */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		E8466B321FC2C4F800EDA068 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		E8466B331FC2C4F800EDA068 /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		E8546C8C207D9572004175BC /* SVWebViewController */ = {
@@ -1053,18 +981,10 @@
 		E8D989771FCBAF1300272025 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
-				E8D989781FCBAF1300272025 /* Controller */,
+				E8A0C04821C798D9004595CF /* WebViewController.h */,
+				E8A0C04921C798D9004595CF /* WebViewController.m */,
 			);
 			path = WebView;
-			sourceTree = "<group>";
-		};
-		E8D989781FCBAF1300272025 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E8D989791FCBAF5A00272025 /* WebViewController.h */,
-				E8D9897A1FCBAF5A00272025 /* WebViewController.m */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1324,14 +1244,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8A0C04721C798CD004595CF /* VPNSettingView.m in Sources */,
 				E822C66C1FC7C54000F5DFAF /* ReaderThumbCache.m in Sources */,
 				E8546CCE207DEF8F004175BC /* KxMenu.m in Sources */,
 				E8546CB0207D9573004175BC /* SVWebViewControllerActivitySafari.m in Sources */,
-				E817C63F1FC5779B00DEFA44 /* VPNSettingView.m in Sources */,
 				E809F0D5201710DF00016366 /* AddressModel.m in Sources */,
 				E809F0D6201710DF00016366 /* AddressViewController.m in Sources */,
 				E822C6691FC7C54000F5DFAF /* ReaderMainToolbar.m in Sources */,
-				E8466B361FC2C7D100EDA068 /* MJTableViewController.m in Sources */,
+				E8A0C04621C798CD004595CF /* VPNSettingViewController.m in Sources */,
 				E8546CCA207DA0E9004175BC /* RxWebViewController.m in Sources */,
 				E822C6601FC7C54000F5DFAF /* UIXToolbarView.m in Sources */,
 				E822C6721FC7C54000F5DFAF /* ReaderMainPagebar.m in Sources */,
@@ -1340,26 +1260,27 @@
 				E822C6681FC7C54000F5DFAF /* ReaderThumbView.m in Sources */,
 				E898CDF720186272005D27E2 /* DepartmentCell.m in Sources */,
 				E8546CC7207DA0E9004175BC /* NJKWebViewProgress.m in Sources */,
-				E8D9897B1FCBAF5A00272025 /* WebViewController.m in Sources */,
 				E898CDF820186272005D27E2 /* AddressCell.m in Sources */,
 				E8466B241FC267C100EDA068 /* BaseNavigationController.m in Sources */,
 				E822C66A1FC7C54000F5DFAF /* ReaderDocument.m in Sources */,
 				E8546CAD207D9573004175BC /* SVModalWebViewController.m in Sources */,
+				E8A0C04D21C798F3004595CF /* MJTableViewController.m in Sources */,
 				E809F0CA2016DC8000016366 /* UrlManager.m in Sources */,
 				E822C66B1FC7C54000F5DFAF /* ReaderDocumentOutline.m in Sources */,
 				E8546CC8207DA0E9004175BC /* NJKWebViewProgressView.m in Sources */,
 				E819439A2105D199000358F1 /* NSString+md5.m in Sources */,
 				E873BF8A1FB135B000C122AA /* main.m in Sources */,
+				E8A0C04021C798C0004595CF /* LoginViewController.m in Sources */,
 				E822C6611FC7C54000F5DFAF /* ReaderThumbQueue.m in Sources */,
 				E8546CB8207D9573004175BC /* SVWebViewController.m in Sources */,
 				E8546CC9207DA0E9004175BC /* RxWebViewNavigationViewController.m in Sources */,
+				E8A0C04121C798C0004595CF /* LoginView.m in Sources */,
 				E873BF961FB135B000C122AA /* WanveTest.xcdatamodeld in Sources */,
 				E8466B2E1FC26CA400EDA068 /* UIColor+color.m in Sources */,
 				E822C6641FC7C54000F5DFAF /* CGPDFDocument.m in Sources */,
 				E826A39A1FDE702B00356541 /* UIFont+runtime.m in Sources */,
-				E8466B271FC267CF00EDA068 /* LoginView.m in Sources */,
-				E817C6321FC517A700DEFA44 /* UserModel.m in Sources */,
 				E809F0DC201716CB00016366 /* DetailCell.m in Sources */,
+				E8A0C03F21C798C0004595CF /* UserModel.m in Sources */,
 				E809F0DB201716CB00016366 /* AddressDetailViewController.m in Sources */,
 				E822C6661FC7C54000F5DFAF /* ReaderViewController.m in Sources */,
 				E822C65F1FC7C54000F5DFAF /* ReaderContentTile.m in Sources */,
@@ -1372,10 +1293,9 @@
 				E822C6711FC7C54000F5DFAF /* ThumbsMainToolbar.m in Sources */,
 				E822C66D1FC7C54000F5DFAF /* ReaderThumbsView.m in Sources */,
 				E809F0D02016ED6400016366 /* AddressDepartmentViewController.m in Sources */,
+				E8A0C04A21C798D9004595CF /* WebViewController.m in Sources */,
 				E8546CB3207D9573004175BC /* SVWebViewControllerActivityChrome.m in Sources */,
 				E817C6351FC517B600DEFA44 /* UserManager.m in Sources */,
-				E8466B2A1FC267D800EDA068 /* LoginViewController.m in Sources */,
-				E817C63E1FC5779B00DEFA44 /* VPNSettingViewController.m in Sources */,
 				E822C6671FC7C54000F5DFAF /* ReaderThumbFetch.m in Sources */,
 				E817C62F1FC5063400DEFA44 /* UIImage+image.m in Sources */,
 			);
