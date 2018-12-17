@@ -16,7 +16,7 @@ static id _instance;
 //    static NSString *baseUrl = @"http://19.111.48.16:80";
 
 // 智慧政务
-static NSString *baseUrl = @"http://47.107.91.155:8080";
+//static NSString *baseUrl = @"http://47.107.91.155:8080";
 // 塘厦
 //    static NSString *baseUrl = @"http://19.108.192.125";
 // 规划局
@@ -30,9 +30,9 @@ static NSString *baseUrl = @"http://47.107.91.155:8080";
 //    static NSString *baseUrl = @"http://19.104.39.10";
 
 // 测试
-//    static NSString *baseUrl = @"http://172.27.35.1";
+//    static NSString *baseUrl = @"http://ys.wanve.com:8080";
 // 交投 即 自动化办公
-//    static NSString *baseUrl = @"http://221.4.134.50:8081";
+    static NSString *baseUrl = @"http://221.4.134.50:8081";
 
 + (instancetype)allocWithZone:(struct _NSZone *)zone
 {
@@ -60,6 +60,8 @@ static NSString *baseUrl = @"http://47.107.91.155:8080";
 - (NSString *)getBaseUrl
 {
     return [NSString stringWithFormat:@"%@/DMS_Phone", baseUrl];
+//     测试
+//    return [NSString stringWithFormat:@"%@/DMS_Phone2", baseUrl];
 }
 
 - (NSString *)getMD5Url

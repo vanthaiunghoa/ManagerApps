@@ -445,9 +445,11 @@
                 
 //                NSString *urlStr = @"http://19.104.11.135/?n=1&furl=http://sljoa.dg/wan_data/abc.docx";
 
-                SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:urlStr]];
-                [self.navigationController pushViewController:webViewController animated:YES];
-//                [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
+//                SVWebViewController *webViewController = [[SVWebViewController alloc] initWithURL:[NSURL URLWithString:urlStr]];
+//                [self.navigationController pushViewController:webViewController animated:YES];
+                
+                // 交投
+                [self.navigationController pushViewController:[NSClassFromString(@"WebViewController") new] animated:YES];
             }
             else
             {

@@ -39,6 +39,7 @@
     [self keyboardInit];
     [self progressHUDInit];
     [self userModelInit];
+    // 桌面数字
     [self createTimer];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];

@@ -51,7 +51,7 @@
 
 - (void)initView
 {
-    float y = TOP_HEIGHT;
+    float y = 0;
     
     UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, y, SCREEN_WIDTH, 44)];
     searchBar.placeholder = @"请输入部门名字进行筛选...";
@@ -99,7 +99,8 @@
     
     [manager GET:urlStr parameters: nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
         self.view.userInteractionEnabled = YES;
-        [SVProgressHUD showSuccessWithStatus:@"加载数据成功"];
+//        [SVProgressHUD showSuccessWithStatus:@"加载数据成功"];
+        [SVProgressHUD dismiss];
         PLog(@"请求成功--%@",responseObject);
         
         _address = [AddressModel mj_objectArrayWithKeyValuesArray:responseObject];

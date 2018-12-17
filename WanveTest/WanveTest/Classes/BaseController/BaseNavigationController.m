@@ -43,9 +43,7 @@
 //    } else { // 非iOS7
 //        navBarBg = @"NavBar";
 //    }
-//    [navBar setBackgroundImage:[UIImage imageWithName:navBarBg] forBarMetrics:UIBarMetricsDefault];
-
-    navBar.barTintColor = [UIColor colorWithHexString:@"#3FA6CF"];
+    [navBar setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithRGB:63 green:166 blue:207]] forBarMetrics:UIBarMetricsDefault];
 
     // 3.标题
 #ifdef __IPHONE_7_0

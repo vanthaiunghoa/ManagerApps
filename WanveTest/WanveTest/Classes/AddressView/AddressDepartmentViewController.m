@@ -46,7 +46,7 @@
 
 - (void)initView
 {
-    float y = TOP_HEIGHT;
+    float y = 0;
     
     UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, y, SCREEN_WIDTH, 44)];
     searchBar.placeholder = @"请输入姓名进行筛选...";

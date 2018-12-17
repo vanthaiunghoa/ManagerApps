@@ -13,9 +13,12 @@
 #import "UserManager.h"
 #import "UserModel.h"
 #import "UrlManager.h"
+#import "WebViewJavascriptBridge.h"
 //#import "VPNManager.h"
 
 @interface SVWebViewController () <UIWebViewDelegate>
+
+@property WebViewJavascriptBridge *bridge;
 
 @property (nonatomic, strong) UIBarButtonItem *backBarButtonItem;
 @property (nonatomic, strong) UIBarButtonItem *forwardBarButtonItem;
@@ -123,13 +126,32 @@
     return toInterfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
+#pragma mark - js
+
+- (void)jsCall
+{
+    [_bridge registerHandler:@"callPhone" handler:^(id data, WVJBResponseCallback responseCallback) {
+        PLog(@"data == %@", data);
+        if(data)
+        {
+            
+        }
+    }];
+}
+
+
 #pragma mark - Getters
 
 - (UIWebView*)webView {
     if(!_webView) {
+        
         _webView = [[UIWebView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         _webView.delegate = self;
         _webView.scalesPageToFit = YES;
+        
+        [WebViewJavascriptBridge enableLogging];
+        _bridge = [WebViewJavascriptBridge bridgeForWebView:_webView];
+        [_bridge setWebViewDelegate:self];
     
     }
     return _webView;

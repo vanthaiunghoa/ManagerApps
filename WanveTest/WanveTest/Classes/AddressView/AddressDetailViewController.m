@@ -46,7 +46,7 @@
 
 - (void)initView
 {
-    UIView *head = [[UIView alloc]initWithFrame:CGRectMake(0, TOP_HEIGHT, SCREEN_WIDTH, 200)];
+    UIView *head = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
     head.backgroundColor = [UIColor colorWithHexString:@"#3FA6CF"];
     self.tableView.tableHeaderView = head;
     
