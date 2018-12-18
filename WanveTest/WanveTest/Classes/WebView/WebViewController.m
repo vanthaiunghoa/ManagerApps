@@ -6,6 +6,7 @@
 #import "WebViewJavascriptBridge.h"
 #import "UIColor+color.h"
 #import "KxMenu.h"
+#import "UnitModel.h"
 
 @interface WebViewController()
 
@@ -32,6 +33,8 @@
     // 自动化办公
     [self initWKWebView];
 //    [self updateToolbarItems];
+    
+    [self updateApp];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -333,6 +336,130 @@
     [KxMenu showMenuInView:self.view
                   fromRect:frame
                  menuItems:menuItems];
+}
+
+- (void)updateApp
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"Action"] = @"search";
+    param[@"keyword"] = @"交通投资";
+    param[@"maxnum"] = @"10";
+    NSString *url = @"http://wx.wanve.com/DMSPhoneAppService/AppConfigHandler.ashx";
+    
+    [manager GET:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        PLog(@"请求成功--%@",responseObject);
+        NSDictionary *dictArray = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+       
+        NSMutableArray *arr = [NSMutableArray array];
+        for (NSDictionary *dict in dictArray)
+        {
+            UnitModel *model = [UnitModel unitWithDict:dict];
+            [arr addObject:model];
+        }
+
+        UnitModel *model = arr[0];
+        [self getVersionNum:model.SNID];
+        
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        PLog(@"请求失败--%@",error);
+    }];
+}
+
+- (void)getVersionNum:(NSString *)snid
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    NSMutableDictionary *param = [NSMutableDictionary dictionary];
+    param[@"Action"] = @"getappinfo";
+    param[@"SNID"] = snid;
+    NSString *url = @"http://wx.wanve.com/DMSPhoneAppService/AppConfigHandler.ashx";
+    
+    [manager GET:url parameters:param success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
+        PLog(@"请求成功--%@",responseObject);
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSString *newVersion = dict[@"AppVersionIOS"];
+        
+        NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+        NSString *oldVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+        if([self compareVersion:newVersion to:oldVersion] == 1)
+        {
+            [self showAlertView:dict[@"UpdateMemo"]];
+        }
+    } failure:^(NSURLSessionDataTask * _Nonnull task, NSError * _Nonnull error) {
+        PLog(@"请求失败--%@",error);
+    }];
+}
+
+- (NSInteger)compareVersion:(NSString *)v1 to:(NSString *)v2 {
+    // 都为空，相等，返回0
+    if (!v1 && !v2) {
+        return 0;
+    }
+    
+    // v1为空，v2不为空，返回-1
+    if (!v1 && v2) {
+        return -1;
+    }
+    
+    // v2为空，v1不为空，返回1
+    if (v1 && !v2) {
+        return 1;
+    }
+    
+    // 获取版本号字段
+    NSArray *v1Array = [v1 componentsSeparatedByString:@"."];
+    NSArray *v2Array = [v2 componentsSeparatedByString:@"."];
+    // 取字段最少的，进行循环比较
+    NSInteger smallCount = (v1Array.count > v2Array.count) ? v2Array.count : v1Array.count;
+    
+    for (int i = 0; i < smallCount; i++)
+    {
+        NSInteger value1 = [[v1Array objectAtIndex:i] integerValue];
+        NSInteger value2 = [[v2Array objectAtIndex:i] integerValue];
+        if (value1 > value2) {
+            // v1版本字段大于v2版本字段，返回1
+            return 1;
+        } else if (value1 < value2) {
+            // v2版本字段大于v1版本字段，返回-1
+            return -1;
+        }
+        // 版本相等，继续循环。
+    }
+    
+    // 版本可比较字段相等，则字段多的版本高于字段少的版本。
+    if (v1Array.count > v2Array.count) {
+        return 1;
+    } else if (v1Array.count < v2Array.count) {
+        return -1;
+    } else {
+        return 0;
+    }
+    
+    return 0;
+}
+
+- (void)showAlertView:(NSString *)mes
+{
+    // 1.创建UIAlertController
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"版本更新"
+                                                                             message:mes
+                                                                      preferredStyle:UIAlertControllerStyleAlert];
+    
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"OK Action");
+        // 交投
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://www.pgyer.com/JtZ6"]];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        NSLog(@"Cancel Action");
+    }];
+    
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 

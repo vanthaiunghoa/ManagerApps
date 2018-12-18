@@ -112,6 +112,7 @@
 		E873BF961FB135B000C122AA /* WanveTest.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E873BF941FB135B000C122AA /* WanveTest.xcdatamodeld */; };
 		E873BF981FB135B000C122AA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E873BF971FB135B000C122AA /* Assets.xcassets */; };
 		E873BFA61FB135B100C122AA /* WanveTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E873BFA51FB135B100C122AA /* WanveTestUITests.m */; };
+		E89050CA21C8807000BA4771 /* UnitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E89050C921C8807000BA4771 /* UnitModel.m */; };
 		E898CDF720186272005D27E2 /* DepartmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E898CDF420186271005D27E2 /* DepartmentCell.m */; };
 		E898CDF820186272005D27E2 /* AddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E898CDF520186272005D27E2 /* AddressCell.m */; };
 		E8A0C03F21C798C0004595CF /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E8A0C03921C798BF004595CF /* UserModel.m */; };
@@ -362,6 +363,8 @@
 		E873BFA11FB135B100C122AA /* WanveTestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WanveTestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E873BFA51FB135B100C122AA /* WanveTestUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WanveTestUITests.m; sourceTree = "<group>"; };
 		E873BFA71FB135B100C122AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E89050C821C8807000BA4771 /* UnitModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnitModel.h; sourceTree = "<group>"; };
+		E89050C921C8807000BA4771 /* UnitModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UnitModel.m; sourceTree = "<group>"; };
 		E898CDF320186271005D27E2 /* AddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressCell.h; sourceTree = "<group>"; };
 		E898CDF420186271005D27E2 /* DepartmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentCell.m; sourceTree = "<group>"; };
 		E898CDF520186272005D27E2 /* AddressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressCell.m; sourceTree = "<group>"; };
@@ -983,6 +986,8 @@
 			children = (
 				E8A0C04821C798D9004595CF /* WebViewController.h */,
 				E8A0C04921C798D9004595CF /* WebViewController.m */,
+				E89050C821C8807000BA4771 /* UnitModel.h */,
+				E89050C921C8807000BA4771 /* UnitModel.m */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -1281,6 +1286,7 @@
 				E826A39A1FDE702B00356541 /* UIFont+runtime.m in Sources */,
 				E809F0DC201716CB00016366 /* DetailCell.m in Sources */,
 				E8A0C03F21C798C0004595CF /* UserModel.m in Sources */,
+				E89050CA21C8807000BA4771 /* UnitModel.m in Sources */,
 				E809F0DB201716CB00016366 /* AddressDetailViewController.m in Sources */,
 				E822C6661FC7C54000F5DFAF /* ReaderViewController.m in Sources */,
 				E822C65F1FC7C54000F5DFAF /* ReaderContentTile.m in Sources */,
